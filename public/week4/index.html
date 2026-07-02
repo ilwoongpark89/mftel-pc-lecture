@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html lang="ko" class="lang-ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.4" />
+<title>상변화열전달 · Week 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<style>
+  :root{ --bg:#ffffff; --ink:#18181b; --gray:#52525b; --gray2:#71717a; --hair:#e4e4e7; --hair2:#f4f4f5; --accent:#b91c1c; --accent-soft:#fef2f2; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; }
+  body{ background:var(--bg); color:var(--ink); font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif; -webkit-font-smoothing:antialiased; overflow:hidden; height:100vh; }
+  .eyebrow .katex, .eyebrow .katex *, .keq-label .katex, .keq-label .katex *, .vcap .katex, .vcap .katex *, .intro-eyebrow .katex, .intro-eyebrow .katex *, table.ktab th .katex, table.ktab th .katex *{ text-transform:none; }
+  .mystery .mq, .mystery .ma, .lcard p, .aggrow .lab, .vs-col .q, .vs-col p, .stat .lbl, .stat .why, .term, .rm-item .rd, .intro-sub, .lede, .qtext, .prob-statement, .callout, .outcomes li, .sumcard li{ word-break:keep-all; }
+
+  header{ height:52px; display:flex; align-items:center; padding:0 26px; border-bottom:1px solid var(--hair); }
+  .brand{ font-size:13px; font-weight:700; color:var(--gray); flex:1; } .brand .sep{ color:var(--hair); margin:0 7px; font-weight:400; }
+  .chrail{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+  .chdot{ font-size:11px; font-weight:700; color:var(--gray2); border:1px solid var(--hair); border-radius:20px; padding:3px 9px; cursor:pointer; transition:all .12s ease; background:#fff; }
+  .chdot:hover{ border-color:var(--accent); color:var(--accent); }
+  .chdot.cur{ background:var(--ink); color:#fff; border-color:var(--ink); }
+
+  .stepbar{ height:44px; display:flex; align-items:center; justify-content:center; gap:0; border-bottom:1px solid var(--hair); padding:0 16px; overflow:hidden; }
+  .step{ display:flex; align-items:center; font-size:12px; font-weight:600; color:var(--gray2); cursor:pointer; white-space:nowrap; }
+  .step .ix{ width:18px; height:18px; border-radius:50%; border:1px solid var(--hair); display:inline-flex; align-items:center; justify-content:center; font-size:10.5px; margin-right:5px; background:#fff; transition:all .12s; }
+  .step.cur{ color:var(--ink); font-weight:800; } .step.cur .ix{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .step.done{ color:var(--gray); } .step.done .ix{ background:var(--accent-soft); border-color:var(--accent); color:var(--accent); }
+  .step .link{ width:20px; height:1px; background:var(--hair); margin:0 7px; }
+  .step:hover:not(.cur){ color:var(--ink); }
+
+  main{ height:calc(100vh - 52px - 44px - 62px); display:flex; align-items:flex-start; justify-content:center; padding:20px 26px 8px; overflow:hidden; }
+  .stage{ width:100%; max-width:1020px; height:100%; display:flex; align-items:flex-start; justify-content:center; overflow:hidden; }
+  .screen{ display:none; width:100%; }
+  .screen.active{ display:block; transform-origin:top center; will-change:transform; animation:fade .16s ease both; }
+  @keyframes fade{ from{opacity:0} to{opacity:1} }
+  @media (prefers-reduced-motion: reduce){ .screen.active{ animation:none; } }
+
+  .eyebrow{ font-size:11.5px; font-weight:800; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+  .stage-h{ font-size:26px; font-weight:800; line-height:1.22; letter-spacing:-.01em; margin-bottom:2px; } .stage-h .en{ font-weight:600; color:var(--gray); font-size:17px; }
+  .lede{ font-size:15px; line-height:1.7; color:var(--gray); margin-top:13px; max-width:780px; } .lede strong{ color:var(--ink); font-weight:700; }
+  .two{ display:grid; grid-template-columns:1fr 1fr; gap:30px; margin-top:16px; align-items:start; } .two .col2{ min-width:0; }
+
+  .keqbox{ margin-top:14px; border-left:3px solid var(--accent); padding:2px 0 2px 18px; }
+  .keq-label{ font-size:11.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--gray2); margin-bottom:11px; }
+  .keqrow{ display:flex; align-items:baseline; gap:14px; margin-bottom:7px; } .keqrow:last-child{ margin-bottom:0; }
+  .keqcap{ font-size:12.5px; font-weight:600; color:var(--gray2); width:200px; flex-shrink:0; } .keqline{ color:var(--ink); }
+  .keqnote{ font-size:12.5px; color:var(--gray2); margin-top:10px; line-height:1.6; }
+
+  /* key terms */
+  .terms{ margin-top:13px; display:grid; grid-template-columns:1fr 1fr; gap:6px 18px; }
+  .term{ font-size:13px; line-height:1.5; color:var(--gray); padding-left:12px; border-left:2px solid var(--hair); }
+  .term b{ color:var(--ink); font-weight:700; }
+
+  /* callouts */
+  .callout{ margin-top:16px; border-radius:10px; padding:13px 16px; font-size:13.5px; line-height:1.65; }
+  .callout .ct{ font-size:11.5px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+  .callout.key{ background:var(--accent-soft); border:1px solid #f5c2c2; } .callout.key .ct{ color:var(--accent); }
+  .callout.warn{ background:var(--hair2); border:1px solid var(--hair); } .callout.warn .ct{ color:var(--gray2); }
+  .callout.exam{ background:#fff; border:1px dashed var(--accent); } .callout.exam .ct{ color:var(--accent); }
+  .callout ul{ margin:0; padding-left:18px; } .callout li{ margin-bottom:3px; } .callout strong{ color:var(--ink); }
+
+  /* derivation */
+  .assume{ font-size:13px; color:var(--gray2); margin-top:10px; } .assume b{ color:var(--ink); }
+  .deriv{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-top:16px; }
+  .dcard{ border:1px solid var(--hair); border-radius:12px; padding:14px 14px 16px; }
+  .dcard h4{ font-size:13px; font-weight:800; margin-bottom:3px; } .dcard .sub{ font-size:11px; color:var(--gray2); font-weight:600; margin-bottom:10px; }
+  .dcard .eq{ background:var(--hair2); border-radius:8px; padding:9px 6px; text-align:center; margin-bottom:9px; } .dcard p{ font-size:12.5px; line-height:1.55; color:var(--gray); } .dcard p strong{ color:var(--ink); }
+  .dcard .ana{ font-size:11.5px; line-height:1.45; color:var(--accent); background:var(--accent-soft); border-radius:7px; padding:7px 9px; margin-bottom:9px; }
+  .analogy{ display:flex; gap:11px; align-items:center; margin-top:10px; background:var(--accent-soft); border:1px solid #f5c2c2; border-radius:10px; padding:9px 15px; } .analogy .ic{ font-size:20px; flex-shrink:0; } .analogy .tx{ font-size:13px; line-height:1.5; color:var(--ink); } .analogy .tx b{ color:var(--accent); font-weight:700; }
+  .steps{ margin-top:14px; } .dstep{ display:flex; gap:12px; margin-bottom:9px; align-items:baseline; }
+  .dstep .n{ flex-shrink:0; width:20px; height:20px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-size:11px; font-weight:800; display:inline-flex; align-items:center; justify-content:center; }
+  .dstep .body{ flex:1; } .dstep .body .t{ font-size:13px; color:var(--gray); line-height:1.5; } .dstep .body .t b{ color:var(--ink); }
+
+  /* reading */
+  .reading{ max-width:720px; margin-top:12px; } .reading p{ font-size:14px; line-height:1.66; color:#3f3f46; margin-bottom:8px; } .reading p strong{ color:var(--ink); font-weight:700; }
+  .pullquote{ border-left:3px solid var(--accent); padding:4px 0 4px 18px; margin:11px 0; font-size:15px; line-height:1.5; color:var(--ink); font-weight:600; }
+  .readmeta{ font-size:12px; color:var(--gray2); margin-top:4px; }
+
+  /* visual */
+  .vizgrid{ display:grid; grid-template-columns:1.05fr .95fr; gap:32px; margin-top:14px; align-items:center; }
+  .vcap{ font-size:11.5px; font-weight:700; color:var(--gray2); letter-spacing:.04em; text-transform:uppercase; margin-bottom:9px; }
+  table.ktab{ width:100%; border-collapse:collapse; font-size:13.5px; }
+  table.ktab th{ text-align:left; font-size:11px; letter-spacing:.04em; text-transform:none; color:var(--gray2); font-weight:700; padding:6px 8px; border-bottom:1px solid var(--hair); }
+  table.ktab td{ padding:7px 8px; border-bottom:1px solid var(--hair2); color:var(--ink); } table.ktab td.k{ text-align:right; font-variant-numeric:tabular-nums; color:var(--gray); } table.ktab tr:last-child td{ border-bottom:none; }
+  .bar{ height:7px; background:var(--accent-soft); border-radius:4px; overflow:hidden; } .bar > span{ display:block; height:100%; background:var(--accent); border-radius:4px; min-width:3px; }
+
+  /* interactive calc widget */
+  .calc{ margin-top:14px; border:1px solid var(--hair); border-radius:14px; padding:18px 20px; max-width:760px; background:#fcfcfc; }
+  .calc-title{ font-size:13px; font-weight:800; color:var(--ink); margin-bottom:4px; } .calc-desc{ font-size:12.5px; color:var(--gray2); margin-bottom:14px; line-height:1.5; }
+  .calc-rows{ display:flex; flex-direction:column; gap:13px; }
+  .calc-row{ display:grid; grid-template-columns:190px 1fr 130px; align-items:center; gap:14px; }
+  .calc-lab{ font-size:13.5px; color:var(--ink); } .calc-val{ font-size:13px; color:var(--gray); font-variant-numeric:tabular-nums; text-align:right; }
+  .calc input[type=range]{ -webkit-appearance:none; appearance:none; height:4px; background:var(--hair); border-radius:4px; outline:none; }
+  .calc input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:var(--accent); cursor:pointer; border:2px solid #fff; box-shadow:0 0 0 1px var(--accent); }
+  .calc-out{ margin-top:16px; padding-top:14px; border-top:1px solid var(--hair); font-size:18px; color:var(--ink); display:flex; align-items:baseline; gap:8px; }
+  .calc-out .calc-num{ font-size:24px; font-weight:800; color:var(--accent); font-variant-numeric:tabular-nums; }
+  .calc-outbar{ margin-top:12px; } .calc-note{ font-size:12px; color:var(--gray2); margin-top:10px; line-height:1.5; }
+
+  /* concept question (cq) + practice (prob) */
+  .panel-head{ display:flex; align-items:center; gap:9px; margin-bottom:9px; }
+  .tag{ font-size:11px; font-weight:800; color:#fff; background:var(--ink); border-radius:5px; padding:2px 8px; } .panel-title{ font-size:15px; font-weight:700; }
+  .cq{ margin-bottom:12px; padding-bottom:4px; } .cq:last-child{ margin-bottom:0; }
+  .qtext{ font-size:14.5px; line-height:1.55; } .qtext .qn{ color:var(--accent); font-weight:800; margin-right:6px; }
+  .opts{ display:flex; flex-direction:column; gap:6px; margin-top:9px; max-width:620px; }
+  .opt{ font-family:inherit; text-align:left; font-size:13.5px; color:var(--ink); background:#fff; border:1px solid var(--hair); border-radius:9px; padding:8px 13px; cursor:pointer; transition:all .12s; } .opt:hover{ border-color:#d4d4d8; background:var(--hair2); } .opt.sel{ border-color:var(--accent); background:var(--accent-soft); } .opt.correct{ border-color:var(--accent); background:var(--accent-soft); font-weight:700; }
+  .submit-row{ display:flex; align-items:center; gap:12px; margin-top:9px; } .submit-fb{ font-size:12.5px; font-weight:700; color:var(--accent); }
+  .btn{ font-family:inherit; font-size:13px; font-weight:600; border-radius:9px; padding:8px 16px; cursor:pointer; border:1px solid var(--hair); background:#fff; color:var(--ink); transition:all .12s; } .btn:hover{ background:var(--hair2); } .btn.primary{ background:var(--accent); color:#fff; border-color:var(--accent); } .btn.primary:hover{ background:#991b1b; }
+  .prof{ display:none; margin-top:13px; border:1px dashed var(--hair); border-radius:11px; padding:13px 15px; background:#fcfcfc; max-width:600px; } .prof.show{ display:block; animation:fade .18s ease both; }
+  .cp-exp{ display:none; margin-top:9px; font-size:12.5px; line-height:1.55; color:var(--gray); background:var(--accent-soft); border:1px solid #f5c2c2; border-radius:10px; padding:9px 13px; max-width:660px; } .cp-exp.show{ display:block; animation:fade .18s ease both; }
+  .cp-exp .exp-h{ font-size:11px; font-weight:800; color:var(--accent); letter-spacing:.04em; margin-right:6px; } .cp-exp .ok{ color:var(--accent); font-weight:700; } .cp-exp .dim{ color:var(--gray2); } .cp-exp .agg{ display:block; margin-top:4px; font-size:11.5px; color:var(--gray2); }
+  .calc-sense{ margin-top:13px; font-size:12px; line-height:1.6; color:var(--gray); border-top:1px solid var(--hair2); padding-top:11px; max-width:760px; } .calc-sense .cs-h{ font-size:11px; font-weight:800; color:var(--accent); letter-spacing:.04em; margin-right:6px; }
+  .src{ font-size:11px; color:var(--gray2); font-weight:400; }
+  .prof .ph{ display:flex; align-items:center; gap:8px; font-size:11.5px; font-weight:800; color:var(--gray2); letter-spacing:.03em; margin-bottom:10px; } .prof .pill{ font-size:10px; font-weight:800; color:var(--accent); background:var(--accent-soft); border-radius:20px; padding:2px 9px; }
+  .agg{ display:flex; flex-direction:column; gap:8px; } .aggrow{ display:grid; grid-template-columns:112px 1fr 40px; align-items:center; gap:10px; font-size:12.5px; } .aggrow .lab{ color:var(--ink); font-weight:600; } .aggrow .cnt{ text-align:right; color:var(--gray2); font-variant-numeric:tabular-nums; }
+  .prof .note{ font-size:11px; color:var(--gray2); margin-top:10px; line-height:1.5; }
+
+  .prob{ margin-bottom:18px; }
+  .screen.active[data-stage="연습"]{ display:grid; grid-template-columns:1fr 1fr; column-gap:26px; align-content:start; }
+  .screen[data-stage="연습"] .panel-head{ grid-column:1 / -1; }
+  .screen[data-stage="연습"] .prob{ margin-bottom:0; min-width:0; } .prob:last-child{ margin-bottom:0; }
+  .prob-num{ font-size:11.5px; font-weight:800; color:var(--accent); letter-spacing:.04em; margin-bottom:5px; }
+  .prob-statement{ font-size:14px; line-height:1.6; color:var(--gray); max-width:720px; } .prob-statement strong{ color:var(--ink); }
+  .given{ display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; } .chip{ font-size:12.5px; color:var(--gray); border:1px solid var(--hair); background:var(--hair2); border-radius:6px; padding:4px 9px; }
+  .find{ font-size:13px; margin-top:9px; } .find b{ color:var(--gray2); font-weight:700; }
+  .ans-row{ display:flex; align-items:center; gap:9px; margin-top:10px; flex-wrap:wrap; } .ans-input{ font-family:inherit; font-size:14px; width:120px; border:1px solid var(--hair); border-radius:8px; padding:7px 11px; outline:none; } .ans-input:focus{ border-color:var(--accent); } .ans-unit{ font-size:13px; color:var(--gray2); } .check-fb{ font-size:12.5px; font-weight:700; } .check-fb.ok{ color:var(--accent); } .check-fb.no{ color:var(--gray2); }
+  .reveal-btn{ margin-top:11px; font-family:inherit; font-size:13px; font-weight:600; color:var(--ink); background:#fff; border:1px solid var(--hair); border-radius:8px; padding:7px 14px; cursor:pointer; display:inline-flex; align-items:center; gap:7px; transition:all .12s; } .reveal-btn:hover{ background:var(--hair2); } .reveal-btn .caret{ font-size:10px; color:var(--gray2); transition:transform .15s; } .reveal-btn.is-open .caret{ transform:rotate(180deg); }
+  .revealable{ display:none; } .revealable.open{ display:block; animation:fade .15s ease both; }
+  .solution{ margin-top:11px; } .dstep2{ margin-bottom:6px; } .step-label{ font-size:12px; font-weight:700; color:var(--gray2); margin-bottom:1px; }
+  .solution .katex-display{ margin:.18em 0; } .solution .katex-display>.katex, .ans-final .katex-display>.katex, .keqline .katex-display>.katex{ text-align:left; } .dcard .eq .katex-display{ margin:.1em 0; }
+  .ans-final{ margin-top:6px; border-top:1px dashed var(--hair); padding-top:9px; font-size:12.5px; color:var(--gray); } .ans-final b{ color:var(--ink); } .ans-final .ans-eq{ color:var(--ink); margin-bottom:4px; }
+
+  /* summary */
+  .sumgrid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px; }
+  .sumcard{ border:1px solid var(--hair); border-radius:12px; padding:15px 16px; } .sumcard.full{ grid-column:1 / -1; }
+  .sumcard h4{ font-size:12.5px; font-weight:800; letter-spacing:.03em; margin-bottom:9px; display:flex; align-items:center; gap:6px; } .sumcard.key h4{ color:var(--accent); }
+  .sumcard ul{ margin:0; padding-left:17px; } .sumcard li{ font-size:13px; line-height:1.6; color:var(--gray); margin-bottom:4px; } .sumcard li strong{ color:var(--ink); }
+
+  /* week intro */
+  .intro{ max-width:940px; }
+  .intro-eyebrow{ font-size:12.5px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+  .intro-h{ font-size:38px; font-weight:800; line-height:1.18; letter-spacing:-.015em; margin-bottom:14px; } .intro-h .hl{ color:var(--accent); }
+  .intro-sub{ font-size:17px; line-height:1.65; color:var(--gray); max-width:780px; margin-bottom:26px; } .intro-sub strong{ color:var(--ink); }
+  .mystery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .mystery{ border:1px solid var(--hair); border-radius:14px; padding:18px 18px 20px; background:#fff; }
+  .mystery .emoji{ font-size:24px; display:block; margin-bottom:10px; }
+  .mystery .mq{ font-size:14.5px; font-weight:700; color:var(--ink); line-height:1.45; margin-bottom:8px; }
+  .mystery .ma{ font-size:12.5px; line-height:1.55; color:var(--gray2); } .mystery .ma b{ color:var(--accent); font-weight:700; }
+  .intro-teaser{ margin-top:22px; border-left:3px solid var(--accent); padding:4px 0 4px 18px; font-size:16px; line-height:1.6; color:var(--ink); font-weight:600; } .intro-teaser em{ color:var(--accent); font-style:normal; }
+  .roadmap{ margin-top:6px; display:flex; flex-direction:column; gap:9px; }
+  .rm-item{ display:flex; align-items:baseline; gap:13px; }
+  .rm-item .rn{ flex-shrink:0; font-size:12px; font-weight:800; color:var(--accent); background:var(--accent-soft); border-radius:20px; padding:2px 10px; min-width:46px; text-align:center; }
+  .rm-item .rt{ font-size:14.5px; color:var(--ink); font-weight:700; } .rm-item .rd{ font-size:13px; color:var(--gray2); }
+  .outcomes{ margin-top:6px; border:1px solid var(--hair); border-radius:12px; padding:16px 18px; background:#fcfcfc; }
+  .outcomes h4{ font-size:12.5px; font-weight:800; color:var(--accent); margin-bottom:10px; letter-spacing:.03em; }
+  .outcomes ul{ margin:0; padding-left:18px; } .outcomes li{ font-size:13.5px; line-height:1.7; color:var(--gray); } .outcomes li strong{ color:var(--ink); }
+  /* intro extras */
+  .vs{ display:grid; grid-template-columns:1fr 56px 1fr; margin-top:20px; align-items:stretch; }
+  .vs-col{ border:1px solid var(--hair); border-radius:14px; padding:20px 22px; } .vs-col.b{ background:var(--accent-soft); border-color:#f5c2c2; }
+  .vs-mid{ display:flex; align-items:center; justify-content:center; font-weight:800; color:var(--gray2); font-size:13px; }
+  .vs-col h4{ font-size:13px; font-weight:800; letter-spacing:.04em; margin-bottom:10px; color:var(--gray2); } .vs-col.b h4{ color:var(--accent); }
+  .vs-col .q{ font-size:16px; font-weight:700; color:var(--ink); line-height:1.45; margin-bottom:10px; } .vs-col p{ font-size:13.5px; line-height:1.6; color:var(--gray); } .vs-col p strong{ color:var(--ink); }
+  .stat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:20px; }
+  .stat{ border:1px solid var(--hair); border-radius:14px; padding:17px 13px; text-align:center; }
+  .stat .big{ font-size:26px; font-weight:800; color:var(--accent); line-height:1.05; } .stat .lbl{ font-size:12.5px; color:var(--ink); margin-top:8px; line-height:1.4; font-weight:600; } .stat .lbl b{ color:var(--ink); }
+  .stat .why{ font-size:11px; color:var(--gray2); margin-top:9px; border-top:1px solid var(--hair2); padding-top:8px; line-height:1.55; }
+  .tl{ margin-top:20px; display:flex; flex-direction:column; gap:13px; max-width:760px; }
+  .tl-item{ display:flex; gap:16px; align-items:baseline; } .tl-item .yr{ flex-shrink:0; font-size:13px; font-weight:800; color:var(--accent); width:120px; } .tl-item .ev{ font-size:14px; color:var(--gray); line-height:1.5; } .tl-item .ev b{ color:var(--ink); font-weight:700; }
+  .flow{ display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin-top:20px; }
+  .flowstep{ border:1px solid var(--hair); border-radius:9px; padding:8px 12px; font-size:13px; font-weight:700; color:var(--ink); background:#fff; } .flowstep.on{ background:var(--accent); color:#fff; border-color:var(--accent); }
+  .flow-arr{ color:var(--gray2); font-size:12px; }
+  .learn-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px; }
+  .lcard{ border:1px solid var(--hair); border-radius:14px; padding:18px; } .lcard .lh{ font-size:14px; font-weight:800; color:var(--ink); margin-bottom:7px; display:flex; align-items:center; gap:7px; } .lcard .le{ font-size:20px; } .lcard p{ font-size:13px; line-height:1.6; color:var(--gray); } .lcard p b{ color:var(--accent); }
+
+  footer{ height:62px; display:flex; align-items:center; justify-content:space-between; padding:0 26px; border-top:1px solid var(--hair); }
+  .nav-btn{ font-family:inherit; font-size:14px; font-weight:600; border-radius:10px; padding:9px 17px; cursor:pointer; border:1px solid var(--hair); background:#fff; color:var(--ink); transition:all .12s; } .nav-btn:hover{ background:var(--hair2); } .nav-btn.prev[disabled]{ opacity:0; pointer-events:none; } .nav-btn.next{ background:var(--accent); color:#fff; border-color:var(--accent); } .nav-btn.next:hover{ background:#991b1b; }
+  .foot-hint{ font-size:12px; color:var(--gray2); }
+  html.lang-en .lang-ko{display:none!important} html.lang-ko .lang-en{display:none!important}
+  .langtog{font:700 11.5px/1 inherit;color:var(--gray2);border:1px solid var(--hair);background:#fff;border-radius:20px;padding:4px 11px;cursor:pointer;margin-left:8px;transition:all .12s} .langtog:hover{border-color:var(--accent);color:var(--accent)}
+</style>
+</head>
+<body>
+<header><span class="brand">MFTEL-PC<span class="sep">·</span>상변화열전달<span class="sep">·</span>Week 4</span>상변화열전달<span class="sep">·</span>Week N</span><div class="chrail" id="chrail"></div><button id="langToggle" class="langtog" type="button" aria-label="Language">EN</button></header>
+<div class="stepbar" id="stepbar"></div>
+<main><div class="stage" id="stage">
+<!-- ════════ 시작1 / 환영 ════════ -->
+<section class="screen" data-ch="시작1" data-chtitle="4주차 개요" data-stage="환영">
+  <div class="intro">
+    <div class="intro-eyebrow lang-ko">상변화 열전달 · 4주차 · 시작</div>
+    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Week 4 · Intro</div>
+
+    <h1 class="intro-h lang-ko">유체가 흐르기 시작하면,<br><span class="hl">비등은 전혀 다른 규칙을 따른다</span></h1>
+    <h1 class="intro-h lang-en">Once the fluid starts to flow,<br><span class="hl">boiling obeys an entirely different set of rules</span></h1>
+
+    <p class="lede lang-ko">고요한 풀(pool) 속 비등은 부력이 만든 기포 하나하나의 이야기였다. 그러나 관 안에서 유체가 <strong>속도 $G$로 흐르기 시작하면</strong> 강제 대류와 핵비등이 겹쳐지고, 축을 따라 건도 $x$가 올라가면서 유동양식이 <strong>기포류 → 슬러그류 → 환상류</strong>로 급변한다. 국소 열전달 계수는 위치마다 다르고, 어느 지점에서는 벽면이 갑자기 마르는 <strong>임계 열유속(CHF)</strong>과 <strong>드라이아웃(dryout)</strong>이 찾아온다. 특히 <strong>미세유로(microchannel)</strong>에서는 표면장력이 부력을 압도해 유동양식 지도 자체가 다시 그려진다. <span class="src">[Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2nd ed., Ch.11–12]</span></p>
+    <p class="lede lang-en">In a quiescent pool, boiling was the story of individual buoyancy-driven bubbles. But once the fluid moves through a channel <strong>at mass flux $G$</strong>, forced convection and nucleate boiling superimpose, and as quality $x$ rises along the axis the flow pattern switches abruptly through <strong>bubbly → slug → annular</strong> flow. The local heat-transfer coefficient varies point by point, and somewhere the wall suddenly dries out — the onset of <strong>critical heat flux (CHF)</strong> and <strong>dryout</strong>. In <strong>microchannels</strong> especially, surface tension overwhelms buoyancy and the flow-regime map is redrawn from scratch. <span class="src">[Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2nd ed., Ch.11–12]</span></p>
+  </div>
+</section>
+
+<!-- ════════ 시작2 / 여정 ════════ -->
+<section class="screen" data-ch="시작2" data-chtitle="4주차 지도" data-stage="여정">
+  <div class="intro">
+    <div class="intro-eyebrow lang-ko">상변화 열전달 · 4주차 지도</div>
+    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Week 4 Roadmap</div>
+
+    <h1 class="intro-h lang-ko">이번 주, <span class="hl">네 개의 챕터</span>로 유동비등의 지형을 훑는다</h1>
+    <h1 class="intro-h lang-en">This week: <span class="hl">four chapters</span> across the landscape of flow boiling</h1>
+
+    <div class="roadmap lang-ko" style="margin-top:14px">
+      <div class="rm-item"><span class="rn">4-1</span><span><span class="rt">풀 vs 유동비등·유동양식</span> <span class="rd">— 질량유속 $G$·건도 $x$의 도입과 기포류·슬러그류·환상류 전이</span></span></div>
+      <div class="rm-item"><span class="rn">4-2</span><span><span class="rt">과냉·포화 유동비등(Chen)</span> <span class="rd">— 핵비등 억제 $S$와 대류 강화 $F$의 중첩 상관식</span></span></div>
+      <div class="rm-item"><span class="rn">4-3</span><span><span class="rt">유동 CHF·드라이아웃·미세유로</span> <span class="rd">— DNB 대 dryout, 미세유로에서 표면장력 지배 양식</span></span></div>
+      <div class="rm-item"><span class="rn">4-4</span><span><span class="rt">Marangoni·혼합·불안정성</span> <span class="rd">— 온도·농도 구배 유동, 혼합물 비등, Ledinegg·밀도파 진동</span></span></div>
+    </div>
+    <div class="roadmap lang-en" style="margin-top:14px">
+      <div class="rm-item"><span class="rn">4-1</span><span><span class="rt">Pool vs Flow Boiling &amp; Flow Regimes</span> <span class="rd">— introducing mass flux $G$, quality $x$, and bubbly / slug / annular transitions</span></span></div>
+      <div class="rm-item"><span class="rn">4-2</span><span><span class="rt">Subcooled / Saturated Flow Boiling (Chen)</span> <span class="rd">— superposition of nucleate suppression $S$ and convective enhancement $F$</span></span></div>
+      <div class="rm-item"><span class="rn">4-3</span><span><span class="rt">Flow CHF, Dryout &amp; Microchannels</span> <span class="rd">— DNB vs dryout and surface-tension-dominated regimes in microchannels</span></span></div>
+      <div class="rm-item"><span class="rn">4-4</span><span><span class="rt">Marangoni, Mixtures &amp; Instability</span> <span class="rd">— thermo/soluto-capillary flow, mixture boiling, Ledinegg &amp; density-wave oscillations</span></span></div>
+    </div>
+
+    <div class="outcomes lang-ko" style="margin-top:18px"><h4>이번 주가 끝나면 할 수 있게 된다</h4><ul>
+      <li>질량유속 $G$와 건도 $x$로 <strong>풀 비등과 유동비등</strong>을 구분하고 유동양식을 판별한다.</li>
+      <li>Chen 상관식의 <strong>억제 인자 $S$와 강화 인자 $F$</strong>로 국소 열전달 계수 $h$를 예측한다.</li>
+      <li><strong>유동 CHF와 드라이아웃</strong>을 구별하고 미세유로 비등의 지배 물리를 설명한다.</li>
+      <li>Marangoni 효과·혼합물 물질전달·<strong>유동 불안정성</strong>이 성능에 주는 영향을 평가한다.</li>
+    </ul></div>
+    <div class="outcomes lang-en" style="margin-top:18px"><h4>By the end of this week you will be able to</h4><ul>
+      <li>Distinguish <strong>pool from flow boiling</strong> using mass flux $G$ and quality $x$, and identify the flow regime.</li>
+      <li>Predict the local coefficient $h$ with the Chen correlation's <strong>suppression $S$ and enhancement $F$</strong> factors.</li>
+      <li>Differentiate <strong>flow CHF from dryout</strong> and explain the governing physics of microchannel boiling.</li>
+      <li>Assess how the Marangoni effect, mixture mass transfer, and <strong>flow instabilities</strong> affect performance.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ══════════ 4-1 / 개념 ══════════ -->
+  <section class="screen" data-ch="4-1" data-chtitle="풀비등 vs 유동비등·유동양식" data-stage="개념">
+    <div class="eyebrow lang-ko">4-1 · 개념 · Concept</div>
+    <div class="eyebrow lang-en">4-1 · Concept</div>
+    <h1 class="stage-h lang-ko">유동비등 — 흐르는 관 속에서 끓다</h1>
+    <h1 class="stage-h lang-en">Flow Boiling — Boiling Inside a Flowing Tube</h1>
+    <div class="analogy lang-ko"><span class="ic">🚿</span><div class="tx"><b>직관</b> — 정지한 냄비(풀 비등)와 달리, <b>보일러 관</b> 속 물은 펌프에 밀려 흐르면서 끓는다. 관을 따라 올라갈수록 액체가 점점 증기로 바뀌어 — 처음엔 <b>물속의 작은 거품</b>, 중간엔 <b>증기 마개(슬러그)</b>, 나중엔 <b>벽을 적신 얇은 액막 + 증기 코어(환상류)</b>로 <b>겉모습(유동양식)</b>이 완전히 달라진다. <span class="src">(출처: Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10.5 / Collier &amp; Thome, <i>Convective Boiling and Condensation</i>, 3rd ed.)</span></div></div>
+    <div class="analogy lang-en"><span class="ic">🚿</span><div class="tx"><b>Intuition</b> — Unlike a quiescent pot (pool boiling), water inside a <b>boiler tube</b> is pushed by a pump and boils <b>while flowing</b>. Moving up the tube, liquid gradually turns to vapor, so the <b>appearance (flow regime)</b> shifts completely — first <b>small bubbles in liquid</b>, then <b>vapor plugs (slugs)</b>, later a <b>thin liquid film wetting the wall + a vapor core (annular)</b>. <span class="src">(Source: Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10.5 / Collier &amp; Thome, <i>Convective Boiling and Condensation</i>, 3rd ed.)</span></div></div>
+    <div class="two lang-ko">
+      <div class="col2">
+        <p class="lede"><strong>유동비등(flow boiling)</strong>은 <strong>강제대류와 비등이 결합</strong>된 열전달입니다. 풀 비등은 정지 액체 속 <strong>$\Delta T_e$ 하나</strong>로 거동이 정해졌지만, 유동비등은 <strong>질량유속 $G$</strong>와 <strong>건도 $x$</strong>라는 두 축이 추가됩니다. 관을 따라 $x$가 커지면서 <strong>유동양식</strong>이 발달하고, 국소 열전달계수 <strong>$h(x)$</strong>도 함께 변합니다.</p>
+        <div class="keqbox">
+          <div class="keq-label">핵심 정의</div>
+          <div class="keqrow"><span class="keqcap">질량유속</span><span class="keqline">$ G = \dot{m}/A_c \ [\text{kg/(m}^2\text{s)}] $</span></div>
+          <div class="keqrow"><span class="keqcap">열역학 건도</span><span class="keqline">$ x = \dfrac{h - h_f}{h_{fg}} $</span></div>
+          <div class="keqrow"><span class="keqcap">2상 열전달</span><span class="keqline">$ q'' = h_{tp}\,(T_s - T_{sat}) $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">핵심 용어</div>
+        <div class="terms">
+          <div class="term"><b>질량유속 $G$</b> 단위단면적당 질량유량 $[\text{kg/(m}^2\text{s)}]$ — 강제대류 강도</div>
+          <div class="term"><b>건도 $x$</b> 혼합물 중 증기 질량분율 (0=포화액, 1=포화증기)</div>
+          <div class="term"><b>유동양식(flow pattern)</b> 액·증기의 기하 배치: 기포류·슬러그·환상류·미스트</div>
+          <div class="term"><b>$h_{tp}(x)$</b> 국소 2상 열전달계수 — $x$ 따라 발달</div>
+          <div class="term"><b>핵비등 지배</b> 낮은 $x$: 벽 거품 생성이 주도</div>
+          <div class="term"><b>대류비등 지배</b> 높은 $x$: 얇은 액막 강제대류 증발이 주도</div>
+        </div>
+        <div class="callout key"><div class="ct">핵심</div>유동비등은 <strong>$G$·$x$ 두 변수</strong>가 유동양식을 지배합니다. 관 입구(단상액)에서 출구(단상증기)까지 <strong>기포→슬러그→환상→미스트</strong>로 발달하며, 이에 따라 <strong>지배 메커니즘이 핵비등에서 대류비등으로 전환</strong>됩니다.</div>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2">
+        <p class="lede"><strong>Flow boiling</strong> is heat transfer where <strong>forced convection combines with boiling</strong>. Pool boiling was set by <strong>$\Delta T_e$ alone</strong> in a quiescent liquid; flow boiling adds two axes — the <strong>mass flux $G$</strong> and the <strong>quality $x$</strong>. As $x$ grows along the tube the <strong>flow regime</strong> develops, and the local heat-transfer coefficient <strong>$h(x)$</strong> changes with it.</p>
+        <div class="keqbox">
+          <div class="keq-label">Key definitions</div>
+          <div class="keqrow"><span class="keqcap">Mass flux</span><span class="keqline">$ G = \dot{m}/A_c \ [\text{kg/(m}^2\text{s)}] $</span></div>
+          <div class="keqrow"><span class="keqcap">Thermodynamic quality</span><span class="keqline">$ x = \dfrac{h - h_f}{h_{fg}} $</span></div>
+          <div class="keqrow"><span class="keqcap">Two-phase transfer</span><span class="keqline">$ q'' = h_{tp}\,(T_s - T_{sat}) $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">Key terms</div>
+        <div class="terms">
+          <div class="term"><b>Mass flux $G$</b> mass flow rate per area $[\text{kg/(m}^2\text{s)}]$ — strength of forced convection</div>
+          <div class="term"><b>Quality $x$</b> vapor mass fraction of the mixture (0 = sat. liquid, 1 = sat. vapor)</div>
+          <div class="term"><b>Flow pattern</b> geometric arrangement of liquid &amp; vapor: bubbly, slug, annular, mist</div>
+          <div class="term"><b>$h_{tp}(x)$</b> local two-phase heat-transfer coefficient — develops with $x$</div>
+          <div class="term"><b>Nucleate-dominated</b> low $x$: wall bubble generation leads</div>
+          <div class="term"><b>Convection-dominated</b> high $x$: forced-convective evaporation of a thin film leads</div>
+        </div>
+        <div class="callout key"><div class="ct">Key</div>Flow boiling is governed by <strong>two variables, $G$ and $x$</strong>, which set the flow regime. From tube inlet (single-phase liquid) to outlet (single-phase vapor) the flow develops <strong>bubbly → slug → annular → mist</strong>, and the <strong>dominant mechanism switches from nucleate to convective boiling</strong>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-1 / 유도 ══════════ -->
+  <section class="screen" data-ch="4-1" data-chtitle="풀비등 vs 유동비등·유동양식" data-stage="유도">
+    <div class="eyebrow lang-ko">4-1 · 수식 유도 · Derivation</div>
+    <div class="eyebrow lang-en">4-1 · Derivation</div>
+    <h1 class="stage-h lang-ko">건도 발달과 유동양식의 순서 — 왜 이 순서인가</h1>
+    <h1 class="stage-h lang-en">Quality Development and the Regime Sequence — Why This Order</h1>
+    <p class="lede lang-ko"><b>공통 관점:</b> 관에 일정 열유속을 주면 에너지 수지가 <b>건도 $x$</b>를 관 길이에 따라 <b>선형으로 증가</b>시킵니다. $x$가 증가하면 증기 부피가 급팽창(밀도비 $\rho_f/\rho_g\gg1$)하고, 증기가 차지하는 공간이 커지면서 유동양식이 <b>기포→슬러그→환상→미스트</b> 순서로 필연적으로 바뀝니다.</p>
+    <p class="lede lang-en"><b>Unifying view:</b> for a uniform heat flux, an energy balance makes the <b>quality $x$</b> grow <b>linearly</b> along the tube. As $x$ rises the vapor volume expands sharply (density ratio $\rho_f/\rho_g\gg1$), and as vapor occupies more space the flow regime must evolve in the order <b>bubbly → slug → annular → mist</b>.</p>
+    <div class="deriv lang-ko">
+      <div class="dcard"><h4>에너지 수지 → 건도</h4><div class="sub">일정 $q''$, 원관 $D$</div><div class="ana">🔥 벽으로 들어온 열이 액체를 증기로</div><div class="eq">$ x(z) = x_{in} + \dfrac{q''\,\pi D\,z}{\dot{m}\,h_{fg}} $</div><p>벽 열유속 $q''$가 관 둘레 $\pi D$를 통해 유입 → $x$는 축방향 $z$에 <strong>선형 증가</strong>. $G=\dot m/A_c$로 쓰면 $x(z)=x_{in}+\dfrac{4q''z}{G\,D\,h_{fg}}$.</p></div>
+      <div class="dcard"><h4>저건도 → 기포·슬러그</h4><div class="sub">$x$ 작음, 액체 연속상</div><div class="ana">🫧 물속 거품이 커지고 합쳐진다</div><div class="eq">$ h_{tp}\ \approx\ h_{nb}\quad(\text{핵비등 지배}) $</div><p>벽 cavity에서 거품 생성(bubbly)→합쳐져 관 지름만한 <strong>증기 마개(slug)</strong>. 지배 메커니즘은 <strong>핵비등</strong>이라 $q''$·압력 의존.</p></div>
+      <div class="dcard"><h4>고건도 → 환상·미스트</h4><div class="sub">$x$ 큼, 증기 연속상</div><div class="ana">☁️ 벽엔 얇은 액막, 가운데는 증기</div><div class="eq">$ h_{tp}\ \approx\ h_{cb}\propto G^{0.8}\ (\text{대류비등}) $</div><p><strong>환상류</strong>: 벽 액막의 강제대류 증발이 지배 → $h_{tp}$가 $G$·$x$에 강하게 증가. 액막이 마르면(dryout) <strong>미스트</strong>로 $h$ 급락.</p></div>
+    </div>
+    <div class="deriv lang-en">
+      <div class="dcard"><h4>Energy balance → quality</h4><div class="sub">uniform $q''$, round tube $D$</div><div class="ana">🔥 wall heat turns liquid into vapor</div><div class="eq">$ x(z) = x_{in} + \dfrac{q''\,\pi D\,z}{\dot{m}\,h_{fg}} $</div><p>Wall flux $q''$ enters through perimeter $\pi D$ → $x$ grows <strong>linearly</strong> in axial $z$. Writing $G=\dot m/A_c$ gives $x(z)=x_{in}+\dfrac{4q''z}{G\,D\,h_{fg}}$.</p></div>
+      <div class="dcard"><h4>Low $x$ → bubbly/slug</h4><div class="sub">small $x$, liquid continuous</div><div class="ana">🫧 bubbles grow and coalesce in water</div><div class="eq">$ h_{tp}\ \approx\ h_{nb}\quad(\text{nucleate-dominated}) $</div><p>Bubbles nucleate at wall cavities (bubbly) → coalesce into tube-sized <strong>vapor slugs</strong>. The dominant mechanism is <strong>nucleate boiling</strong>, so it depends on $q''$ and pressure.</p></div>
+      <div class="dcard"><h4>High $x$ → annular/mist</h4><div class="sub">large $x$, vapor continuous</div><div class="ana">☁️ thin film on wall, vapor in the center</div><div class="eq">$ h_{tp}\ \approx\ h_{cb}\propto G^{0.8}\ (\text{conv. boiling}) $</div><p><strong>Annular flow</strong>: forced-convective evaporation of the wall film dominates → $h_{tp}$ rises strongly with $G$ and $x$. When the film dries out (dryout), $h$ crashes into <strong>mist flow</strong>.</p></div>
+    </div>
+    <div class="callout warn lang-ko"><div class="ct">주의 · dryout과 $h$ 급락</div>환상류에서 액막이 완전히 증발하면(<strong>dryout</strong>) 벽이 증기와만 접촉해 $h_{tp}$가 <strong>급격히 떨어집니다</strong>. 고건도 dryout은 저건도 CHF(DNB)와 <strong>다른 위기 유형</strong>이며, 일정 $q''$이면 벽온도 $T_s$가 급상승할 수 있습니다.</div>
+    <div class="callout warn lang-en"><div class="ct">Caution · dryout &amp; $h$ collapse</div>If the wall film in annular flow fully evaporates (<strong>dryout</strong>), the wall contacts only vapor and $h_{tp}$ <strong>drops sharply</strong>. High-quality dryout is a <strong>different crisis type</strong> from low-quality CHF (DNB); at fixed $q''$ the wall temperature $T_s$ can spike.</div>
+  </section>
+
+  <!-- ══════════ 4-1 / 읽을거리 ══════════ -->
+  <section class="screen" data-ch="4-1" data-chtitle="풀비등 vs 유동비등·유동양식" data-stage="읽을거리">
+    <div class="eyebrow lang-ko">4-1 · 읽을거리 · Reading</div>
+    <div class="eyebrow lang-en">4-1 · Reading</div>
+    <h1 class="stage-h lang-ko">수직관을 오르며 — 유동양식의 발달 지도</h1>
+    <h1 class="stage-h lang-en">Climbing a Vertical Tube — the Map of Regime Development</h1>
+    <div class="two lang-ko">
+      <div class="col2 reading">
+        <p>아래에서 위로 가열되는 <strong>수직관</strong>을 상상하세요. 입구의 <strong>과냉 액체</strong>는 벽이 뜨거워지면서 <strong>과냉 비등</strong>(벽 근처만 거품)을 거쳐 포화에 도달합니다. 건도 $x$가 커지면 유동양식이 순서대로 발달합니다: <strong>기포류(bubbly)</strong> → 거품이 합쳐진 <strong>슬러그류(slug)</strong> → 벽 액막 + 증기 코어의 <strong>환상류(annular)</strong> → 액막이 말라 액적만 날리는 <strong>미스트류(mist)</strong> → 마지막 <strong>단상 증기</strong>.</p>
+        <p class="pullquote">유동양식이 열전달 메커니즘을, 열전달이 다시 벽온도를 결정한다.</p>
+        <p>이 발달을 지배 메커니즘으로 보면: <strong>저건도</strong>에서는 벽 거품 생성이 주도하는 <strong>핵비등 지배</strong>(압력·$q''$에 민감), <strong>고건도</strong>의 환상류에서는 얇은 액막의 <strong>강제대류 증발</strong>이 주도하는 <strong>대류비등 지배</strong>($G$·$x$에 민감)로 <strong>전환</strong>됩니다. Collier &amp; Thome는 이 두 극한을 잇는 상관식(예: Chen 1966 중첩형 $h_{tp}=S\,h_{nb}+F\,h_{cb}$)을 정리했습니다.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>유동양식 순서는 <strong>기포→슬러그→환상→미스트</strong>, 건도 $x$ 증가 방향이다.</li><li>지배 메커니즘은 <strong>핵비등(저 $x$) → 대류비등(고 $x$)</strong>로 전환된다.</li><li>고건도 위기 = <strong>dryout</strong>, 저건도 위기 = <strong>DNB(CHF)</strong> — 서로 다르다.</li></ul></div>
+        <p class="readmeta">참고: Incropera et al., Ch.10.5 / Collier &amp; Thome, <em>Convective Boiling and Condensation</em>, 3rd ed. / Chen (1966) <em>Ind. Eng. Chem. Process Des. Dev.</em></p>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2 reading">
+        <p>Picture a <strong>vertical tube</strong> heated from bottom to top. The inlet <strong>subcooled liquid</strong>, as the wall heats, passes through <strong>subcooled boiling</strong> (bubbles only near the wall) and reaches saturation. As quality $x$ grows, the flow regime develops in order: <strong>bubbly</strong> → coalesced <strong>slug</strong> → wall film + vapor core <strong>annular</strong> → dried film with entrained droplets <strong>mist</strong> → finally <strong>single-phase vapor</strong>.</p>
+        <p class="pullquote">The flow pattern sets the transfer mechanism, and the transfer in turn sets the wall temperature.</p>
+        <p>Viewed by dominant mechanism: at <strong>low quality</strong>, wall bubble generation leads — <strong>nucleate-dominated</strong> (sensitive to pressure and $q''$); in the <strong>high-quality</strong> annular flow, <strong>forced-convective evaporation</strong> of the thin film leads — <strong>convection-dominated</strong> (sensitive to $G$ and $x$). Collier &amp; Thome compiled correlations bridging these limits (e.g. Chen's 1966 superposition $h_{tp}=S\,h_{nb}+F\,h_{cb}$).</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">Must know</div><ul><li>Regime order is <strong>bubbly → slug → annular → mist</strong>, in the direction of increasing $x$.</li><li>The dominant mechanism switches from <strong>nucleate (low $x$) → convective (high $x$)</strong>.</li><li>High-quality crisis = <strong>dryout</strong>; low-quality crisis = <strong>DNB (CHF)</strong> — they differ.</li></ul></div>
+        <p class="readmeta">Refs: Incropera et al., Ch.10.5 / Collier &amp; Thome, <em>Convective Boiling and Condensation</em>, 3rd ed. / Chen (1966) <em>Ind. Eng. Chem. Process Des. Dev.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-1 / 그림·표 ══════════ -->
+  <section class="screen" data-ch="4-1" data-chtitle="풀비등 vs 유동비등·유동양식" data-stage="그림·표">
+    <div class="eyebrow lang-ko">4-1 · 그림 · 그래프 · 표</div>
+    <div class="eyebrow lang-en">4-1 · Figure · Graph · Table</div>
+    <h1 class="stage-h lang-ko">한눈에 — 수직관 유동양식의 발달</h1>
+    <h1 class="stage-h lang-en">At a Glance — Flow-Regime Development in a Vertical Tube</h1>
+    <div class="vizgrid lang-ko">
+      <div>
+        <div class="vcap">수직 가열관: 건도 $x$ 증가에 따른 유동양식</div>
+        <svg viewBox="0 0 300 330" width="100%" style="max-width:270px">
+<defs>
+<marker id="ar41ko" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<!-- tube outline -->
+<rect x="118" y="14" width="64" height="292" rx="6" fill="#f4f4f5" stroke="#a1a1aa" stroke-width="1.5"/>
+<!-- flow direction arrow -->
+<line x1="150" y1="322" x2="150" y2="10" stroke="#71717a" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ar41ko)"/>
+<!-- single-phase liquid (bottom) -->
+<rect x="119" y="272" width="62" height="33" fill="#bfdbfe" opacity="0.75"/>
+<!-- bubbly bubbles -->
+<circle cx="135" cy="250" r="3" fill="#fff" stroke="#2563eb" stroke-width="1"/>
+<circle cx="150" cy="242" r="2.4" fill="#fff" stroke="#2563eb" stroke-width="1"/>
+<circle cx="164" cy="255" r="3.4" fill="#fff" stroke="#2563eb" stroke-width="1"/>
+<circle cx="145" cy="232" r="2.6" fill="#fff" stroke="#2563eb" stroke-width="1"/>
+<rect x="119" y="222" width="62" height="50" fill="#bfdbfe" opacity="0.5"/>
+<!-- slug -->
+<ellipse cx="150" cy="196" rx="20" ry="14" fill="#fff" stroke="#2563eb" stroke-width="1.2"/>
+<ellipse cx="150" cy="165" rx="19" ry="11" fill="#fff" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="119" y="150" width="62" height="60" fill="#bfdbfe" opacity="0.32"/>
+<!-- annular: wall film + vapor core -->
+<rect x="119" y="92" width="7" height="56" fill="#bfdbfe" opacity="0.85"/>
+<rect x="174" y="92" width="7" height="56" fill="#bfdbfe" opacity="0.85"/>
+<rect x="126" y="92" width="48" height="56" fill="#fff" opacity="0.6"/>
+<!-- mist droplets -->
+<circle cx="138" cy="72" r="1.6" fill="#2563eb"/>
+<circle cx="158" cy="64" r="1.4" fill="#2563eb"/>
+<circle cx="148" cy="80" r="1.5" fill="#2563eb"/>
+<circle cx="165" cy="76" r="1.3" fill="#2563eb"/>
+<circle cx="132" cy="60" r="1.3" fill="#2563eb"/>
+<!-- single-phase vapor top: leave white -->
+<!-- labels right side -->
+<text x="196" y="292" font-size="10" fill="#52525b">단상 액</text>
+<text x="196" y="246" font-size="10" fill="#2563eb" font-weight="700">기포류</text>
+<text x="196" y="182" font-size="10" fill="#2563eb" font-weight="700">슬러그류</text>
+<text x="196" y="122" font-size="10" fill="#2563eb" font-weight="700">환상류</text>
+<text x="196" y="70" font-size="10" fill="#2563eb" font-weight="700">미스트류</text>
+<text x="196" y="30" font-size="10" fill="#52525b">단상 증기</text>
+<!-- x axis label -->
+<text x="60" y="26" font-size="10.5" fill="#c2410c" font-weight="700">$x=1$</text>
+<text x="60" y="300" font-size="10.5" fill="#2563eb" font-weight="700">$x=0$</text>
+<text x="34" y="165" font-size="10.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 34 165)">건도 $x$ 증가 ↑</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">유동양식별 지배 메커니즘 (수직 상향류)</div>
+        <table class="ktab"><thead><tr><th>유동양식</th><th>건도 $x$</th><th style="text-align:right">지배 메커니즘</th></tr></thead><tbody>
+          <tr><td>단상 액</td><td class="k">$x\le0$</td><td>단상 강제대류</td></tr>
+          <tr><td>기포류(bubbly)</td><td class="k">작음</td><td>핵비등 지배</td></tr>
+          <tr><td>슬러그류(slug)</td><td class="k">중저</td><td>핵비등 지배</td></tr>
+          <tr><td>환상류(annular)</td><td class="k">중고</td><td>대류비등 지배</td></tr>
+          <tr><td>미스트류(mist)</td><td class="k">고 (dryout 후)</td><td>증기+액적, $h$ 급락</td></tr>
+          <tr><td>단상 증기</td><td class="k">$x\ge1$</td><td>단상 강제대류(증기)</td></tr>
+        </tbody></table>
+        <div class="keqnote">유동양식 순서와 지배 메커니즘 전환은 정성적 순서이며 실제 경계는 $G$·$q''$·유체·방향에 의존한다. (출처: Incropera Ch.10.5 / Collier &amp; Thome 3rd ed.)</div>
+      </div>
+    </div>
+    <div class="vizgrid lang-en">
+      <div>
+        <div class="vcap">Vertical heated tube: flow regimes as $x$ increases</div>
+        <svg viewBox="0 0 300 330" width="100%" style="max-width:270px">
+<defs>
+<marker id="ar41en" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<rect x="118" y="14" width="64" height="292" rx="6" fill="#f4f4f5" stroke="#a1a1aa" stroke-width="1.5"/>
+<line x1="150" y1="322" x2="150" y2="10" stroke="#71717a" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ar41en)"/>
+<rect x="119" y="272" width="62" height="33" fill="#bfdbfe" opacity="0.75"/>
+<circle cx="135" cy="250" r="3" fill="#fff" stroke="#2563eb" stroke-width="1"/>
+<circle cx="150" cy="242" r="2.4" fill="#fff" stroke="#2563eb" stroke-width="1"/>
+<circle cx="164" cy="255" r="3.4" fill="#fff" stroke="#2563eb" stroke-width="1"/>
+<circle cx="145" cy="232" r="2.6" fill="#fff" stroke="#2563eb" stroke-width="1"/>
+<rect x="119" y="222" width="62" height="50" fill="#bfdbfe" opacity="0.5"/>
+<ellipse cx="150" cy="196" rx="20" ry="14" fill="#fff" stroke="#2563eb" stroke-width="1.2"/>
+<ellipse cx="150" cy="165" rx="19" ry="11" fill="#fff" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="119" y="150" width="62" height="60" fill="#bfdbfe" opacity="0.32"/>
+<rect x="119" y="92" width="7" height="56" fill="#bfdbfe" opacity="0.85"/>
+<rect x="174" y="92" width="7" height="56" fill="#bfdbfe" opacity="0.85"/>
+<rect x="126" y="92" width="48" height="56" fill="#fff" opacity="0.6"/>
+<circle cx="138" cy="72" r="1.6" fill="#2563eb"/>
+<circle cx="158" cy="64" r="1.4" fill="#2563eb"/>
+<circle cx="148" cy="80" r="1.5" fill="#2563eb"/>
+<circle cx="165" cy="76" r="1.3" fill="#2563eb"/>
+<circle cx="132" cy="60" r="1.3" fill="#2563eb"/>
+<text x="196" y="292" font-size="10" fill="#52525b">liquid</text>
+<text x="196" y="246" font-size="10" fill="#2563eb" font-weight="700">bubbly</text>
+<text x="196" y="182" font-size="10" fill="#2563eb" font-weight="700">slug</text>
+<text x="196" y="122" font-size="10" fill="#2563eb" font-weight="700">annular</text>
+<text x="196" y="70" font-size="10" fill="#2563eb" font-weight="700">mist</text>
+<text x="196" y="30" font-size="10" fill="#52525b">vapor</text>
+<text x="60" y="26" font-size="10.5" fill="#c2410c" font-weight="700">$x=1$</text>
+<text x="60" y="300" font-size="10.5" fill="#2563eb" font-weight="700">$x=0$</text>
+<text x="34" y="165" font-size="10.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 34 165)">quality $x$ ↑</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">Dominant mechanism by regime (vertical upflow)</div>
+        <table class="ktab"><thead><tr><th>Flow pattern</th><th>Quality $x$</th><th style="text-align:right">Dominant mechanism</th></tr></thead><tbody>
+          <tr><td>Single-phase liquid</td><td class="k">$x\le0$</td><td>single-phase forced conv.</td></tr>
+          <tr><td>Bubbly</td><td class="k">small</td><td>nucleate-dominated</td></tr>
+          <tr><td>Slug</td><td class="k">low–mid</td><td>nucleate-dominated</td></tr>
+          <tr><td>Annular</td><td class="k">mid–high</td><td>convection-dominated</td></tr>
+          <tr><td>Mist</td><td class="k">high (post-dryout)</td><td>vapor+droplets, $h$ collapse</td></tr>
+          <tr><td>Single-phase vapor</td><td class="k">$x\ge1$</td><td>single-phase forced conv. (vapor)</td></tr>
+        </tbody></table>
+        <div class="keqnote">The regime order and mechanism switch are qualitative; actual boundaries depend on $G$, $q''$, fluid, and orientation. (Source: Incropera Ch.10.5 / Collier &amp; Thome 3rd ed.)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-1 / 실습 ══════════ -->
+  <section class="screen" data-ch="4-1" data-chtitle="풀비등 vs 유동비등·유동양식" data-stage="실습">
+    <div class="eyebrow lang-ko">4-1 · 실습 · Interactive</div>
+    <div class="eyebrow lang-en">4-1 · Interactive</div>
+    <h1 class="stage-h lang-ko">건도 발달 $x(z)$ — 관을 따라 직접 계산</h1>
+    <h1 class="stage-h lang-en">Quality Development $x(z)$ — Compute Along the Tube</h1>
+    <p class="lede lang-ko">일정 열유속으로 가열되는 원관에서 건도는 에너지 수지로 $x(z)=x_{in}+\dfrac{4q''z}{G\,D\,h_{fg}}$처럼 <strong>축방향으로 선형 증가</strong>합니다. 슬라이더로 <strong>$q''$·$G$·$z$</strong>를 바꾸며(입구 포화 $x_{in}=0$, $D=10\,\text{mm}$, 물 $h_{fg}=2257\,\text{kJ/kg}$ 대기압) 건도가 어느 유동양식에 해당할지 감을 잡아보세요.</p>
+    <p class="lede lang-en">In a round tube under uniform heat flux, quality grows <strong>linearly along the axis</strong> as $x(z)=x_{in}+\dfrac{4q''z}{G\,D\,h_{fg}}$. Move the sliders for <strong>$q''$, $G$, $z$</strong> (saturated inlet $x_{in}=0$, $D=10\,\text{mm}$, water $h_{fg}=2257\,\text{kJ/kg}$ at 1 atm) to sense which flow regime the quality lands in.</p>
+    <div class="calc lang-ko"
+      data-title="건도 $x(z) = \dfrac{4\,q''\,z}{G\,D\,h_{fg}}$"
+      data-desc="q'' = 벽 열유속 [kW/m²], G = 질량유속 [kg/(m²s)], z = 관 길이 [m]. 고정: D=0.01 m, h_fg=2257 kJ/kg (대기압 물), x_in=0. 기본값 q''=100 kW/m², G=500, z=1 m → x≈0.035 (기포·슬러그, 핵비등 지배)."
+      data-vars='[{"sym":"q","label":"$q_w$ · 벽 열유속","min":20,"max":300,"val":100,"step":10,"unit":"kW/m²"},{"sym":"G","label":"$G$ · 질량유속","min":100,"max":1500,"val":500,"step":50,"unit":"kg/(m²s)"},{"sym":"z","label":"$z$ · 관 길이","min":0.1,"max":3,"val":1,"step":0.1,"unit":"m"}]'
+      data-expr="(4*(q*1000)*z)/(G*0.01*2257000)"
+      data-out="$x$" data-out-unit="(무차원)"
+      data-barmax="1"
+      data-note="q''을 올리거나 G를 낮추면 x가 커져 더 상류(고건도) 유동양식으로 이동합니다. x가 1을 넘으면 물리적으로 단상 증기(과열)를 뜻합니다."></div>
+    <div class="calc lang-en"
+      data-title="Quality $x(z) = \dfrac{4\,q''\,z}{G\,D\,h_{fg}}$"
+      data-desc="q'' = wall flux [kW/m²], G = mass flux [kg/(m²s)], z = tube length [m]. Fixed: D=0.01 m, h_fg=2257 kJ/kg (water at 1 atm), x_in=0. Default q''=100 kW/m², G=500, z=1 m → x≈0.035 (bubbly/slug, nucleate-dominated)."
+      data-vars='[{"sym":"q","label":"$q_w$ · wall heat flux","min":20,"max":300,"val":100,"step":10,"unit":"kW/m²"},{"sym":"G","label":"$G$ · mass flux","min":100,"max":1500,"val":500,"step":50,"unit":"kg/(m²s)"},{"sym":"z","label":"$z$ · tube length","min":0.1,"max":3,"val":1,"step":0.1,"unit":"m"}]'
+      data-expr="(4*(q*1000)*z)/(G*0.01*2257000)"
+      data-out="$x$" data-out-unit="(dimensionless)"
+      data-barmax="1"
+      data-note="Raising q'' or lowering G increases x, shifting to higher-quality flow regimes. Physically x above 1 means single-phase (superheated) vapor."></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 건도 $x$ 감: $x\!\approx\!0.05$ 이하 = 기포·슬러그(핵비등 지배), $x\!\approx\!0.1\!\sim\!0.8$ = 환상류(대류비등 지배), $x\!\gtrsim\!0.8$ = dryout 위험 · 미스트. 기본값($q''=100\,\text{kW/m}^2$, $G=500$, $z=1\,\text{m}$)은 $x\approx0.035$ — 저건도 기포·슬러그(핵비등 지배) 영역이다. $q''$을 올리거나 $z$를 늘리면 $x$가 커져 환상류·dryout로 이동한다. 같은 열입력이라도 $G$가 크면(강제대류 강) $x$가 천천히 커져 더 긴 관에서 dryout에 도달한다. <span class="src">(출처: 유동양식/메커니즘 경계 = Incropera Ch.10.5, 정성적)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — feel for quality $x$: below $x\!\approx\!0.05$ = bubbly/slug (nucleate-dominated), $x\!\approx\!0.1\!\sim\!0.8$ = annular (convection-dominated), $x\!\gtrsim\!0.8$ = dryout risk / mist. The default ($q''=100\,\text{kW/m}^2$, $G=500$, $z=1\,\text{m}$) gives $x\approx0.035$ — the low-quality bubbly/slug (nucleate-dominated) region. Raising $q''$ or lengthening $z$ grows $x$ toward annular flow and dryout. For the same heat input, a larger $G$ (stronger forced convection) grows $x$ more slowly, reaching dryout only in a longer tube. <span class="src">(Source: regime/mechanism boundaries = Incropera Ch.10.5, qualitative)</span></div>
+  </section>
+
+  <!-- ══════════ 4-1 / 점검 ══════════ -->
+  <section class="screen" data-ch="4-1" data-chtitle="풀비등 vs 유동비등·유동양식" data-stage="점검">
+    <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+    <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · instructor view</span></div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q1.</span>수직 가열관에서 건도 $x$가 <strong>증가</strong>하는 방향의 유동양식 순서로 옳은 것은?</p>
+      <div class="opts">
+        <button class="opt">① 환상류 → 슬러그류 → 기포류 → 미스트류</button>
+        <button class="opt" data-correct="1">② 기포류 → 슬러그류 → 환상류 → 미스트류</button>
+        <button class="opt">③ 미스트류 → 환상류 → 슬러그류 → 기포류</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 건도가 커질수록 증기 부피가 늘어 액체 연속상(기포·슬러그)에서 증기 연속상(환상·미스트)으로 발달한다. <span class="dim">오답 ①·③: 순서가 뒤집혀 있으며, 미스트류는 액막이 마른 dryout 이후 <em>고건도</em>에서 나타난다.</span> <span class="agg">학급 n=41 · ① 6 · ② 30 · ③ 5</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q1.</span>In a vertical heated tube, which regime order is correct in the direction of <strong>increasing</strong> quality $x$?</p>
+      <div class="opts">
+        <button class="opt">① annular → slug → bubbly → mist</button>
+        <button class="opt" data-correct="1">② bubbly → slug → annular → mist</button>
+        <button class="opt">③ mist → annular → slug → bubbly</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — as quality grows, vapor volume increases, developing from a liquid-continuous phase (bubbly/slug) to a vapor-continuous phase (annular/mist). <span class="dim">Wrong ①·③: the orders are reversed; mist appears at <em>high</em> quality after the film dries out (dryout).</span> <span class="agg">class n=41 · ① 6 · ② 30 · ③ 5</span></div>
+    </div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q2.</span>고건도 <strong>환상류</strong>에서 열전달의 <strong>지배 메커니즘</strong>은?</p>
+      <div class="opts">
+        <button class="opt">① 벽 cavity에서의 핵비등(거품 생성)</button>
+        <button class="opt" data-correct="1">② 얇은 벽 액막의 강제대류 증발(대류비등)</button>
+        <button class="opt">③ 복사 열전달</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 환상류에서는 벽을 적신 얇은 액막을 통한 강제대류 증발이 지배해 $h_{tp}$가 $G$·$x$에 강하게 증가한다(대류비등 지배). <span class="dim">오답 ①·③: ①핵비등은 저건도(기포·슬러그)에서 지배적이고, ③복사는 (고온) 막비등에서나 유의미하며 환상 증발의 주 메커니즘이 아니다.</span> <span class="agg">학급 n=41 · ① 11 · ② 26 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q2.</span>In high-quality <strong>annular flow</strong>, what is the <strong>dominant mechanism</strong> of heat transfer?</p>
+      <div class="opts">
+        <button class="opt">① nucleate boiling at wall cavities (bubble generation)</button>
+        <button class="opt" data-correct="1">② forced-convective evaporation of the thin wall film (convective boiling)</button>
+        <button class="opt">③ radiative heat transfer</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — in annular flow, forced-convective evaporation through the thin wetting film dominates, so $h_{tp}$ rises strongly with $G$ and $x$ (convection-dominated). <span class="dim">Wrong ①·③: ① nucleate boiling dominates at low quality (bubbly/slug); ③ radiation matters only in (high-temperature) film boiling and is not the main annular-evaporation mechanism.</span> <span class="agg">class n=41 · ① 11 · ② 26 · ③ 4</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-1 / 연습 ══════════ -->
+  <section class="screen" data-ch="4-1" data-chtitle="풀비등 vs 유동비등·유동양식" data-stage="연습">
+    <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+    <div class="panel-head lang-en"><span class="tag">Practice</span><span class="panel-title">Engineering calc · auto-graded</span></div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 1 · 기본 · 건도 정의</div>
+      <p class="prob-statement">대기압 물($h_f=419\,\text{kJ/kg}$, $h_{fg}=2257\,\text{kJ/kg}$)의 2상 혼합물의 비엔탈피가 $h=1097\,\text{kJ/kg}$이다. 열역학 <strong>건도 $x$</strong>를 구하시오.</p>
+      <div class="given"><span class="chip">$h=1097\,\text{kJ/kg}$</span><span class="chip">$h_f=419\,\text{kJ/kg}$</span><span class="chip">$h_{fg}=2257\,\text{kJ/kg}$</span></div>
+      <div class="find"><b>구할 것:</b> $x\ [-]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="0.30" data-tol="0.03"/><span class="ans-unit">(무차원)</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 정의 대입</div>$$ x = \frac{h - h_f}{h_{fg}} = \frac{1097 - 419}{2257} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 계산</div>$$ x = \frac{678}{2257} \approx 0.30 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ x \approx 0.30 $$</div><b>정답:</b> $x\approx0.30$ — 환상류(대류비등 지배)에 해당하는 중고건도 영역.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 1 · Basic · quality definition</div>
+      <p class="prob-statement">A two-phase mixture of water at 1 atm ($h_f=419\,\text{kJ/kg}$, $h_{fg}=2257\,\text{kJ/kg}$) has specific enthalpy $h=1097\,\text{kJ/kg}$. Find the thermodynamic <strong>quality $x$</strong>.</p>
+      <div class="given"><span class="chip">$h=1097\,\text{kJ/kg}$</span><span class="chip">$h_f=419\,\text{kJ/kg}$</span><span class="chip">$h_{fg}=2257\,\text{kJ/kg}$</span></div>
+      <div class="find"><b>Find:</b> $x\ [-]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="0.30" data-tol="0.03"/><span class="ans-unit">(dimensionless)</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · apply definition</div>$$ x = \frac{h - h_f}{h_{fg}} = \frac{1097 - 419}{2257} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · compute</div>$$ x = \frac{678}{2257} \approx 0.30 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ x \approx 0.30 $$</div><b>Answer:</b> $x\approx0.30$ — a mid-to-high quality corresponding to annular (convection-dominated) flow.</div>
+      </div>
+    </div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 2 · 응용 · 건도 발달 $x(z)$</div>
+      <p class="prob-statement">일정 열유속 $q''=150\,\text{kW/m}^2$로 가열되는 내경 $D=10\,\text{mm}$ 원관에 대기압 포화수($x_{in}=0$, $h_{fg}=2257\,\text{kJ/kg}$)가 $G=600\,\text{kg/(m}^2\text{s)}$로 흐른다. 관 입구에서 $z=1.0\,\text{m}$ 지점의 <strong>건도 $x$</strong>를 구하시오. $\bigl(x=\dfrac{4q''z}{G\,D\,h_{fg}}\bigr)$</p>
+      <div class="given"><span class="chip">$q''=150\,\text{kW/m}^2$</span><span class="chip">$D=0.01\,\text{m}$</span><span class="chip">$G=600\,\text{kg/(m}^2\text{s)}$</span><span class="chip">$z=1.0\,\text{m}$</span><span class="chip">$h_{fg}=2257\,\text{kJ/kg}$</span></div>
+      <div class="find"><b>구할 것:</b> $x\ [-]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="0.0443" data-tol="0.03"/><span class="ans-unit">(무차원)</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 공식 (SI 통일)</div>$$ x = \frac{4\,q''\,z}{G\,D\,h_{fg}} = \frac{4\,(150{,}000)(1.0)}{(600)(0.01)(2{,}257{,}000)} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 계산</div>$$ x = \frac{600{,}000}{13{,}542{,}000} \approx 0.0443 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ x \approx 0.0443 $$</div><b>정답:</b> $x\approx0.044$ — 저건도 기포·슬러그(핵비등 지배). $G$가 더 크면 같은 $z$에서 $x$가 작아진다.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 2 · Applied · quality development $x(z)$</div>
+      <p class="prob-statement">Saturated water at 1 atm ($x_{in}=0$, $h_{fg}=2257\,\text{kJ/kg}$) flows at $G=600\,\text{kg/(m}^2\text{s)}$ through a round tube of inner diameter $D=10\,\text{mm}$ heated at uniform $q''=150\,\text{kW/m}^2$. Find the <strong>quality $x$</strong> at $z=1.0\,\text{m}$ from the inlet. $\bigl(x=\dfrac{4q''z}{G\,D\,h_{fg}}\bigr)$</p>
+      <div class="given"><span class="chip">$q''=150\,\text{kW/m}^2$</span><span class="chip">$D=0.01\,\text{m}$</span><span class="chip">$G=600\,\text{kg/(m}^2\text{s)}$</span><span class="chip">$z=1.0\,\text{m}$</span><span class="chip">$h_{fg}=2257\,\text{kJ/kg}$</span></div>
+      <div class="find"><b>Find:</b> $x\ [-]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="0.0443" data-tol="0.03"/><span class="ans-unit">(dimensionless)</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · formula (all SI)</div>$$ x = \frac{4\,q''\,z}{G\,D\,h_{fg}} = \frac{4\,(150{,}000)(1.0)}{(600)(0.01)(2{,}257{,}000)} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · compute</div>$$ x = \frac{600{,}000}{13{,}542{,}000} \approx 0.0443 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ x \approx 0.0443 $$</div><b>Answer:</b> $x\approx0.044$ — low-quality bubbly/slug (nucleate-dominated). A larger $G$ gives a smaller $x$ at the same $z$.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-1 / 정리 ══════════ -->
+  <section class="screen" data-ch="4-1" data-chtitle="풀비등 vs 유동비등·유동양식" data-stage="정리">
+    <div class="eyebrow lang-ko">4-1 · 정리 · Summary</div>
+    <div class="eyebrow lang-en">4-1 · Summary</div>
+    <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 시험 포인트</h1>
+    <h1 class="stage-h lang-en">Key Points · Common Mistakes · Exam Focus</h1>
+    <div class="sumgrid lang-ko">
+      <div class="sumcard key"><h4>핵심 정리</h4><ul>
+        <li>유동비등 = <strong>강제대류 + 비등</strong>, 두 축은 <strong>질량유속 $G$</strong>와 <strong>건도 $x$</strong>.</li>
+        <li>수직관 유동양식 발달: <strong>기포→슬러그→환상→미스트</strong>($x$ 증가 방향).</li>
+        <li>지배 메커니즘: 저 $x$ = <strong>핵비등 지배</strong> → 고 $x$ = <strong>대류비등 지배</strong>; $x(z)=\dfrac{4q''z}{G D h_{fg}}$.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+        <li>유동양식 순서를 뒤집기 → <strong>기포가 먼저, 미스트가 마지막</strong>.</li>
+        <li>환상류 지배를 핵비등으로 오해 → 실제는 <strong>대류비등(액막 증발)</strong>.</li>
+        <li>고건도 <strong>dryout</strong>과 저건도 <strong>DNB(CHF)</strong>를 혼동.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>시험 포인트</h4><ul>
+        <li>$x=(h-h_f)/h_{fg}$ 계산 및 유동양식 판별.</li>
+        <li>일정 $q''$ 관의 $x(z)=4q''z/(G D h_{fg})$ 축방향 건도 발달.</li>
+        <li>$G$·$x$에 따른 핵비등↔대류비등 지배 전환의 물리적 근거.</li>
+      </ul></div>
+    </div>
+    <div class="sumgrid lang-en">
+      <div class="sumcard key"><h4>Key points</h4><ul>
+        <li>Flow boiling = <strong>forced convection + boiling</strong>; its two axes are <strong>mass flux $G$</strong> and <strong>quality $x$</strong>.</li>
+        <li>Vertical-tube regime development: <strong>bubbly → slug → annular → mist</strong> (increasing $x$).</li>
+        <li>Dominant mechanism: low $x$ = <strong>nucleate-dominated</strong> → high $x$ = <strong>convection-dominated</strong>; $x(z)=\dfrac{4q''z}{G D h_{fg}}$.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+        <li>Reversing the regime order → <strong>bubbly first, mist last</strong>.</li>
+        <li>Calling annular flow nucleate-dominated → it is <strong>convective (film evaporation)</strong>.</li>
+        <li>Confusing high-quality <strong>dryout</strong> with low-quality <strong>DNB (CHF)</strong>.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>Exam focus</h4><ul>
+        <li>Computing $x=(h-h_f)/h_{fg}$ and identifying the flow regime.</li>
+        <li>Axial quality development $x(z)=4q''z/(G D h_{fg})$ for a uniform-$q''$ tube.</li>
+        <li>Physical basis for the nucleate↔convective switch as $G$ and $x$ change.</li>
+      </ul></div>
+    </div>
+  </section>
+
+<!-- ══════════ 4-2 / 개념 ══════════ -->
+  <section class="screen" data-ch="4-2" data-chtitle="과냉·포화 유동비등 (Chen)" data-stage="개념">
+    <div class="eyebrow lang-ko">4-2 · 개념 · Concept</div>
+    <div class="eyebrow lang-en">4-2 · Concept</div>
+    <h1 class="stage-h lang-ko">유동비등 — 흐르는 물속의 두 힘</h1>
+    <h1 class="stage-h lang-en">Flow Boiling — Two Forces in Moving Water</h1>
+    <div class="analogy lang-ko"><span class="ic">🚿</span><div class="tx"><b>직관</b> — 관 속을 물이 빠르게 흐르면서 벽이 끓을 때, 열을 빼내는 힘은 <b>둘</b>이다. 하나는 벽에서 <b>거품이 튀는</b> 핵비등, 다른 하나는 흐름 자체가 벽을 <b>강제로 쓸어내는</b> 강제대류. Chen(1966)은 이 둘을 각각 억압·증강해 <b>더하는</b> 중첩 모델을 세웠다: $h_{tp}=S\,h_{nb}+F\,h_{cb}$. <span class="src">(출처: Chen, J.C. 1966, <i>I&EC Process Design and Development</i> 5(3):322 / Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10)</span></div></div>
+    <div class="analogy lang-en"><span class="ic">🚿</span><div class="tx"><b>Intuition</b> — When water rushes through a tube whose wall is boiling, <b>two</b> forces remove heat. One is nucleate boiling, where <b>bubbles pop</b> off the wall; the other is forced convection, where the flow itself <b>sweeps the wall</b>. Chen (1966) suppressed and enhanced each and <b>added</b> them in a superposition model: $h_{tp}=S\,h_{nb}+F\,h_{cb}$. <span class="src">(Source: Chen, J.C. 1966, <i>I&EC Process Design and Development</i> 5(3):322 / Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10)</span></div></div>
+    <div class="two lang-ko">
+      <div class="col2">
+        <p class="lede"><strong>유동비등(flow boiling)</strong>은 관 내부를 흐르는 액체가 벽면에서 끓는 현상입니다. 정지한 풀 비등과 달리 <strong>대류(강제 흐름)</strong>와 <strong>핵비등(거품)</strong>이 동시에 작동합니다. Chen은 두 이상 열전달계수 $h_{tp}$를 <strong>핵비등 성분 $h_{nb}$</strong>와 <strong>대류 성분 $h_{cb}$</strong>의 가중합으로 표현했습니다. 흐름이 셀수록 대류가 핵생성을 <strong>억압($S<1$)</strong>하고, 증기 품질이 높아질수록 대류가 <strong>증강($F>1$)</strong>됩니다.</p>
+        <div class="keqbox">
+          <div class="keq-label">Chen 중첩 모델 (1966)</div>
+          <div class="keqrow"><span class="keqcap">두 이상 계수</span><span class="keqline">$ h_{tp} = S\,h_{nb} + F\,h_{cb} $</span></div>
+          <div class="keqrow"><span class="keqcap">억압인자</span><span class="keqline">$ 0 < S \le 1 $</span></div>
+          <div class="keqrow"><span class="keqcap">증강인자</span><span class="keqline">$ F \ge 1 $</span></div>
+          <div class="keqrow"><span class="keqcap">Martinelli 파라미터</span><span class="keqline">$ X_{tt} \ \to\ F,\ Re_{TP} \to S $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">핵심 용어</div>
+        <div class="terms">
+          <div class="term"><b>$h_{tp}$</b> 두 이상(two-phase) 국소 열전달계수 $[\text{W/m}^2\text{K}]$</div>
+          <div class="term"><b>$h_{nb}$</b> 핵비등 성분 — Forster–Zuber 풀 비등 상관식</div>
+          <div class="term"><b>$h_{cb}$</b> 대류 성분 — Dittus–Boelter를 액상에 적용</div>
+          <div class="term"><b>억압인자 $S$</b> 대류가 유효 과열도를 낮춰 핵비등을 <strong>억압</strong> ($S<1$)</div>
+          <div class="term"><b>증강인자 $F$</b> 두 이상 흐름이 대류를 <strong>증강</strong> ($F>1$)</div>
+          <div class="term"><b>$X_{tt}$</b> Lockhart–Martinelli 파라미터 (난류–난류)</div>
+        </div>
+        <div class="callout key"><div class="ct">핵심</div>Chen 모델은 <strong>핵비등과 강제대류를 겨루게 하지 않고 더합니다</strong>. 대류가 세면 $S$가 작아져 거품이 억눌리고, 증기가 늘면 $F$가 커져 대류가 강해집니다 — 흐름 조건에 따라 두 항의 비중이 자연스럽게 바뀝니다.</div>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2">
+        <p class="lede"><strong>Flow boiling</strong> is boiling of a liquid flowing inside a tube at its wall. Unlike quiescent pool boiling, <strong>convection (forced flow)</strong> and <strong>nucleate boiling (bubbles)</strong> act at the same time. Chen expressed the two-phase coefficient $h_{tp}$ as a weighted sum of a <strong>nucleate part $h_{nb}$</strong> and a <strong>convective part $h_{cb}$</strong>. The stronger the flow, the more convection <strong>suppresses nucleation ($S<1$)</strong>; the higher the vapor quality, the more convection is <strong>enhanced ($F>1$)</strong>.</p>
+        <div class="keqbox">
+          <div class="keq-label">Chen superposition model (1966)</div>
+          <div class="keqrow"><span class="keqcap">Two-phase coeff.</span><span class="keqline">$ h_{tp} = S\,h_{nb} + F\,h_{cb} $</span></div>
+          <div class="keqrow"><span class="keqcap">Suppression factor</span><span class="keqline">$ 0 < S \le 1 $</span></div>
+          <div class="keqrow"><span class="keqcap">Enhancement factor</span><span class="keqline">$ F \ge 1 $</span></div>
+          <div class="keqrow"><span class="keqcap">Martinelli parameter</span><span class="keqline">$ X_{tt} \ \to\ F,\ Re_{TP} \to S $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">Key terms</div>
+        <div class="terms">
+          <div class="term"><b>$h_{tp}$</b> two-phase local heat-transfer coeff. $[\text{W/m}^2\text{K}]$</div>
+          <div class="term"><b>$h_{nb}$</b> nucleate part — Forster–Zuber pool-boiling correlation</div>
+          <div class="term"><b>$h_{cb}$</b> convective part — Dittus–Boelter on the liquid phase</div>
+          <div class="term"><b>Suppression $S$</b> convection lowers effective superheat, <strong>suppressing</strong> nucleation ($S<1$)</div>
+          <div class="term"><b>Enhancement $F$</b> two-phase flow <strong>enhances</strong> convection ($F>1$)</div>
+          <div class="term"><b>$X_{tt}$</b> Lockhart–Martinelli parameter (turbulent–turbulent)</div>
+        </div>
+        <div class="callout key"><div class="ct">Key</div>The Chen model does not pit nucleate boiling against convection — it <strong>adds them</strong>. Strong convection shrinks $S$ and stifles bubbles; more vapor grows $F$ and strengthens convection — so the two terms' weights shift naturally with flow conditions.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-2 / 유도 ══════════ -->
+  <section class="screen" data-ch="4-2" data-chtitle="과냉·포화 유동비등 (Chen)" data-stage="유도">
+    <div class="eyebrow lang-ko">4-2 · 수식 유도 · Derivation</div>
+    <div class="eyebrow lang-en">4-2 · Derivation</div>
+    <h1 class="stage-h lang-ko">S와 F는 어디서 오는가 — 중첩의 조립</h1>
+    <h1 class="stage-h lang-en">Where S and F Come From — Assembling the Superposition</h1>
+    <p class="lede lang-ko"><b>공통 관점:</b> Chen은 두 극단(순수 핵비등 · 순수 대류)을 각각 계산한 뒤, 서로가 서로를 방해·촉진하는 정도를 <b>보정인자 $S,F$</b>로 곱해 더합니다. $F$는 <b>Martinelli 파라미터 $X_{tt}$</b>로, $S$는 <b>두 이상 레이놀즈 수 $Re_{TP}$</b>로 결정됩니다.</p>
+    <p class="lede lang-en"><b>Unifying view:</b> Chen computes two limits (pure nucleate · pure convection), then multiplies each by a <b>correction factor $S,F$</b> capturing how one hinders or helps the other, and adds them. $F$ is set by the <b>Martinelli parameter $X_{tt}$</b>, and $S$ by the <b>two-phase Reynolds number $Re_{TP}$</b>.</p>
+    <div class="deriv lang-ko">
+      <div class="dcard"><h4>대류 성분 $h_{cb}$</h4><div class="sub">액상 Dittus–Boelter × $F$</div><div class="ana">🌀 흐름이 벽을 쓸어낸다 — 품질↑이면 더 세게</div><div class="eq">$ h_{cb} = 0.023\,Re_l^{0.8}Pr_l^{0.4}\dfrac{k_l}{D}\,F $</div><p>액상만 흐른다고 보고 <strong>$Re_l=G(1-x)D/\mu_l$</strong>로 대류를 계산한 뒤, 두 이상 가속 효과를 <strong>$F=f(X_{tt})\ge1$</strong>로 증강합니다.</p></div>
+      <div class="dcard"><h4>증강인자 $F$</h4><div class="sub">$X_{tt}$의 함수</div><div class="ana">📈 증기가 많을수록($1/X_{tt}$↑) $F$↑</div><div class="eq">$ \tfrac{1}{X_{tt}}=\left(\tfrac{x}{1-x}\right)^{0.9}\!\left(\tfrac{\rho_l}{\rho_v}\right)^{0.5}\!\left(\tfrac{\mu_v}{\mu_l}\right)^{0.1} $</div><p>$1/X_{tt}\le0.1$이면 $F\approx1$(대류 미미), 커지면 $F$가 수 배로 증가. Chen은 $F$–$X_{tt}$ 그래프/근사식을 제시.</p></div>
+      <div class="dcard"><h4>억압인자 $S$</h4><div class="sub">$Re_{TP}$의 함수</div><div class="ana">🔻 흐름이 셀수록($Re_{TP}$↑) $S$↓</div><div class="eq">$ S=\bigl(1+2.53\times10^{-6}Re_{TP}^{1.17}\bigr)^{-1} $</div><p>$Re_{TP}=Re_l\,F^{1.25}$. 대류가 강하면 벽 근처 <strong>유효 과열도가 얇아져</strong> 핵비등이 억압되므로 $S<1$.</p></div>
+    </div>
+    <div class="deriv lang-en">
+      <div class="dcard"><h4>Convective part $h_{cb}$</h4><div class="sub">liquid Dittus–Boelter × $F$</div><div class="ana">🌀 flow sweeps the wall — stronger as quality↑</div><div class="eq">$ h_{cb} = 0.023\,Re_l^{0.8}Pr_l^{0.4}\dfrac{k_l}{D}\,F $</div><p>Treating only the liquid as flowing, compute convection with <strong>$Re_l=G(1-x)D/\mu_l$</strong>, then enhance for two-phase acceleration by <strong>$F=f(X_{tt})\ge1$</strong>.</p></div>
+      <div class="dcard"><h4>Enhancement $F$</h4><div class="sub">function of $X_{tt}$</div><div class="ana">📈 more vapor ($1/X_{tt}$↑) → higher $F$</div><div class="eq">$ \tfrac{1}{X_{tt}}=\left(\tfrac{x}{1-x}\right)^{0.9}\!\left(\tfrac{\rho_l}{\rho_v}\right)^{0.5}\!\left(\tfrac{\mu_v}{\mu_l}\right)^{0.1} $</div><p>When $1/X_{tt}\le0.1$, $F\approx1$ (weak convection); larger values raise $F$ severalfold. Chen gives the $F$–$X_{tt}$ chart/fit.</p></div>
+      <div class="dcard"><h4>Suppression $S$</h4><div class="sub">function of $Re_{TP}$</div><div class="ana">🔻 stronger flow ($Re_{TP}$↑) → lower $S$</div><div class="eq">$ S=\bigl(1+2.53\times10^{-6}Re_{TP}^{1.17}\bigr)^{-1} $</div><p>With $Re_{TP}=Re_l\,F^{1.25}$, strong convection <strong>thins the effective superheat</strong> near the wall, suppressing nucleation so $S<1$.</p></div>
+    </div>
+    <div class="callout warn lang-ko"><div class="ct">주의 · 순환 결합과 상수 근거</div>$S$는 $Re_{TP}$에, $Re_{TP}$는 $F$에, $F$는 $X_{tt}(x)$에 의존해 <strong>서로 얽혀</strong> 있습니다 — 국소 품질 $x$가 정해지면 순서대로 풀면 됩니다. $S$식의 계수 $2.53\times10^{-6}$·지수 $1.17$은 Chen(1966)이 물·유기물 데이터로 <strong>회귀한 실험 상수</strong>이며, 원식은 그래프 형태로 제시되었습니다. <span class="src">(출처: Chen 1966; Collier & Thome, <i>Convective Boiling and Condensation</i>)</span></div>
+    <div class="callout warn lang-en"><div class="ct">Caution · circular coupling & constant provenance</div>$S$ depends on $Re_{TP}$, which depends on $F$, which depends on $X_{tt}(x)$ — they are <strong>interlocked</strong>; once the local quality $x$ is fixed, solve them in order. The coefficient $2.53\times10^{-6}$ and exponent $1.17$ in $S$ are <strong>experimental constants</strong> regressed by Chen (1966) on water and organic-fluid data; the original was given as a chart. <span class="src">(Source: Chen 1966; Collier & Thome, <i>Convective Boiling and Condensation</i>)</span></div>
+  </section>
+
+  <!-- ══════════ 4-2 / 읽을거리 ══════════ -->
+  <section class="screen" data-ch="4-2" data-chtitle="과냉·포화 유동비등 (Chen)" data-stage="읽을거리">
+    <div class="eyebrow lang-ko">4-2 · 읽을거리 · Reading</div>
+    <div class="eyebrow lang-en">4-2 · Reading</div>
+    <h1 class="stage-h lang-ko">과냉 유동비등 — ONB에서 완전발달까지</h1>
+    <h1 class="stage-h lang-en">Subcooled Flow Boiling — from ONB to Fully Developed</h1>
+    <div class="two lang-ko">
+      <div class="col2 reading">
+        <p>관 입구에서 액체가 아직 포화온도보다 <strong>차가운(과냉, subcooled)</strong> 상태로 들어와도, 벽면 온도가 충분히 높으면 벽에서만 국소적으로 끓기 시작합니다. 벽 과열도가 임계에 이르면 첫 거품이 돋는 <strong>비등 개시점(ONB, Onset of Nucleate Boiling)</strong>이 나타나고, 이어 벽 일부에서만 거품이 나는 <strong>부분 비등(partial boiling)</strong>, 그리고 벽 전체가 활발히 끓는 <strong>완전발달 비등(fully developed boiling)</strong>으로 진행합니다.</p>
+        <p class="pullquote">과냉 유동비등의 코어는 여전히 차가워, 벽에서 튄 거품이 곧 <em>응축</em>된다.</p>
+        <p>핵심 특징은 <strong>기포 응축</strong>입니다 — 벽에서 이탈한 증기 거품이 아직 과냉된 중심부(코어)로 들어가면 즉시 응축되어 사라집니다. 따라서 <strong>순 증기 품질은 0에 가깝게 유지</strong>되지만, 벽에서의 열전달은 이미 비등 수준으로 크게 향상됩니다. Chen 상관식은 이 과냉 영역에서 대류 항의 온도차를 <strong>$(T_w-T_b)$</strong>로, 핵비등 항을 <strong>$(T_w-T_{sat})$</strong>로 구분해 적용하도록 확장됩니다.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>과냉 비등은 <strong>벽에서만</strong> 끓고 코어는 차가워 거품이 <strong>응축</strong>된다.</li><li>순서: <strong>ONB → 부분 비등 → 완전발달 비등</strong>.</li><li>Chen straight-tube 데이터 대비 <strong>MAE ≈ 19–21%</strong>(대표값)로 알려진 실용 상관식.</li></ul></div>
+        <p class="readmeta">참고: Chen(1966) <em>I&EC Proc. Des. Dev.</em> 5(3):322 / Incropera Ch.10.5 / Collier & Thome Ch.7</p>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2 reading">
+        <p>Even when the liquid enters the tube still <strong>colder than saturation (subcooled)</strong>, if the wall is hot enough, boiling begins locally at the wall alone. When wall superheat reaches a threshold, the first bubbles appear at the <strong>Onset of Nucleate Boiling (ONB)</strong>; then follows <strong>partial boiling</strong>, where bubbles form on only part of the wall, and finally <strong>fully developed boiling</strong>, where the whole wall boils vigorously.</p>
+        <p class="pullquote">In subcooled flow boiling the core is still cold, so bubbles that leave the wall soon <em>condense</em>.</p>
+        <p>The defining feature is <strong>bubble condensation</strong> — a vapor bubble that departs the wall and enters the still-subcooled core collapses at once. Thus the <strong>net vapor quality stays near zero</strong>, yet wall heat transfer is already greatly boosted to boiling levels. The Chen correlation is extended in this subcooled region by using <strong>$(T_w-T_b)$</strong> for the convective term and <strong>$(T_w-T_{sat})$</strong> for the nucleate term.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">Must know</div><ul><li>Subcooled boiling occurs <strong>only at the wall</strong>; the cold core makes bubbles <strong>condense</strong>.</li><li>Sequence: <strong>ONB → partial boiling → fully developed boiling</strong>.</li><li>Against straight-tube data, Chen shows <strong>MAE ≈ 19–21%</strong> (representative) — a practical correlation.</li></ul></div>
+        <p class="readmeta">Refs: Chen (1966) <em>I&EC Proc. Des. Dev.</em> 5(3):322 / Incropera Ch.10.5 / Collier & Thome Ch.7</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-2 / 그림·표 ══════════ -->
+  <section class="screen" data-ch="4-2" data-chtitle="과냉·포화 유동비등 (Chen)" data-stage="그림·표">
+    <div class="eyebrow lang-ko">4-2 · 그림 · 그래프 · 표</div>
+    <div class="eyebrow lang-en">4-2 · Figure · Graph · Table</div>
+    <h1 class="stage-h lang-ko">한눈에 — 과냉 유동비등 영역과 S·F</h1>
+    <h1 class="stage-h lang-en">At a Glance — Subcooled Regions and S·F</h1>
+    <div class="vizgrid lang-ko">
+      <div>
+        <div class="vcap">관 내 과냉 유동비등의 발달 (벽 거품 → 코어 응축)</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar42ko" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<line x1="30" y1="150" x2="450" y2="150" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar42ko)"/>
+<text x="240" y="278" font-size="11.5" fill="#52525b" text-anchor="middle">유동 방향 · 관 축 $z$</text>
+<line x1="30" y1="66" x2="440" y2="66" stroke="#a1a1aa" stroke-width="1.5"/>
+<line x1="30" y1="234" x2="440" y2="234" stroke="#c2410c" stroke-width="3"/>
+<text x="452" y="70" font-size="10" fill="#71717a">코어(과냉)</text>
+<rect x="55" y="200" width="90" height="34" fill="none" stroke="#a1a1aa" stroke-dasharray="3 3"/>
+<text x="100" y="192" font-size="10" fill="#71717a" text-anchor="middle">단상 대류</text>
+<rect x="150" y="200" width="130" height="34" fill="none" stroke="#c2410c" stroke-dasharray="3 3"/>
+<text x="215" y="192" font-size="10" fill="#c2410c" text-anchor="middle" font-weight="700">부분 비등</text>
+<rect x="285" y="200" width="150" height="34" fill="none" stroke="#c2410c" stroke-dasharray="3 3"/>
+<text x="360" y="192" font-size="10" fill="#c2410c" text-anchor="middle" font-weight="700">완전발달 비등</text>
+<circle cx="150" cy="234" r="4.5" fill="#fff" stroke="#c2410c" stroke-width="2.2"/>
+<text x="150" y="252" font-size="10" fill="#c2410c" text-anchor="middle" font-weight="700">ONB</text>
+<circle cx="180" cy="218" r="4" fill="#bae6fd" stroke="#0284c7" stroke-width="1.4"/>
+<circle cx="210" cy="205" r="3" fill="#bae6fd" stroke="#0284c7" stroke-width="1.2"/>
+<circle cx="235" cy="120" r="2" fill="#bae6fd" stroke="#0284c7" stroke-width="1"/>
+<text x="250" y="108" font-size="9.5" fill="#0284c7" text-anchor="middle">코어서 응축</text>
+<circle cx="320" cy="216" r="4.5" fill="#fed7aa" stroke="#c2410c" stroke-width="1.4"/>
+<circle cx="360" cy="214" r="5" fill="#fed7aa" stroke="#c2410c" stroke-width="1.4"/>
+<circle cx="400" cy="216" r="4.5" fill="#fed7aa" stroke="#c2410c" stroke-width="1.4"/>
+<text x="240" y="248" font-size="9" fill="#c2410c" text-anchor="middle">가열 벽</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">Chen 모델 구성 요소 (물, 대표값)</div>
+        <table class="ktab"><thead><tr><th>기호</th><th>의미 · 결정</th><th style="text-align:right">범위</th></tr></thead><tbody>
+          <tr><td>$h_{nb}$</td><td>핵비등 (Forster–Zuber)</td><td class="k">×$S$</td></tr>
+          <tr><td>$h_{cb}$</td><td>대류 (Dittus–Boelter)</td><td class="k">×$F$</td></tr>
+          <tr><td>$S$</td><td>억압 ← $Re_{TP}$</td><td class="k">0 ~ 1</td></tr>
+          <tr><td>$F$</td><td>증강 ← $X_{tt}$</td><td class="k">≥ 1</td></tr>
+          <tr><td>$1/X_{tt}$</td><td>품질·물성 함수</td><td class="k">→ $F$</td></tr>
+        </tbody></table>
+        <div class="keqnote">직선관(straight-tube) 데이터 대비 Chen 상관식 평균 절대오차 $\text{MAE}\approx 19\!\sim\!21\%$(대표값·자료원 편차 있음). 곡관·미세관은 별도 보정 필요. (출처: Chen 1966 / Collier & Thome Ch.7)</div>
+      </div>
+    </div>
+    <div class="vizgrid lang-en">
+      <div>
+        <div class="vcap">Development of subcooled flow boiling (wall bubbles → core condensation)</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar42en" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<line x1="30" y1="150" x2="450" y2="150" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar42en)"/>
+<text x="240" y="278" font-size="11.5" fill="#52525b" text-anchor="middle">flow direction · tube axis $z$</text>
+<line x1="30" y1="66" x2="440" y2="66" stroke="#a1a1aa" stroke-width="1.5"/>
+<line x1="30" y1="234" x2="440" y2="234" stroke="#c2410c" stroke-width="3"/>
+<text x="452" y="70" font-size="10" fill="#71717a">core (subcooled)</text>
+<rect x="55" y="200" width="90" height="34" fill="none" stroke="#a1a1aa" stroke-dasharray="3 3"/>
+<text x="100" y="192" font-size="10" fill="#71717a" text-anchor="middle">single-phase</text>
+<rect x="150" y="200" width="130" height="34" fill="none" stroke="#c2410c" stroke-dasharray="3 3"/>
+<text x="215" y="192" font-size="10" fill="#c2410c" text-anchor="middle" font-weight="700">partial boiling</text>
+<rect x="285" y="200" width="150" height="34" fill="none" stroke="#c2410c" stroke-dasharray="3 3"/>
+<text x="360" y="192" font-size="10" fill="#c2410c" text-anchor="middle" font-weight="700">fully developed</text>
+<circle cx="150" cy="234" r="4.5" fill="#fff" stroke="#c2410c" stroke-width="2.2"/>
+<text x="150" y="252" font-size="10" fill="#c2410c" text-anchor="middle" font-weight="700">ONB</text>
+<circle cx="180" cy="218" r="4" fill="#bae6fd" stroke="#0284c7" stroke-width="1.4"/>
+<circle cx="210" cy="205" r="3" fill="#bae6fd" stroke="#0284c7" stroke-width="1.2"/>
+<circle cx="235" cy="120" r="2" fill="#bae6fd" stroke="#0284c7" stroke-width="1"/>
+<text x="250" y="108" font-size="9.5" fill="#0284c7" text-anchor="middle">condense in core</text>
+<circle cx="320" cy="216" r="4.5" fill="#fed7aa" stroke="#c2410c" stroke-width="1.4"/>
+<circle cx="360" cy="214" r="5" fill="#fed7aa" stroke="#c2410c" stroke-width="1.4"/>
+<circle cx="400" cy="216" r="4.5" fill="#fed7aa" stroke="#c2410c" stroke-width="1.4"/>
+<text x="240" y="248" font-size="9" fill="#c2410c" text-anchor="middle">heated wall</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">Chen model components (water, representative)</div>
+        <table class="ktab"><thead><tr><th>Symbol</th><th>Meaning · determined by</th><th style="text-align:right">Range</th></tr></thead><tbody>
+          <tr><td>$h_{nb}$</td><td>nucleate (Forster–Zuber)</td><td class="k">×$S$</td></tr>
+          <tr><td>$h_{cb}$</td><td>convective (Dittus–Boelter)</td><td class="k">×$F$</td></tr>
+          <tr><td>$S$</td><td>suppression ← $Re_{TP}$</td><td class="k">0 ~ 1</td></tr>
+          <tr><td>$F$</td><td>enhancement ← $X_{tt}$</td><td class="k">≥ 1</td></tr>
+          <tr><td>$1/X_{tt}$</td><td>quality·property fn.</td><td class="k">→ $F$</td></tr>
+        </tbody></table>
+        <div class="keqnote">Against straight-tube data the Chen correlation shows mean absolute error $\text{MAE}\approx 19\!\sim\!21\%$ (representative; varies by data source). Curved/micro tubes need separate correction. (Source: Chen 1966 / Collier & Thome Ch.7)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-2 / 실습 ══════════ -->
+  <section class="screen" data-ch="4-2" data-chtitle="과냉·포화 유동비등 (Chen)" data-stage="실습">
+    <div class="eyebrow lang-ko">4-2 · 실습 · Interactive</div>
+    <div class="eyebrow lang-en">4-2 · Interactive</div>
+    <h1 class="stage-h lang-ko">$h_{tp}=S\,h_{nb}+F\,h_{cb}$ — 두 항의 저울질</h1>
+    <h1 class="stage-h lang-en">$h_{tp}=S\,h_{nb}+F\,h_{cb}$ — Weighing the Two Terms</h1>
+    <p class="lede lang-ko">Chen 중첩식에서 <strong>억압인자 $S$</strong>와 <strong>증강인자 $F$</strong>를 직접 바꾸며, 핵비등 성분 $h_{nb}$와 대류 성분 $h_{cb}$의 가중합이 만드는 두 이상 계수 $h_{tp}$를 관찰하세요. 흐름이 세지면($F$↑, $S$↓) 어느 항이 지배하는지 감이 잡힙니다.</p>
+    <p class="lede lang-en">In the Chen superposition, vary the <strong>suppression factor $S$</strong> and <strong>enhancement factor $F$</strong> and watch the two-phase coefficient $h_{tp}$ formed by the weighted sum of the nucleate part $h_{nb}$ and convective part $h_{cb}$. As flow strengthens ($F$↑, $S$↓), you sense which term dominates.</p>
+    <div class="calc lang-ko"
+      data-title="Chen 두 이상 계수 $h_{tp} = S\,h_{nb} + F\,h_{cb}$"
+      data-desc="대표값: h_nb≈8000, h_cb≈4000 W/m²K (물, 국소). S∈(0,1], F≥1. 기본 S=0.6, F=2.0 → h_tp = 0.6·8000 + 2.0·4000 = 12800 W/m²K."
+      data-vars='[{"sym":"S","label":"$S$ · 억압인자","min":0.1,"max":1,"val":0.6,"step":0.05,"unit":""},{"sym":"F","label":"$F$ · 증강인자","min":1,"max":6,"val":2,"step":0.1,"unit":""},{"sym":"hnb","label":"$h_{nb}$ · 핵비등","min":2000,"max":15000,"val":8000,"step":500,"unit":"W/m²K"},{"sym":"hcb","label":"$h_{cb}$ · 대류","min":1000,"max":10000,"val":4000,"step":500,"unit":"W/m²K"}]'
+      data-expr="S*hnb + F*hcb"
+      data-out="$h_{tp}$" data-out-unit="$\text{W/m}^2\text{K}$"
+      data-barmax="60000"
+      data-note="F를 2→4로 올리면 대류 항이 8000→16000 W/m²K로 커져 h_tp를 지배 — 고품질 유동비등에서 대류가 주도함을 보여줍니다."></div>
+    <div class="calc lang-en"
+      data-title="Chen two-phase coeff. $h_{tp} = S\,h_{nb} + F\,h_{cb}$"
+      data-desc="Representative: h_nb≈8000, h_cb≈4000 W/m²K (water, local). S∈(0,1], F≥1. Default S=0.6, F=2.0 → h_tp = 0.6·8000 + 2.0·4000 = 12800 W/m²K."
+      data-vars='[{"sym":"S","label":"$S$ · suppression","min":0.1,"max":1,"val":0.6,"step":0.05,"unit":""},{"sym":"F","label":"$F$ · enhancement","min":1,"max":6,"val":2,"step":0.1,"unit":""},{"sym":"hnb","label":"$h_{nb}$ · nucleate","min":2000,"max":15000,"val":8000,"step":500,"unit":"W/m²K"},{"sym":"hcb","label":"$h_{cb}$ · convective","min":1000,"max":10000,"val":4000,"step":500,"unit":"W/m²K"}]'
+      data-expr="S*hnb + F*hcb"
+      data-out="$h_{tp}$" data-out-unit="$\text{W/m}^2\text{K}$"
+      data-barmax="60000"
+      data-note="Raising F from 2→4 grows the convective term 8000→16000 W/m²K, dominating h_tp — convection leads at high-quality flow boiling."></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 물 국소 계수 $h\,[\text{W/m}^2\text{K}]$ 감: 단상 강제대류 $\approx 10^3$ · 유동비등 $\approx 10^4\!\sim\!5\!\times\!10^4$ · 격렬한 핵비등 $\gtrsim 10^5$. 기본값($S=0.6,F=2.0$)은 $h_{tp}\approx 1.28\times10^4\,\text{W/m}^2\text{K}$ — 전형적 유동비등 대역이다. 입구 근처(저품질)는 $S$항이, 출구 근처(고품질)는 $F$항이 지배해 <strong>두 항의 비중이 관 축을 따라 뒤바뀝니다</strong>. <span class="src">(출처: Chen 1966 / Incropera Ch.10.5 대표 계수)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — feel for water's local $h\,[\text{W/m}^2\text{K}]$: single-phase forced convection $\approx 10^3$ · flow boiling $\approx 10^4\!\sim\!5\!\times\!10^4$ · vigorous nucleate $\gtrsim 10^5$. The default ($S=0.6,F=2.0$) gives $h_{tp}\approx 1.28\times10^4\,\text{W/m}^2\text{K}$ — a typical flow-boiling band. Near the inlet (low quality) the $S$ term dominates; near the outlet (high quality) the $F$ term does — so <strong>the two terms' weights reverse along the tube axis</strong>. <span class="src">(Source: Chen 1966 / Incropera Ch.10.5 representative coefficients)</span></div>
+  </section>
+
+  <!-- ══════════ 4-2 / 점검 ══════════ -->
+  <section class="screen" data-ch="4-2" data-chtitle="과냉·포화 유동비등 (Chen)" data-stage="점검">
+    <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+    <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · instructor view</span></div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q1.</span>Chen 중첩 모델 $h_{tp}=S\,h_{nb}+F\,h_{cb}$에서 <strong>$S$와 $F$</strong>의 역할은?</p>
+      <div class="opts">
+        <button class="opt">① $S$는 대류를 증강, $F$는 핵비등을 억압한다</button>
+        <button class="opt" data-correct="1">② $S$는 핵비등을 억압($S\le1$), $F$는 대류를 증강($F\ge1$)한다</button>
+        <button class="opt">③ 둘 다 항상 1로 고정된 상수이다</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $S$는 핵비등 성분에 곱해지는 억압인자($0<S\le1$, $Re_{TP}$의 감소함수)이고, $F$는 대류 성분에 곱해지는 증강인자($F\ge1$, $X_{tt}$의 함수)이다. <span class="dim">오답 ①·③: ①역할이 뒤바뀌었고, ③둘 다 흐름·품질에 따라 변한다.</span> <span class="agg">학급 n=41 · ① 8 · ② 29 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q1.</span>In Chen's superposition $h_{tp}=S\,h_{nb}+F\,h_{cb}$, what do <strong>$S$ and $F$</strong> do?</p>
+      <div class="opts">
+        <button class="opt">① $S$ enhances convection; $F$ suppresses nucleate boiling</button>
+        <button class="opt" data-correct="1">② $S$ suppresses nucleate boiling ($S\le1$); $F$ enhances convection ($F\ge1$)</button>
+        <button class="opt">③ both are constants fixed at 1</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — $S$ multiplies the nucleate part as a suppression factor ($0<S\le1$, decreasing in $Re_{TP}$); $F$ multiplies the convective part as an enhancement factor ($F\ge1$, a function of $X_{tt}$). <span class="dim">Wrong ①·③: ① the roles are swapped; ③ both vary with flow and quality.</span> <span class="agg">class n=41 · ① 8 · ② 29 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q2.</span>과냉 유동비등에서 벽을 떠난 거품이 <strong>코어로 들어가면</strong> 어떻게 됩니까?</p>
+      <div class="opts">
+        <button class="opt">① 코어에서 계속 성장해 증기 품질이 빠르게 증가한다</button>
+        <button class="opt" data-correct="1">② 코어가 과냉 상태라 즉시 응축되어 순 품질이 0 근처로 유지된다</button>
+        <button class="opt">③ 즉시 CHF에 도달해 막비등으로 전환된다</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 과냉 유동비등은 벽에서만 국소적으로 끓고 코어는 여전히 포화온도 이하이므로, 벽에서 이탈한 거품은 코어에서 <strong>응축</strong>되어 사라진다. 순 증기 품질은 0 근처를 유지하지만 벽 열전달은 이미 비등 수준으로 향상된다. <span class="dim">오답 ①·③: ①코어가 차가워 성장이 아니라 응축이 일어나고, ③CHF는 과열도·열유속 한계이지 코어 진입만으로 도달하지 않는다.</span> <span class="agg">학급 n=41 · ① 9 · ② 27 · ③ 5</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q2.</span>In subcooled flow boiling, what happens to a bubble that leaves the wall and <strong>enters the core</strong>?</p>
+      <div class="opts">
+        <button class="opt">① it keeps growing in the core, so vapor quality rises quickly</button>
+        <button class="opt" data-correct="1">② the core is subcooled, so it condenses at once and net quality stays near 0</button>
+        <button class="opt">③ it immediately reaches CHF and switches to film boiling</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — subcooled flow boiling occurs only locally at the wall while the core is still below saturation, so a departed bubble <strong>condenses</strong> and disappears in the core. Net vapor quality stays near 0, yet wall heat transfer is already boosted to boiling levels. <span class="dim">Wrong ①·③: ① the cold core causes condensation, not growth; ③ CHF is a superheat/flux limit, not reached merely by entering the core.</span> <span class="agg">class n=41 · ① 9 · ② 27 · ③ 5</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-2 / 연습 ══════════ -->
+  <section class="screen" data-ch="4-2" data-chtitle="과냉·포화 유동비등 (Chen)" data-stage="연습">
+    <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+    <div class="panel-head lang-en"><span class="tag">Practice</span><span class="panel-title">Engineering calc · auto-graded</span></div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 1 · 기본 · Chen 중첩 합산</div>
+      <p class="prob-statement">어느 관 단면에서 Chen 모델의 성분이 $h_{nb}=8000\ \text{W/m}^2\text{K}$, $h_{cb}=4000\ \text{W/m}^2\text{K}$이고 보정인자가 $S=0.6$, $F=2.0$이다. <strong>두 이상 계수 $h_{tp}$</strong>를 구하시오.</p>
+      <div class="given"><span class="chip">$h_{nb}=8000$</span><span class="chip">$h_{cb}=4000$</span><span class="chip">$S=0.6$</span><span class="chip">$F=2.0$</span></div>
+      <div class="find"><b>구할 것:</b> $h_{tp}\ [\text{W/m}^2\text{K}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="12800" data-tol="0.01"/><span class="ans-unit">$\text{W/m}^2\text{K}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 중첩식 대입</div>$$ h_{tp} = S\,h_{nb} + F\,h_{cb} = (0.6)(8000) + (2.0)(4000) $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 계산</div>$$ h_{tp} = 4800 + 8000 = 12{,}800\ \text{W/m}^2\text{K} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ h_{tp} = 12{,}800\ \text{W/m}^2\text{K} $$</div><b>정답:</b> 억압된 핵비등(4800)보다 증강된 대류(8000)가 더 커 대류가 지배한다.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 1 · Basic · Chen superposition sum</div>
+      <p class="prob-statement">At a tube section the Chen components are $h_{nb}=8000\ \text{W/m}^2\text{K}$, $h_{cb}=4000\ \text{W/m}^2\text{K}$ with correction factors $S=0.6$, $F=2.0$. Find the <strong>two-phase coefficient $h_{tp}$</strong>.</p>
+      <div class="given"><span class="chip">$h_{nb}=8000$</span><span class="chip">$h_{cb}=4000$</span><span class="chip">$S=0.6$</span><span class="chip">$F=2.0$</span></div>
+      <div class="find"><b>Find:</b> $h_{tp}\ [\text{W/m}^2\text{K}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="12800" data-tol="0.01"/><span class="ans-unit">$\text{W/m}^2\text{K}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · substitute the superposition</div>$$ h_{tp} = S\,h_{nb} + F\,h_{cb} = (0.6)(8000) + (2.0)(4000) $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · compute</div>$$ h_{tp} = 4800 + 8000 = 12{,}800\ \text{W/m}^2\text{K} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ h_{tp} = 12{,}800\ \text{W/m}^2\text{K} $$</div><b>Answer:</b> the enhanced convection (8000) exceeds the suppressed nucleate part (4800), so convection dominates.</div>
+      </div>
+    </div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 2 · 응용 · 억압인자 $S$ 계산</div>
+      <p class="prob-statement">Chen의 억압인자는 $S=\bigl(1+2.53\times10^{-6}\,Re_{TP}^{1.17}\bigr)^{-1}$이다. 두 이상 레이놀즈 수가 $Re_{TP}=1.0\times10^{5}$일 때 <strong>$S$</strong>를 구하시오. (힌트: $\left(10^{5}\right)^{1.17}=10^{5.85}\approx7.08\times10^{5}$)</p>
+      <div class="given"><span class="chip">$Re_{TP}=1.0\times10^{5}$</span><span class="chip">계수 $2.53\times10^{-6}$</span><span class="chip">지수 $1.17$</span></div>
+      <div class="find"><b>구할 것:</b> $S$ (무차원)</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="0.358" data-tol="0.03"/><span class="ans-unit"></span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 거듭제곱 항</div>$$ Re_{TP}^{1.17}=\left(10^{5}\right)^{1.17}=10^{5.85}\approx 7.08\times10^{5} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 괄호 안</div>$$ 1+2.53\times10^{-6}\times 7.08\times10^{5} = 1 + 1.79 = 2.79 $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · 역수</div>$$ S = \frac{1}{2.79} \approx 0.358 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ S \approx 0.36 $$</div><b>정답:</b> 흐름이 셀수록($Re_{TP}$↑) $S<1$로 작아져 핵비등이 강하게 억압된다.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 2 · Applied · suppression factor $S$</div>
+      <p class="prob-statement">Chen's suppression factor is $S=\bigl(1+2.53\times10^{-6}\,Re_{TP}^{1.17}\bigr)^{-1}$. Find <strong>$S$</strong> for a two-phase Reynolds number $Re_{TP}=1.0\times10^{5}$. (Hint: $\left(10^{5}\right)^{1.17}=10^{5.85}\approx7.08\times10^{5}$.)</p>
+      <div class="given"><span class="chip">$Re_{TP}=1.0\times10^{5}$</span><span class="chip">coeff. $2.53\times10^{-6}$</span><span class="chip">exp. $1.17$</span></div>
+      <div class="find"><b>Find:</b> $S$ (dimensionless)</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="0.358" data-tol="0.03"/><span class="ans-unit"></span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · power term</div>$$ Re_{TP}^{1.17}=\left(10^{5}\right)^{1.17}=10^{5.85}\approx 7.08\times10^{5} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · inside the bracket</div>$$ 1+2.53\times10^{-6}\times 7.08\times10^{5} = 1 + 1.79 = 2.79 $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · reciprocal</div>$$ S = \frac{1}{2.79} \approx 0.358 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ S \approx 0.36 $$</div><b>Answer:</b> stronger flow ($Re_{TP}$↑) drives $S<1$ smaller, strongly suppressing nucleate boiling.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-2 / 정리 ══════════ -->
+  <section class="screen" data-ch="4-2" data-chtitle="과냉·포화 유동비등 (Chen)" data-stage="정리">
+    <div class="eyebrow lang-ko">4-2 · 정리 · Summary</div>
+    <div class="eyebrow lang-en">4-2 · Summary</div>
+    <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 시험 포인트</h1>
+    <h1 class="stage-h lang-en">Key Points · Common Mistakes · Exam Focus</h1>
+    <div class="sumgrid lang-ko">
+      <div class="sumcard key"><h4>핵심 정리</h4><ul>
+        <li>Chen 중첩: <strong>$h_{tp}=S\,h_{nb}+F\,h_{cb}$</strong> — 핵비등·대류를 더한다.</li>
+        <li>$F=f(X_{tt})\ge1$(증강, 품질↑), $S=f(Re_{TP})\le1$(억압, 흐름↑).</li>
+        <li>과냉 비등: <strong>ONB → 부분 → 완전발달</strong>, 코어에서 <strong>거품 응축</strong>.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+        <li>$S$와 $F$의 역할을 <strong>뒤바꿔</strong> 적용.</li>
+        <li>$S,F,Re_{TP},X_{tt}$의 <strong>순환 결합</strong>을 무시하고 독립 계산.</li>
+        <li>과냉 영역에서 순 품질이 크게 오른다고 오해 → 실제 <strong>0 근처</strong>.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>시험 포인트</h4><ul>
+        <li>$S,F,h_{nb},h_{cb}$ 주어질 때 $h_{tp}$ 합산(빈출).</li>
+        <li>$S=(1+2.53\times10^{-6}Re_{TP}^{1.17})^{-1}$ 대입 계산.</li>
+        <li>과냉 유동비등 3단계와 기포 응축 메커니즘, Chen MAE $\approx19\!\sim\!21\%$.</li>
+      </ul></div>
+    </div>
+    <div class="sumgrid lang-en">
+      <div class="sumcard key"><h4>Key points</h4><ul>
+        <li>Chen superposition: <strong>$h_{tp}=S\,h_{nb}+F\,h_{cb}$</strong> — nucleate plus convective.</li>
+        <li>$F=f(X_{tt})\ge1$ (enhancement, quality↑); $S=f(Re_{TP})\le1$ (suppression, flow↑).</li>
+        <li>Subcooled boiling: <strong>ONB → partial → fully developed</strong>, with <strong>bubble condensation</strong> in the core.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+        <li><strong>Swapping</strong> the roles of $S$ and $F$.</li>
+        <li>Ignoring the <strong>circular coupling</strong> of $S,F,Re_{TP},X_{tt}$ and treating them as independent.</li>
+        <li>Assuming net quality rises sharply in the subcooled region → it stays <strong>near 0</strong>.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>Exam focus</h4><ul>
+        <li>Given $S,F,h_{nb},h_{cb}$, sum to $h_{tp}$ (frequent).</li>
+        <li>Evaluate $S=(1+2.53\times10^{-6}Re_{TP}^{1.17})^{-1}$.</li>
+        <li>Three stages of subcooled flow boiling, bubble-condensation mechanism, Chen MAE $\approx19\!\sim\!21\%$.</li>
+      </ul></div>
+    </div>
+  </section>
+
+<!-- ══════════ 4-3 / 개념 ══════════ -->
+  <section class="screen" data-ch="4-3" data-chtitle="유동 CHF·dryout·미세유로" data-stage="개념">
+    <div class="eyebrow lang-ko">4-3 · 개념 · Concept</div>
+    <div class="eyebrow lang-en">4-3 · Concept</div>
+    <h1 class="stage-h lang-ko">유동 위기의 두 얼굴 — DNB와 dryout</h1>
+    <h1 class="stage-h lang-en">Two Faces of the Flow Crisis — DNB and Dryout</h1>
+    <div class="analogy lang-ko"><span class="ic">🔥</span><div class="tx"><b>직관</b> — 관 속을 흐르는 물이 끓을 때 벽면이 갑자기 뜨거워지는 <b>위기(boiling crisis)</b>는 두 가지 전혀 다른 방식으로 옵니다. 입구 쪽 <b>과냉·저건도</b>에서는 벽에 증기가 순식간에 막을 만들어 벽을 덮어버리고(<b>DNB</b>), 출구 쪽 <b>고건도</b>에서는 벽을 적시던 얇은 액막이 다 증발해 말라버립니다(<b>dryout</b>). 같은 "벽면 소손"이지만 원인은 정반대입니다. <span class="src">(출처: Collier &amp; Thome, <i>Convective Boiling and Condensation</i>, 3rd ed. / Incropera Ch.10.5)</span></div></div>
+    <div class="analogy lang-en"><span class="ic">🔥</span><div class="tx"><b>Intuition</b> — When water flowing in a tube boils, the sudden wall overheating (the <b>boiling crisis</b>) arrives in two entirely different ways. Near the inlet, at <b>subcooled / low quality</b>, vapor abruptly forms a film blanketing the wall (<b>DNB</b>); near the outlet, at <b>high quality</b>, the thin liquid film wetting the wall fully evaporates and dries out (<b>dryout</b>). The same "wall failure," but from opposite causes. <span class="src">(Source: Collier &amp; Thome, <i>Convective Boiling and Condensation</i>, 3rd ed. / Incropera Ch.10.5)</span></div></div>
+    <div class="two lang-ko">
+      <div class="col2">
+        <p class="lede"><strong>유동 비등(flow boiling)</strong>은 관 내부를 흐르는 액체가 가열되며 끓는 현상으로, 축방향으로 <strong>건도 $x$</strong>가 커지며 유동 양식이 <strong>기포류 → 슬러그류 → 환상류 → 안개류</strong>로 진화합니다. 이때 벽면이 견딜 수 있는 열유속의 상한이 <strong>유동 임계열유속(CHF)</strong>이며, 그 발생 기구가 <strong>DNB</strong>와 <strong>dryout</strong> 둘로 나뉩니다.</p>
+        <div class="keqbox">
+          <div class="keq-label">유동 위기 2형 비교</div>
+          <div class="keqrow"><span class="keqcap">DNB (departure from nucleate boiling)</span><span class="keqline">$ x \lesssim 0 \sim 0.1 $</span></div>
+          <div class="keqrow"><span class="keqcap">dryout (액막 고갈)</span><span class="keqline">$ x \gtrsim 0.3 \sim 0.9 $</span></div>
+          <div class="keqrow"><span class="keqcap">DNB 벽온도 급상승</span><span class="keqline">$ \Delta T_{wall} \sim 100\text{s}\,{}^{\circ}\text{C} $</span></div>
+          <div class="keqrow"><span class="keqcap">dryout 벽온도 급상승</span><span class="keqline">$ \Delta T_{wall} \sim 10\text{s}\,{}^{\circ}\text{C} $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">핵심 용어</div>
+        <div class="terms">
+          <div class="term"><b>건도 $x$</b> $=\dot m_v/\dot m$ — 총 유량 중 증기 질량분율 $[-]$</div>
+          <div class="term"><b>DNB</b> 과냉·저건도에서 벽면 국소 증기막화 — 격렬(온도 폭주 큼)</div>
+          <div class="term"><b>dryout</b> 환상류 액막 완전 증발 — 완만(온도 상승 작음)</div>
+          <div class="term"><b>환상류(annular flow)</b> 벽 액막 + 중심 증기 코어, dryout의 무대</div>
+          <div class="term"><b>구속수 $Co$</b> 표면장력 대 부력 — 미세유로 판별 무차원수</div>
+          <div class="term"><b>미세유로(microchannel)</b> $Co\gtrsim0.5$, 기포가 관경을 채워 구속 지배</div>
+        </div>
+        <div class="callout key"><div class="ct">핵심</div>유동 CHF는 <strong>하나가 아니라 두 기구</strong>입니다. 저건도 원자로 노심에서는 <strong>DNB</strong>(급격·위험)가, 고건도 증기발생기·보일러 튜브에서는 <strong>dryout</strong>(완만)이 설계 한계를 지배합니다.</div>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2">
+        <p class="lede"><strong>Flow boiling</strong> is boiling of a liquid heated as it flows inside a tube; along the axis the <strong>quality $x$</strong> rises and the flow pattern evolves <strong>bubbly → slug → annular → mist</strong>. The upper bound of heat flux the wall can sustain is the <strong>flow critical heat flux (CHF)</strong>, whose mechanism splits into <strong>DNB</strong> and <strong>dryout</strong>.</p>
+        <div class="keqbox">
+          <div class="keq-label">The two flow-crisis types</div>
+          <div class="keqrow"><span class="keqcap">DNB (departure from nucleate boiling)</span><span class="keqline">$ x \lesssim 0 \sim 0.1 $</span></div>
+          <div class="keqrow"><span class="keqcap">dryout (liquid-film depletion)</span><span class="keqline">$ x \gtrsim 0.3 \sim 0.9 $</span></div>
+          <div class="keqrow"><span class="keqcap">DNB wall-temp jump</span><span class="keqline">$ \Delta T_{wall} \sim 100\text{s}\,{}^{\circ}\text{C} $</span></div>
+          <div class="keqrow"><span class="keqcap">dryout wall-temp jump</span><span class="keqline">$ \Delta T_{wall} \sim 10\text{s}\,{}^{\circ}\text{C} $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">Key terms</div>
+        <div class="terms">
+          <div class="term"><b>Quality $x$</b> $=\dot m_v/\dot m$ — vapor mass fraction of total flow $[-]$</div>
+          <div class="term"><b>DNB</b> local wall vapor blanketing at low quality — violent (large runaway)</div>
+          <div class="term"><b>dryout</b> full evaporation of the annular film — mild (small rise)</div>
+          <div class="term"><b>Annular flow</b> wall liquid film + central vapor core, the stage for dryout</div>
+          <div class="term"><b>Confinement no. $Co$</b> surface tension vs buoyancy — microchannel criterion</div>
+          <div class="term"><b>Microchannel</b> $Co\gtrsim0.5$, bubbles fill the bore, confinement-dominated</div>
+        </div>
+        <div class="callout key"><div class="ct">Key</div>Flow CHF is <strong>not one but two mechanisms</strong>. In low-quality reactor cores <strong>DNB</strong> (abrupt, dangerous) governs; in high-quality steam-generator / boiler tubes <strong>dryout</strong> (mild) sets the design limit.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-3 / 유도 ══════════ -->
+  <section class="screen" data-ch="4-3" data-chtitle="유동 CHF·dryout·미세유로" data-stage="유도">
+    <div class="eyebrow lang-ko">4-3 · 수식 유도 · Derivation</div>
+    <div class="eyebrow lang-en">4-3 · Derivation</div>
+    <h1 class="stage-h lang-ko">구속수 $Co$의 유도 — 언제 미세유로인가</h1>
+    <h1 class="stage-h lang-en">Deriving the Confinement Number $Co$ — When Is It a Microchannel?</h1>
+    <p class="lede lang-ko"><b>물리 관점:</b> 관경 $D$가 아주 작아지면 기포가 자라 <b>관 벽에 눌려</b> 관경을 통째로 채웁니다. 이때 기포 이탈을 지배하는 힘의 균형이 <b>표면장력 vs 부력</b>으로 바뀌고, 그 비를 무차원화한 것이 구속수 $Co$입니다.</p>
+    <p class="lede lang-en"><b>Physical view:</b> as the bore $D$ shrinks, a growing bubble is <b>pressed against the wall</b> and fills the whole cross-section. The force balance governing bubble departure shifts to <b>surface tension vs buoyancy</b>, and non-dimensionalizing that ratio yields the confinement number $Co$.</p>
+    <div class="deriv lang-ko">
+      <div class="dcard"><h4>① 두 힘의 저울</h4><div class="sub">표면장력 vs 부력</div><div class="ana">🫧 기포를 잡는 힘 vs 띄우는 힘</div><div class="eq">$ F_\sigma \sim \sigma D,\quad F_b \sim g(\rho_l-\rho_v)D^3 $</div><p>표면장력력 $F_\sigma$은 둘레($\sim D$)에, 부력 $F_b$은 부피($\sim D^3$)에 비례합니다. $D$가 작을수록 표면장력이 상대적으로 커집니다.</p></div>
+      <div class="dcard"><h4>② 힘의 비 = 라플라스 길이</h4><div class="sub">$Co^2 = F_\sigma / F_b$</div><div class="ana">📏 기준 길이 $L_c$와 관경의 경쟁</div><div class="eq">$ Co^2 = \dfrac{\sigma}{g(\rho_l-\rho_v)\,D^2} = \left(\dfrac{L_c}{D}\right)^2 $</div><p>$L_c=\sqrt{\sigma/[g(\rho_l-\rho_v)]}$은 <strong>모세관(라플라스) 길이</strong>. 즉 $Co=L_c/D$로, 관경이 모세관 길이보다 작으면 $Co>1$.</p></div>
+      <div class="dcard"><h4>③ 구속수 정의</h4><div class="sub">Kew &amp; Cornwell 1997</div><div class="ana">✅ $Co\gtrsim0.5$면 미세유로</div><div class="eq">$ Co = \left[\dfrac{\sigma}{g(\rho_l-\rho_v)\,D^2}\right]^{1/2} $</div><p>임계값 $Co\approx0.5$를 넘으면 기포가 관경을 채워 <strong>구속(confined) 유동</strong>이 되고, 통상적 유동 비등 상관식이 무너집니다.</p></div>
+    </div>
+    <div class="deriv lang-en">
+      <div class="dcard"><h4>① Balance of two forces</h4><div class="sub">surface tension vs buoyancy</div><div class="ana">🫧 force holding vs force lifting the bubble</div><div class="eq">$ F_\sigma \sim \sigma D,\quad F_b \sim g(\rho_l-\rho_v)D^3 $</div><p>Surface-tension force $F_\sigma$ scales with perimeter ($\sim D$), buoyancy $F_b$ with volume ($\sim D^3$). The smaller $D$, the relatively larger surface tension.</p></div>
+      <div class="dcard"><h4>② Force ratio = Laplace length</h4><div class="sub">$Co^2 = F_\sigma / F_b$</div><div class="ana">📏 reference length $L_c$ vs the bore</div><div class="eq">$ Co^2 = \dfrac{\sigma}{g(\rho_l-\rho_v)\,D^2} = \left(\dfrac{L_c}{D}\right)^2 $</div><p>$L_c=\sqrt{\sigma/[g(\rho_l-\rho_v)]}$ is the <strong>capillary (Laplace) length</strong>. Thus $Co=L_c/D$: if the bore is below the capillary length, $Co>1$.</p></div>
+      <div class="dcard"><h4>③ Confinement-number definition</h4><div class="sub">Kew &amp; Cornwell 1997</div><div class="ana">✅ $Co\gtrsim0.5$ ⇒ microchannel</div><div class="eq">$ Co = \left[\dfrac{\sigma}{g(\rho_l-\rho_v)\,D^2}\right]^{1/2} $</div><p>Above the threshold $Co\approx0.5$ bubbles fill the bore, the flow becomes <strong>confined</strong>, and conventional flow-boiling correlations break down.</p></div>
+    </div>
+    <div class="callout warn lang-ko"><div class="ct">주의 · $Co$의 임계값은 표면장력 데이터 기준</div>$Co\approx0.5$는 물·냉매의 관측을 정리한 <strong>공학적 기준</strong>이며 유체·유량·가열조건에 따라 $0.3\!\sim\!1$로 흩어집니다. $\rho_l-\rho_v$는 <strong>포화 상태값</strong>을 써야 하며, 고압에서는 $\rho_v$가 커져 $L_c$와 $Co$가 함께 변합니다. <span class="src">(출처: Kew &amp; Cornwell, <i>Appl. Therm. Eng.</i> 17 (1997) 705–715)</span></div>
+    <div class="callout warn lang-en"><div class="ct">Caution · the threshold rests on surface-tension data</div>$Co\approx0.5$ is an <strong>engineering criterion</strong> distilled from water/refrigerant observations; it scatters over $0.3\!\sim\!1$ with fluid, flow rate, and heating. Use the <strong>saturation</strong> values of $\rho_l-\rho_v$; at high pressure $\rho_v$ grows, shifting both $L_c$ and $Co$. <span class="src">(Source: Kew &amp; Cornwell, <i>Appl. Therm. Eng.</i> 17 (1997) 705–715)</span></div>
+  </section>
+
+  <!-- ══════════ 4-3 / 읽을거리 ══════════ -->
+  <section class="screen" data-ch="4-3" data-chtitle="유동 CHF·dryout·미세유로" data-stage="읽을거리">
+    <div class="eyebrow lang-ko">4-3 · 읽을거리 · Reading</div>
+    <div class="eyebrow lang-en">4-3 · Reading</div>
+    <h1 class="stage-h lang-ko">미세유로 비등 — 전자칩을 살리는 작은 관</h1>
+    <h1 class="stage-h lang-en">Microchannel Boiling — Tiny Tubes That Save the Chip</h1>
+    <div class="two lang-ko">
+      <div class="col2 reading">
+        <p>고성능 프로세서·전력전자 소자는 $\sim100\ \text{W/cm}^2$를 넘는 열유속을 뿜어냅니다. 공기 냉각으로는 감당이 안 되어, 폭 <strong>$10\!\sim\!1000\ \mu\text{m}$</strong>의 <strong>미세유로</strong>에 냉매를 흘려 <strong>비등 잠열</strong>로 열을 실어 나르는 <strong>2상 미세유로 냉각</strong>이 주목받습니다. 좁은 관에서는 기포가 관경을 통째로 채워(구속) 얇은 액막이 벽을 적시며 증발하므로, 작은 유량으로 큰 열을 뺄 수 있습니다.</p>
+        <p class="pullquote">미세유로에서는 중력이 아니라 <em>표면장력이 유동을 지배</em>한다.</p>
+        <p>Kandlikar는 관경으로 상용/미니/미세를 나누되(대략 $D&gt;3\ \text{mm}$ 상용, $200\ \mu\text{m}\!\sim\!3\ \text{mm}$ 미니, $10\!\sim\!200\ \mu\text{m}$ 미세), <strong>지배 물리는 관경이 아니라 무차원 구속수 $Co$</strong>임을 강조합니다. $Co\gtrsim0.5$면 기포 구속이 지배해, 통상 유동 비등의 부력 기반 상관식이 무너지고 <strong>슬러그·환상류</strong>가 일찍 나타납니다. 위험은 <strong>이른 dryout</strong>과 <strong>유동 불안정</strong>입니다.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>미세유로 판별의 <strong>물리량은 $Co$</strong>이지 관경 절대값이 아니다.</li><li>$Co\gtrsim0.5$ ⇒ 구속 지배(기포가 관경을 채움).</li><li>물 대기압에서 $D=1\ \text{mm}$면 $Co\approx2.5$ — 이미 미세유로 영역.</li></ul></div>
+        <p class="readmeta">참고: Kandlikar, <em>J. Heat Transfer</em> 126 (2004) 8–16 / Kew &amp; Cornwell (1997) / Incropera Ch.10.</p>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2 reading">
+        <p>High-performance processors and power devices dissipate heat fluxes above $\sim100\ \text{W/cm}^2$. Air cooling cannot cope, so <strong>two-phase microchannel cooling</strong> — flowing a coolant through <strong>$10\!\sim\!1000\ \mu\text{m}$</strong> channels and carrying heat as <strong>latent heat of boiling</strong> — has drawn attention. In narrow bores a bubble fills the whole cross-section (confinement) and a thin liquid film wets and evaporates on the wall, so a small flow removes large heat.</p>
+        <p class="pullquote">In microchannels it is <em>surface tension, not gravity, that rules the flow</em>.</p>
+        <p>Kandlikar classifies conventional/mini/micro by size (roughly $D&gt;3\ \text{mm}$ conventional, $200\ \mu\text{m}\!\sim\!3\ \text{mm}$ mini, $10\!\sim\!200\ \mu\text{m}$ micro), yet stresses that <strong>the governing physics is the dimensionless $Co$, not the bore</strong>. For $Co\gtrsim0.5$ confinement dominates: buoyancy-based flow-boiling correlations fail and <strong>slug/annular</strong> patterns appear early. The hazards are <strong>early dryout</strong> and <strong>flow instabilities</strong>.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">Must know</div><ul><li>The microchannel criterion is a <strong>quantity ($Co$)</strong>, not an absolute bore.</li><li>$Co\gtrsim0.5$ ⇒ confinement-dominated (bubble fills the bore).</li><li>Water at 1 atm with $D=1\ \text{mm}$ gives $Co\approx2.5$ — already microchannel.</li></ul></div>
+        <p class="readmeta">Refs: Kandlikar, <em>J. Heat Transfer</em> 126 (2004) 8–16 / Kew &amp; Cornwell (1997) / Incropera Ch.10.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-3 / 그림·표 ══════════ -->
+  <section class="screen" data-ch="4-3" data-chtitle="유동 CHF·dryout·미세유로" data-stage="그림·표">
+    <div class="eyebrow lang-ko">4-3 · 그림 · 표</div>
+    <div class="eyebrow lang-en">4-3 · Figure · Table</div>
+    <h1 class="stage-h lang-ko">한눈에 — 축방향 유동 양식과 위기 위치</h1>
+    <h1 class="stage-h lang-en">At a Glance — Axial Flow Patterns and Crisis Locations</h1>
+    <div class="vizgrid lang-ko">
+      <div>
+        <div class="vcap">가열관 축방향: 유동 양식 · DNB · dryout</div>
+        <svg viewBox="0 0 480 300" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar43ko" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<!-- tube outline -->
+<rect x="150" y="20" width="60" height="250" fill="none" stroke="#71717a" stroke-width="1.5"/>
+<!-- liquid at bottom -->
+<rect x="151" y="215" width="58" height="54" fill="#bfdbfe" opacity="0.6"/>
+<!-- bubbles (bubbly) -->
+<circle cx="168" cy="235" r="4" fill="#fff" stroke="#2563eb" stroke-width="1"/>
+<circle cx="190" cy="248" r="5" fill="#fff" stroke="#2563eb" stroke-width="1"/>
+<circle cx="176" cy="225" r="3" fill="#fff" stroke="#2563eb" stroke-width="1"/>
+<!-- slug -->
+<ellipse cx="180" cy="180" rx="20" ry="15" fill="#fff" stroke="#2563eb" stroke-width="1.25"/>
+<rect x="151" y="165" width="8" height="45" fill="#bfdbfe" opacity="0.6"/>
+<rect x="201" y="165" width="8" height="45" fill="#bfdbfe" opacity="0.6"/>
+<!-- annular: wall film + vapor core -->
+<rect x="151" y="90" width="7" height="70" fill="#bfdbfe" opacity="0.7"/>
+<rect x="202" y="90" width="7" height="70" fill="#bfdbfe" opacity="0.7"/>
+<!-- mist / dryout above -->
+<circle cx="170" cy="55" r="2" fill="#93c5fd"/>
+<circle cx="188" cy="45" r="2" fill="#93c5fd"/>
+<circle cx="178" cy="35" r="1.6" fill="#93c5fd"/>
+<!-- axis arrow (quality up) -->
+<line x1="240" y1="270" x2="240" y2="22" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar43ko)"/>
+<text x="256" y="150" font-size="11" fill="#52525b" text-anchor="middle" transform="rotate(-90 256 150)">건도 $x$ 증가 →</text>
+<!-- labels -->
+<text x="120" y="248" font-size="10.5" fill="#52525b" text-anchor="end">기포류</text>
+<text x="120" y="184" font-size="10.5" fill="#52525b" text-anchor="end">슬러그류</text>
+<text x="120" y="128" font-size="10.5" fill="#52525b" text-anchor="end">환상류</text>
+<text x="120" y="48" font-size="10.5" fill="#52525b" text-anchor="end">안개류</text>
+<!-- DNB marker (low x) -->
+<circle cx="151" cy="238" r="4.5" fill="#dc2626"/>
+<text x="360" y="242" font-size="10.5" fill="#dc2626" text-anchor="middle" font-weight="700">DNB (저건도)</text>
+<line x1="300" y1="238" x2="158" y2="238" stroke="#dc2626" stroke-width="1" stroke-dasharray="3 3"/>
+<!-- dryout marker (high x) -->
+<circle cx="205" cy="90" r="4.5" fill="#c2410c"/>
+<text x="360" y="94" font-size="10.5" fill="#c2410c" text-anchor="middle" font-weight="700">dryout (고건도)</text>
+<line x1="300" y1="90" x2="212" y2="90" stroke="#c2410c" stroke-width="1" stroke-dasharray="3 3"/>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">DNB vs dryout · 구속수 감</div>
+        <table class="ktab"><thead><tr><th>항목</th><th>DNB</th><th style="text-align:right">dryout</th></tr></thead><tbody>
+          <tr><td>건도 $x$</td><td class="k">$\lesssim0.1$ (과냉~저)</td><td>$\gtrsim0.3\!\sim\!0.9$ (고)</td></tr>
+          <tr><td>유동 양식</td><td class="k">기포·슬러그</td><td>환상류</td></tr>
+          <tr><td>기구</td><td class="k">벽 국소 증기막</td><td>액막 완전 증발</td></tr>
+          <tr><td>벽온도 급상승</td><td class="k">수백 ${}^{\circ}\text{C}$</td><td>수십 ${}^{\circ}\text{C}$</td></tr>
+          <tr><td>대표 응용</td><td class="k">원자로 노심</td><td>보일러·증기발생기</td></tr>
+        </tbody></table>
+        <div class="keqnote">물 대기압($\sigma\approx0.0589\ \text{N/m}$, $\rho_l\approx958$, $\rho_v\approx0.60\ \text{kg/m}^3$): $D=1\ \text{mm}$ → $Co\approx2.5$(미세), $D=5\ \text{mm}$ → $Co\approx0.5$(경계). (출처: 물성 = Incropera 부록 A / 판별 = Kew &amp; Cornwell 1997)</div>
+      </div>
+    </div>
+    <div class="vizgrid lang-en">
+      <div>
+        <div class="vcap">Heated tube axially: flow patterns · DNB · dryout</div>
+        <svg viewBox="0 0 480 300" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar43en" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<rect x="150" y="20" width="60" height="250" fill="none" stroke="#71717a" stroke-width="1.5"/>
+<rect x="151" y="215" width="58" height="54" fill="#bfdbfe" opacity="0.6"/>
+<circle cx="168" cy="235" r="4" fill="#fff" stroke="#2563eb" stroke-width="1"/>
+<circle cx="190" cy="248" r="5" fill="#fff" stroke="#2563eb" stroke-width="1"/>
+<circle cx="176" cy="225" r="3" fill="#fff" stroke="#2563eb" stroke-width="1"/>
+<ellipse cx="180" cy="180" rx="20" ry="15" fill="#fff" stroke="#2563eb" stroke-width="1.25"/>
+<rect x="151" y="165" width="8" height="45" fill="#bfdbfe" opacity="0.6"/>
+<rect x="201" y="165" width="8" height="45" fill="#bfdbfe" opacity="0.6"/>
+<rect x="151" y="90" width="7" height="70" fill="#bfdbfe" opacity="0.7"/>
+<rect x="202" y="90" width="7" height="70" fill="#bfdbfe" opacity="0.7"/>
+<circle cx="170" cy="55" r="2" fill="#93c5fd"/>
+<circle cx="188" cy="45" r="2" fill="#93c5fd"/>
+<circle cx="178" cy="35" r="1.6" fill="#93c5fd"/>
+<line x1="240" y1="270" x2="240" y2="22" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar43en)"/>
+<text x="256" y="150" font-size="11" fill="#52525b" text-anchor="middle" transform="rotate(-90 256 150)">quality $x$ up →</text>
+<text x="120" y="248" font-size="10.5" fill="#52525b" text-anchor="end">bubbly</text>
+<text x="120" y="184" font-size="10.5" fill="#52525b" text-anchor="end">slug</text>
+<text x="120" y="128" font-size="10.5" fill="#52525b" text-anchor="end">annular</text>
+<text x="120" y="48" font-size="10.5" fill="#52525b" text-anchor="end">mist</text>
+<circle cx="151" cy="238" r="4.5" fill="#dc2626"/>
+<text x="360" y="242" font-size="10.5" fill="#dc2626" text-anchor="middle" font-weight="700">DNB (low x)</text>
+<line x1="300" y1="238" x2="158" y2="238" stroke="#dc2626" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="205" cy="90" r="4.5" fill="#c2410c"/>
+<text x="360" y="94" font-size="10.5" fill="#c2410c" text-anchor="middle" font-weight="700">dryout (high x)</text>
+<line x1="300" y1="90" x2="212" y2="90" stroke="#c2410c" stroke-width="1" stroke-dasharray="3 3"/>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">DNB vs dryout · feel for $Co$</div>
+        <table class="ktab"><thead><tr><th>Item</th><th>DNB</th><th style="text-align:right">dryout</th></tr></thead><tbody>
+          <tr><td>Quality $x$</td><td class="k">$\lesssim0.1$ (subcool~low)</td><td>$\gtrsim0.3\!\sim\!0.9$ (high)</td></tr>
+          <tr><td>Flow pattern</td><td class="k">bubbly · slug</td><td>annular</td></tr>
+          <tr><td>Mechanism</td><td class="k">local wall vapor film</td><td>film full evaporation</td></tr>
+          <tr><td>Wall-temp jump</td><td class="k">hundreds ${}^{\circ}\text{C}$</td><td>tens ${}^{\circ}\text{C}$</td></tr>
+          <tr><td>Typical use</td><td class="k">reactor core</td><td>boiler · steam gen.</td></tr>
+        </tbody></table>
+        <div class="keqnote">Water at 1 atm ($\sigma\approx0.0589\ \text{N/m}$, $\rho_l\approx958$, $\rho_v\approx0.60\ \text{kg/m}^3$): $D=1\ \text{mm}$ → $Co\approx2.5$ (micro), $D=5\ \text{mm}$ → $Co\approx0.5$ (border). (Source: properties = Incropera App. A / criterion = Kew &amp; Cornwell 1997)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-3 / 실습 ══════════ -->
+  <section class="screen" data-ch="4-3" data-chtitle="유동 CHF·dryout·미세유로" data-stage="실습">
+    <div class="eyebrow lang-ko">4-3 · 실습 · Interactive</div>
+    <div class="eyebrow lang-en">4-3 · Interactive</div>
+    <h1 class="stage-h lang-ko">구속수 $Co$ vs 관경 $D$ — 직접 조절해보기</h1>
+    <h1 class="stage-h lang-en">Confinement Number $Co$ vs Bore $D$ — Try It</h1>
+    <p class="lede lang-ko">구속수 $Co=\left[\sigma/(g(\rho_l-\rho_v)D^2)\right]^{1/2}$은 관경 $D$가 작아질수록 $1/D$로 커집니다. 슬라이더로 <strong>$D$</strong>와 표면장력 $\sigma$를 바꿔가며, 언제 $Co\gtrsim0.5$(미세유로)로 넘어가는지 확인하세요. 물 대기압($\rho_l-\rho_v\approx957\ \text{kg/m}^3$) 기준입니다.</p>
+    <p class="lede lang-en">The confinement number $Co=\left[\sigma/(g(\rho_l-\rho_v)D^2)\right]^{1/2}$ grows as $1/D$ when the bore shrinks. Move the sliders for <strong>$D$</strong> and surface tension $\sigma$ to see when it crosses $Co\gtrsim0.5$ (microchannel). Water at 1 atm ($\rho_l-\rho_v\approx957\ \text{kg/m}^3$).</p>
+    <div class="calc lang-ko"
+      data-title="구속수 $Co = \left[\sigma/(g(\rho_l-\rho_v)D^2)\right]^{1/2}$"
+      data-desc="D = 관경 [mm], σ = 표면장력 [N/m]. g=9.81, ρ_l−ρ_v≈957 kg/m³ 고정(물 대기압). D=1mm·σ=0.0589 → Co≈2.5(미세). D=5mm에서 Co≈0.5(경계). D를 mm→m 환산(D/1000)."
+      data-vars='[{"sym":"D","label":"$D$ · 관경","min":0.1,"max":10,"val":1,"step":0.1,"unit":"mm"},{"sym":"sig","label":"$\\sigma$ · 표면장력","min":0.02,"max":0.08,"val":0.0589,"step":0.001,"unit":"N/m"}]'
+      data-expr="Math.sqrt(sig/(9.81*957*(D/1000)**2))"
+      data-out="$Co$" data-out-unit=""
+      data-barmax="5"
+      data-note="D=1mm면 Co≈2.5로 이미 미세유로. D를 5mm 이상 키우면 Co<0.5로 상용 유로가 됩니다."></div>
+    <div class="calc lang-en"
+      data-title="Confinement number $Co = \left[\sigma/(g(\rho_l-\rho_v)D^2)\right]^{1/2}$"
+      data-desc="D = bore [mm], σ = surface tension [N/m]. g=9.81, ρ_l−ρ_v≈957 kg/m³ fixed (water 1 atm). D=1mm, σ=0.0589 → Co≈2.5 (micro). Co≈0.5 near D=5mm. Convert D mm→m (D/1000)."
+      data-vars='[{"sym":"D","label":"$D$ · bore","min":0.1,"max":10,"val":1,"step":0.1,"unit":"mm"},{"sym":"sig","label":"$\\sigma$ · surface tension","min":0.02,"max":0.08,"val":0.0589,"step":0.001,"unit":"N/m"}]'
+      data-expr="Math.sqrt(sig/(9.81*957*(D/1000)**2))"
+      data-out="$Co$" data-out-unit=""
+      data-barmax="5"
+      data-note="At D=1mm, Co≈2.5 — already a microchannel. Grow D above ~5mm and Co<0.5, a conventional channel."></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 구속수 $Co$ 감: 상용관($D\gtrsim5\ \text{mm}$) $Co\lesssim0.5$ · 미니채널($D\sim1\!\sim\!3\ \text{mm}$) $Co\sim1\!\sim\!3$ · 미세유로($D\lesssim0.2\ \text{mm}$) $Co\gtrsim10$. 기본값($D=1\ \text{mm}$, 물)은 $Co\approx2.5$ — 표면장력이 부력을 압도하는 구속 지배 영역이다. 냉매(예 R134a $\sigma\approx0.008\ \text{N/m}$)는 표면장력이 작아 같은 $D$라도 $Co$가 작아진다. <span class="src">(출처: 물성 = Incropera 부록 A / 판별 기준 = Kew &amp; Cornwell 1997)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — feel for $Co$: conventional ($D\gtrsim5\ \text{mm}$) $Co\lesssim0.5$ · mini ($D\sim1\!\sim\!3\ \text{mm}$) $Co\sim1\!\sim\!3$ · micro ($D\lesssim0.2\ \text{mm}$) $Co\gtrsim10$. The default ($D=1\ \text{mm}$, water) gives $Co\approx2.5$ — the confinement-dominated regime where surface tension overwhelms buoyancy. A refrigerant (e.g. R134a, $\sigma\approx0.008\ \text{N/m}$) has small surface tension, so $Co$ is smaller at the same $D$. <span class="src">(Source: properties = Incropera App. A / criterion = Kew &amp; Cornwell 1997)</span></div>
+  </section>
+
+  <!-- ══════════ 4-3 / 점검 ══════════ -->
+  <section class="screen" data-ch="4-3" data-chtitle="유동 CHF·dryout·미세유로" data-stage="점검">
+    <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+    <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · instructor view</span></div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q1.</span>DNB와 dryout의 <strong>가장 큰 차이</strong>는 무엇입니까?</p>
+      <div class="opts">
+        <button class="opt" data-correct="1">① DNB는 저건도에서 벽 국소 증기막으로, dryout은 고건도 환상류 액막 고갈로 발생한다</button>
+        <button class="opt">② 둘 다 고건도에서만 발생하며 기구가 동일하다</button>
+        <button class="opt">③ dryout이 DNB보다 벽온도를 훨씬 더 크게 폭주시킨다</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ①</b> — DNB는 과냉·저건도에서 벽면에 증기막이 급히 생겨 발생(격렬), dryout은 고건도 환상류에서 벽 액막이 다 증발해 발생(완만)한다. <span class="dim">오답 ②·③: ②둘의 발생 건도·기구가 다르고, ③오히려 DNB의 온도 폭주가 더 크다.</span> <span class="agg">학급 n=41 · ① 30 · ② 5 · ③ 6</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q1.</span>What is the <strong>key difference</strong> between DNB and dryout?</p>
+      <div class="opts">
+        <button class="opt" data-correct="1">① DNB is local wall vapor film at low quality; dryout is annular-film depletion at high quality</button>
+        <button class="opt">② both occur only at high quality and share the same mechanism</button>
+        <button class="opt">③ dryout drives a far larger wall-temperature runaway than DNB</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ①</b> — DNB arises from a wall vapor film at subcooled/low quality (violent); dryout from full evaporation of the annular liquid film at high quality (mild). <span class="dim">Wrong ②·③: ② their quality and mechanism differ; ③ it is DNB whose runaway is larger.</span> <span class="agg">class n=41 · ① 30 · ② 5 · ③ 6</span></div>
+    </div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q2.</span>구속수 $Co=\left[\sigma/(g(\rho_l-\rho_v)D^2)\right]^{1/2}$에서 관경 $D$를 절반으로 줄이면 $Co$는 어떻게 됩니까?</p>
+      <div class="opts">
+        <button class="opt">① 변하지 않는다</button>
+        <button class="opt">② 절반이 된다</button>
+        <button class="opt" data-correct="1">③ 2배가 된다 (더 미세유로에 가까워짐)</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ③</b> — $Co\propto D^{-1}$ ($D^2$이 제곱근 안에 있어 $Co\sim1/D$)이므로 $D$를 절반으로 줄이면 $Co$는 2배, 즉 더 강한 구속(미세유로 쪽)으로 간다. <span class="dim">오답 ①·②: ①$D$에 의존하고, ②$1/D$이지 $D$ 비례가 아니다.</span> <span class="agg">학급 n=41 · ① 4 · ② 9 · ③ 28</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q2.</span>In $Co=\left[\sigma/(g(\rho_l-\rho_v)D^2)\right]^{1/2}$, halving the bore $D$ changes $Co$ how?</p>
+      <div class="opts">
+        <button class="opt">① no change</button>
+        <button class="opt">② halved</button>
+        <button class="opt" data-correct="1">③ doubled (closer to microchannel)</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ③</b> — since $Co\propto D^{-1}$ ($D^2$ under the square root gives $Co\sim1/D$), halving $D$ doubles $Co$, i.e. stronger confinement (toward microchannel). <span class="dim">Wrong ①·②: ① it depends on $D$; ② it goes as $1/D$, not $\propto D$.</span> <span class="agg">class n=41 · ① 4 · ② 9 · ③ 28</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-3 / 연습 ══════════ -->
+  <section class="screen" data-ch="4-3" data-chtitle="유동 CHF·dryout·미세유로" data-stage="연습">
+    <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+    <div class="panel-head lang-en"><span class="tag">Practice</span><span class="panel-title">Engineering calc · auto-graded</span></div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 1 · 기본 · 구속수 계산</div>
+      <p class="prob-statement">대기압 물이 흐르는 관경 $D=1\ \text{mm}$의 미세유로를 생각하자. 물성은 $\sigma=0.0589\ \text{N/m}$, $\rho_l-\rho_v\approx957\ \text{kg/m}^3$, $g=9.81\ \text{m/s}^2$이다. <strong>구속수 $Co$</strong>를 구하고 미세유로 여부를 판별하시오.</p>
+      <div class="given"><span class="chip">$D=1\ \text{mm}=10^{-3}\ \text{m}$</span><span class="chip">$\sigma=0.0589\ \text{N/m}$</span><span class="chip">$\rho_l-\rho_v=957\ \text{kg/m}^3$</span></div>
+      <div class="find"><b>구할 것:</b> $Co\ [-]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="2.5" data-tol="0.05"/><span class="ans-unit">$[-]$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 분모 계산</div>$$ g(\rho_l-\rho_v)D^2 = 9.81\times957\times(10^{-3})^2 = 9.388\times10^{-3} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 비 후 제곱근</div>$$ Co=\left[\frac{0.0589}{9.388\times10^{-3}}\right]^{1/2}=\sqrt{6.274}\approx2.5 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ Co \approx 2.5\ (>0.5) $$</div><b>정답:</b> $Co\gtrsim0.5$이므로 <strong>미세유로(구속 지배)</strong>이다.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 1 · Basic · confinement number</div>
+      <p class="prob-statement">Consider a microchannel with bore $D=1\ \text{mm}$ carrying water at 1 atm. Properties: $\sigma=0.0589\ \text{N/m}$, $\rho_l-\rho_v\approx957\ \text{kg/m}^3$, $g=9.81\ \text{m/s}^2$. Find the <strong>confinement number $Co$</strong> and classify the channel.</p>
+      <div class="given"><span class="chip">$D=1\ \text{mm}=10^{-3}\ \text{m}$</span><span class="chip">$\sigma=0.0589\ \text{N/m}$</span><span class="chip">$\rho_l-\rho_v=957\ \text{kg/m}^3$</span></div>
+      <div class="find"><b>Find:</b> $Co\ [-]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="2.5" data-tol="0.05"/><span class="ans-unit">$[-]$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · denominator</div>$$ g(\rho_l-\rho_v)D^2 = 9.81\times957\times(10^{-3})^2 = 9.388\times10^{-3} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · ratio then root</div>$$ Co=\left[\frac{0.0589}{9.388\times10^{-3}}\right]^{1/2}=\sqrt{6.274}\approx2.5 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ Co \approx 2.5\ (>0.5) $$</div><b>Answer:</b> since $Co\gtrsim0.5$, it is a <strong>microchannel (confinement-dominated)</strong>.</div>
+      </div>
+    </div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 2 · 응용 · 경계 관경 $D_c$</div>
+      <p class="prob-statement">위 물성에서 미세유로 경계 $Co=0.5$가 되는 <strong>관경 $D_c$</strong>를 $\text{mm}$ 단위로 구하시오. ($Co=L_c/D$, $L_c=\sqrt{\sigma/[g(\rho_l-\rho_v)]}$ 활용)</p>
+      <div class="given"><span class="chip">$Co=0.5$</span><span class="chip">$\sigma=0.0589\ \text{N/m}$</span><span class="chip">$\rho_l-\rho_v=957\ \text{kg/m}^3$</span></div>
+      <div class="find"><b>구할 것:</b> $D_c\ [\text{mm}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="5.0" data-tol="0.05"/><span class="ans-unit">$\text{mm}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 모세관 길이 $L_c$</div>$$ L_c=\sqrt{\frac{\sigma}{g(\rho_l-\rho_v)}}=\sqrt{\frac{0.0589}{9.81\times957}}\approx2.505\times10^{-3}\ \text{m} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · $D_c=L_c/Co$</div>$$ D_c=\frac{L_c}{Co}=\frac{2.505\times10^{-3}}{0.5}\approx5.01\times10^{-3}\ \text{m} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ D_c \approx 5.0\ \text{mm} $$</div><b>정답:</b> $D<5\ \text{mm}$이면 미세유로(구속 지배), $D>5\ \text{mm}$이면 상용 유로에 가깝다.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 2 · Applied · threshold bore $D_c$</div>
+      <p class="prob-statement">With the same properties, find the <strong>bore $D_c$</strong> (in $\text{mm}$) at the microchannel threshold $Co=0.5$. (Use $Co=L_c/D$ with $L_c=\sqrt{\sigma/[g(\rho_l-\rho_v)]}$.)</p>
+      <div class="given"><span class="chip">$Co=0.5$</span><span class="chip">$\sigma=0.0589\ \text{N/m}$</span><span class="chip">$\rho_l-\rho_v=957\ \text{kg/m}^3$</span></div>
+      <div class="find"><b>Find:</b> $D_c\ [\text{mm}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="5.0" data-tol="0.05"/><span class="ans-unit">$\text{mm}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · capillary length $L_c$</div>$$ L_c=\sqrt{\frac{\sigma}{g(\rho_l-\rho_v)}}=\sqrt{\frac{0.0589}{9.81\times957}}\approx2.505\times10^{-3}\ \text{m} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · $D_c=L_c/Co$</div>$$ D_c=\frac{L_c}{Co}=\frac{2.505\times10^{-3}}{0.5}\approx5.01\times10^{-3}\ \text{m} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ D_c \approx 5.0\ \text{mm} $$</div><b>Answer:</b> below $5\ \text{mm}$ it is a microchannel (confinement-dominated); above it, closer to a conventional channel.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-3 / 정리 ══════════ -->
+  <section class="screen" data-ch="4-3" data-chtitle="유동 CHF·dryout·미세유로" data-stage="정리">
+    <div class="eyebrow lang-ko">4-3 · 정리 · Summary</div>
+    <div class="eyebrow lang-en">4-3 · Summary</div>
+    <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 시험 포인트</h1>
+    <h1 class="stage-h lang-en">Key Points · Common Mistakes · Exam Focus</h1>
+    <div class="sumgrid lang-ko">
+      <div class="sumcard key"><h4>핵심 정리</h4><ul>
+        <li>유동 위기 2형: <strong>DNB</strong>(저건도, 벽 국소 증기막, 격렬) vs <strong>dryout</strong>(고건도 환상류 액막 고갈, 완만).</li>
+        <li>미세유로 판별 물리량은 <strong>구속수 $Co=\left[\sigma/(g(\rho_l-\rho_v)D^2)\right]^{1/2}$</strong>, $Co\gtrsim0.5$면 구속 지배.</li>
+        <li>$Co=L_c/D$ ($L_c$=모세관 길이) → 관경이 작을수록 $Co\uparrow$. 물 $D=1\ \text{mm}$면 $Co\approx2.5$(미세).</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+        <li>DNB·dryout을 같은 기구로 혼동 → 발생 <strong>건도·기구가 정반대</strong>.</li>
+        <li>$Co\propto D$로 착각 → 실제는 <strong>$Co\propto1/D$</strong>.</li>
+        <li>미세유로를 관경 절대값으로만 판단 → 물리량은 <strong>$Co$</strong>(유체 물성 포함).</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>시험 포인트</h4><ul>
+        <li>DNB vs dryout: 건도·유동 양식·벽온도 폭주 크기 비교 빈출.</li>
+        <li>$Co$ 계산 및 미세유로/경계 관경 $D_c$ 판별.</li>
+        <li>미세유로 2상 냉각의 이점(잠열 수송)과 위험(이른 dryout·유동 불안정, Kandlikar).</li>
+      </ul></div>
+    </div>
+    <div class="sumgrid lang-en">
+      <div class="sumcard key"><h4>Key points</h4><ul>
+        <li>Two flow-crisis types: <strong>DNB</strong> (low quality, local wall vapor film, violent) vs <strong>dryout</strong> (high-quality annular film depletion, mild).</li>
+        <li>The microchannel criterion is <strong>$Co=\left[\sigma/(g(\rho_l-\rho_v)D^2)\right]^{1/2}$</strong>; $Co\gtrsim0.5$ ⇒ confinement-dominated.</li>
+        <li>$Co=L_c/D$ ($L_c$=capillary length) → smaller bore raises $Co$. Water at $D=1\ \text{mm}$ gives $Co\approx2.5$ (micro).</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+        <li>Confusing DNB and dryout as one mechanism → their <strong>quality and mechanism are opposite</strong>.</li>
+        <li>Assuming $Co\propto D$ → it is actually <strong>$Co\propto1/D$</strong>.</li>
+        <li>Judging "micro" by absolute bore only → the quantity is <strong>$Co$</strong> (includes fluid properties).</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>Exam focus</h4><ul>
+        <li>DNB vs dryout: compare quality, flow pattern, and size of wall-temp runaway (frequent).</li>
+        <li>Compute $Co$ and identify microchannel / threshold bore $D_c$.</li>
+        <li>Benefits (latent-heat transport) and hazards (early dryout, flow instability, Kandlikar) of two-phase microchannel cooling.</li>
+      </ul></div>
+    </div>
+  </section>
+
+<!-- ══════════ 4-4 / 개념 ══════════ -->
+  <section class="screen" data-ch="4-4" data-chtitle="Marangoni·혼합유체·이상유동 불안정성" data-stage="개념">
+    <div class="eyebrow lang-ko">4-4 · 개념 · Concept</div>
+    <div class="eyebrow lang-en">4-4 · Concept</div>
+    <h1 class="stage-h lang-ko">비등의 세 그림자 — 표면장력·혼합·유량 진동</h1>
+    <h1 class="stage-h lang-en">Three Shadows of Boiling — Surface Tension, Mixtures, Flow Oscillation</h1>
+    <div class="analogy lang-ko"><span class="ic">🌡️</span><div class="tx"><b>직관</b> — 뜨거운 커피 위에 얇은 막이 안쪽으로 스멀스멀 기어가는 것을 본 적 있나요? 표면이 <b>뜨거운 곳은 표면장력이 낮고 차가운 곳은 높아</b> 액체가 차가운 쪽으로 끌려갑니다(Marangoni). 비등에서도 온도·조성의 불균일이 이렇게 <b>보이지 않는 흐름</b>과 <b>유량 진동</b>을 만들어 열전달을 흔듭니다. <span class="src">(출처: Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2nd ed., Ch.5·11 / Boure, Bergles &amp; Tong 1973)</span></div></div>
+    <div class="analogy lang-en"><span class="ic">🌡️</span><div class="tx"><b>Intuition</b> — Have you watched a thin film creep inward on hot coffee? Because surface tension is <b>lower where it is hot and higher where it is cold</b>, liquid is pulled toward the cold side (Marangoni). In boiling too, non-uniform temperature and composition create such <b>invisible flows</b> and <b>flow oscillations</b> that perturb heat transfer. <span class="src">(Source: Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2nd ed., Ch.5·11 / Boure, Bergles &amp; Tong 1973)</span></div></div>
+    <div class="two lang-ko">
+      <div class="col2">
+        <p class="lede">이 장은 이상적 순수유체 풀 비등을 넘어서는 <strong>세 가지 실제 효과</strong>를 다룹니다. ① <strong>Marangoni 대류</strong> — 표면장력의 온도 구배 $\tau = \dfrac{d\sigma}{dT}\nabla T$가 계면을 따라 접선 응력을 만들어 흐름을 유도합니다. ② <strong>이성분 혼합물 비등</strong> — 휘발성 성분이 먼저 증발해 계면에 조성이 바뀌며 <strong>유효 $\Delta T_{sat}$가 상승</strong>, 같은 열유속에서 $h$가 떨어집니다. ③ <strong>이상유동 불안정성</strong> — 가열관 유량이 스스로 주기적으로 진동(density-wave oscillation, DWO)합니다.</p>
+        <div class="keqbox">
+          <div class="keq-label">세 효과의 핵심 관계</div>
+          <div class="keqrow"><span class="keqcap">Marangoni 응력</span><span class="keqline">$ \tau = \dfrac{d\sigma}{dT}\,\nabla_{\!s} T $</span></div>
+          <div class="keqrow"><span class="keqcap">혼합물 $h$ 저하</span><span class="keqline">$ \dfrac{1}{h} = \dfrac{1}{h_{id}} + \dfrac{\Delta T_{bp}}{q''} $</span></div>
+          <div class="keqrow"><span class="keqcap">DWO 안정성</span><span class="keqline">$ f(N_{sub},\,N_{pch}) = 0 $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">핵심 용어</div>
+        <div class="terms">
+          <div class="term"><b>$d\sigma/dT$</b> 표면장력의 온도 기울기 — 대부분 액체는 음수 $[\text{N/(m·K)}]$</div>
+          <div class="term"><b>self-rewetting 유체</b> $d\sigma/dT>0$인 특이 유체(알코올 수용액) — 뜨거운 곳으로 액이 몰려 CHF 상승</div>
+          <div class="term"><b>$\Delta T_{bp}$</b> 이성분 혼합의 이슬점–끓는점 폭 $[{}^{\circ}\text{C}]$ — 클수록 $h$ 저하</div>
+          <div class="term"><b>$N_{sub}$</b> 과냉수 (subcooling number, 무차원)</div>
+          <div class="term"><b>$N_{pch}$</b> 상변화수 (phase-change number, 무차원)</div>
+          <div class="term"><b>DWO</b> density-wave oscillation — 밀도파 지연 피드백 진동</div>
+        </div>
+        <div class="callout key"><div class="ct">핵심</div>세 효과 모두 <strong>공간적 불균일(온도·조성·밀도)</strong>이 흐름·상변화와 결합해 생깁니다. 순수유체·정상유동 가정이 깨지는 곳에서 <strong>Marangoni 흐름·$h$ 저하·유량 진동</strong>이 나타납니다.</div>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2">
+        <p class="lede">This chapter goes beyond ideal pure-fluid pool boiling to <strong>three real effects</strong>. ① <strong>Marangoni convection</strong> — a temperature gradient of surface tension $\tau = \dfrac{d\sigma}{dT}\nabla T$ produces a tangential stress along the interface that drives flow. ② <strong>Binary-mixture boiling</strong> — the more volatile component evaporates first, shifting the interfacial composition so the <strong>effective $\Delta T_{sat}$ rises</strong> and $h$ drops at the same heat flux. ③ <strong>Two-phase flow instability</strong> — the flow in a heated channel oscillates periodically on its own (density-wave oscillation, DWO).</p>
+        <div class="keqbox">
+          <div class="keq-label">Key relations of the three effects</div>
+          <div class="keqrow"><span class="keqcap">Marangoni stress</span><span class="keqline">$ \tau = \dfrac{d\sigma}{dT}\,\nabla_{\!s} T $</span></div>
+          <div class="keqrow"><span class="keqcap">Mixture $h$ drop</span><span class="keqline">$ \dfrac{1}{h} = \dfrac{1}{h_{id}} + \dfrac{\Delta T_{bp}}{q''} $</span></div>
+          <div class="keqrow"><span class="keqcap">DWO stability</span><span class="keqline">$ f(N_{sub},\,N_{pch}) = 0 $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">Key terms</div>
+        <div class="terms">
+          <div class="term"><b>$d\sigma/dT$</b> temperature slope of surface tension — negative for most liquids $[\text{N/(m·K)}]$</div>
+          <div class="term"><b>self-rewetting fluid</b> anomalous fluid with $d\sigma/dT>0$ (aqueous alcohol) — liquid rushes to hot spots, raising CHF</div>
+          <div class="term"><b>$\Delta T_{bp}$</b> dew–bubble temperature span of a binary mixture $[{}^{\circ}\text{C}]$ — larger span lowers $h$</div>
+          <div class="term"><b>$N_{sub}$</b> subcooling number (dimensionless)</div>
+          <div class="term"><b>$N_{pch}$</b> phase-change number (dimensionless)</div>
+          <div class="term"><b>DWO</b> density-wave oscillation — delayed density-wave feedback oscillation</div>
+        </div>
+        <div class="callout key"><div class="ct">Key</div>All three effects arise where <strong>spatial non-uniformity (temperature, composition, density)</strong> couples to flow and phase change. Where the pure-fluid, steady-flow assumptions break, we see <strong>Marangoni flow, reduced $h$, and flow oscillation</strong>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-4 / 유도 ══════════ -->
+  <section class="screen" data-ch="4-4" data-chtitle="Marangoni·혼합유체·이상유동 불안정성" data-stage="유도">
+    <div class="eyebrow lang-ko">4-4 · 수식 유도 · Derivation</div>
+    <div class="eyebrow lang-en">4-4 · Derivation</div>
+    <h1 class="stage-h lang-ko">세 관계식은 어디서 오는가</h1>
+    <h1 class="stage-h lang-en">Where the Three Relations Come From</h1>
+    <p class="lede lang-ko"><b>공통 관점:</b> 세 효과 모두 <b>보존 방정식에 불균일 항을 하나 더하는 것</b>에서 나옵니다 — 계면 응력 균형(Marangoni), 종 보존(혼합물), 그리고 지연을 포함한 질량·에너지 균형(DWO).</p>
+    <p class="lede lang-en"><b>Unifying view:</b> each effect comes from <b>adding one non-uniform term to a conservation law</b> — interfacial stress balance (Marangoni), species conservation (mixture), and mass–energy balance with delay (DWO).</p>
+    <div class="deriv lang-ko">
+      <div class="dcard"><h4>Marangoni 응력</h4><div class="sub">계면 접선 응력 균형</div><div class="ana">🪢 표면장력이 온도를 따라 변하면 계면을 잡아당긴다</div><div class="eq">$ \tau_s = \dfrac{\partial\sigma}{\partial T}\dfrac{\partial T}{\partial s} $</div><p>계면에서 $\sigma$가 위치에 따라 달라지면 접선 방향 응력 $\tau_s=\nabla_s\sigma$가 생기고, 이를 무차원화하면 <strong>$Ma = \dfrac{|d\sigma/dT|\,\Delta T\,L}{\mu\,\alpha}$</strong>. $Ma$가 크면 표면장력 구배 흐름이 지배.</p></div>
+      <div class="dcard"><h4>혼합물 $h$ 저하</h4><div class="sub">종 보존 + 계면 상승</div><div class="ana">🍸 휘발 성분이 먼저 날아가 계면이 "덜 끓는" 조성이 된다</div><div class="eq">$ \dfrac{1}{h} = \dfrac{1}{h_{id}} + \dfrac{\Delta T_{bp}}{q''} $</div><p>기포 계면에서 휘발성 성분이 소진되며 국소 포화온도가 오르고, 필요한 $\Delta T_{sat}$이 커집니다. Schlünder 모델: 저항 하나($\Delta T_{bp}/q''$)가 직렬로 추가되어 $h<h_{id}$.</p></div>
+      <div class="dcard"><h4>DWO 안정성</h4><div class="sub">지연 피드백 진동</div><div class="ana">🌊 입구 유량↑ → 밀도파가 관을 지나며 압력강하 지연 응답</div><div class="eq">$ f(N_{sub},N_{pch})=0 $</div><p>유량 섭동이 만든 <strong>밀도파</strong>가 관 길이를 지나는 <strong>통과 시간</strong>만큼 지연되어 압력강하로 되돌아옵니다. 위상 지연 $\approx\pi$면 자기 유지 진동(DWO). 경계는 $N_{sub}$–$N_{pch}$ 평면의 곡선.</p></div>
+    </div>
+    <div class="deriv lang-en">
+      <div class="dcard"><h4>Marangoni stress</h4><div class="sub">interfacial tangential balance</div><div class="ana">🪢 tension varying with temperature tugs the interface</div><div class="eq">$ \tau_s = \dfrac{\partial\sigma}{\partial T}\dfrac{\partial T}{\partial s} $</div><p>If $\sigma$ varies along the interface, a tangential stress $\tau_s=\nabla_s\sigma$ appears; non-dimensionalizing gives <strong>$Ma = \dfrac{|d\sigma/dT|\,\Delta T\,L}{\mu\,\alpha}$</strong>. Large $Ma$ means surface-tension-gradient flow dominates.</p></div>
+      <div class="dcard"><h4>Mixture $h$ drop</h4><div class="sub">species conservation + rise</div><div class="ana">🍸 the volatile component escapes first, so the interface is "harder to boil"</div><div class="eq">$ \dfrac{1}{h} = \dfrac{1}{h_{id}} + \dfrac{\Delta T_{bp}}{q''} $</div><p>Volatile depletion at the bubble interface raises the local saturation temperature, so the required $\Delta T_{sat}$ grows. Schlünder model: one series resistance ($\Delta T_{bp}/q''$) is added so $h<h_{id}$.</p></div>
+      <div class="dcard"><h4>DWO stability</h4><div class="sub">delayed feedback oscillation</div><div class="ana">🌊 inlet flow↑ → a density wave crosses the tube and returns as a delayed pressure drop</div><div class="eq">$ f(N_{sub},N_{pch})=0 $</div><p>A <strong>density wave</strong> made by a flow perturbation is delayed by the <strong>transit time</strong> across the tube before returning as pressure drop. When the phase lag $\approx\pi$, a self-sustained oscillation (DWO) results. The boundary is a curve in the $N_{sub}$–$N_{pch}$ plane.</p></div>
+    </div>
+    <div class="callout warn lang-ko"><div class="ct">주의 · 부호와 지연</div>대부분 유체는 $d\sigma/dT<0$이라 Marangoni 흐름이 <strong>차가운 쪽으로</strong> 액을 끌어 CHF를 낮추지만, self-rewetting 유체($d\sigma/dT>0$)는 반대로 <strong>뜨거운 쪽으로</strong> 재습윤해 CHF를 올립니다. DWO는 지연이 핵심 — <strong>저유량·고출력·긴 관</strong>에서 위상 지연이 커져 불안정해집니다.</div>
+    <div class="callout warn lang-en"><div class="ct">Caution · sign & delay</div>Most fluids have $d\sigma/dT<0$, so Marangoni flow pulls liquid <strong>toward the cold side</strong> and lowers CHF; self-rewetting fluids ($d\sigma/dT>0$) instead rewet <strong>toward the hot side</strong> and raise CHF. For DWO the delay is central — <strong>low flow, high power, long tubes</strong> increase the phase lag and cause instability.</div>
+  </section>
+
+  <!-- ══════════ 4-4 / 읽을거리 ══════════ -->
+  <section class="screen" data-ch="4-4" data-chtitle="Marangoni·혼합유체·이상유동 불안정성" data-stage="읽을거리">
+    <div class="eyebrow lang-ko">4-4 · 읽을거리 · Reading</div>
+    <div class="eyebrow lang-en">4-4 · Reading</div>
+    <h1 class="stage-h lang-ko">SMR 나선형 증기발생기와 density-wave</h1>
+    <h1 class="stage-h lang-en">SMR Helical Steam Generators and Density Waves</h1>
+    <div class="two lang-ko">
+      <div class="col2 reading">
+        <p>소형모듈원자로(<strong>SMR</strong>)의 다수 설계는 콤팩트한 <strong>나선형(helical-coil) 증기발생기</strong>를 채택합니다. 좁은 관에서 물이 과냉 상태로 들어와 가열되며 끓어 증기로 나가는데, 이 <strong>가열 비등 유로</strong>는 본질적으로 <strong>density-wave oscillation(DWO)</strong>에 취약합니다. 입구 유량이 잠깐 늘면 하류의 상변화 지점이 밀려나고, 그 <strong>밀도파</strong>가 관을 통과하는 시간만큼 지연되어 압력강하로 되돌아와 유량을 다시 흔듭니다.</p>
+        <p class="pullquote">DWO는 관 자체가 만든 <em>지연 되먹임</em>이다 — 외부 교란 없이도 진동한다.</p>
+        <p>설계는 <strong>$N_{sub}$–$N_{pch}$ 안정성 지도</strong> 위에서 운전점이 안정 영역에 놓이도록 관리합니다. 입구 오리피스로 <strong>단상 압력강하 비중</strong>을 키우면(입구 저항↑) 지연 되먹임이 감쇠되어 안정성이 크게 향상됩니다. 반대로 저유량·고열유속·긴 유로는 불안정 쪽으로 밀립니다. 유량 진동은 벽면 온도 변동과 CHF 조기 도달을 유발해 <strong>열피로·burnout 위험</strong>을 키웁니다.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>DWO는 <strong>지연 피드백</strong> 진동 — 외부 강제 없이 자기 유지.</li><li>안정성은 <strong>$N_{sub}$(과냉)–$N_{pch}$(상변화)</strong> 두 무차원수로 지도화.</li><li><strong>입구 오리피스(저항↑)</strong>가 대표적 안정화 수단.</li></ul></div>
+        <p class="readmeta">참고: Boure, Bergles &amp; Tong (1973) <em>Nucl. Eng. Des.</em> 25 / Carey Ch.11 / SMR 설계 사례는 대표 예시(수치 미인용)</p>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2 reading">
+        <p>Many small modular reactor (<strong>SMR</strong>) designs adopt compact <strong>helical-coil steam generators</strong>. Subcooled water enters a narrow tube, is heated, boils, and leaves as steam; this <strong>heated boiling channel</strong> is inherently susceptible to <strong>density-wave oscillation (DWO)</strong>. A brief rise in inlet flow pushes the downstream phase-change point outward, and that <strong>density wave</strong> returns as a pressure drop delayed by the tube transit time, re-perturbing the flow.</p>
+        <p class="pullquote">DWO is a <em>delayed feedback</em> made by the tube itself — it oscillates with no external forcing.</p>
+        <p>Design keeps the operating point inside the stable region of the <strong>$N_{sub}$–$N_{pch}$ stability map</strong>. Adding an <strong>inlet orifice</strong> to raise the single-phase pressure-drop share (higher inlet resistance) damps the delayed feedback and greatly improves stability. Conversely, low flow, high heat flux, and long channels push toward instability. Flow oscillation causes wall-temperature swings and premature CHF, raising the risk of <strong>thermal fatigue and burnout</strong>.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">Must know</div><ul><li>DWO is a <strong>delayed-feedback</strong> oscillation — self-sustained without external forcing.</li><li>Stability is mapped by two dimensionless numbers, <strong>$N_{sub}$ (subcooling) and $N_{pch}$ (phase change)</strong>.</li><li>An <strong>inlet orifice (higher resistance)</strong> is the classic stabilizer.</li></ul></div>
+        <p class="readmeta">Refs: Boure, Bergles &amp; Tong (1973) <em>Nucl. Eng. Des.</em> 25 / Carey Ch.11 / SMR design is a representative example (no numbers cited)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-4 / 그림·표 ══════════ -->
+  <section class="screen" data-ch="4-4" data-chtitle="Marangoni·혼합유체·이상유동 불안정성" data-stage="그림·표">
+    <div class="eyebrow lang-ko">4-4 · 그림 · 그래프 · 표</div>
+    <div class="eyebrow lang-en">4-4 · Figure · Graph · Table</div>
+    <h1 class="stage-h lang-ko">한눈에 — 안정성 지도와 세 효과 비교</h1>
+    <h1 class="stage-h lang-en">At a Glance — Stability Map and the Three Effects</h1>
+    <div class="vizgrid lang-ko">
+      <div>
+        <div class="vcap">DWO 안정성 지도 ($N_{sub}$ vs $N_{pch}$)</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar44ko" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<line x1="52" y1="248" x2="452" y2="248" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar44ko)"/>
+<line x1="52" y1="248" x2="52" y2="24" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar44ko)"/>
+<text x="252" y="272" font-size="11.5" fill="#52525b" text-anchor="middle">상변화수 $N_{pch}$</text>
+<text x="20" y="140" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 20 140)">과냉수 $N_{sub}$</text>
+<path d="M70 60 Q150 110 235 150 Q320 185 435 210" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<text x="360" y="70" font-size="11.5" fill="#16a34a" text-anchor="middle" font-weight="700">안정</text>
+<text x="360" y="88" font-size="10" fill="#71717a" text-anchor="middle">(stable)</text>
+<text x="120" y="215" font-size="11.5" fill="#c2410c" text-anchor="middle" font-weight="700">불안정 · DWO</text>
+<text x="120" y="232" font-size="10" fill="#71717a" text-anchor="middle">(unstable)</text>
+<text x="250" y="128" font-size="10.5" fill="#c2410c" text-anchor="middle" font-weight="700">안정 경계</text>
+<line x1="150" y1="150" x2="250" y2="205" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#ar44ko)"/>
+<text x="270" y="212" font-size="10" fill="#2563eb" text-anchor="start">오리피스↑</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">세 효과 비교</div>
+        <table class="ktab"><thead><tr><th>효과</th><th>구동 불균일</th><th style="text-align:right">결과</th></tr></thead><tbody>
+          <tr><td>Marangoni</td><td class="k">$\nabla T$ · $\nabla c$</td><td>계면 접선 흐름</td></tr>
+          <tr><td>self-rewetting</td><td class="k">$d\sigma/dT>0$</td><td>CHF 상승</td></tr>
+          <tr><td>혼합물 비등</td><td class="k">조성 $\Delta T_{bp}$</td><td>$h$ 저하</td></tr>
+          <tr><td>DWO</td><td class="k">밀도파 지연</td><td>유량·압력 진동</td></tr>
+        </tbody></table>
+        <div class="keqnote">대표 물성값(예시): 물 $d\sigma/dT\approx -1.7\times10^{-4}\,\text{N/(m·K)}$ (음수 → 일반 Marangoni). self-rewetting 알코올 수용액은 특정 온도역에서 $d\sigma/dT>0$. (출처: Carey Ch.5 / 값은 대표 예시)</div>
+      </div>
+    </div>
+    <div class="vizgrid lang-en">
+      <div>
+        <div class="vcap">DWO stability map ($N_{sub}$ vs $N_{pch}$)</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar44en" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<line x1="52" y1="248" x2="452" y2="248" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar44en)"/>
+<line x1="52" y1="248" x2="52" y2="24" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar44en)"/>
+<text x="252" y="272" font-size="11.5" fill="#52525b" text-anchor="middle">phase-change number $N_{pch}$</text>
+<text x="20" y="140" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 20 140)">subcooling number $N_{sub}$</text>
+<path d="M70 60 Q150 110 235 150 Q320 185 435 210" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<text x="360" y="70" font-size="11.5" fill="#16a34a" text-anchor="middle" font-weight="700">stable</text>
+<text x="360" y="88" font-size="10" fill="#71717a" text-anchor="middle">(안정)</text>
+<text x="120" y="215" font-size="11.5" fill="#c2410c" text-anchor="middle" font-weight="700">unstable · DWO</text>
+<text x="120" y="232" font-size="10" fill="#71717a" text-anchor="middle">(불안정)</text>
+<text x="250" y="128" font-size="10.5" fill="#c2410c" text-anchor="middle" font-weight="700">stability boundary</text>
+<line x1="150" y1="150" x2="250" y2="205" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#ar44en)"/>
+<text x="270" y="212" font-size="10" fill="#2563eb" text-anchor="start">orifice↑</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">Comparison of the three effects</div>
+        <table class="ktab"><thead><tr><th>Effect</th><th>Driving non-uniformity</th><th style="text-align:right">Result</th></tr></thead><tbody>
+          <tr><td>Marangoni</td><td class="k">$\nabla T$ · $\nabla c$</td><td>interfacial tangential flow</td></tr>
+          <tr><td>self-rewetting</td><td class="k">$d\sigma/dT>0$</td><td>higher CHF</td></tr>
+          <tr><td>mixture boiling</td><td class="k">composition $\Delta T_{bp}$</td><td>lower $h$</td></tr>
+          <tr><td>DWO</td><td class="k">density-wave delay</td><td>flow &amp; pressure oscillation</td></tr>
+        </tbody></table>
+        <div class="keqnote">Representative property (example): water $d\sigma/dT\approx -1.7\times10^{-4}\,\text{N/(m·K)}$ (negative → ordinary Marangoni). Self-rewetting aqueous alcohols show $d\sigma/dT>0$ over a temperature window. (Source: Carey Ch.5 / values are representative)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-4 / 실습 ══════════ -->
+  <section class="screen" data-ch="4-4" data-chtitle="Marangoni·혼합유체·이상유동 불안정성" data-stage="실습">
+    <div class="eyebrow lang-ko">4-4 · 실습 · Interactive</div>
+    <div class="eyebrow lang-en">4-4 · Interactive</div>
+    <h1 class="stage-h lang-ko">Marangoni수 $Ma$ — 직접 조절해보기</h1>
+    <h1 class="stage-h lang-en">The Marangoni Number $Ma$ — Try It</h1>
+    <p class="lede lang-ko">Marangoni수 $Ma=\dfrac{|d\sigma/dT|\,\Delta T\,L}{\mu\,\alpha}$는 표면장력 구배 흐름의 세기를 무차원으로 나타냅니다. 슬라이더로 온도 기울기 $|d\sigma/dT|$, 온도차 $\Delta T$, 특성 길이 $L$을 바꾸며 언제 Marangoni 흐름이 지배하는지($Ma$가 커지는지) 확인하세요. ($\mu=2.8\times10^{-4}\,\text{Pa·s}$, $\alpha=1.7\times10^{-7}\,\text{m}^2/\text{s}$ 고정, 물 근처 대표값)</p>
+    <p class="lede lang-en">The Marangoni number $Ma=\dfrac{|d\sigma/dT|\,\Delta T\,L}{\mu\,\alpha}$ is the dimensionless strength of surface-tension-gradient flow. Move the sliders for the slope $|d\sigma/dT|$, temperature difference $\Delta T$, and characteristic length $L$ to see when Marangoni flow dominates (large $Ma$). ($\mu=2.8\times10^{-4}\,\text{Pa·s}$, $\alpha=1.7\times10^{-7}\,\text{m}^2/\text{s}$ fixed, representative near water)</p>
+    <div class="calc lang-ko"
+      data-title="Marangoni수 $Ma = \dfrac{|d\sigma/dT|\,\Delta T\,L}{\mu\,\alpha}$"
+      data-desc="|dσ/dT| = 표면장력 온도 기울기 [×10⁻⁴ N/(m·K)], ΔT = 계면 온도차 [K], L = 특성 길이 [mm]. μ=2.8e-4 Pa·s, α=1.7e-7 m²/s 고정. 기본값 → Ma≈1.6×10⁵ (Marangoni 지배)."
+      data-vars='[{"sym":"g","label":"$|d\\sigma/dT|$ · 온도 기울기","min":0.5,"max":3,"val":1.5,"step":0.1,"unit":"×10⁻⁴ N/(m·K)"},{"sym":"dT","label":"$\\Delta T$ · 계면 온도차","min":1,"max":30,"val":10,"step":1,"unit":"K"},{"sym":"L","label":"$L$ · 특성 길이","min":1,"max":10,"val":5,"step":0.5,"unit":"mm"}]'
+      data-expr="(g*1e-4*dT*(L*1e-3))/(2.8e-4*1.7e-7)"
+      data-out="$Ma$" data-out-unit=""
+      data-barmax="400000"
+      data-note="ΔT나 L을 2배로 하면 Ma도 2배 — 온도차·길이가 클수록 표면장력 구배 흐름이 강해집니다. Ma가 임계값(~80 for Bénard 대류) 이상이면 Marangoni 흐름이 지배."></div>
+    <div class="calc lang-en"
+      data-title="Marangoni number $Ma = \dfrac{|d\sigma/dT|\,\Delta T\,L}{\mu\,\alpha}$"
+      data-desc="|dσ/dT| = surface-tension temperature slope [×10⁻⁴ N/(m·K)], ΔT = interfacial temp diff [K], L = characteristic length [mm]. μ=2.8e-4 Pa·s, α=1.7e-7 m²/s fixed. Default → Ma≈1.6×10⁵ (Marangoni-dominated)."
+      data-vars='[{"sym":"g","label":"$|d\\sigma/dT|$ · slope","min":0.5,"max":3,"val":1.5,"step":0.1,"unit":"×10⁻⁴ N/(m·K)"},{"sym":"dT","label":"$\\Delta T$ · interface temp diff","min":1,"max":30,"val":10,"step":1,"unit":"K"},{"sym":"L","label":"$L$ · characteristic length","min":1,"max":10,"val":5,"step":0.5,"unit":"mm"}]'
+      data-expr="(g*1e-4*dT*(L*1e-3))/(2.8e-4*1.7e-7)"
+      data-out="$Ma$" data-out-unit=""
+      data-barmax="400000"
+      data-note="Doubling ΔT or L doubles Ma — larger temperature difference and length strengthen surface-tension-gradient flow. Above the critical value (~80 for Bénard convection) Marangoni flow dominates."></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — $Ma$ 무차원수 감: Marangoni-Bénard 대류 임계 $Ma_c\approx 80$ 부근에서 셀 대류가 시작되고, 비등 규모($L\sim$ mm, $\Delta T\sim$ 수~수십 K)에서는 $Ma\sim 10^4\!\sim\!10^6$로 <strong>Marangoni 흐름이 명백히 지배</strong>합니다. 미소중력에서는 부력이 사라져 Marangoni가 유일한 대류 구동원이 됩니다. <span class="src">(출처: Carey Ch.5 / $Ma_c$ 값 = Pearson 1958 표면장력 대류)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — feel for the dimensionless $Ma$: cellular convection begins near the Marangoni-Bénard critical value $Ma_c\approx 80$, and at boiling scales ($L\sim$ mm, $\Delta T\sim$ several to tens of K) $Ma\sim 10^4\!\sim\!10^6$, so <strong>Marangoni flow clearly dominates</strong>. In microgravity, with buoyancy gone, Marangoni becomes the sole driver of convection. <span class="src">(Source: Carey Ch.5 / $Ma_c$ value = Pearson 1958 surface-tension convection)</span></div>
+  </section>
+
+  <!-- ══════════ 4-4 / 점검 ══════════ -->
+  <section class="screen" data-ch="4-4" data-chtitle="Marangoni·혼합유체·이상유동 불안정성" data-stage="점검">
+    <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+    <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · instructor view</span></div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q1.</span>대부분 액체($d\sigma/dT<0$)에서 Marangoni 흐름은 어느 방향으로 액체를 끌어당깁니까?</p>
+      <div class="opts">
+        <button class="opt" data-correct="1">① 표면장력이 높은 <strong>차가운 쪽</strong>으로</button>
+        <button class="opt">② 표면장력이 낮은 <strong>뜨거운 쪽</strong>으로</button>
+        <button class="opt">③ 온도와 무관하게 무작위 방향으로</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ①</b> — 액체는 표면장력이 큰 쪽으로 당겨지므로, $d\sigma/dT<0$이면 표면장력이 큰 <strong>차가운 쪽</strong>으로 흐른다. 그래서 뜨거운 표면은 액이 부족해져 CHF가 낮아진다. 반대로 self-rewetting 유체($d\sigma/dT>0$)는 뜨거운 쪽으로 재습윤해 CHF가 오른다. <span class="dim">오답 ②·③: ②는 부호가 반대(self-rewetting에서만 성립), ③ Marangoni 흐름은 온도 구배가 방향을 결정한다.</span> <span class="agg">학급 n=36 · ① 25 · ② 8 · ③ 3</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q1.</span>For most liquids ($d\sigma/dT<0$), toward which side does Marangoni flow pull the liquid?</p>
+      <div class="opts">
+        <button class="opt" data-correct="1">① toward the <strong>cold side</strong> of higher surface tension</button>
+        <button class="opt">② toward the <strong>hot side</strong> of lower surface tension</button>
+        <button class="opt">③ in a random direction, independent of temperature</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ①</b> — liquid is pulled toward higher surface tension, so with $d\sigma/dT<0$ it flows to the <strong>cold side</strong>. The hot surface then goes liquid-starved and CHF drops. Conversely, self-rewetting fluids ($d\sigma/dT>0$) rewet toward the hot side and raise CHF. <span class="dim">Wrong ②·③: ② has the sign reversed (only for self-rewetting); ③ the temperature gradient sets the direction.</span> <span class="agg">class n=36 · ① 25 · ② 8 · ③ 3</span></div>
+    </div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q2.</span>가열 비등 유로의 density-wave oscillation(DWO)은 무엇 때문에 발생합니까?</p>
+      <div class="opts">
+        <button class="opt">① 외부에서 유량을 주기적으로 강제 진동시키기 때문</button>
+        <button class="opt" data-correct="1">② 밀도파가 관을 통과하는 <strong>시간 지연</strong>이 만든 자기 유지 되먹임 때문</button>
+        <button class="opt">③ 표면장력의 온도 구배(Marangoni) 때문</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — DWO는 유량 섭동이 만든 밀도파가 관 통과 시간만큼 지연되어 압력강하로 되돌아오는 <strong>지연 피드백</strong> 진동으로, 외부 강제 없이 자기 유지된다. 안정성은 $N_{sub}$–$N_{pch}$ 지도로 판별하고, 입구 오리피스로 저항을 키우면 감쇠된다. <span class="dim">오답 ①·③: ① 외부 강제 없이도 자발적으로 일어나고, ③ Marangoni는 계면 흐름 효과로 DWO의 원인이 아니다.</span> <span class="agg">학급 n=36 · ① 6 · ② 26 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q2.</span>What causes density-wave oscillation (DWO) in a heated boiling channel?</p>
+      <div class="opts">
+        <button class="opt">① an external source forcing the flow to oscillate periodically</button>
+        <button class="opt" data-correct="1">② a self-sustained feedback from the <strong>time delay</strong> of a density wave crossing the tube</button>
+        <button class="opt">③ the temperature gradient of surface tension (Marangoni)</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — DWO is a <strong>delayed-feedback</strong> oscillation in which a density wave made by a flow perturbation returns as a pressure drop after the tube transit time; it is self-sustained without external forcing. Stability is judged on the $N_{sub}$–$N_{pch}$ map, and an inlet orifice (more resistance) damps it. <span class="dim">Wrong ①·③: ① it arises spontaneously without external forcing; ③ Marangoni is an interfacial-flow effect, not the cause of DWO.</span> <span class="agg">class n=36 · ① 6 · ② 26 · ③ 4</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-4 / 연습 ══════════ -->
+  <section class="screen" data-ch="4-4" data-chtitle="Marangoni·혼합유체·이상유동 불안정성" data-stage="연습">
+    <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+    <div class="panel-head lang-en"><span class="tag">Practice</span><span class="panel-title">Engineering calc · auto-graded</span></div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 1 · 기본 · Marangoni수 계산</div>
+      <p class="prob-statement">계면에서 $|d\sigma/dT|=1.5\times10^{-4}\,\text{N/(m·K)}$, 온도차 $\Delta T=10\,\text{K}$, 특성 길이 $L=5\times10^{-3}\,\text{m}$이다. $\mu=2.8\times10^{-4}\,\text{Pa·s}$, $\alpha=1.7\times10^{-7}\,\text{m}^2/\text{s}$일 때 <strong>Marangoni수 $Ma$</strong>를 구하시오.</p>
+      <div class="given"><span class="chip">$|d\sigma/dT|=1.5\times10^{-4}$</span><span class="chip">$\Delta T=10\,\text{K}$</span><span class="chip">$L=5\times10^{-3}\,\text{m}$</span><span class="chip">$\mu=2.8\times10^{-4}$</span><span class="chip">$\alpha=1.7\times10^{-7}$</span></div>
+      <div class="find"><b>구할 것:</b> $Ma$ (무차원)</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="157563" data-tol="0.02"/><span class="ans-unit">(무차원)</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 정의</div>$$ Ma = \frac{|d\sigma/dT|\,\Delta T\,L}{\mu\,\alpha} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 분자</div>$$ 1.5\times10^{-4}\times 10\times 5\times10^{-3} = 7.5\times10^{-6} $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · 분모</div>$$ 2.8\times10^{-4}\times 1.7\times10^{-7} = 4.76\times10^{-11} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ Ma = \frac{7.5\times10^{-6}}{4.76\times10^{-11}} \approx 1.58\times10^{5} $$</div><b>정답:</b> $Ma_c\approx 80$보다 훨씬 크므로 Marangoni 흐름이 지배한다.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 1 · Basic · Marangoni number</div>
+      <p class="prob-statement">At the interface $|d\sigma/dT|=1.5\times10^{-4}\,\text{N/(m·K)}$, temperature difference $\Delta T=10\,\text{K}$, characteristic length $L=5\times10^{-3}\,\text{m}$. With $\mu=2.8\times10^{-4}\,\text{Pa·s}$ and $\alpha=1.7\times10^{-7}\,\text{m}^2/\text{s}$, find the <strong>Marangoni number $Ma$</strong>.</p>
+      <div class="given"><span class="chip">$|d\sigma/dT|=1.5\times10^{-4}$</span><span class="chip">$\Delta T=10\,\text{K}$</span><span class="chip">$L=5\times10^{-3}\,\text{m}$</span><span class="chip">$\mu=2.8\times10^{-4}$</span><span class="chip">$\alpha=1.7\times10^{-7}$</span></div>
+      <div class="find"><b>Find:</b> $Ma$ (dimensionless)</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="157563" data-tol="0.02"/><span class="ans-unit">(dimensionless)</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · definition</div>$$ Ma = \frac{|d\sigma/dT|\,\Delta T\,L}{\mu\,\alpha} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · numerator</div>$$ 1.5\times10^{-4}\times 10\times 5\times10^{-3} = 7.5\times10^{-6} $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · denominator</div>$$ 2.8\times10^{-4}\times 1.7\times10^{-7} = 4.76\times10^{-11} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ Ma = \frac{7.5\times10^{-6}}{4.76\times10^{-11}} \approx 1.58\times10^{5} $$</div><b>Answer:</b> far above $Ma_c\approx 80$, so Marangoni flow dominates.</div>
+      </div>
+    </div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 2 · 응용 · 혼합물 $h$ 저하</div>
+      <p class="prob-statement">이성분 혼합물 비등에서 Schlünder형 직렬 저항 $\dfrac{1}{h}=\dfrac{1}{h_{id}}+\dfrac{\Delta T_{bp}}{q''}$을 쓴다. 이상 $h_{id}=5000\,\text{W/(m}^2\text{·K)}$, 열유속 $q''=1\times10^{5}\,\text{W/m}^2$, 끓는점 폭 $\Delta T_{bp}=6\,\text{K}$일 때 <strong>실제 $h$</strong>를 구하시오. (소수점 반올림)</p>
+      <div class="given"><span class="chip">$h_{id}=5000\,\text{W/(m}^2\text{·K)}$</span><span class="chip">$q''=1\times10^{5}\,\text{W/m}^2$</span><span class="chip">$\Delta T_{bp}=6\,\text{K}$</span></div>
+      <div class="find"><b>구할 것:</b> $h\ [\text{W/(m}^2\text{·K)}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="3846" data-tol="0.02"/><span class="ans-unit">$\text{W/(m}^2\text{·K)}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 추가 저항</div>$$ \frac{\Delta T_{bp}}{q''} = \frac{6}{1\times10^{5}} = 6\times10^{-5} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 직렬 합</div>$$ \frac{1}{h} = \frac{1}{5000} + 6\times10^{-5} = 2\times10^{-4} + 6\times10^{-5} = 2.6\times10^{-4} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ h = \frac{1}{2.6\times10^{-4}} \approx 3846\ \text{W/(m}^2\text{·K)} $$</div><b>정답:</b> 이상값 대비 약 23% 저하 — 혼합물 비등의 조성 저항 효과.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 2 · Applied · mixture $h$ drop</div>
+      <p class="prob-statement">For binary-mixture boiling use the Schlünder-type series resistance $\dfrac{1}{h}=\dfrac{1}{h_{id}}+\dfrac{\Delta T_{bp}}{q''}$. With ideal $h_{id}=5000\,\text{W/(m}^2\text{·K)}$, heat flux $q''=1\times10^{5}\,\text{W/m}^2$, and boiling-range span $\Delta T_{bp}=6\,\text{K}$, find the <strong>actual $h$</strong>. (round)</p>
+      <div class="given"><span class="chip">$h_{id}=5000\,\text{W/(m}^2\text{·K)}$</span><span class="chip">$q''=1\times10^{5}\,\text{W/m}^2$</span><span class="chip">$\Delta T_{bp}=6\,\text{K}$</span></div>
+      <div class="find"><b>Find:</b> $h\ [\text{W/(m}^2\text{·K)}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="3846" data-tol="0.02"/><span class="ans-unit">$\text{W/(m}^2\text{·K)}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · added resistance</div>$$ \frac{\Delta T_{bp}}{q''} = \frac{6}{1\times10^{5}} = 6\times10^{-5} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · series sum</div>$$ \frac{1}{h} = \frac{1}{5000} + 6\times10^{-5} = 2\times10^{-4} + 6\times10^{-5} = 2.6\times10^{-4} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ h = \frac{1}{2.6\times10^{-4}} \approx 3846\ \text{W/(m}^2\text{·K)} $$</div><b>Answer:</b> about a 23% drop from the ideal value — the composition-resistance effect of mixture boiling.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-4 / 정리 ══════════ -->
+  <section class="screen" data-ch="4-4" data-chtitle="Marangoni·혼합유체·이상유동 불안정성" data-stage="정리">
+    <div class="eyebrow lang-ko">4-4 · 정리 · Summary</div>
+    <div class="eyebrow lang-en">4-4 · Summary</div>
+    <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 시험 포인트</h1>
+    <h1 class="stage-h lang-en">Key Points · Common Mistakes · Exam Focus</h1>
+    <div class="sumgrid lang-ko">
+      <div class="sumcard key"><h4>핵심 정리</h4><ul>
+        <li>Marangoni 응력 <strong>$\tau=\dfrac{d\sigma}{dT}\nabla_s T$</strong>, 세기 = <strong>$Ma=\dfrac{|d\sigma/dT|\Delta T\,L}{\mu\alpha}$</strong>.</li>
+        <li>대부분 유체 $d\sigma/dT<0$ → 차가운 쪽 흐름 (CHF↓); <strong>self-rewetting</strong> $d\sigma/dT>0$ → CHF↑.</li>
+        <li>혼합물: 조성 저항이 직렬로 추가 → <strong>$h<h_{id}$</strong> (유효 $\Delta T_{sat}$ 상승).</li>
+        <li>DWO: 밀도파 지연 피드백 → <strong>$N_{sub}$–$N_{pch}$ 지도</strong>, 입구 오리피스로 안정화.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+        <li>Marangoni 흐름 방향을 반대로 → $d\sigma/dT$ <strong>부호</strong> 확인.</li>
+        <li>혼합물이 $h$를 올린다고 오해 → 실제는 <strong>저하</strong>.</li>
+        <li>DWO를 외부 강제로 오해 → <strong>자기 유지</strong> 지연 되먹임.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>시험 포인트</h4><ul>
+        <li>$Ma$ 정의 대입 계산과 $Ma_c$ 비교.</li>
+        <li>self-rewetting 유체의 CHF 상승 메커니즘.</li>
+        <li>DWO 안정성 지도($N_{sub}$–$N_{pch}$)와 오리피스 안정화(SMR 나선형 SG 사례).</li>
+      </ul></div>
+    </div>
+    <div class="sumgrid lang-en">
+      <div class="sumcard key"><h4>Key points</h4><ul>
+        <li>Marangoni stress <strong>$\tau=\dfrac{d\sigma}{dT}\nabla_s T$</strong>, strength <strong>$Ma=\dfrac{|d\sigma/dT|\Delta T\,L}{\mu\alpha}$</strong>.</li>
+        <li>Most fluids $d\sigma/dT<0$ → flow to cold side (CHF↓); <strong>self-rewetting</strong> $d\sigma/dT>0$ → CHF↑.</li>
+        <li>Mixtures: a composition resistance adds in series → <strong>$h<h_{id}$</strong> (effective $\Delta T_{sat}$ rises).</li>
+        <li>DWO: density-wave delayed feedback → <strong>$N_{sub}$–$N_{pch}$ map</strong>, stabilized by an inlet orifice.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+        <li>Reversing the Marangoni flow direction → check the <strong>sign</strong> of $d\sigma/dT$.</li>
+        <li>Assuming mixtures raise $h$ → it actually <strong>drops</strong>.</li>
+        <li>Reading DWO as externally forced → it is <strong>self-sustained</strong> delayed feedback.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>Exam focus</h4><ul>
+        <li>Substitution calc of $Ma$ and comparison with $Ma_c$.</li>
+        <li>CHF-enhancement mechanism of self-rewetting fluids.</li>
+        <li>DWO stability map ($N_{sub}$–$N_{pch}$) and orifice stabilization (SMR helical SG case).</li>
+      </ul></div>
+    </div>
+  </section>
+</div></main>
+<footer><button class="nav-btn prev" id="prevBtn">← 이전</button><span class="foot-hint" id="footHint">← / → 또는 상단 단계 클릭으로 이동</span><button class="nav-btn next" id="nextBtn">다음 →</button></footer>
+
+<script>
+(function(){
+  var screens=Array.prototype.slice.call(document.querySelectorAll('.screen'));
+  var stage=document.getElementById('stage'), stepbar=document.getElementById('stepbar'), chrail=document.getElementById('chrail');
+  var prevBtn=document.getElementById('prevBtn'), nextBtn=document.getElementById('nextBtn');
+  var N=screens.length, active=0;
+  var chapters=[]; screens.forEach(function(s){var c=s.getAttribute('data-ch'); if(chapters.indexOf(c)<0)chapters.push(c);});
+  function chOf(i){return screens[i].getAttribute('data-ch');} function stOf(i){return screens[i].getAttribute('data-stage');}
+
+  function fitActive(){ var u=screens[active]; if(!u)return; u.style.transform='none'; var avail=stage.clientHeight, nat=u.offsetHeight; if(nat<=0||avail<=0)return; if(nat>avail){u.style.transformOrigin='top center'; u.style.transform='scale('+(avail/nat)+')';} else {u.style.transformOrigin='top center'; var _st=u.getAttribute('data-stage'); var _cap=(_st==='점검'||_st==='연습')?44:(avail-nat)/2; u.style.transform='translateY('+Math.min((avail-nat)/2,_cap)+'px)';} }
+
+  function buildChrail(){ chrail.innerHTML=''; chapters.forEach(function(c){ var d=document.createElement('span'); d.className='chdot'; d.textContent=c; d.addEventListener('click',function(){ for(var k=0;k<N;k++){ if(chOf(k)===c){show(k);break;} } }); chrail.appendChild(d); }); }
+  function buildStepper(){ var ch=chOf(active); var list=[]; for(var i=0;i<N;i++){ if(chOf(i)===ch) list.push(i); } stepbar.innerHTML=''; list.forEach(function(idx,k){ var el=document.createElement('div'); var cls='step'; if(idx===active)cls+=' cur'; else if(idx<active)cls+=' done'; el.className=cls; el.innerHTML='<span class="ix">'+(k+1)+'</span>'+stOf(idx); el.addEventListener('click',function(){show(idx);}); stepbar.appendChild(el); if(k<list.length-1){var ln=document.createElement('span'); ln.className='link'; el.appendChild(ln);} }); }
+
+  function render(){ for(var i=0;i<N;i++) screens[i].classList.toggle('active', i===active); var ch=chOf(active); Array.prototype.forEach.call(chrail.children,function(d){ d.classList.toggle('cur', d.textContent===ch); }); buildStepper(); prevBtn.disabled=(active===0); if(active>=N-1){ nextBtn.textContent='✓ 완료 · 목록으로'; } else { var nx=active+1; nextBtn.textContent=(chOf(nx)===ch)?('다음 · '+stOf(nx)+' →'):('다음 챕터 '+chOf(nx)+' →'); } fitActive(); }
+  function show(i){ if(i<0)i=0; if(i>N-1)i=N-1; active=i; render(); }
+
+  function toggleReveal(btn){ var scope=btn.closest('.prob')||btn.closest('.screen'); var t=scope?scope.querySelector('.revealable.solution'):null; if(!t)return; var open=t.classList.toggle('open'); btn.classList.toggle('is-open',open); var sp=btn.querySelector('span'); if(sp)sp.textContent=open?'풀이 숨기기':'풀이 보기'; fitActive(); }
+
+  document.addEventListener('click',function(e){
+    var opt=e.target.closest?e.target.closest('.opt'):null;
+    if(opt){ var wrap=opt.parentElement; Array.prototype.forEach.call(wrap.children,function(o){o.classList.remove('sel');}); opt.classList.add('sel'); return; }
+    var sub=e.target.closest?e.target.closest('.cp-submit'):null;
+    if(sub){ var cq=sub.closest('.cq')||sub.closest('.screen'); var sel=cq.querySelector('.opt.sel'); var fb=cq.querySelector('.cp-fb'); var prof=cq.querySelector('.cp-exp')||cq.querySelector('.cp-prof'); if(!sel){ if(fb){fb.textContent='먼저 보기를 선택하세요'; fb.style.color='var(--gray2)';} return; } var ok=sel.getAttribute('data-correct')==='1'; if(fb){fb.textContent=ok?'✓ 제출됨 — 정답':'제출됨 — 학급 응답에 반영'; fb.style.color='var(--accent)';} Array.prototype.forEach.call(cq.querySelectorAll('.opt'),function(o){if(o.getAttribute('data-correct')==='1')o.classList.add('correct');}); if(prof)prof.classList.add('show'); fitActive(); return; }
+    var chk=e.target.closest?e.target.closest('.pr-check'):null;
+    if(chk){ var pb=chk.closest('.prob')||chk.closest('.screen'); var input=pb.querySelector('.ans-input'); var pf=pb.querySelector('.pr-fb'); if(!input||!pf)return; var ans=parseFloat(input.getAttribute('data-answer')), tol=parseFloat(input.getAttribute('data-tol')||'0.02'); var raw=(input.value||'').replace(/[,\s]/g,''); if(raw===''){pf.textContent='먼저 답을 입력하세요'; pf.className='check-fb pr-fb no'; return;} var v=parseFloat(raw), good=!isNaN(v)&&Math.abs(v-ans)<=Math.abs(ans)*tol; pf.textContent=good?'✓ 정답입니다 — 풀이로 과정 확인':'✗ 다시 — 풀이로 과정 확인'; pf.className='check-fb pr-fb '+(good?'ok':'no'); fitActive(); return; }
+    var rb=e.target.closest?e.target.closest('.reveal-btn'):null; if(rb){ toggleReveal(rb); return; }
+  });
+  document.addEventListener('keydown',function(e){ if(e.target&&e.target.classList&&e.target.classList.contains('ans-input')){ if(e.key==='Enter'){var b=e.target.closest('.prob').querySelector('.pr-check'); if(b)b.click();} return; } if(e.key==='ArrowRight')show(active+1); else if(e.key==='ArrowLeft')show(active-1); });
+  prevBtn.addEventListener('click',function(){show(active-1);}); nextBtn.addEventListener('click',function(){ if(active>=N-1){location.href='/';} else {show(active+1);} });
+  window.addEventListener('resize',fitActive);
+
+  // ── interactive calc widgets ──
+  function _sup(n){var m={'-':'⁻','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'};return String(n).split('').map(function(c){return m[c]||c;}).join('');} function fnum(x){ if(!isFinite(x))return '—'; var a=Math.abs(x); if(a!==0&&(a<0.01||a>=1e5)){ var e=Math.floor(Math.log10(a)); var mn=x/Math.pow(10,e); return (Math.round(mn*100)/100)+' × 10'+_sup(e); } return (Math.round(x*1000)/1000).toLocaleString(); }
+  function initCalcs(){ Array.prototype.forEach.call(document.querySelectorAll('.calc:not([data-init])'),function(c){ c.setAttribute('data-init','1'); var vars; try{vars=JSON.parse(c.getAttribute('data-vars')||'[]');}catch(e){vars=[];} var expr=c.getAttribute('data-expr')||'0'; var outSym=c.getAttribute('data-out')||''; var outUnit=c.getAttribute('data-out-unit')||''; var barmax=parseFloat(c.getAttribute('data-barmax')||'0'); var title=c.getAttribute('data-title')||''; var desc=c.getAttribute('data-desc')||''; var note=c.getAttribute('data-note')||'';
+    var html='<div class="calc-title">'+title+'</div>'; if(desc)html+='<div class="calc-desc">'+desc+'</div>'; html+='<div class="calc-rows"></div><div class="calc-out"><span class="calc-os">'+outSym+'</span><span>=</span><b class="calc-num">—</b><span class="calc-ou">'+outUnit+'</span></div>'; if(barmax>0)html+='<div class="calc-outbar"><div class="bar"><span class="calc-bar" style="width:0%"></span></div></div>'; if(note)html+='<div class="calc-note">'+note+'</div>'; c.innerHTML=html;
+    var rowsEl=c.querySelector('.calc-rows'); var inputs={}; var fn; try{ fn=Function.apply(null, vars.map(function(v){return v.sym;}).concat(['return ('+expr+');'])); }catch(e){ fn=function(){return NaN;}; }
+    vars.forEach(function(v){ var row=document.createElement('div'); row.className='calc-row'; row.innerHTML='<span class="calc-lab">'+(v.label||v.sym)+'</span><input type="range" min="'+v.min+'" max="'+v.max+'" step="'+(v.step||((v.max-v.min)/100))+'" value="'+v.val+'"><span class="calc-val"></span>'; rowsEl.appendChild(row); var rng=row.querySelector('input'); inputs[v.sym]={rng:rng, val:row.querySelector('.calc-val'), unit:v.unit||''}; rng.addEventListener('input',recompute); });
+    function recompute(){ var args=vars.map(function(v){return parseFloat(inputs[v.sym].rng.value);}); vars.forEach(function(v){ var o=inputs[v.sym]; o.val.textContent=fnum(parseFloat(o.rng.value))+(o.unit?(' '+o.unit):''); }); var y; try{y=fn.apply(null,args);}catch(e){y=NaN;} c.querySelector('.calc-num').textContent=fnum(y); if(barmax>0){ var w=Math.max(0,Math.min(100, y/barmax*100)); var b=c.querySelector('.calc-bar'); if(b)b.style.width=w+'%'; } }
+    recompute();
+  }); }
+
+  function renderMath(){ initCalcs(); if(window.renderMathInElement){ renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false}); } fitActive(); if(window.requestAnimationFrame)requestAnimationFrame(fitActive); }
+
+  function applyDeep(){ var p=new URLSearchParams(location.search), idx=0; var s=parseInt(p.get('slide'),10); if(!isNaN(s))idx=Math.min(Math.max(s,0),N-1); var u=p.get('unit'); if(u){ for(var i=0;i<N;i++){ if(chOf(i)===u){idx=i;break;} } } var rev=p.get('reveal')==='all'; show(idx); if(rev){ Array.prototype.forEach.call(screens[idx].querySelectorAll('.reveal-btn'),function(b){toggleReveal(b);}); Array.prototype.forEach.call(screens[idx].querySelectorAll('.cq'),function(cq){ var o=cq.querySelector('.opt[data-correct]'); if(o){o.classList.add('sel'); var sb=cq.querySelector('.cp-submit'); if(sb)sb.click();} }); } }
+
+  buildChrail();
+  document.addEventListener('DOMContentLoaded',function(){ applyDeep(); renderMath(); });
+  if(document.readyState!=='loading'){ applyDeep(); renderMath(); }
+  window.addEventListener('load',renderMath);
+
+  // ── language toggle (ko / en) ──
+  (function(){
+    var btn=document.getElementById('langToggle'); if(!btn)return;
+    var LABELS={ko:'EN', en:'한국어'};
+    function apply(lang){ var d=document.documentElement; d.classList.remove('lang-ko','lang-en'); d.classList.add('lang-'+lang); btn.textContent=LABELS[lang]; }
+    var lang; try{ lang=localStorage.getItem('lecture_lang'); }catch(e){ lang=null; }
+    if(lang!=='en'&&lang!=='ko') lang='ko';
+    apply(lang);
+    btn.addEventListener('click',function(){
+      lang=(lang==='ko')?'en':'ko';
+      apply(lang);
+      try{ localStorage.setItem('lecture_lang',lang); }catch(e){}
+      if(window.requestAnimationFrame) requestAnimationFrame(fitActive); else fitActive();
+    });
+  })();
+})();
+</script>
+<script>window.HTL_WEEK=4;</script>
+<script src="/htl-track.js" defer></script>
+</body>
+</html>

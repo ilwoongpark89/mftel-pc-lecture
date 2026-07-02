@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="ko" class="lang-ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.4" />
+<title>상변화열전달 · Week 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<style>
+  :root{ --bg:#ffffff; --ink:#18181b; --gray:#52525b; --gray2:#71717a; --hair:#e4e4e7; --hair2:#f4f4f5; --accent:#b91c1c; --accent-soft:#fef2f2; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; }
+  body{ background:var(--bg); color:var(--ink); font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif; -webkit-font-smoothing:antialiased; overflow:hidden; height:100vh; }
+  .eyebrow .katex, .eyebrow .katex *, .keq-label .katex, .keq-label .katex *, .vcap .katex, .vcap .katex *, .intro-eyebrow .katex, .intro-eyebrow .katex *, table.ktab th .katex, table.ktab th .katex *{ text-transform:none; }
+  .mystery .mq, .mystery .ma, .lcard p, .aggrow .lab, .vs-col .q, .vs-col p, .stat .lbl, .stat .why, .term, .rm-item .rd, .intro-sub, .lede, .qtext, .prob-statement, .callout, .outcomes li, .sumcard li{ word-break:keep-all; }
+
+  header{ height:52px; display:flex; align-items:center; padding:0 26px; border-bottom:1px solid var(--hair); }
+  .brand{ font-size:13px; font-weight:700; color:var(--gray); flex:1; } .brand .sep{ color:var(--hair); margin:0 7px; font-weight:400; }
+  .chrail{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+  .chdot{ font-size:11px; font-weight:700; color:var(--gray2); border:1px solid var(--hair); border-radius:20px; padding:3px 9px; cursor:pointer; transition:all .12s ease; background:#fff; }
+  .chdot:hover{ border-color:var(--accent); color:var(--accent); }
+  .chdot.cur{ background:var(--ink); color:#fff; border-color:var(--ink); }
+
+  .stepbar{ height:44px; display:flex; align-items:center; justify-content:center; gap:0; border-bottom:1px solid var(--hair); padding:0 16px; overflow:hidden; }
+  .step{ display:flex; align-items:center; font-size:12px; font-weight:600; color:var(--gray2); cursor:pointer; white-space:nowrap; }
+  .step .ix{ width:18px; height:18px; border-radius:50%; border:1px solid var(--hair); display:inline-flex; align-items:center; justify-content:center; font-size:10.5px; margin-right:5px; background:#fff; transition:all .12s; }
+  .step.cur{ color:var(--ink); font-weight:800; } .step.cur .ix{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .step.done{ color:var(--gray); } .step.done .ix{ background:var(--accent-soft); border-color:var(--accent); color:var(--accent); }
+  .step .link{ width:20px; height:1px; background:var(--hair); margin:0 7px; }
+  .step:hover:not(.cur){ color:var(--ink); }
+
+  main{ height:calc(100vh - 52px - 44px - 62px); display:flex; align-items:flex-start; justify-content:center; padding:20px 26px 8px; overflow:hidden; }
+  .stage{ width:100%; max-width:1020px; height:100%; display:flex; align-items:flex-start; justify-content:center; overflow:hidden; }
+  .screen{ display:none; width:100%; }
+  .screen.active{ display:block; transform-origin:top center; will-change:transform; animation:fade .16s ease both; }
+  @keyframes fade{ from{opacity:0} to{opacity:1} }
+  @media (prefers-reduced-motion: reduce){ .screen.active{ animation:none; } }
+
+  .eyebrow{ font-size:11.5px; font-weight:800; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+  .stage-h{ font-size:26px; font-weight:800; line-height:1.22; letter-spacing:-.01em; margin-bottom:2px; } .stage-h .en{ font-weight:600; color:var(--gray); font-size:17px; }
+  .lede{ font-size:15px; line-height:1.7; color:var(--gray); margin-top:13px; max-width:780px; } .lede strong{ color:var(--ink); font-weight:700; }
+  .two{ display:grid; grid-template-columns:1fr 1fr; gap:30px; margin-top:16px; align-items:start; } .two .col2{ min-width:0; }
+
+  .keqbox{ margin-top:14px; border-left:3px solid var(--accent); padding:2px 0 2px 18px; }
+  .keq-label{ font-size:11.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--gray2); margin-bottom:11px; }
+  .keqrow{ display:flex; align-items:baseline; gap:14px; margin-bottom:7px; } .keqrow:last-child{ margin-bottom:0; }
+  .keqcap{ font-size:12.5px; font-weight:600; color:var(--gray2); width:200px; flex-shrink:0; } .keqline{ color:var(--ink); }
+  .keqnote{ font-size:12.5px; color:var(--gray2); margin-top:10px; line-height:1.6; }
+
+  /* key terms */
+  .terms{ margin-top:13px; display:grid; grid-template-columns:1fr 1fr; gap:6px 18px; }
+  .term{ font-size:13px; line-height:1.5; color:var(--gray); padding-left:12px; border-left:2px solid var(--hair); }
+  .term b{ color:var(--ink); font-weight:700; }
+
+  /* callouts */
+  .callout{ margin-top:16px; border-radius:10px; padding:13px 16px; font-size:13.5px; line-height:1.65; }
+  .callout .ct{ font-size:11.5px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+  .callout.key{ background:var(--accent-soft); border:1px solid #f5c2c2; } .callout.key .ct{ color:var(--accent); }
+  .callout.warn{ background:var(--hair2); border:1px solid var(--hair); } .callout.warn .ct{ color:var(--gray2); }
+  .callout.exam{ background:#fff; border:1px dashed var(--accent); } .callout.exam .ct{ color:var(--accent); }
+  .callout ul{ margin:0; padding-left:18px; } .callout li{ margin-bottom:3px; } .callout strong{ color:var(--ink); }
+
+  /* derivation */
+  .assume{ font-size:13px; color:var(--gray2); margin-top:10px; } .assume b{ color:var(--ink); }
+  .deriv{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-top:16px; }
+  .dcard{ border:1px solid var(--hair); border-radius:12px; padding:14px 14px 16px; }
+  .dcard h4{ font-size:13px; font-weight:800; margin-bottom:3px; } .dcard .sub{ font-size:11px; color:var(--gray2); font-weight:600; margin-bottom:10px; }
+  .dcard .eq{ background:var(--hair2); border-radius:8px; padding:9px 6px; text-align:center; margin-bottom:9px; } .dcard p{ font-size:12.5px; line-height:1.55; color:var(--gray); } .dcard p strong{ color:var(--ink); }
+  .dcard .ana{ font-size:11.5px; line-height:1.45; color:var(--accent); background:var(--accent-soft); border-radius:7px; padding:7px 9px; margin-bottom:9px; }
+  .analogy{ display:flex; gap:11px; align-items:center; margin-top:10px; background:var(--accent-soft); border:1px solid #f5c2c2; border-radius:10px; padding:9px 15px; } .analogy .ic{ font-size:20px; flex-shrink:0; } .analogy .tx{ font-size:13px; line-height:1.5; color:var(--ink); } .analogy .tx b{ color:var(--accent); font-weight:700; }
+  .steps{ margin-top:14px; } .dstep{ display:flex; gap:12px; margin-bottom:9px; align-items:baseline; }
+  .dstep .n{ flex-shrink:0; width:20px; height:20px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-size:11px; font-weight:800; display:inline-flex; align-items:center; justify-content:center; }
+  .dstep .body{ flex:1; } .dstep .body .t{ font-size:13px; color:var(--gray); line-height:1.5; } .dstep .body .t b{ color:var(--ink); }
+
+  /* reading */
+  .reading{ max-width:720px; margin-top:12px; } .reading p{ font-size:14px; line-height:1.66; color:#3f3f46; margin-bottom:8px; } .reading p strong{ color:var(--ink); font-weight:700; }
+  .pullquote{ border-left:3px solid var(--accent); padding:4px 0 4px 18px; margin:11px 0; font-size:15px; line-height:1.5; color:var(--ink); font-weight:600; }
+  .readmeta{ font-size:12px; color:var(--gray2); margin-top:4px; }
+
+  /* visual */
+  .vizgrid{ display:grid; grid-template-columns:1.05fr .95fr; gap:32px; margin-top:14px; align-items:center; }
+  .vcap{ font-size:11.5px; font-weight:700; color:var(--gray2); letter-spacing:.04em; text-transform:uppercase; margin-bottom:9px; }
+  table.ktab{ width:100%; border-collapse:collapse; font-size:13.5px; }
+  table.ktab th{ text-align:left; font-size:11px; letter-spacing:.04em; text-transform:none; color:var(--gray2); font-weight:700; padding:6px 8px; border-bottom:1px solid var(--hair); }
+  table.ktab td{ padding:7px 8px; border-bottom:1px solid var(--hair2); color:var(--ink); } table.ktab td.k{ text-align:right; font-variant-numeric:tabular-nums; color:var(--gray); } table.ktab tr:last-child td{ border-bottom:none; }
+  .bar{ height:7px; background:var(--accent-soft); border-radius:4px; overflow:hidden; } .bar > span{ display:block; height:100%; background:var(--accent); border-radius:4px; min-width:3px; }
+
+  /* interactive calc widget */
+  .calc{ margin-top:14px; border:1px solid var(--hair); border-radius:14px; padding:18px 20px; max-width:760px; background:#fcfcfc; }
+  .calc-title{ font-size:13px; font-weight:800; color:var(--ink); margin-bottom:4px; } .calc-desc{ font-size:12.5px; color:var(--gray2); margin-bottom:14px; line-height:1.5; }
+  .calc-rows{ display:flex; flex-direction:column; gap:13px; }
+  .calc-row{ display:grid; grid-template-columns:190px 1fr 130px; align-items:center; gap:14px; }
+  .calc-lab{ font-size:13.5px; color:var(--ink); } .calc-val{ font-size:13px; color:var(--gray); font-variant-numeric:tabular-nums; text-align:right; }
+  .calc input[type=range]{ -webkit-appearance:none; appearance:none; height:4px; background:var(--hair); border-radius:4px; outline:none; }
+  .calc input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:var(--accent); cursor:pointer; border:2px solid #fff; box-shadow:0 0 0 1px var(--accent); }
+  .calc-out{ margin-top:16px; padding-top:14px; border-top:1px solid var(--hair); font-size:18px; color:var(--ink); display:flex; align-items:baseline; gap:8px; }
+  .calc-out .calc-num{ font-size:24px; font-weight:800; color:var(--accent); font-variant-numeric:tabular-nums; }
+  .calc-outbar{ margin-top:12px; } .calc-note{ font-size:12px; color:var(--gray2); margin-top:10px; line-height:1.5; }
+
+  /* concept question (cq) + practice (prob) */
+  .panel-head{ display:flex; align-items:center; gap:9px; margin-bottom:9px; }
+  .tag{ font-size:11px; font-weight:800; color:#fff; background:var(--ink); border-radius:5px; padding:2px 8px; } .panel-title{ font-size:15px; font-weight:700; }
+  .cq{ margin-bottom:12px; padding-bottom:4px; } .cq:last-child{ margin-bottom:0; }
+  .qtext{ font-size:14.5px; line-height:1.55; } .qtext .qn{ color:var(--accent); font-weight:800; margin-right:6px; }
+  .opts{ display:flex; flex-direction:column; gap:6px; margin-top:9px; max-width:620px; }
+  .opt{ font-family:inherit; text-align:left; font-size:13.5px; color:var(--ink); background:#fff; border:1px solid var(--hair); border-radius:9px; padding:8px 13px; cursor:pointer; transition:all .12s; } .opt:hover{ border-color:#d4d4d8; background:var(--hair2); } .opt.sel{ border-color:var(--accent); background:var(--accent-soft); } .opt.correct{ border-color:var(--accent); background:var(--accent-soft); font-weight:700; }
+  .submit-row{ display:flex; align-items:center; gap:12px; margin-top:9px; } .submit-fb{ font-size:12.5px; font-weight:700; color:var(--accent); }
+  .btn{ font-family:inherit; font-size:13px; font-weight:600; border-radius:9px; padding:8px 16px; cursor:pointer; border:1px solid var(--hair); background:#fff; color:var(--ink); transition:all .12s; } .btn:hover{ background:var(--hair2); } .btn.primary{ background:var(--accent); color:#fff; border-color:var(--accent); } .btn.primary:hover{ background:#991b1b; }
+  .prof{ display:none; margin-top:13px; border:1px dashed var(--hair); border-radius:11px; padding:13px 15px; background:#fcfcfc; max-width:600px; } .prof.show{ display:block; animation:fade .18s ease both; }
+  .cp-exp{ display:none; margin-top:9px; font-size:12.5px; line-height:1.55; color:var(--gray); background:var(--accent-soft); border:1px solid #f5c2c2; border-radius:10px; padding:9px 13px; max-width:660px; } .cp-exp.show{ display:block; animation:fade .18s ease both; }
+  .cp-exp .exp-h{ font-size:11px; font-weight:800; color:var(--accent); letter-spacing:.04em; margin-right:6px; } .cp-exp .ok{ color:var(--accent); font-weight:700; } .cp-exp .dim{ color:var(--gray2); } .cp-exp .agg{ display:block; margin-top:4px; font-size:11.5px; color:var(--gray2); }
+  .calc-sense{ margin-top:13px; font-size:12px; line-height:1.6; color:var(--gray); border-top:1px solid var(--hair2); padding-top:11px; max-width:760px; } .calc-sense .cs-h{ font-size:11px; font-weight:800; color:var(--accent); letter-spacing:.04em; margin-right:6px; }
+  .src{ font-size:11px; color:var(--gray2); font-weight:400; }
+  .prof .ph{ display:flex; align-items:center; gap:8px; font-size:11.5px; font-weight:800; color:var(--gray2); letter-spacing:.03em; margin-bottom:10px; } .prof .pill{ font-size:10px; font-weight:800; color:var(--accent); background:var(--accent-soft); border-radius:20px; padding:2px 9px; }
+  .agg{ display:flex; flex-direction:column; gap:8px; } .aggrow{ display:grid; grid-template-columns:112px 1fr 40px; align-items:center; gap:10px; font-size:12.5px; } .aggrow .lab{ color:var(--ink); font-weight:600; } .aggrow .cnt{ text-align:right; color:var(--gray2); font-variant-numeric:tabular-nums; }
+  .prof .note{ font-size:11px; color:var(--gray2); margin-top:10px; line-height:1.5; }
+
+  .prob{ margin-bottom:18px; }
+  .screen.active[data-stage="연습"]{ display:grid; grid-template-columns:1fr 1fr; column-gap:26px; align-content:start; }
+  .screen[data-stage="연습"] .panel-head{ grid-column:1 / -1; }
+  .screen[data-stage="연습"] .prob{ margin-bottom:0; min-width:0; } .prob:last-child{ margin-bottom:0; }
+  .prob-num{ font-size:11.5px; font-weight:800; color:var(--accent); letter-spacing:.04em; margin-bottom:5px; }
+  .prob-statement{ font-size:14px; line-height:1.6; color:var(--gray); max-width:720px; } .prob-statement strong{ color:var(--ink); }
+  .given{ display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; } .chip{ font-size:12.5px; color:var(--gray); border:1px solid var(--hair); background:var(--hair2); border-radius:6px; padding:4px 9px; }
+  .find{ font-size:13px; margin-top:9px; } .find b{ color:var(--gray2); font-weight:700; }
+  .ans-row{ display:flex; align-items:center; gap:9px; margin-top:10px; flex-wrap:wrap; } .ans-input{ font-family:inherit; font-size:14px; width:120px; border:1px solid var(--hair); border-radius:8px; padding:7px 11px; outline:none; } .ans-input:focus{ border-color:var(--accent); } .ans-unit{ font-size:13px; color:var(--gray2); } .check-fb{ font-size:12.5px; font-weight:700; } .check-fb.ok{ color:var(--accent); } .check-fb.no{ color:var(--gray2); }
+  .reveal-btn{ margin-top:11px; font-family:inherit; font-size:13px; font-weight:600; color:var(--ink); background:#fff; border:1px solid var(--hair); border-radius:8px; padding:7px 14px; cursor:pointer; display:inline-flex; align-items:center; gap:7px; transition:all .12s; } .reveal-btn:hover{ background:var(--hair2); } .reveal-btn .caret{ font-size:10px; color:var(--gray2); transition:transform .15s; } .reveal-btn.is-open .caret{ transform:rotate(180deg); }
+  .revealable{ display:none; } .revealable.open{ display:block; animation:fade .15s ease both; }
+  .solution{ margin-top:11px; } .dstep2{ margin-bottom:6px; } .step-label{ font-size:12px; font-weight:700; color:var(--gray2); margin-bottom:1px; }
+  .solution .katex-display{ margin:.18em 0; } .solution .katex-display>.katex, .ans-final .katex-display>.katex, .keqline .katex-display>.katex{ text-align:left; } .dcard .eq .katex-display{ margin:.1em 0; }
+  .ans-final{ margin-top:6px; border-top:1px dashed var(--hair); padding-top:9px; font-size:12.5px; color:var(--gray); } .ans-final b{ color:var(--ink); } .ans-final .ans-eq{ color:var(--ink); margin-bottom:4px; }
+
+  /* summary */
+  .sumgrid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px; }
+  .sumcard{ border:1px solid var(--hair); border-radius:12px; padding:15px 16px; } .sumcard.full{ grid-column:1 / -1; }
+  .sumcard h4{ font-size:12.5px; font-weight:800; letter-spacing:.03em; margin-bottom:9px; display:flex; align-items:center; gap:6px; } .sumcard.key h4{ color:var(--accent); }
+  .sumcard ul{ margin:0; padding-left:17px; } .sumcard li{ font-size:13px; line-height:1.6; color:var(--gray); margin-bottom:4px; } .sumcard li strong{ color:var(--ink); }
+
+  /* week intro */
+  .intro{ max-width:940px; }
+  .intro-eyebrow{ font-size:12.5px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+  .intro-h{ font-size:38px; font-weight:800; line-height:1.18; letter-spacing:-.015em; margin-bottom:14px; } .intro-h .hl{ color:var(--accent); }
+  .intro-sub{ font-size:17px; line-height:1.65; color:var(--gray); max-width:780px; margin-bottom:26px; } .intro-sub strong{ color:var(--ink); }
+  .mystery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .mystery{ border:1px solid var(--hair); border-radius:14px; padding:18px 18px 20px; background:#fff; }
+  .mystery .emoji{ font-size:24px; display:block; margin-bottom:10px; }
+  .mystery .mq{ font-size:14.5px; font-weight:700; color:var(--ink); line-height:1.45; margin-bottom:8px; }
+  .mystery .ma{ font-size:12.5px; line-height:1.55; color:var(--gray2); } .mystery .ma b{ color:var(--accent); font-weight:700; }
+  .intro-teaser{ margin-top:22px; border-left:3px solid var(--accent); padding:4px 0 4px 18px; font-size:16px; line-height:1.6; color:var(--ink); font-weight:600; } .intro-teaser em{ color:var(--accent); font-style:normal; }
+  .roadmap{ margin-top:6px; display:flex; flex-direction:column; gap:9px; }
+  .rm-item{ display:flex; align-items:baseline; gap:13px; }
+  .rm-item .rn{ flex-shrink:0; font-size:12px; font-weight:800; color:var(--accent); background:var(--accent-soft); border-radius:20px; padding:2px 10px; min-width:46px; text-align:center; }
+  .rm-item .rt{ font-size:14.5px; color:var(--ink); font-weight:700; } .rm-item .rd{ font-size:13px; color:var(--gray2); }
+  .outcomes{ margin-top:6px; border:1px solid var(--hair); border-radius:12px; padding:16px 18px; background:#fcfcfc; }
+  .outcomes h4{ font-size:12.5px; font-weight:800; color:var(--accent); margin-bottom:10px; letter-spacing:.03em; }
+  .outcomes ul{ margin:0; padding-left:18px; } .outcomes li{ font-size:13.5px; line-height:1.7; color:var(--gray); } .outcomes li strong{ color:var(--ink); }
+  /* intro extras */
+  .vs{ display:grid; grid-template-columns:1fr 56px 1fr; margin-top:20px; align-items:stretch; }
+  .vs-col{ border:1px solid var(--hair); border-radius:14px; padding:20px 22px; } .vs-col.b{ background:var(--accent-soft); border-color:#f5c2c2; }
+  .vs-mid{ display:flex; align-items:center; justify-content:center; font-weight:800; color:var(--gray2); font-size:13px; }
+  .vs-col h4{ font-size:13px; font-weight:800; letter-spacing:.04em; margin-bottom:10px; color:var(--gray2); } .vs-col.b h4{ color:var(--accent); }
+  .vs-col .q{ font-size:16px; font-weight:700; color:var(--ink); line-height:1.45; margin-bottom:10px; } .vs-col p{ font-size:13.5px; line-height:1.6; color:var(--gray); } .vs-col p strong{ color:var(--ink); }
+  .stat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:20px; }
+  .stat{ border:1px solid var(--hair); border-radius:14px; padding:17px 13px; text-align:center; }
+  .stat .big{ font-size:26px; font-weight:800; color:var(--accent); line-height:1.05; } .stat .lbl{ font-size:12.5px; color:var(--ink); margin-top:8px; line-height:1.4; font-weight:600; } .stat .lbl b{ color:var(--ink); }
+  .stat .why{ font-size:11px; color:var(--gray2); margin-top:9px; border-top:1px solid var(--hair2); padding-top:8px; line-height:1.55; }
+  .tl{ margin-top:20px; display:flex; flex-direction:column; gap:13px; max-width:760px; }
+  .tl-item{ display:flex; gap:16px; align-items:baseline; } .tl-item .yr{ flex-shrink:0; font-size:13px; font-weight:800; color:var(--accent); width:120px; } .tl-item .ev{ font-size:14px; color:var(--gray); line-height:1.5; } .tl-item .ev b{ color:var(--ink); font-weight:700; }
+  .flow{ display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin-top:20px; }
+  .flowstep{ border:1px solid var(--hair); border-radius:9px; padding:8px 12px; font-size:13px; font-weight:700; color:var(--ink); background:#fff; } .flowstep.on{ background:var(--accent); color:#fff; border-color:var(--accent); }
+  .flow-arr{ color:var(--gray2); font-size:12px; }
+  .learn-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px; }
+  .lcard{ border:1px solid var(--hair); border-radius:14px; padding:18px; } .lcard .lh{ font-size:14px; font-weight:800; color:var(--ink); margin-bottom:7px; display:flex; align-items:center; gap:7px; } .lcard .le{ font-size:20px; } .lcard p{ font-size:13px; line-height:1.6; color:var(--gray); } .lcard p b{ color:var(--accent); }
+
+  footer{ height:62px; display:flex; align-items:center; justify-content:space-between; padding:0 26px; border-top:1px solid var(--hair); }
+  .nav-btn{ font-family:inherit; font-size:14px; font-weight:600; border-radius:10px; padding:9px 17px; cursor:pointer; border:1px solid var(--hair); background:#fff; color:var(--ink); transition:all .12s; } .nav-btn:hover{ background:var(--hair2); } .nav-btn.prev[disabled]{ opacity:0; pointer-events:none; } .nav-btn.next{ background:var(--accent); color:#fff; border-color:var(--accent); } .nav-btn.next:hover{ background:#991b1b; }
+  .foot-hint{ font-size:12px; color:var(--gray2); }
+  html.lang-en .lang-ko{display:none!important} html.lang-ko .lang-en{display:none!important}
+  .langtog{font:700 11.5px/1 inherit;color:var(--gray2);border:1px solid var(--hair);background:#fff;border-radius:20px;padding:4px 11px;cursor:pointer;margin-left:8px;transition:all .12s} .langtog:hover{border-color:var(--accent);color:var(--accent)}
+</style>
+</head>
+<body>
+<header><span class="brand">MFTEL-PC<span class="sep">·</span>상변화열전달<span class="sep">·</span>Week 1</span>상변화열전달<span class="sep">·</span>Week N</span><div class="chrail" id="chrail"></div><button id="langToggle" class="langtog" type="button" aria-label="Language">EN</button></header>
+<div class="stepbar" id="stepbar"></div>
+<main><div class="stage" id="stage">
+<!-- ════════ 시작1 / 환영 ════════ -->
+<section class="screen" data-ch="시작1" data-chtitle="상변화 열전달이란" data-stage="환영">
+  <div class="intro">
+    <div class="intro-eyebrow lang-ko">상변화 열전달 · 1주차 · 시작</div>
+    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Week 1 · Intro</div>
+
+    <h1 class="intro-h lang-ko">왜 끓는 물은 단상 대류보다<br><span class="hl">열을 수백 배 빨리 빼낼까?</span></h1>
+    <h1 class="intro-h lang-en">Why does boiling water remove heat<br><span class="hl">hundreds of times faster than single-phase convection?</span></h1>
+
+    <p class="lede lang-ko">똑같은 온도차, 똑같은 면적인데도 <strong>상(相)이 바뀌면</strong> 대류 열전달 계수 $h$가 차원을 달리한다. 단상 강제·자연 대류는 겨우 $h \sim 10\text{–}10^{3}\ \text{W/m}^{2}\!\cdot\!\text{K}$ 수준이지만, 비등과 응축에서는 $h \sim 2{,}500\text{–}100{,}000\ \text{W/m}^{2}\!\cdot\!\text{K}$에 이른다. 비밀은 <strong>증발 잠열 $h_{fg}$</strong> — 상이 바뀌는 순간 막대한 에너지가 온도를 거의 바꾸지 않고 오간다. 그래서 작은 질량유량으로도 어마어마한 열을 실어 나른다. <span class="src">[Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10]</span></p>
+    <p class="lede lang-en">For the very same temperature difference and area, a <strong>change of phase</strong> lifts the convection coefficient $h$ into another regime. Single-phase forced and natural convection reach only $h \sim 10\text{–}10^{3}\ \text{W/m}^{2}\!\cdot\!\text{K}$, whereas boiling and condensation attain $h \sim 2{,}500\text{–}100{,}000\ \text{W/m}^{2}\!\cdot\!\text{K}$. The secret is the <strong>latent heat of vaporization $h_{fg}$</strong> — as the phase flips, an enormous amount of energy is carried across almost without changing temperature, so even a tiny mass flow transports a huge heat load. <span class="src">[Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10]</span></p>
+  </div>
+</section>
+
+<!-- ════════ 시작2 / 여정 ════════ -->
+<section class="screen" data-ch="시작2" data-chtitle="1주차 지도" data-stage="여정">
+  <div class="intro">
+    <div class="intro-eyebrow lang-ko">상변화 열전달 · 1주차 지도</div>
+    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Week 1 Roadmap</div>
+
+    <h1 class="intro-h lang-ko">이번 주, <span class="hl">네 개의 챕터</span>로 비등의 뿌리를 파고든다</h1>
+    <h1 class="intro-h lang-en">This week: <span class="hl">four chapters</span> down to the roots of boiling</h1>
+
+    <div class="roadmap lang-ko" style="margin-top:14px">
+      <div class="rm-item"><span class="rn">1-1</span><span><span class="rt">비등 곡선과 영역</span> <span class="rd">— 자유대류·핵비등·천이·막비등의 네 영역과 과열도 $\Delta T_e$</span></span></div>
+      <div class="rm-item"><span class="rn">1-2</span><span><span class="rt">계면 열역학</span> <span class="rd">— Young–Laplace 곡률 압력과 Clausius–Clapeyron 관계</span></span></div>
+      <div class="rm-item"><span class="rn">1-3</span><span><span class="rt">핵생성 이론</span> <span class="rd">— 임계 반경 $r^{*}$, 균질·불균질 핵생성</span></span></div>
+      <div class="rm-item"><span class="rn">1-4</span><span><span class="rt">비극성·유전 유체 물성 대비</span> <span class="rd">— 물 대 냉매·FC 유체의 $h_{fg}$·$\sigma$ 차이</span></span></div>
+    </div>
+    <div class="roadmap lang-en" style="margin-top:14px">
+      <div class="rm-item"><span class="rn">1-1</span><span><span class="rt">Pool Boiling Curve &amp; Regimes</span> <span class="rd">— free convection, nucleate, transition, film; the superheat $\Delta T_e$</span></span></div>
+      <div class="rm-item"><span class="rn">1-2</span><span><span class="rt">Interfacial Thermodynamics</span> <span class="rd">— Young–Laplace curvature pressure and the Clausius–Clapeyron relation</span></span></div>
+      <div class="rm-item"><span class="rn">1-3</span><span><span class="rt">Nucleation Theory</span> <span class="rd">— critical radius $r^{*}$, homogeneous vs heterogeneous nucleation</span></span></div>
+      <div class="rm-item"><span class="rn">1-4</span><span><span class="rt">Non-polar / Dielectric Fluid Contrasts</span> <span class="rd">— water vs refrigerants &amp; FC fluids in $h_{fg}$ and $\sigma$</span></span></div>
+    </div>
+
+    <div class="outcomes lang-ko" style="margin-top:18px"><h4>이번 주가 끝나면 할 수 있게 된다</h4><ul>
+      <li>비등 곡선의 <strong>네 영역</strong>을 구분하고 주어진 과열도 $\Delta T_e$가 어느 영역인지 판별한다.</li>
+      <li>Young–Laplace와 Clausius–Clapeyron로 <strong>계면의 압력·온도 결합</strong>을 설명한다.</li>
+      <li>고전 핵생성 이론으로 <strong>임계 반경 $r^{*}$</strong>와 활성 핵생성점을 추정한다.</li>
+      <li>물과 <strong>비극성·유전 유체</strong>의 물성 차이가 비등 성능에 주는 영향을 비교한다.</li>
+    </ul></div>
+    <div class="outcomes lang-en" style="margin-top:18px"><h4>By the end of this week you will be able to</h4><ul>
+      <li>Distinguish the <strong>four regimes</strong> of the boiling curve and classify a given superheat $\Delta T_e$.</li>
+      <li>Explain <strong>interfacial pressure–temperature coupling</strong> via Young–Laplace and Clausius–Clapeyron.</li>
+      <li>Estimate the <strong>critical radius $r^{*}$</strong> and active nucleation sites from classical nucleation theory.</li>
+      <li>Compare how property contrasts between water and <strong>non-polar / dielectric fluids</strong> affect boiling performance.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ══════════ 1-1 / 개념 ══════════ -->
+  <section class="screen" data-ch="1-1" data-chtitle="비등 곡선과 영역" data-stage="개념">
+    <div class="eyebrow lang-ko">1-1 · 개념 · Concept</div>
+    <div class="eyebrow lang-en">1-1 · Concept</div>
+    <h1 class="stage-h lang-ko">비등 곡선 — 끓는 물의 네 얼굴</h1>
+    <h1 class="stage-h lang-en">The Boiling Curve — Four Faces of Boiling Water</h1>
+    <div class="analogy lang-ko"><span class="ic">🍳</span><div class="tx"><b>직관</b> — 가스레인지 불을 점점 키우면 냄비 바닥은 처음엔 조용히, 다음엔 격렬한 거품으로, 더 키우면 오히려 <b>증기 막에 갇혀</b> 열이 안 빠진다. 표면 과열도 $\Delta T_e=T_s-T_{sat}$에 따라 열을 빼내는 방식 자체가 <b>네 영역</b>으로 완전히 바뀐다. <span class="src">(출처: Nukiyama 1934 비등 곡선 실험 / Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10)</span></div></div>
+    <div class="analogy lang-en"><span class="ic">🍳</span><div class="tx"><b>Intuition</b> — As you turn up a stove burner, the pot bottom is first quiet, then erupts in violent bubbles, then — turned higher still — becomes <b>trapped under a vapor film</b> that blocks heat removal. With surface excess temperature $\Delta T_e=T_s-T_{sat}$, the very mechanism of heat removal shifts through <b>four distinct regimes</b>. <span class="src">(Source: Nukiyama 1934 boiling-curve experiment / Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10)</span></div></div>
+    <div class="two lang-ko">
+      <div class="col2">
+        <p class="lede"><strong>풀 비등(pool boiling)</strong>은 정지한 액체 속 가열면에서 일어나는 비등입니다. 열유속은 <strong>$q''=h\,\Delta T_e$</strong>로 정의되며, 가로축에 <strong>초과온도 $\Delta T_e=T_s-T_{sat}$</strong>, 세로축에 $q''$을 로그로 그리면 — <strong>자유대류 → 핵비등 → 천이비등 → 막비등</strong>의 네 영역이 나타납니다. 핵비등 끝의 정점이 <strong>임계열유속(CHF, 점 C)</strong>, 막비등이 시작되는 최저점이 <strong>Leidenfrost 점(점 D)</strong>입니다.</p>
+        <div class="keqbox">
+          <div class="keq-label">네 영역의 경계 (대기압 물)</div>
+          <div class="keqrow"><span class="keqcap">자유대류</span><span class="keqline">$ \Delta T_e < 5\,{}^{\circ}\text{C} $</span></div>
+          <div class="keqrow"><span class="keqcap">핵비등 (정점 = CHF)</span><span class="keqline">$ 5 < \Delta T_e < 30\,{}^{\circ}\text{C} $</span></div>
+          <div class="keqrow"><span class="keqcap">천이비등 (불안정)</span><span class="keqline">$ 30 < \Delta T_e < 120\,{}^{\circ}\text{C} $</span></div>
+          <div class="keqrow"><span class="keqcap">막비등</span><span class="keqline">$ \Delta T_e > 120\,{}^{\circ}\text{C} $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">핵심 용어</div>
+        <div class="terms">
+          <div class="term"><b>초과온도 $\Delta T_e$</b> $=T_s-T_{sat}$ — 비등 곡선의 가로축 $[{}^{\circ}\text{C}]$</div>
+          <div class="term"><b>열유속 $q''$</b> 단위면적당 비등 전달률 $[\text{W/m}^2]$</div>
+          <div class="term"><b>CHF $q''_{max}$</b> 핵비등 정점 — 점 C, 안전 한계 ($\approx 1.1\!\sim\!1.26\,\text{MW/m}^2$)</div>
+          <div class="term"><b>Leidenfrost 점</b> 막비등 시작 최저 열유속 — 점 D ($\sim 10\!\sim\!20\,\text{kW/m}^2$)</div>
+          <div class="term"><b>$T_{sat}$</b> 포화온도 (물 1 atm $=100\,{}^{\circ}\text{C}$)</div>
+          <div class="term"><b>burnout</b> CHF 초과 시 온도 급상승 → 표면 소손</div>
+        </div>
+        <div class="callout key"><div class="ct">핵심</div>비등은 <strong>$\Delta T_e$ 한 변수</strong>로 전혀 다른 네 거동을 보입니다. CHF를 넘으면 증기 막이 표면을 덮어 열저항이 급증 → 온도가 <strong>수백 ${}^{\circ}\text{C}$ 폭주</strong>합니다(burnout).</div>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2">
+        <p class="lede"><strong>Pool boiling</strong> is boiling at a heated surface immersed in a quiescent liquid. The heat flux is defined as <strong>$q''=h\,\Delta T_e$</strong>; plotting $q''$ against <strong>excess temperature $\Delta T_e=T_s-T_{sat}$</strong> on log–log axes reveals four regimes — <strong>free convection → nucleate → transition → film boiling</strong>. The peak ending nucleate boiling is the <strong>critical heat flux (CHF, point C)</strong>; the minimum where film boiling begins is the <strong>Leidenfrost point (point D)</strong>.</p>
+        <div class="keqbox">
+          <div class="keq-label">Regime boundaries (water at 1 atm)</div>
+          <div class="keqrow"><span class="keqcap">Free convection</span><span class="keqline">$ \Delta T_e < 5\,{}^{\circ}\text{C} $</span></div>
+          <div class="keqrow"><span class="keqcap">Nucleate (peak = CHF)</span><span class="keqline">$ 5 < \Delta T_e < 30\,{}^{\circ}\text{C} $</span></div>
+          <div class="keqrow"><span class="keqcap">Transition (unstable)</span><span class="keqline">$ 30 < \Delta T_e < 120\,{}^{\circ}\text{C} $</span></div>
+          <div class="keqrow"><span class="keqcap">Film boiling</span><span class="keqline">$ \Delta T_e > 120\,{}^{\circ}\text{C} $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">Key terms</div>
+        <div class="terms">
+          <div class="term"><b>Excess temp. $\Delta T_e$</b> $=T_s-T_{sat}$ — horizontal axis $[{}^{\circ}\text{C}]$</div>
+          <div class="term"><b>Heat flux $q''$</b> boiling transfer rate per area $[\text{W/m}^2]$</div>
+          <div class="term"><b>CHF $q''_{max}$</b> nucleate peak — point C, safety limit ($\approx 1.1\!\sim\!1.26\,\text{MW/m}^2$)</div>
+          <div class="term"><b>Leidenfrost point</b> minimum flux at onset of film boiling — point D ($\sim 10\!\sim\!20\,\text{kW/m}^2$)</div>
+          <div class="term"><b>$T_{sat}$</b> saturation temperature (water 1 atm $=100\,{}^{\circ}\text{C}$)</div>
+          <div class="term"><b>burnout</b> temperature runaway past CHF → surface failure</div>
+        </div>
+        <div class="callout key"><div class="ct">Key</div>Boiling shows four completely different behaviors driven by the <strong>single variable $\Delta T_e$</strong>. Past CHF a vapor film blankets the surface, thermal resistance spikes, and temperature <strong>runs away by hundreds of ${}^{\circ}\text{C}$</strong> (burnout).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-1 / 유도 ══════════ -->
+  <section class="screen" data-ch="1-1" data-chtitle="비등 곡선과 영역" data-stage="유도">
+    <div class="eyebrow lang-ko">1-1 · 수식 유도 · Derivation</div>
+    <div class="eyebrow lang-en">1-1 · Derivation</div>
+    <h1 class="stage-h lang-ko">네 영역은 왜 생기는가 — 거품의 일생</h1>
+    <h1 class="stage-h lang-en">Why the Four Regimes Arise — the Life of a Bubble</h1>
+    <p class="lede lang-ko"><b>공통 관점:</b> 비등 곡선의 모양은 <b>증기 거품이 표면을 얼마나 덮느냐</b>로 결정됩니다 — 거품이 액체 교반을 도우면 $q''$이 커지고($q''=h\,\Delta T_e$에서 $h$ 증가), 거품이 합쳐져 막이 되면 단열층이 되어 $q''$이 떨어집니다.</p>
+    <p class="lede lang-en"><b>Unifying view:</b> the shape of the boiling curve is set by <b>how much vapor covers the surface</b> — while bubbles stir the liquid, $q''$ rises (larger $h$ in $q''=h\,\Delta T_e$); once bubbles coalesce into a film, that film insulates and $q''$ falls.</p>
+    <div class="deriv lang-ko">
+      <div class="dcard"><h4>자유대류 영역</h4><div class="sub">$\Delta T_e<5\,{}^{\circ}\text{C}$</div><div class="ana">🌊 거품 없이 — 부력만으로 천천히 휘젓는다</div><div class="eq">$ q'' = h_{nc}\,\Delta T_e $</div><p>아직 핵생성이 없어 <strong>단상 자연대류</strong>로만 열이 전달됩니다. 기울기 완만.</p></div>
+      <div class="dcard"><h4>핵비등 영역</h4><div class="sub">$5<\Delta T_e<30\,{}^{\circ}\text{C}$</div><div class="ana">🫧 거품 폭발 — 미세 거품이 격렬히 교반</div><div class="eq">$ q'' \propto \Delta T_e^{\,3} $</div><p>표면 cavity에서 거품이 <strong>생성·이탈</strong>하며 액체를 강하게 휘저어 $q''$이 급증. 정점이 <strong>CHF(점 C)</strong>.</p></div>
+      <div class="dcard"><h4>천이·막비등</h4><div class="sub">$\Delta T_e>30\,{}^{\circ}\text{C}$</div><div class="ana">☁️ 증기 이불 — 막이 표면을 덮어 단열</div><div class="eq">$ q'' \downarrow \ \text{then} \ \propto \Delta T_e^{\,4} $</div><p>거품이 합쳐져 불안정 막 형성(천이) → 안정 증기막(막비등, 점 D 이후). 막비등은 <strong>복사가 가세</strong>.</p></div>
+    </div>
+    <div class="deriv lang-en">
+      <div class="dcard"><h4>Free-convection regime</h4><div class="sub">$\Delta T_e<5\,{}^{\circ}\text{C}$</div><div class="ana">🌊 No bubbles — buoyancy stirs slowly</div><div class="eq">$ q'' = h_{nc}\,\Delta T_e $</div><p>With no nucleation yet, heat moves only by <strong>single-phase natural convection</strong>. Gentle slope.</p></div>
+      <div class="dcard"><h4>Nucleate regime</h4><div class="sub">$5<\Delta T_e<30\,{}^{\circ}\text{C}$</div><div class="ana">🫧 Bubble burst — tiny bubbles stir fiercely</div><div class="eq">$ q'' \propto \Delta T_e^{\,3} $</div><p>Bubbles <strong>nucleate and depart</strong> from surface cavities, strongly agitating the liquid so $q''$ soars. The peak is <strong>CHF (point C)</strong>.</p></div>
+      <div class="dcard"><h4>Transition & film</h4><div class="sub">$\Delta T_e>30\,{}^{\circ}\text{C}$</div><div class="ana">☁️ Vapor blanket — a film insulates the surface</div><div class="eq">$ q'' \downarrow \ \text{then} \ \propto \Delta T_e^{\,4} $</div><p>Bubbles merge into an unstable film (transition) → stable vapor film (film boiling, beyond point D). Film boiling gains a <strong>radiation contribution</strong>.</p></div>
+    </div>
+    <div class="callout warn lang-ko"><div class="ct">주의 · 음의 기울기와 burnout</div>천이비등에서 $q''$은 $\Delta T_e$가 커질수록 <strong>오히려 감소</strong>합니다(음의 기울기 = 불안정). 열유속 제어 가열기는 CHF를 넘는 순간 천이 영역을 <strong>건너뛰고 막비등으로 급점프</strong>해 $T_s$가 폭주합니다.</div>
+    <div class="callout warn lang-en"><div class="ct">Caution · negative slope & burnout</div>In transition boiling $q''$ actually <strong>decreases</strong> as $\Delta T_e$ grows (negative slope = unstable). A heat-flux-controlled heater, upon exceeding CHF, <strong>skips the transition regime and jumps to film boiling</strong>, and $T_s$ runs away.</div>
+  </section>
+
+  <!-- ══════════ 1-1 / 읽을거리 ══════════ -->
+  <section class="screen" data-ch="1-1" data-chtitle="비등 곡선과 영역" data-stage="읽을거리">
+    <div class="eyebrow lang-ko">1-1 · 읽을거리 · Reading</div>
+    <div class="eyebrow lang-en">1-1 · Reading</div>
+    <h1 class="stage-h lang-ko">Nukiyama의 백금선 실험과 burnout</h1>
+    <h1 class="stage-h lang-en">Nukiyama's Platinum-Wire Experiment and Burnout</h1>
+    <div class="two lang-ko">
+      <div class="col2 reading">
+        <p>1934년 일본의 <strong>Shiro Nukiyama</strong>는 물에 잠긴 <strong>백금선</strong>에 전류를 흘려 열유속을 제어하며 비등 곡선을 처음 측정했습니다. 그는 열유속을 점진적으로 올리다가 <strong>임계점(CHF)</strong>을 넘는 순간 백금선이 갑자기 빨갛게 달아오르며 녹아버리는(<strong>burnout</strong>) 현상을 관찰했습니다.</p>
+        <p class="pullquote">CHF는 비등이 견딜 수 있는 <em>열유속의 천장</em>이다.</p>
+        <p>열유속을 제어하면 천이 영역(음의 기울기)은 불안정해 측정 불가 — 곡선은 점 C(CHF)에서 막비등으로 <strong>수직 점프</strong>합니다. 이때 표면온도는 순식간에 수백 ${}^{\circ}\text{C}$ 치솟습니다. 반대로 온도를 제어하면 네 영역을 모두 추적할 수 있고, 막비등에서 열유속을 줄이면 <strong>Leidenfrost 점(점 D)</strong>에서 재습윤(rewetting)이 일어나 핵비등으로 되돌아옵니다.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>비등 곡선 가로축은 <strong>$\Delta T_e=T_s-T_{sat}$</strong>(과열도)이지 $T_s$가 아니다.</li><li>핵비등은 <strong>적은 $\Delta T_e$로 큰 $q''$</strong> — 가장 효율적 영역.</li><li>CHF는 안전 한계(점 C), Leidenfrost는 막비등 최저점(점 D).</li></ul></div>
+        <p class="readmeta">참고: Nukiyama(1934) <em>J. Soc. Mech. Eng. Japan</em> / Incropera et al., Ch.10.3</p>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2 reading">
+        <p>In 1934, Japan's <strong>Shiro Nukiyama</strong> first measured the boiling curve by passing current through a <strong>platinum wire</strong> submerged in water, controlling the heat flux. Ramping the flux gradually, he observed that the instant it exceeded the <strong>critical point (CHF)</strong>, the wire suddenly glowed red and melted (<strong>burnout</strong>).</p>
+        <p class="pullquote">CHF is the <em>ceiling of heat flux</em> that boiling can withstand.</p>
+        <p>Under heat-flux control the transition regime (negative slope) is unstable and unmeasurable — the curve <strong>jumps vertically</strong> from point C (CHF) to film boiling, and the surface temperature spikes by hundreds of ${}^{\circ}\text{C}$ in an instant. Under temperature control, all four regimes can be traced; reducing the flux in film boiling triggers <strong>rewetting at the Leidenfrost point (point D)</strong>, returning to nucleate boiling.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">Must know</div><ul><li>The horizontal axis is <strong>$\Delta T_e=T_s-T_{sat}$</strong> (superheat), not $T_s$.</li><li>Nucleate boiling gives <strong>large $q''$ from small $\Delta T_e$</strong> — the most efficient regime.</li><li>CHF is the safety limit (point C); Leidenfrost is the film-boiling minimum (point D).</li></ul></div>
+        <p class="readmeta">Refs: Nukiyama (1934) <em>J. Soc. Mech. Eng. Japan</em> / Incropera et al., Ch.10.3</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-1 / 그림·표 ══════════ -->
+  <section class="screen" data-ch="1-1" data-chtitle="비등 곡선과 영역" data-stage="그림·표">
+    <div class="eyebrow lang-ko">1-1 · 그림 · 그래프 · 표</div>
+    <div class="eyebrow lang-en">1-1 · Figure · Graph · Table</div>
+    <h1 class="stage-h lang-ko">한눈에 — 비등 곡선과 네 영역</h1>
+    <h1 class="stage-h lang-en">At a Glance — the Boiling Curve and Four Regimes</h1>
+    <div class="vizgrid lang-ko">
+      <div>
+        <div class="vcap">풀 비등 곡선 ($q''$ vs $\Delta T_e$, 로그)</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar11ko" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<line x1="52" y1="248" x2="452" y2="248" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar11ko)"/>
+<line x1="52" y1="248" x2="52" y2="24" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar11ko)"/>
+<text x="252" y="272" font-size="11.5" fill="#52525b" text-anchor="middle">초과온도 $\Delta T_e = T_s - T_{sat}$ (로그)</text>
+<text x="20" y="135" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 20 135)">열유속 $q''$ (로그)</text>
+<path d="M62 240 Q110 230 138 200" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M138 200 Q190 150 232 58" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M232 58 Q280 110 330 150" fill="none" stroke="#c2410c" stroke-width="2.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+<path d="M330 150 Q390 165 444 120" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<circle cx="232" cy="58" r="5" fill="#fff" stroke="#c2410c" stroke-width="2.5"/>
+<text x="232" y="44" font-size="11.5" fill="#c2410c" text-anchor="middle" font-weight="700">C · CHF</text>
+<circle cx="330" cy="150" r="5" fill="#fff" stroke="#c2410c" stroke-width="2.5"/>
+<text x="356" y="168" font-size="11" fill="#52525b" text-anchor="middle" font-weight="700">D · Leidenfrost</text>
+<text x="92" y="216" font-size="10.5" fill="#71717a" text-anchor="middle">자유대류</text>
+<text x="178" y="142" font-size="10.5" fill="#c2410c" text-anchor="middle" font-weight="700">핵비등</text>
+<text x="282" y="96" font-size="10.5" fill="#71717a" text-anchor="middle">천이</text>
+<text x="408" y="106" font-size="10.5" fill="#71717a" text-anchor="middle">막비등</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">네 영역 정리 (대기압 물)</div>
+        <table class="ktab"><thead><tr><th>영역</th><th>$\Delta T_e$ 범위 $[{}^{\circ}\text{C}]$</th><th style="text-align:right">특징</th></tr></thead><tbody>
+          <tr><td>자유대류</td><td class="k">&lt; 5</td><td>거품 없음</td></tr>
+          <tr><td>핵비등</td><td class="k">5 ~ 30</td><td>거품 격렬, 정점 CHF(점 C)</td></tr>
+          <tr><td>천이비등</td><td class="k">30 ~ 120</td><td>불안정, 음 기울기</td></tr>
+          <tr><td>막비등</td><td class="k">&gt; 120</td><td>증기막 + 복사(점 D 이후)</td></tr>
+        </tbody></table>
+        <div class="keqnote">대기압 물 CHF $\approx 1.1\!\sim\!1.26\,\text{MW/m}^2$ ($\Delta T_e\approx 30\,{}^{\circ}\text{C}$), Leidenfrost $\Delta T_e\approx 120\,{}^{\circ}\text{C}$에서 $q''_{min}\approx 10\!\sim\!20\,\text{kW/m}^2$. (출처: Incropera Ch.10.3)</div>
+      </div>
+    </div>
+    <div class="vizgrid lang-en">
+      <div>
+        <div class="vcap">Pool boiling curve ($q''$ vs $\Delta T_e$, log)</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar11en" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<line x1="52" y1="248" x2="452" y2="248" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar11en)"/>
+<line x1="52" y1="248" x2="52" y2="24" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar11en)"/>
+<text x="252" y="272" font-size="11.5" fill="#52525b" text-anchor="middle">excess temp. $\Delta T_e = T_s - T_{sat}$ (log)</text>
+<text x="20" y="135" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 20 135)">heat flux $q''$ (log)</text>
+<path d="M62 240 Q110 230 138 200" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M138 200 Q190 150 232 58" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M232 58 Q280 110 330 150" fill="none" stroke="#c2410c" stroke-width="2.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+<path d="M330 150 Q390 165 444 120" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<circle cx="232" cy="58" r="5" fill="#fff" stroke="#c2410c" stroke-width="2.5"/>
+<text x="232" y="44" font-size="11.5" fill="#c2410c" text-anchor="middle" font-weight="700">C · CHF</text>
+<circle cx="330" cy="150" r="5" fill="#fff" stroke="#c2410c" stroke-width="2.5"/>
+<text x="356" y="168" font-size="11" fill="#52525b" text-anchor="middle" font-weight="700">D · Leidenfrost</text>
+<text x="92" y="216" font-size="10.5" fill="#71717a" text-anchor="middle">free conv.</text>
+<text x="178" y="142" font-size="10.5" fill="#c2410c" text-anchor="middle" font-weight="700">nucleate</text>
+<text x="282" y="96" font-size="10.5" fill="#71717a" text-anchor="middle">transition</text>
+<text x="408" y="106" font-size="10.5" fill="#71717a" text-anchor="middle">film</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">Four regimes summary (water at 1 atm)</div>
+        <table class="ktab"><thead><tr><th>Regime</th><th>$\Delta T_e$ range $[{}^{\circ}\text{C}]$</th><th style="text-align:right">Feature</th></tr></thead><tbody>
+          <tr><td>Free convection</td><td class="k">&lt; 5</td><td>no bubbles</td></tr>
+          <tr><td>Nucleate</td><td class="k">5 ~ 30</td><td>violent bubbles, peak CHF (C)</td></tr>
+          <tr><td>Transition</td><td class="k">30 ~ 120</td><td>unstable, negative slope</td></tr>
+          <tr><td>Film</td><td class="k">&gt; 120</td><td>vapor film + radiation (beyond D)</td></tr>
+        </tbody></table>
+        <div class="keqnote">Water CHF $\approx 1.1\!\sim\!1.26\,\text{MW/m}^2$ (at $\Delta T_e\approx 30\,{}^{\circ}\text{C}$); at Leidenfrost $\Delta T_e\approx 120\,{}^{\circ}\text{C}$, $q''_{min}\approx 10\!\sim\!20\,\text{kW/m}^2$. (Source: Incropera Ch.10.3)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-1 / 실습 ══════════ -->
+  <section class="screen" data-ch="1-1" data-chtitle="비등 곡선과 영역" data-stage="실습">
+    <div class="eyebrow lang-ko">1-1 · 실습 · Interactive</div>
+    <div class="eyebrow lang-en">1-1 · Interactive</div>
+    <h1 class="stage-h lang-ko">핵비등의 $\Delta T_e^{\,3}$ 거동 — 직접 조절해보기</h1>
+    <h1 class="stage-h lang-en">The $\Delta T_e^{\,3}$ Behavior of Nucleate Boiling — Try It</h1>
+    <p class="lede lang-ko">핵비등 영역에서 열유속은 초과온도의 세제곱($q''\propto\Delta T_e^{3}$)에 비례합니다(Rohsenow 골격). 슬라이더로 <strong>$\Delta T_e$</strong>와 비례상수 $A$를 바꾸며 작은 과열도 변화가 $q''$을 얼마나 크게 바꾸는지 확인하세요.</p>
+    <p class="lede lang-en">In the nucleate regime the heat flux scales with the cube of superheat ($q''\propto\Delta T_e^{3}$; the Rohsenow skeleton). Move the sliders for <strong>$\Delta T_e$</strong> and the proportionality constant $A$ to see how a small superheat change swings $q''$.</p>
+    <div class="calc lang-ko"
+      data-title="핵비등 열유속 $q'' = A\,\Delta T_e^{\,3}$"
+      data-desc="A = 핵비등 비례상수 [W/(m²·K³)]. 기본값 A≈18, ΔT_e=30°C → q''≈0.49 MW/m²(핵비등 상부). CHF≈1.26 MW/m²에 닿으려면 A≈47."
+      data-vars='[{"sym":"dT","label":"$\\Delta T_e$ · 초과온도","min":5,"max":30,"val":15,"step":1,"unit":"°C"},{"sym":"A","label":"$A$ · 비례상수","min":5,"max":50,"val":18,"step":1,"unit":""}]'
+      data-expr="A*dT**3"
+      data-out="$q''$" data-out-unit="$\text{W/m}^2$"
+      data-barmax="1500000"
+      data-note="ΔT_e를 2배(15→30°C)로 올리면 q''은 약 8배가 됩니다 — 핵비등의 가파른 세제곱 거동."></div>
+    <div class="calc lang-en"
+      data-title="Nucleate heat flux $q'' = A\,\Delta T_e^{\,3}$"
+      data-desc="A = nucleate proportionality constant [W/(m²·K³)]. Default A≈18, ΔT_e=30°C → q''≈0.49 MW/m² (upper nucleate). Reaching CHF≈1.26 MW/m² needs A≈47."
+      data-vars='[{"sym":"dT","label":"$\\Delta T_e$ · excess temp.","min":5,"max":30,"val":15,"step":1,"unit":"°C"},{"sym":"A","label":"$A$ · proportionality const","min":5,"max":50,"val":18,"step":1,"unit":""}]'
+      data-expr="A*dT**3"
+      data-out="$q''$" data-out-unit="$\text{W/m}^2$"
+      data-barmax="1500000"
+      data-note="Doubling ΔT_e (15→30°C) makes q'' about 8× — the steep cubic behavior of nucleate boiling."></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 비등 열유속 $q''\,[\text{MW/m}^2]$ 감: 단상 자연대류 $\approx 0.001$ · 핵비등 효율 영역 $\approx 0.1\!\sim\!1$ · 대기압 물 CHF $\approx 1.1\!\sim\!1.26$. 현재 기본값($\Delta T_e=15\,{}^{\circ}\text{C}$, $A=18$)은 $\approx 6\times10^{4}\,\text{W/m}^2$ — 활발한 핵비등 중간 영역이다. 같은 과열도라도 표면을 거칠게 하면 핵생성 site가 늘어 $q''$이 더 커진다. <span class="src">(출처: 비등 곡선 영역값 = Incropera Ch.10.3 대기압 물)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — feel for boiling flux $q''\,[\text{MW/m}^2]$: single-phase natural convection $\approx 0.001$ · efficient nucleate region $\approx 0.1\!\sim\!1$ · water CHF at 1 atm $\approx 1.1\!\sim\!1.26$. The default ($\Delta T_e=15\,{}^{\circ}\text{C}$, $A=18$) gives $\approx 6\times10^{4}\,\text{W/m}^2$ — mid nucleate boiling. At the same superheat, a rougher surface adds nucleation sites and raises $q''$. <span class="src">(Source: regime values = Incropera Ch.10.3, water at 1 atm)</span></div>
+  </section>
+
+  <!-- ══════════ 1-1 / 점검 ══════════ -->
+  <section class="screen" data-ch="1-1" data-chtitle="비등 곡선과 영역" data-stage="점검">
+    <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+    <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · instructor view</span></div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q1.</span>풀 비등 곡선의 <strong>가로축</strong>은 무엇입니까?</p>
+      <div class="opts">
+        <button class="opt">① 표면온도 $T_s$ 자체</button>
+        <button class="opt" data-correct="1">② 초과온도 $\Delta T_e = T_s - T_{sat}$</button>
+        <button class="opt">③ 열유속 $q''$</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 비등 곡선의 가로축은 포화온도를 기준으로 한 과열도, 곧 초과온도 $\Delta T_e=T_s-T_{sat}$이다. <span class="dim">오답 ①·③: ①$T_s$ 자체가 아니라 포화온도와의 차이가 비등 거동을 결정하고, ③$q''$은 세로축이다.</span> <span class="agg">학급 n=38 · ① 7 · ② 27 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q1.</span>What is the <strong>horizontal axis</strong> of the pool boiling curve?</p>
+      <div class="opts">
+        <button class="opt">① surface temperature $T_s$ itself</button>
+        <button class="opt" data-correct="1">② excess temperature $\Delta T_e = T_s - T_{sat}$</button>
+        <button class="opt">③ heat flux $q''$</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — the horizontal axis is the superheat measured from saturation, i.e. the excess temperature $\Delta T_e=T_s-T_{sat}$. <span class="dim">Wrong ①·③: ① it is the difference from saturation, not $T_s$ alone, that sets boiling behavior; ③ $q''$ is the vertical axis.</span> <span class="agg">class n=38 · ① 7 · ② 27 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q2.</span>열유속을 제어하며 CHF를 넘으면 무슨 일이 생깁니까?</p>
+      <div class="opts">
+        <button class="opt">① 천이비등을 거쳐 천천히 막비등으로 간다</button>
+        <button class="opt" data-correct="1">② 천이 영역을 건너뛰고 막비등으로 급점프해 $T_s$가 폭주한다(burnout)</button>
+        <button class="opt">③ 열유속이 더 커지며 비등이 안정화된다</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 천이비등은 음의 기울기라 열유속 제어로는 불안정해 곡선이 점 C(CHF)에서 막비등으로 수직 점프하고 표면온도가 수백 ${}^{\circ}\text{C}$ 치솟는다(Nukiyama burnout). <span class="dim">오답 ①·③: ①천이는 건너뛰어지고, ③CHF는 핵비등의 천장이라 그 이상에서 더 안정되지 않는다.</span> <span class="agg">학급 n=38 · ① 12 · ② 22 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q2.</span>Under heat-flux control, what happens when CHF is exceeded?</p>
+      <div class="opts">
+        <button class="opt">① it moves slowly to film boiling through the transition regime</button>
+        <button class="opt" data-correct="1">② it skips the transition regime, jumps to film boiling, and $T_s$ runs away (burnout)</button>
+        <button class="opt">③ the flux keeps rising and boiling stabilizes</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — transition boiling has a negative slope, so under flux control it is unstable; the curve jumps vertically from point C (CHF) to film boiling and the surface temperature spikes by hundreds of ${}^{\circ}\text{C}$ (Nukiyama burnout). <span class="dim">Wrong ①·③: ① the transition is skipped; ③ CHF is the nucleate ceiling, so boiling does not stabilize above it.</span> <span class="agg">class n=38 · ① 12 · ② 22 · ③ 4</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-1 / 연습 ══════════ -->
+  <section class="screen" data-ch="1-1" data-chtitle="비등 곡선과 영역" data-stage="연습">
+    <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+    <div class="panel-head lang-en"><span class="tag">Practice</span><span class="panel-title">Engineering calc · auto-graded</span></div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 1 · 기본 · 초과온도 계산</div>
+      <p class="prob-statement">대기압($T_{sat}=100\,{}^{\circ}\text{C}$) 물에 잠긴 가열면의 표면온도가 $T_s=115\,{}^{\circ}\text{C}$이다. <strong>초과온도 $\Delta T_e$</strong>를 구하고, 어느 영역인지 판별하시오.</p>
+      <div class="given"><span class="chip">$T_s=115\,{}^{\circ}\text{C}$</span><span class="chip">$T_{sat}=100\,{}^{\circ}\text{C}$</span></div>
+      <div class="find"><b>구할 것:</b> $\Delta T_e\ [{}^{\circ}\text{C}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="15" data-tol="0.02"/><span class="ans-unit">${}^{\circ}\text{C}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 정의 대입</div>$$ \Delta T_e = T_s - T_{sat} = 115 - 100 = 15\ {}^{\circ}\text{C} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 영역 판별</div>$$ 5 < 15 < 30 \ \Rightarrow\ \text{핵비등 영역} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \Delta T_e = 15\ {}^{\circ}\text{C}\ (\text{핵비등}) $$</div><b>정답:</b> 적은 과열도로 큰 $q''$을 얻는 가장 효율적 영역.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 1 · Basic · excess temperature</div>
+      <p class="prob-statement">A heated surface immersed in water at 1 atm ($T_{sat}=100\,{}^{\circ}\text{C}$) has surface temperature $T_s=115\,{}^{\circ}\text{C}$. Find the <strong>excess temperature $\Delta T_e$</strong> and identify the regime.</p>
+      <div class="given"><span class="chip">$T_s=115\,{}^{\circ}\text{C}$</span><span class="chip">$T_{sat}=100\,{}^{\circ}\text{C}$</span></div>
+      <div class="find"><b>Find:</b> $\Delta T_e\ [{}^{\circ}\text{C}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="15" data-tol="0.02"/><span class="ans-unit">${}^{\circ}\text{C}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · apply definition</div>$$ \Delta T_e = T_s - T_{sat} = 115 - 100 = 15\ {}^{\circ}\text{C} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · classify regime</div>$$ 5 < 15 < 30 \ \Rightarrow\ \text{nucleate boiling} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \Delta T_e = 15\ {}^{\circ}\text{C}\ (\text{nucleate}) $$</div><b>Answer:</b> the most efficient regime — large $q''$ from small superheat.</div>
+      </div>
+    </div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 2 · 응용 · 핵비등 $\Delta T_e^3$ 비례</div>
+      <p class="prob-statement">핵비등에서 $q''\propto\Delta T_e^{3}$이다. $\Delta T_e=10\,{}^{\circ}\text{C}$일 때 $q''=150\ \text{kW/m}^2$이라면, $\Delta T_e=20\,{}^{\circ}\text{C}$일 때 <strong>$q''$</strong>은 몇 $\text{kW/m}^2$인가?</p>
+      <div class="given"><span class="chip">$q''_1=150\ \text{kW/m}^2$</span><span class="chip">$\Delta T_{e,1}=10\,{}^{\circ}\text{C}$</span><span class="chip">$\Delta T_{e,2}=20\,{}^{\circ}\text{C}$</span></div>
+      <div class="find"><b>구할 것:</b> $q''_2\ [\text{kW/m}^2]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="1200" data-tol="0.02"/><span class="ans-unit">$\text{kW/m}^2$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 비례식</div>$$ \frac{q''_2}{q''_1}=\left(\frac{\Delta T_{e,2}}{\Delta T_{e,1}}\right)^3=\left(\frac{20}{10}\right)^3=8 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 대입</div>$$ q''_2 = 8\times 150 = 1{,}200\ \text{kW/m}^2 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ q''_2 = 1{,}200\ \text{kW/m}^2 $$</div><b>정답:</b> 과열도 2배 → 열유속 약 8배(세제곱 거동), 곧 CHF($\approx 1{,}260\ \text{kW/m}^2$) 근처.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 2 · Applied · nucleate $\Delta T_e^3$ scaling</div>
+      <p class="prob-statement">In nucleate boiling $q''\propto\Delta T_e^{3}$. If $q''=150\ \text{kW/m}^2$ at $\Delta T_e=10\,{}^{\circ}\text{C}$, what is <strong>$q''$</strong> at $\Delta T_e=20\,{}^{\circ}\text{C}$, in $\text{kW/m}^2$?</p>
+      <div class="given"><span class="chip">$q''_1=150\ \text{kW/m}^2$</span><span class="chip">$\Delta T_{e,1}=10\,{}^{\circ}\text{C}$</span><span class="chip">$\Delta T_{e,2}=20\,{}^{\circ}\text{C}$</span></div>
+      <div class="find"><b>Find:</b> $q''_2\ [\text{kW/m}^2]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="1200" data-tol="0.02"/><span class="ans-unit">$\text{kW/m}^2$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · ratio</div>$$ \frac{q''_2}{q''_1}=\left(\frac{\Delta T_{e,2}}{\Delta T_{e,1}}\right)^3=\left(\frac{20}{10}\right)^3=8 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · substitute</div>$$ q''_2 = 8\times 150 = 1{,}200\ \text{kW/m}^2 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ q''_2 = 1{,}200\ \text{kW/m}^2 $$</div><b>Answer:</b> double the superheat → about 8× the flux (cubic behavior), i.e. near CHF ($\approx 1{,}260\ \text{kW/m}^2$).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-1 / 정리 ══════════ -->
+  <section class="screen" data-ch="1-1" data-chtitle="비등 곡선과 영역" data-stage="정리">
+    <div class="eyebrow lang-ko">1-1 · 정리 · Summary</div>
+    <div class="eyebrow lang-en">1-1 · Summary</div>
+    <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 시험 포인트</h1>
+    <h1 class="stage-h lang-en">Key Points · Common Mistakes · Exam Focus</h1>
+    <div class="sumgrid lang-ko">
+      <div class="sumcard key"><h4>핵심 정리</h4><ul>
+        <li>비등 곡선 가로축 = <strong>초과온도 $\Delta T_e=T_s-T_{sat}$</strong>, $q''=h\,\Delta T_e$.</li>
+        <li>네 영역: 자유대류($<5$) · 핵비등($5\!\sim\!30$) · 천이($30\!\sim\!120$) · 막비등($>120\,{}^{\circ}\text{C}$).</li>
+        <li>정점 = <strong>CHF(점 C, $\approx 1.1\!\sim\!1.26\,\text{MW/m}^2$)</strong>, 막비등 최저 = <strong>Leidenfrost(점 D)</strong>.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+        <li>가로축을 $T_s$로 착각 → 반드시 <strong>$\Delta T_e$</strong>.</li>
+        <li>천이비등 기울기를 양수로 오해 → <strong>음의 기울기</strong>.</li>
+        <li>CHF 초과 = 비등 강화로 오해 → 실제는 <strong>burnout</strong>.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>시험 포인트</h4><ul>
+        <li>$\Delta T_e$ 값 → 어느 영역인지 분류 문제 빈출.</li>
+        <li>핵비등 $q''\propto\Delta T_e^{3}$ 비례 계산.</li>
+        <li>CHF·Leidenfrost 점의 물리적 의미와 burnout 메커니즘(Nukiyama).</li>
+      </ul></div>
+    </div>
+    <div class="sumgrid lang-en">
+      <div class="sumcard key"><h4>Key points</h4><ul>
+        <li>Horizontal axis = <strong>excess temperature $\Delta T_e=T_s-T_{sat}$</strong>, with $q''=h\,\Delta T_e$.</li>
+        <li>Four regimes: free convection($<5$) · nucleate($5\!\sim\!30$) · transition($30\!\sim\!120$) · film($>120\,{}^{\circ}\text{C}$).</li>
+        <li>Peak = <strong>CHF (point C, $\approx 1.1\!\sim\!1.26\,\text{MW/m}^2$)</strong>; film minimum = <strong>Leidenfrost (point D)</strong>.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+        <li>Mistaking the axis for $T_s$ → it must be <strong>$\Delta T_e$</strong>.</li>
+        <li>Assuming a positive transition slope → it is a <strong>negative slope</strong>.</li>
+        <li>Reading "past CHF" as stronger boiling → it is actually <strong>burnout</strong>.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>Exam focus</h4><ul>
+        <li>Given $\Delta T_e$ → classify the regime (frequent).</li>
+        <li>Nucleate $q''\propto\Delta T_e^{3}$ ratio calculations.</li>
+        <li>Physical meaning of CHF & Leidenfrost points and the burnout mechanism (Nukiyama).</li>
+      </ul></div>
+    </div>
+  </section>
+
+<!-- ══════════ 1-2 / 개념 ══════════ -->
+<section class="screen" data-ch="1-2" data-chtitle="계면 열역학" data-stage="개념">
+  <div class="eyebrow lang-ko">1-2 · 개념 · 계면 열역학</div>
+  <div class="eyebrow lang-en">1-2 · Concept · Interfacial Thermodynamics</div>
+  <h1 class="stage-h lang-ko">기포 배아의 계면 열역학 — 곡률이 만드는 압력 도약</h1>
+  <h1 class="stage-h lang-en">Interfacial Thermodynamics of a Vapor Embryo — the Curvature Pressure Jump</h1>
+  <div class="analogy lang-ko"><span class="ic">🫧</span><div class="tx"><b>직관</b> — 갓 태어난 미세 기포(배아)는 반지름이 작을수록 표면장력에 세게 짓눌린다. 작은 풍선일수록 안이 더 빵빵해야 하듯, 반지름 $r$이 작을수록 기포 안 증기는 주위 액체보다 훨씬 <b>높은 압력</b>이어야 버틴다. 그래서 <b>아주 작은 배아일수록 더 큰 과열도</b>가 필요하다. <span class="src">(출처: Carey, <i>Liquid–Vapor Phase-Change Phenomena</i> 2e, Ch.5 / Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10)</span></div></div>
+  <div class="analogy lang-en"><span class="ic">🫧</span><div class="tx"><b>Intuition</b> — a newborn micro-bubble (embryo) is squeezed harder by surface tension the smaller its radius. Just as a smaller balloon must be tauter inside, a smaller radius $r$ forces the vapor inside to sit at a much <b>higher pressure</b> than the surrounding liquid. Hence <b>the tinier the embryo, the larger the superheat</b> it demands. <span class="src">(Source: Carey, <i>Liquid–Vapor Phase-Change Phenomena</i> 2e, Ch.5 / Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10)</span></div></div>
+  <div class="two lang-ko">
+    <div class="col2">
+      <p class="lede">가열면 위에서 기포가 태어나려면 곡면 계면을 가로지르는 <strong>압력 도약</strong>을 이겨야 합니다. 역학적 평형은 <strong>Young–Laplace</strong> 식이, 상평형은 <strong>Clausius–Clapeyron</strong> 식이 지배합니다. 둘을 결합하면 반지름 $r$의 기포를 지탱하는 데 필요한 <strong>액체 과열도 $\Delta T_{sup}$</strong>가 나옵니다.</p>
+      <div class="keqbox">
+        <div class="keq-label">계면 압력 도약 (구형 배아)</div>
+        <div class="keqrow"><span class="keqcap">Young–Laplace</span><span class="keqline">$\Delta p = p_v - p_l = \dfrac{2\sigma}{r}$</span></div>
+        <div class="keqrow"><span class="keqcap">Clausius–Clapeyron</span><span class="keqline">$\dfrac{dp}{dT} = \dfrac{h_{fg}}{T\,v_{fg}} \approx \dfrac{h_{fg}\rho_v}{T}$</span></div>
+        <div class="keqrow"><span class="keqcap">요구 과열도</span><span class="keqline">$\Delta T_{sup} \approx \dfrac{2\sigma\,T_{sat}}{\rho_v h_{fg}\, r}$</span></div>
+        <div class="keqnote">$r$이 작을수록 $\Delta p$가 커지고, 따라서 필요한 과열도도 커집니다 — 미세 홈(cavity)이 기포 생성을 돕는 이유입니다. <span class="src">[Carey 2e, Ch.5; Incropera 6e, Ch.10.2]</span></div>
+      </div>
+    </div>
+    <div class="col2">
+      <div class="keq-label">핵심 용어</div>
+      <div class="terms">
+        <div class="term"><b>$\Delta p$</b> 압력 도약 $=p_v-p_l\ [\text{Pa}]$</div>
+        <div class="term"><b>$\sigma$</b> 표면장력 $[\text{N/m}]$</div>
+        <div class="term"><b>$r$</b> 기포 반지름 = 계면 곡률 반경 $[\text{m}]$</div>
+        <div class="term"><b>$h_{fg}$</b> 증발 잠열 $[\text{J/kg}]$</div>
+        <div class="term"><b>$v_{fg}$</b> $=v_v-v_l\approx 1/\rho_v$ 비체적 차</div>
+        <div class="term"><b>$Bo$</b> $=\dfrac{g(\rho_l-\rho_v)L^2}{\sigma}$ Bond수(중력/표면장력)</div>
+      </div>
+      <div class="callout key"><div class="ct">핵심</div>표면장력이 지탱하는 곡면 때문에 기포 안 증기는 국소 <strong>과포화</strong> 상태여야 합니다. 곧 주위 액체는 $T_{sat}$보다 $\Delta T_{sup}$만큼 <strong>과열(superheated)</strong>된 준안정 상태입니다.</div>
+    </div>
+  </div>
+  <div class="two lang-en">
+    <div class="col2">
+      <p class="lede">To be born on a heated surface, a bubble must overcome the <strong>pressure jump</strong> across its curved interface. Mechanical equilibrium is governed by <strong>Young–Laplace</strong>, phase equilibrium by <strong>Clausius–Clapeyron</strong>. Combining the two yields the <strong>liquid superheat $\Delta T_{sup}$</strong> required to sustain a bubble of radius $r$.</p>
+      <div class="keqbox">
+        <div class="keq-label">Interfacial pressure jump (spherical embryo)</div>
+        <div class="keqrow"><span class="keqcap">Young–Laplace</span><span class="keqline">$\Delta p = p_v - p_l = \dfrac{2\sigma}{r}$</span></div>
+        <div class="keqrow"><span class="keqcap">Clausius–Clapeyron</span><span class="keqline">$\dfrac{dp}{dT} = \dfrac{h_{fg}}{T\,v_{fg}} \approx \dfrac{h_{fg}\rho_v}{T}$</span></div>
+        <div class="keqrow"><span class="keqcap">Required superheat</span><span class="keqline">$\Delta T_{sup} \approx \dfrac{2\sigma\,T_{sat}}{\rho_v h_{fg}\, r}$</span></div>
+        <div class="keqnote">Smaller $r$ means larger $\Delta p$, and therefore larger required superheat — which is why micro-cavities aid bubble formation. <span class="src">[Carey 2e, Ch.5; Incropera 6e, Ch.10.2]</span></div>
+      </div>
+    </div>
+    <div class="col2">
+      <div class="keq-label">Key terms</div>
+      <div class="terms">
+        <div class="term"><b>$\Delta p$</b> pressure jump $=p_v-p_l\ [\text{Pa}]$</div>
+        <div class="term"><b>$\sigma$</b> surface tension $[\text{N/m}]$</div>
+        <div class="term"><b>$r$</b> bubble radius = interface curvature radius $[\text{m}]$</div>
+        <div class="term"><b>$h_{fg}$</b> latent heat of vaporization $[\text{J/kg}]$</div>
+        <div class="term"><b>$v_{fg}$</b> $=v_v-v_l\approx 1/\rho_v$ specific-volume difference</div>
+        <div class="term"><b>$Bo$</b> $=\dfrac{g(\rho_l-\rho_v)L^2}{\sigma}$ Bond number (gravity/tension)</div>
+      </div>
+      <div class="callout key"><div class="ct">Key</div>Because a tension-supported curved interface encloses it, the vapor must be locally <strong>supersaturated</strong>. That is, the surrounding liquid is <strong>superheated</strong> above $T_{sat}$ by $\Delta T_{sup}$ — a metastable state.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 1-2 / 유도 ══════════ -->
+<section class="screen" data-ch="1-2" data-chtitle="계면 열역학" data-stage="유도">
+  <div class="eyebrow lang-ko">1-2 · 수식 유도 · Derivation</div>
+  <div class="eyebrow lang-en">1-2 · Derivation</div>
+  <h1 class="stage-h lang-ko">요구 과열도 유도 — 두 평형의 결합</h1>
+  <h1 class="stage-h lang-en">Deriving the Required Superheat — Coupling Two Equilibria</h1>
+  <p class="assume lang-ko"><b>공통 관점:</b> 액체 속 반지름 $r$의 구형 증기 배아를 생각합니다. 계면에는 <b>역학적 평형</b>(표면장력 대 압력차)과 <b>상평형</b>(증기·액체 화학포텐셜 일치)이 동시에 성립합니다. 두 조건을 이으면 과열도가 나옵니다.</p>
+  <p class="assume lang-en"><b>Common view:</b> consider a spherical vapor embryo of radius $r$ in a liquid. At its interface, <b>mechanical equilibrium</b> (tension vs. pressure difference) and <b>phase equilibrium</b> (equal vapor/liquid chemical potential) hold simultaneously. Linking the two gives the superheat.</p>
+  <div class="deriv lang-ko">
+    <div class="dcard"><h4>① Young–Laplace</h4><div class="sub">역학적 평형</div><div class="ana">🫧 곡면이 클수록 덜 짓눌린다</div><div class="eq">$\Delta p = \dfrac{2\sigma}{r}$</div><p>구형 계면의 힘 균형에서, 표면장력이 만드는 안쪽 초과압력이 곧 <strong>압력 도약</strong> $p_v-p_l$입니다.</p></div>
+    <div class="dcard"><h4>② Clausius–Clapeyron</h4><div class="sub">상평형 기울기</div><div class="ana">📈 포화선의 기울기 = 잠열</div><div class="eq">$\dfrac{dp}{dT}\approx\dfrac{h_{fg}\rho_v}{T}$</div><p>$v_{fg}=v_v-v_l\approx 1/\rho_v$로 근사(증기 비체적 ≫ 액체). 포화압을 $\Delta p$만큼 올리는 데 필요한 온도 상승을 줍니다.</p></div>
+    <div class="dcard"><h4>③ 결합</h4><div class="sub">$\Delta T_{sup}$ 도출</div><div class="ana">🎯 작은 기포 = 큰 과열도</div><div class="eq">$\Delta T_{sup}=\dfrac{\Delta p}{dp/dT}=\dfrac{2\sigma T_{sat}}{\rho_v h_{fg} r}$</div><p>①의 $\Delta p$를 ②의 기울기로 나누면, 반지름 $r$의 배아를 지탱할 <strong>과열도</strong>가 됩니다($T\to T_{sat}$).</p></div>
+  </div>
+  <div class="deriv lang-en">
+    <div class="dcard"><h4>① Young–Laplace</h4><div class="sub">mechanical equilibrium</div><div class="ana">🫧 larger surface = less squeezed</div><div class="eq">$\Delta p = \dfrac{2\sigma}{r}$</div><p>From the force balance on a spherical interface, the inward overpressure set by surface tension is exactly the <strong>pressure jump</strong> $p_v-p_l$.</p></div>
+    <div class="dcard"><h4>② Clausius–Clapeyron</h4><div class="sub">phase-equilibrium slope</div><div class="ana">📈 saturation slope = latent heat</div><div class="eq">$\dfrac{dp}{dT}\approx\dfrac{h_{fg}\rho_v}{T}$</div><p>With $v_{fg}=v_v-v_l\approx 1/\rho_v$ (vapor specific volume ≫ liquid), this gives the temperature rise needed to raise saturation pressure by $\Delta p$.</p></div>
+    <div class="dcard"><h4>③ Combine</h4><div class="sub">obtain $\Delta T_{sup}$</div><div class="ana">🎯 small bubble = big superheat</div><div class="eq">$\Delta T_{sup}=\dfrac{\Delta p}{dp/dT}=\dfrac{2\sigma T_{sat}}{\rho_v h_{fg} r}$</div><p>Dividing $\Delta p$ from ① by the slope from ② yields the <strong>superheat</strong> that sustains a radius-$r$ embryo (with $T\to T_{sat}$).</p></div>
+  </div>
+  <div class="callout warn lang-ko"><div class="ct">주의 · 매끈한 표면의 함정</div>표면이 매끈해 큰 미세 홈이 없으면 초기 배아 반지름 $r$이 극히 작아져 요구 과열도 $\Delta T_{sup}\propto 1/r$가 급증합니다. 이때 액체는 끓지 못한 채 $T_{sat}$를 크게 넘겨 <strong>돌비(bumping)</strong> 위험이 생깁니다.</div>
+  <div class="callout warn lang-en"><div class="ct">Caution · The smooth-surface trap</div>Without large micro-cavities, the initial embryo radius $r$ becomes vanishingly small, so the required superheat $\Delta T_{sup}\propto 1/r$ soars. The liquid then overshoots $T_{sat}$ without boiling, risking violent <strong>bumping</strong>.</div>
+</section>
+
+<!-- ══════════ 1-2 / 읽을거리 ══════════ -->
+<section class="screen" data-ch="1-2" data-chtitle="계면 열역학" data-stage="읽을거리">
+  <div class="eyebrow lang-ko">1-2 · 읽을거리 · Reading</div>
+  <div class="eyebrow lang-en">1-2 · Reading</div>
+  <h1 class="stage-h lang-ko">준안정 과열 액체와 매끈한 표면의 역설</h1>
+  <h1 class="stage-h lang-en">Metastable Superheated Liquid and the Smooth-Surface Paradox</h1>
+  <div class="two lang-ko">
+    <div class="col2 reading">
+      <p>순수한 액체를 아주 매끈하고 깨끗한 용기에서 천천히 가열하면, 끓는점 $T_{sat}$를 넘겨도 끓지 않는 <strong>과열(superheated)</strong> 상태가 됩니다. 새 기포를 만들 <strong>핵생성 자리</strong>가 없기 때문입니다. 반지름이 거의 0에 가까운 배아는 $\Delta T_{sup}\propto 1/r$ 때문에 감당 못 할 과열도를 요구합니다.</p>
+      <p class="pullquote">곡률이 클수록(=반지름이 작을수록) 계면은 더 큰 압력차를, 따라서 더 큰 과열도를 요구한다.</p>
+      <p>실제 가열면에는 미세한 <strong>홈(cavity)</strong>과 스크래치가 있어, 그 안에 갇힌 기체가 유한한 반지름의 배아를 미리 제공합니다. 덕분에 물은 겨우 몇 ${}^{\circ}\text{C}$의 과열도로도 끓습니다. 반대로 지나치게 매끈한 표면은 준안정 과열을 키워 <strong>돌비</strong>나 폭발적 비등을 유발할 수 있습니다.</p>
+    </div>
+    <div class="col2">
+      <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>곡면 계면은 항상 오목한 쪽(증기)이 더 <strong>높은 압력</strong>이다.</li><li>필요한 과열도 $\Delta T_{sup}\propto \sigma/(\rho_v h_{fg} r)$.</li><li>미세 홈 = 핵생성 자리 → 과열도를 낮춘다.</li></ul></div>
+      <p class="readmeta">참고: Carey, <em>Liquid–Vapor Phase-Change Phenomena</em> 2e, Ch.5.1–5.3 / Incropera et al., Ch.10.2</p>
+    </div>
+  </div>
+  <div class="two lang-en">
+    <div class="col2 reading">
+      <p>Heat a pure liquid slowly in a very smooth, clean vessel and it can pass its boiling point $T_{sat}$ without boiling — a <strong>superheated</strong> state — because there are no <strong>nucleation sites</strong> to seed new bubbles. An embryo of near-zero radius demands an unbearable superheat, since $\Delta T_{sup}\propto 1/r$.</p>
+      <p class="pullquote">Greater curvature (smaller radius) demands a larger pressure jump, and therefore a larger superheat.</p>
+      <p>Real heated surfaces carry micro <strong>cavities</strong> and scratches whose trapped gas pre-seeds finite-radius embryos. That is why water boils with just a few ${}^{\circ}\text{C}$ of superheat. Conversely, an overly smooth surface builds up metastable superheat and can trigger <strong>bumping</strong> or explosive boiling.</p>
+    </div>
+    <div class="col2">
+      <div class="callout key"><div class="ct">Must-know</div><ul><li>Across a curved interface the concave side (vapor) is always at <strong>higher pressure</strong>.</li><li>Required superheat $\Delta T_{sup}\propto \sigma/(\rho_v h_{fg} r)$.</li><li>Micro-cavity = nucleation site → lowers the superheat.</li></ul></div>
+      <p class="readmeta">Refs: Carey, <em>Liquid–Vapor Phase-Change Phenomena</em> 2e, Ch.5.1–5.3 / Incropera et al., Ch.10.2</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 1-2 / 그림·표 ══════════ -->
+<section class="screen" data-ch="1-2" data-chtitle="계면 열역학" data-stage="그림·표">
+  <div class="eyebrow lang-ko">1-2 · 그림 · 그래프 · 표</div>
+  <div class="eyebrow lang-en">1-2 · Figure · Graph · Table</div>
+  <h1 class="stage-h lang-ko">한눈에 — 계면 압력 도약과 포화선</h1>
+  <h1 class="stage-h lang-en">At a Glance — Interfacial Pressure Jump and the Saturation Line</h1>
+  <div class="vizgrid lang-ko">
+    <div>
+      <div class="vcap">구형 배아의 압력 도약 $\Delta p = 2\sigma/r$</div>
+      <svg viewBox="0 0 480 285" width="100%" style="max-width:430px">
+        <rect x="46" y="24" width="388" height="214" rx="12" fill="#f4f4f5"/>
+        <text x="112" y="46" font-size="12.5" fill="#52525b" text-anchor="middle" font-weight="700">액체 pₗ (낮음)</text>
+        <circle cx="240" cy="128" r="64" fill="#fff3ec" stroke="#c2410c" stroke-width="2.75"/>
+        <text x="240" y="120" font-size="14" fill="#c2410c" text-anchor="middle" font-weight="700">증기</text>
+        <text x="240" y="140" font-size="12.5" fill="#c2410c" text-anchor="middle">pᵥ (높음)</text>
+        <line x1="240" y1="128" x2="302" y2="128" stroke="#18181b" stroke-width="1.6"/>
+        <polygon points="302,128 293,124 293,132" fill="#18181b"/>
+        <circle cx="240" cy="128" r="2.6" fill="#18181b"/>
+        <text x="274" y="120" font-size="12.5" fill="#18181b" text-anchor="middle" font-weight="700">r</text>
+        <line x1="285" y1="83" x2="299" y2="69" stroke="#c2410c" stroke-width="1.5"/>
+        <polygon points="299,69 289,71 293,79" fill="#c2410c"/>
+        <line x1="195" y1="83" x2="181" y2="69" stroke="#c2410c" stroke-width="1.5"/>
+        <polygon points="181,69 191,71 187,79" fill="#c2410c"/>
+        <line x1="285" y1="173" x2="299" y2="187" stroke="#c2410c" stroke-width="1.5"/>
+        <polygon points="299,187 289,185 293,177" fill="#c2410c"/>
+        <line x1="195" y1="173" x2="181" y2="187" stroke="#c2410c" stroke-width="1.5"/>
+        <polygon points="181,187 191,185 187,177" fill="#c2410c"/>
+        <text x="240" y="228" font-size="13.5" fill="#18181b" text-anchor="middle" font-weight="700">Δp = pᵥ − pₗ = 2σ / r</text>
+      </svg>
+    </div>
+    <div>
+      <div class="vcap">포화선과 요구 과열도 (Clausius–Clapeyron)</div>
+      <svg viewBox="0 0 480 285" width="100%" style="max-width:430px">
+        <line x1="52" y1="248" x2="452" y2="248" stroke="#71717a" stroke-width="1.5"/>
+        <polygon points="452,248 442,244 442,252" fill="#71717a"/>
+        <line x1="52" y1="248" x2="52" y2="24" stroke="#71717a" stroke-width="1.5"/>
+        <polygon points="52,24 48,34 56,34" fill="#71717a"/>
+        <text x="252" y="270" font-size="11.5" fill="#52525b" text-anchor="middle">온도 T</text>
+        <text x="18" y="140" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 18 140)">압력 p</text>
+        <path d="M70 235 Q180 220 250 190 Q300 168 315 120 Q380 42 440 38" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+        <text x="150" y="214" font-size="10.5" fill="#c2410c" font-weight="700">포화선 pₛₐₜ(T)</text>
+        <line x1="250" y1="190" x2="52" y2="190" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="315" y1="120" x2="52" y2="120" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="250" y1="190" x2="250" y2="248" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="315" y1="120" x2="315" y2="248" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="4 3"/>
+        <circle cx="250" cy="190" r="4.5" fill="#fff" stroke="#c2410c" stroke-width="2.5"/>
+        <circle cx="315" cy="120" r="4.5" fill="#c2410c"/>
+        <line x1="70" y1="190" x2="70" y2="120" stroke="#18181b" stroke-width="1.4"/>
+        <polygon points="70,120 66,130 74,130" fill="#18181b"/>
+        <polygon points="70,190 66,180 74,180" fill="#18181b"/>
+        <text x="88" y="158" font-size="11.5" fill="#18181b" font-weight="700">Δp</text>
+        <line x1="250" y1="236" x2="315" y2="236" stroke="#18181b" stroke-width="1.4"/>
+        <polygon points="250,236 260,232 260,240" fill="#18181b"/>
+        <polygon points="315,236 305,232 305,240" fill="#18181b"/>
+        <text x="282" y="230" font-size="11" fill="#18181b" text-anchor="middle" font-weight="700">ΔTₛᵤₚ</text>
+        <text x="46" y="194" font-size="10.5" fill="#52525b" text-anchor="end">pₛₐₜ</text>
+        <text x="46" y="123" font-size="10.5" fill="#52525b" text-anchor="end">pᵥ</text>
+        <text x="250" y="262" font-size="10.5" fill="#52525b" text-anchor="middle">Tₛₐₜ</text>
+        <text x="388" y="170" font-size="9.5" fill="#71717a" text-anchor="middle">기울기 dp/dT ≈ hfg·ρᵥ/T</text>
+      </svg>
+    </div>
+  </div>
+  <div class="vizgrid lang-en">
+    <div>
+      <div class="vcap">Pressure jump of a spherical embryo $\Delta p = 2\sigma/r$</div>
+      <svg viewBox="0 0 480 285" width="100%" style="max-width:430px">
+        <rect x="46" y="24" width="388" height="214" rx="12" fill="#f4f4f5"/>
+        <text x="118" y="46" font-size="12.5" fill="#52525b" text-anchor="middle" font-weight="700">Liquid pₗ (low)</text>
+        <circle cx="240" cy="128" r="64" fill="#fff3ec" stroke="#c2410c" stroke-width="2.75"/>
+        <text x="240" y="120" font-size="14" fill="#c2410c" text-anchor="middle" font-weight="700">Vapor</text>
+        <text x="240" y="140" font-size="12.5" fill="#c2410c" text-anchor="middle">pᵥ (high)</text>
+        <line x1="240" y1="128" x2="302" y2="128" stroke="#18181b" stroke-width="1.6"/>
+        <polygon points="302,128 293,124 293,132" fill="#18181b"/>
+        <circle cx="240" cy="128" r="2.6" fill="#18181b"/>
+        <text x="274" y="120" font-size="12.5" fill="#18181b" text-anchor="middle" font-weight="700">r</text>
+        <line x1="285" y1="83" x2="299" y2="69" stroke="#c2410c" stroke-width="1.5"/>
+        <polygon points="299,69 289,71 293,79" fill="#c2410c"/>
+        <line x1="195" y1="83" x2="181" y2="69" stroke="#c2410c" stroke-width="1.5"/>
+        <polygon points="181,69 191,71 187,79" fill="#c2410c"/>
+        <line x1="285" y1="173" x2="299" y2="187" stroke="#c2410c" stroke-width="1.5"/>
+        <polygon points="299,187 289,185 293,177" fill="#c2410c"/>
+        <line x1="195" y1="173" x2="181" y2="187" stroke="#c2410c" stroke-width="1.5"/>
+        <polygon points="181,187 191,185 187,177" fill="#c2410c"/>
+        <text x="240" y="228" font-size="13.5" fill="#18181b" text-anchor="middle" font-weight="700">Δp = pᵥ − pₗ = 2σ / r</text>
+      </svg>
+    </div>
+    <div>
+      <div class="vcap">Saturation line and required superheat (Clausius–Clapeyron)</div>
+      <svg viewBox="0 0 480 285" width="100%" style="max-width:430px">
+        <line x1="52" y1="248" x2="452" y2="248" stroke="#71717a" stroke-width="1.5"/>
+        <polygon points="452,248 442,244 442,252" fill="#71717a"/>
+        <line x1="52" y1="248" x2="52" y2="24" stroke="#71717a" stroke-width="1.5"/>
+        <polygon points="52,24 48,34 56,34" fill="#71717a"/>
+        <text x="252" y="270" font-size="11.5" fill="#52525b" text-anchor="middle">Temperature T</text>
+        <text x="18" y="140" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 18 140)">Pressure p</text>
+        <path d="M70 235 Q180 220 250 190 Q300 168 315 120 Q380 42 440 38" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+        <text x="152" y="214" font-size="10.5" fill="#c2410c" font-weight="700">Saturation pₛₐₜ(T)</text>
+        <line x1="250" y1="190" x2="52" y2="190" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="315" y1="120" x2="52" y2="120" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="250" y1="190" x2="250" y2="248" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="315" y1="120" x2="315" y2="248" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="4 3"/>
+        <circle cx="250" cy="190" r="4.5" fill="#fff" stroke="#c2410c" stroke-width="2.5"/>
+        <circle cx="315" cy="120" r="4.5" fill="#c2410c"/>
+        <line x1="70" y1="190" x2="70" y2="120" stroke="#18181b" stroke-width="1.4"/>
+        <polygon points="70,120 66,130 74,130" fill="#18181b"/>
+        <polygon points="70,190 66,180 74,180" fill="#18181b"/>
+        <text x="88" y="158" font-size="11.5" fill="#18181b" font-weight="700">Δp</text>
+        <line x1="250" y1="236" x2="315" y2="236" stroke="#18181b" stroke-width="1.4"/>
+        <polygon points="250,236 260,232 260,240" fill="#18181b"/>
+        <polygon points="315,236 305,232 305,240" fill="#18181b"/>
+        <text x="282" y="230" font-size="11" fill="#18181b" text-anchor="middle" font-weight="700">ΔTₛᵤₚ</text>
+        <text x="46" y="194" font-size="10.5" fill="#52525b" text-anchor="end">pₛₐₜ</text>
+        <text x="46" y="123" font-size="10.5" fill="#52525b" text-anchor="end">pᵥ</text>
+        <text x="250" y="262" font-size="10.5" fill="#52525b" text-anchor="middle">Tₛₐₜ</text>
+        <text x="388" y="170" font-size="9.5" fill="#71717a" text-anchor="middle">slope dp/dT ≈ hfg·ρᵥ/T</text>
+      </svg>
+    </div>
+  </div>
+  <div class="vcap lang-ko" style="margin-top:16px">물성 비교 (포화, 1 atm)</div>
+  <div class="vcap lang-en" style="margin-top:16px">Property comparison (saturation, 1 atm)</div>
+  <table class="ktab lang-ko">
+    <thead><tr><th>물성</th><th>물 (100 °C)</th><th style="text-align:right">FC-72 (56 °C)</th></tr></thead>
+    <tbody>
+      <tr><td>표면장력 $\sigma\ [\text{N/m}]$</td><td class="k">0.0589</td><td class="k">0.0084</td></tr>
+      <tr><td>증발잠열 $h_{fg}\ [\text{kJ/kg}]$</td><td class="k">2257</td><td class="k">88</td></tr>
+      <tr><td>증기밀도 $\rho_v\ [\text{kg/m}^3]$</td><td class="k">0.596</td><td class="k">13.4</td></tr>
+      <tr><td>액체밀도 $\rho_l\ [\text{kg/m}^3]$</td><td class="k">958</td><td class="k">1621</td></tr>
+      <tr><td>포화온도 $T_{sat}\ [{}^{\circ}\text{C}]$</td><td class="k">100</td><td class="k">56</td></tr>
+    </tbody>
+  </table>
+  <table class="ktab lang-en">
+    <thead><tr><th>Property</th><th>Water (100 °C)</th><th style="text-align:right">FC-72 (56 °C)</th></tr></thead>
+    <tbody>
+      <tr><td>Surface tension $\sigma\ [\text{N/m}]$</td><td class="k">0.0589</td><td class="k">0.0084</td></tr>
+      <tr><td>Latent heat $h_{fg}\ [\text{kJ/kg}]$</td><td class="k">2257</td><td class="k">88</td></tr>
+      <tr><td>Vapor density $\rho_v\ [\text{kg/m}^3]$</td><td class="k">0.596</td><td class="k">13.4</td></tr>
+      <tr><td>Liquid density $\rho_l\ [\text{kg/m}^3]$</td><td class="k">958</td><td class="k">1621</td></tr>
+      <tr><td>Saturation temp $T_{sat}\ [{}^{\circ}\text{C}]$</td><td class="k">100</td><td class="k">56</td></tr>
+    </tbody>
+  </table>
+  <div class="keqnote lang-ko">물 = Incropera 6e 부록 A(포화수); FC-72 = 3M Fluorinert 제품 데이터 / Mudawar (2001). 유전체 냉매(FC-72)는 $\sigma$와 $h_{fg}$가 작아 침수 냉각처럼 낮은 과열도로도 비등이 시작됩니다.</div>
+  <div class="keqnote lang-en">Water = Incropera 6e App. A (saturated water); FC-72 = 3M Fluorinert product data / Mudawar (2001). A dielectric coolant (FC-72) has small $\sigma$ and $h_{fg}$, so boiling begins at low superheat — ideal for immersion cooling.</div>
+</section>
+
+<!-- ══════════ 1-2 / 실습 ══════════ -->
+<section class="screen" data-ch="1-2" data-chtitle="계면 열역학" data-stage="실습">
+  <div class="eyebrow lang-ko">1-2 · 실습 · Interactive</div>
+  <div class="eyebrow lang-en">1-2 · Interactive</div>
+  <h1 class="stage-h lang-ko">곡률이 만드는 압력 도약 — 직접 조절해보기</h1>
+  <h1 class="stage-h lang-en">The Curvature Pressure Jump — Try It Yourself</h1>
+  <p class="lede lang-ko">Young–Laplace 식 $\Delta p=2\sigma/r$에서 기포 반지름 $r$을 줄이면 압력 도약이 얼마나 급증하는지 확인하세요. 반지름은 $\mu\text{m}$ 단위로 조절합니다(물 기본값 $\sigma=0.0589\,\text{N/m}$).</p>
+  <p class="lede lang-en">In Young–Laplace $\Delta p=2\sigma/r$, watch how sharply the pressure jump rises as the bubble radius $r$ shrinks. Adjust $r$ in $\mu\text{m}$ (water default $\sigma=0.0589\,\text{N/m}$).</p>
+  <div class="calc lang-ko"
+    data-title="계면 압력 도약 $\Delta p = 2\sigma / r$"
+    data-desc="σ = 표면장력 [N/m], r = 기포 반지름 [µm]. 물(1 atm) σ≈0.0589. r이 작을수록 Δp 급증."
+    data-vars='[{"sym":"sigma","label":"$\\sigma$ · 표면장력","min":0.005,"max":0.06,"val":0.0589,"step":0.001,"unit":"N/m"},{"sym":"r","label":"$r$ · 기포 반지름","min":1,"max":100,"val":10,"step":1,"unit":"µm"}]'
+    data-expr="2*sigma/(r*1e-6)"
+    data-out="$\Delta p$" data-out-unit="$\text{Pa}$"
+    data-barmax="120000"
+    data-note="r을 절반(10→5 µm)으로 줄이면 Δp는 2배가 됩니다 — 배아가 작을수록 계면 압력이 폭증(Δp ∝ 1/r)."></div>
+  <div class="calc lang-en"
+    data-title="Interfacial pressure jump $\Delta p = 2\sigma / r$"
+    data-desc="σ = surface tension [N/m], r = bubble radius [µm]. Water (1 atm) σ≈0.0589. Smaller r ⇒ larger Δp."
+    data-vars='[{"sym":"sigma","label":"$\\sigma$ · surface tension","min":0.005,"max":0.06,"val":0.0589,"step":0.001,"unit":"N/m"},{"sym":"r","label":"$r$ · bubble radius","min":1,"max":100,"val":10,"step":1,"unit":"µm"}]'
+    data-expr="2*sigma/(r*1e-6)"
+    data-out="$\Delta p$" data-out-unit="$\text{Pa}$"
+    data-barmax="120000"
+    data-note="Halving r (10→5 µm) doubles Δp — smaller embryos have surging interfacial pressure (Δp ∝ 1/r)."></div>
+  <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 계면 압력 도약 감(물, $\sigma=0.0589$): $r=100\,\mu\text{m}\to\Delta p\approx1.2\,\text{kPa}$ · $r=10\,\mu\text{m}\to\approx11.8\,\text{kPa}$ · $r=1\,\mu\text{m}\to\approx118\,\text{kPa}$(≈1.16 atm). 기본값($r=10\,\mu\text{m}$)은 $\approx1.18\times10^{4}\,\text{Pa}$. 대기압(≈101 kPa)과 견주면, 반지름 $1\,\mu\text{m}$ 배아를 지탱하려면 대기압만 한 과압이 필요함을 알 수 있다. <span class="src">(출처: Young–Laplace 식 직접 계산, $\sigma$ = Incropera 부록 A)</span></div>
+  <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — interfacial pressure jump (water, $\sigma=0.0589$): $r=100\,\mu\text{m}\to\Delta p\approx1.2\,\text{kPa}$ · $r=10\,\mu\text{m}\to\approx11.8\,\text{kPa}$ · $r=1\,\mu\text{m}\to\approx118\,\text{kPa}$ (≈1.16 atm). Default ($r=10\,\mu\text{m}$) $\approx1.18\times10^{4}\,\text{Pa}$. Against atmospheric (≈101 kPa), sustaining a $1\,\mu\text{m}$ embryo needs roughly one atmosphere of overpressure. <span class="src">(Source: direct Young–Laplace evaluation, $\sigma$ = Incropera App. A)</span></div>
+</section>
+
+<!-- ══════════ 1-2 / 점검 ══════════ -->
+<section class="screen" data-ch="1-2" data-chtitle="계면 열역학" data-stage="점검">
+  <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+  <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · instructor view</span></div>
+  <div class="cq lang-ko">
+    <p class="qtext"><span class="qn">Q1.</span>기포 반지름 $r$이 작아질수록(=더 작은 배아) $\Delta p$와 요구 과열도는 어떻게 되는가?</p>
+    <div class="opts">
+      <button class="opt">① 둘 다 감소한다</button>
+      <button class="opt" data-correct="1">② $\Delta p$도 커지고 요구 과열도도 커진다</button>
+      <button class="opt">③ $\Delta p$는 커지지만 과열도는 변하지 않는다</button>
+    </div>
+    <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+    <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $\Delta p=2\sigma/r$과 $\Delta T_{sup}=2\sigma T_{sat}/(\rho_v h_{fg} r)$는 모두 $1/r$에 비례하므로, $r$이 작아지면 함께 커진다. <span class="dim">오답 ①·③: 반비례라 감소하지 않으며, 과열도도 압력 도약과 같은 $1/r$ 의존성을 가진다.</span> <span class="agg">학급 n=41 · ① 6 · ② 30 · ③ 5</span></div>
+  </div>
+  <div class="cq lang-en">
+    <p class="qtext"><span class="qn">Q1.</span>As the bubble radius $r$ shrinks (a smaller embryo), what happens to $\Delta p$ and the required superheat?</p>
+    <div class="opts">
+      <button class="opt">① both decrease</button>
+      <button class="opt" data-correct="1">② $\Delta p$ increases and the required superheat increases</button>
+      <button class="opt">③ $\Delta p$ increases but the superheat is unchanged</button>
+    </div>
+    <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+    <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ②</b> — both $\Delta p=2\sigma/r$ and $\Delta T_{sup}=2\sigma T_{sat}/(\rho_v h_{fg} r)$ scale as $1/r$, so both grow as $r$ shrinks. <span class="dim">Wrong ①·③: the relation is inverse (not decreasing), and the superheat carries the same $1/r$ dependence as the pressure jump.</span> <span class="agg">Class n=41 · ① 6 · ② 30 · ③ 5</span></div>
+  </div>
+  <div class="cq lang-ko">
+    <p class="qtext"><span class="qn">Q2.</span>매끈하고 깨끗한 표면에서 액체가 큰 과열도까지 끓지 않는 이유는?</p>
+    <div class="opts">
+      <button class="opt">① 잠열 $h_{fg}$가 커지기 때문</button>
+      <button class="opt" data-correct="1">② 핵생성 자리(미세 홈)가 없어 초기 배아 반지름 $r$이 극히 작아지고 $\Delta T_{sup}\propto 1/r$가 급증하기 때문</button>
+      <button class="opt">③ 표면장력 $\sigma$가 0이 되기 때문</button>
+    </div>
+    <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+    <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 매끈한 표면은 기체를 가둔 미세 홈이 없어 유한 반지름 배아를 못 만든다. $r\to0$이면 $\Delta T_{sup}\propto 1/r$가 폭증해 큰 과열도까지 준안정 상태로 버틴다. <span class="dim">오답 ①·③: $h_{fg}$·$\sigma$는 물성으로 표면 거칠기와 무관하며, $\sigma=0$은 물리적으로 성립하지 않는다.</span> <span class="agg">학급 n=41 · ① 8 · ② 28 · ③ 5</span></div>
+  </div>
+  <div class="cq lang-en">
+    <p class="qtext"><span class="qn">Q2.</span>Why does a liquid on a smooth, clean surface stay unboiled up to a large superheat?</p>
+    <div class="opts">
+      <button class="opt">① because the latent heat $h_{fg}$ increases</button>
+      <button class="opt" data-correct="1">② no nucleation sites (micro-cavities), so the initial embryo radius $r$ is tiny and $\Delta T_{sup}\propto 1/r$ soars</button>
+      <button class="opt">③ because the surface tension $\sigma$ drops to zero</button>
+    </div>
+    <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+    <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ②</b> — a smooth surface has no gas-trapping cavities to seed a finite-radius embryo. As $r\to0$, $\Delta T_{sup}\propto 1/r$ blows up, so the liquid holds a metastable state to a large superheat. <span class="dim">Wrong ①·③: $h_{fg}$ and $\sigma$ are properties independent of roughness, and $\sigma=0$ is unphysical.</span> <span class="agg">Class n=41 · ① 8 · ② 28 · ③ 5</span></div>
+  </div>
+</section>
+
+<!-- ══════════ 1-2 / 연습 ══════════ -->
+<section class="screen" data-ch="1-2" data-chtitle="계면 열역학" data-stage="연습">
+  <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+  <div class="panel-head lang-en"><span class="tag">Problems</span><span class="panel-title">Engineering calc · auto-graded</span></div>
+  <div class="prob lang-ko">
+    <div class="prob-num">연습 1 · 기본 · 압력 도약 계산</div>
+    <p class="prob-statement">대기압 물($\sigma=0.0589\,\text{N/m}$) 속 반지름 $r=10\,\mu\text{m}$인 구형 증기 기포가 있다. Young–Laplace <strong>압력 도약 $\Delta p$</strong>를 구하시오 ($\text{kPa}$).</p>
+    <div class="given"><span class="chip">$\sigma=0.0589\,\text{N/m}$</span><span class="chip">$r=10\,\mu\text{m}$</span></div>
+    <div class="find"><b>구할 것:</b> $\Delta p\ [\text{kPa}]$</div>
+    <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="11.78" data-tol="0.02"/><span class="ans-unit">$\text{kPa}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+    <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+    <div class="revealable solution">
+      <div class="dstep2"><div class="step-label">Step 1 · 식</div>$$ \Delta p = \frac{2\sigma}{r} $$</div>
+      <div class="dstep2"><div class="step-label">Step 2 · 대입 (µm → m)</div>$$ \Delta p = \frac{2(0.0589)}{10\times10^{-6}} = \frac{0.1178}{1\times10^{-5}} = 11{,}780\ \text{Pa} $$</div>
+      <div class="ans-final"><div class="ans-eq">$$ \Delta p \approx 11.8\ \text{kPa} $$</div><b>정답:</b> $10\,\mu\text{m}$ 기포도 계면 과압이 약 12 kPa — 대기압의 10% 수준.</div>
+    </div>
+  </div>
+  <div class="prob lang-en">
+    <div class="prob-num">Problem 1 · Basic · Pressure jump</div>
+    <p class="prob-statement">A spherical vapor bubble of radius $r=10\,\mu\text{m}$ sits in atmospheric water ($\sigma=0.0589\,\text{N/m}$). Find the Young–Laplace <strong>pressure jump $\Delta p$</strong> ($\text{kPa}$).</p>
+    <div class="given"><span class="chip">$\sigma=0.0589\,\text{N/m}$</span><span class="chip">$r=10\,\mu\text{m}$</span></div>
+    <div class="find"><b>Find:</b> $\Delta p\ [\text{kPa}]$</div>
+    <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="11.78" data-tol="0.02"/><span class="ans-unit">$\text{kPa}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+    <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+    <div class="revealable solution">
+      <div class="dstep2"><div class="step-label">Step 1 · relation</div>$$ \Delta p = \frac{2\sigma}{r} $$</div>
+      <div class="dstep2"><div class="step-label">Step 2 · substitute (µm → m)</div>$$ \Delta p = \frac{2(0.0589)}{10\times10^{-6}} = \frac{0.1178}{1\times10^{-5}} = 11{,}780\ \text{Pa} $$</div>
+      <div class="ans-final"><div class="ans-eq">$$ \Delta p \approx 11.8\ \text{kPa} $$</div><b>Answer:</b> even a $10\,\mu\text{m}$ bubble carries ≈12 kPa of interfacial overpressure — about 10% of an atmosphere.</div>
+    </div>
+  </div>
+  <div class="prob lang-ko">
+    <div class="prob-num">연습 2 · 응용 · 요구 과열도</div>
+    <p class="prob-statement">물(1 atm, $T_{sat}=373\,\text{K}$, $\rho_v=0.596\,\text{kg/m}^3$, $h_{fg}=2257\,\text{kJ/kg}$, $\sigma=0.0589\,\text{N/m}$)에서 반지름 $r=5\,\mu\text{m}$ 기포를 지탱하는 데 필요한 <strong>액체 과열도 $\Delta T_{sup}$</strong>를 구하시오.</p>
+    <div class="given"><span class="chip">$r=5\,\mu\text{m}$</span><span class="chip">$T_{sat}=373\,\text{K}$</span><span class="chip">$\rho_v=0.596$</span><span class="chip">$h_{fg}=2257\,\text{kJ/kg}$</span></div>
+    <div class="find"><b>구할 것:</b> $\Delta T_{sup}\ [\text{K}]$</div>
+    <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="6.53" data-tol="0.03"/><span class="ans-unit">$\text{K}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+    <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+    <div class="revealable solution">
+      <div class="dstep2"><div class="step-label">Step 1 · 결합식</div>$$ \Delta T_{sup} = \frac{2\sigma\,T_{sat}}{\rho_v h_{fg}\, r} $$</div>
+      <div class="dstep2"><div class="step-label">Step 2 · 대입</div>$$ = \frac{2(0.0589)(373)}{(0.596)(2.257\times10^{6})(5\times10^{-6})} = \frac{43.94}{6.726} $$</div>
+      <div class="ans-final"><div class="ans-eq">$$ \Delta T_{sup} \approx 6.53\ \text{K} $$</div><b>정답:</b> $5\,\mu\text{m}$ 배아 유지에 약 6.5 K의 과열도 — 실제 물 비등의 낮은 과열도와 부합.</div>
+    </div>
+  </div>
+  <div class="prob lang-en">
+    <div class="prob-num">Problem 2 · Applied · Required superheat</div>
+    <p class="prob-statement">For water (1 atm, $T_{sat}=373\,\text{K}$, $\rho_v=0.596\,\text{kg/m}^3$, $h_{fg}=2257\,\text{kJ/kg}$, $\sigma=0.0589\,\text{N/m}$), find the <strong>liquid superheat $\Delta T_{sup}$</strong> needed to sustain a bubble of radius $r=5\,\mu\text{m}$.</p>
+    <div class="given"><span class="chip">$r=5\,\mu\text{m}$</span><span class="chip">$T_{sat}=373\,\text{K}$</span><span class="chip">$\rho_v=0.596$</span><span class="chip">$h_{fg}=2257\,\text{kJ/kg}$</span></div>
+    <div class="find"><b>Find:</b> $\Delta T_{sup}\ [\text{K}]$</div>
+    <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="6.53" data-tol="0.03"/><span class="ans-unit">$\text{K}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+    <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+    <div class="revealable solution">
+      <div class="dstep2"><div class="step-label">Step 1 · combined relation</div>$$ \Delta T_{sup} = \frac{2\sigma\,T_{sat}}{\rho_v h_{fg}\, r} $$</div>
+      <div class="dstep2"><div class="step-label">Step 2 · substitute</div>$$ = \frac{2(0.0589)(373)}{(0.596)(2.257\times10^{6})(5\times10^{-6})} = \frac{43.94}{6.726} $$</div>
+      <div class="ans-final"><div class="ans-eq">$$ \Delta T_{sup} \approx 6.53\ \text{K} $$</div><b>Answer:</b> about 6.5 K of superheat holds a $5\,\mu\text{m}$ embryo — consistent with the modest superheat seen in real water boiling.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 1-2 / 정리 ══════════ -->
+<section class="screen" data-ch="1-2" data-chtitle="계면 열역학" data-stage="정리">
+  <div class="eyebrow lang-ko">1-2 · 정리 · Summary</div>
+  <div class="eyebrow lang-en">1-2 · Summary</div>
+  <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 시험 포인트</h1>
+  <h1 class="stage-h lang-en">Key Takeaways · Common Mistakes · Exam Points</h1>
+  <div class="sumgrid lang-ko">
+    <div class="sumcard key"><h4>핵심 정리</h4><ul>
+      <li>Young–Laplace: <strong>$\Delta p=p_v-p_l=2\sigma/r$</strong> (구형 계면).</li>
+      <li>Clausius–Clapeyron: <strong>$dp/dT\approx h_{fg}\rho_v/T$</strong> ($v_{fg}\approx1/\rho_v$).</li>
+      <li>결합: <strong>$\Delta T_{sup}\approx 2\sigma T_{sat}/(\rho_v h_{fg} r)$</strong> — 작은 배아일수록 큰 과열도.</li>
+    </ul></div>
+    <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+      <li>액체 쪽 압력이 더 높다고 착각 → 오목한 안쪽(증기)이 더 높다.</li>
+      <li>$v_{fg}$를 $v_l$로 근사 → 실제는 $v_{fg}\approx v_v\approx1/\rho_v$.</li>
+      <li>$\Delta T_{sup}$가 $r$에 비례한다고 착각 → <strong>반비례($\propto1/r$)</strong>.</li>
+    </ul></div>
+    <div class="sumcard exam full"><h4>시험 포인트</h4><ul>
+      <li>주어진 $r$로 $\Delta p=2\sigma/r$ 계산 (단위 $\mu\text{m}\to\text{m}$ 주의).</li>
+      <li>$\Delta T_{sup}=2\sigma T_{sat}/(\rho_v h_{fg} r)$ 유도·계산.</li>
+      <li>Bond수 $Bo=g(\rho_l-\rho_v)L^2/\sigma$의 의미(중력 대 표면장력)와 모세관 길이 $L_c=\sqrt{\sigma/[g(\rho_l-\rho_v)]}\approx2.5\,\text{mm}$(물).</li>
+    </ul></div>
+  </div>
+  <div class="sumgrid lang-en">
+    <div class="sumcard key"><h4>Key takeaways</h4><ul>
+      <li>Young–Laplace: <strong>$\Delta p=p_v-p_l=2\sigma/r$</strong> (spherical interface).</li>
+      <li>Clausius–Clapeyron: <strong>$dp/dT\approx h_{fg}\rho_v/T$</strong> ($v_{fg}\approx1/\rho_v$).</li>
+      <li>Combined: <strong>$\Delta T_{sup}\approx 2\sigma T_{sat}/(\rho_v h_{fg} r)$</strong> — smaller embryo, larger superheat.</li>
+    </ul></div>
+    <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+      <li>Assuming the liquid side is at higher pressure → the concave side (vapor) is higher.</li>
+      <li>Approximating $v_{fg}$ by $v_l$ → actually $v_{fg}\approx v_v\approx1/\rho_v$.</li>
+      <li>Thinking $\Delta T_{sup}\propto r$ → it is <strong>inverse ($\propto1/r$)</strong>.</li>
+    </ul></div>
+    <div class="sumcard exam full"><h4>Exam points</h4><ul>
+      <li>Compute $\Delta p=2\sigma/r$ for a given $r$ (mind $\mu\text{m}\to\text{m}$).</li>
+      <li>Derive and evaluate $\Delta T_{sup}=2\sigma T_{sat}/(\rho_v h_{fg} r)$.</li>
+      <li>Meaning of Bond number $Bo=g(\rho_l-\rho_v)L^2/\sigma$ (gravity vs. tension) and capillary length $L_c=\sqrt{\sigma/[g(\rho_l-\rho_v)]}\approx2.5\,\text{mm}$ (water).</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ══════════ 1-3 / 개념 ══════════ -->
+<section class="screen" data-ch="1-3" data-chtitle="핵생성 이론" data-stage="개념">
+  <div class="eyebrow lang-ko">1-3 · 개념 · Concept</div>
+  <div class="eyebrow lang-en">1-3 · Concept</div>
+  <h1 class="stage-h lang-ko">핵생성 이론 — 기포는 어떻게 태어나는가</h1>
+  <h1 class="stage-h lang-en">Nucleation Theory — How a Bubble Is Born</h1>
+
+  <div class="analogy lang-ko"><span class="ic">🫧</span><div class="tx"><b>직관</b> — 아주 깨끗한 그릇 속 순수한 물은 100&nbsp;°C를 넘겨도 잘 끓지 않는다(과열 액체). 기포 하나가 살아남으려면 <b>표면장력이라는 에너지 언덕</b>을 넘어야 하기 때문이다. 임계 반경 $r^*$보다 작은 배아(embryo)는 도로 응축돼 사라지고, $r^*$보다 커지는 순간 폭발적으로 자란다. <span class="src">(출처: Volmer–Weber 고전 핵생성 이론 / Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2e, Ch.5)</span></div></div>
+  <div class="analogy lang-en"><span class="ic">🫧</span><div class="tx"><b>Intuition</b> — Ultrapure water in a very clean vessel can be heated past 100&nbsp;°C without boiling (a superheated liquid), because a single bubble must first climb an <b>energy hill set by surface tension</b>. An embryo smaller than the critical radius $r^*$ recondenses and vanishes; the moment it exceeds $r^*$ it grows explosively. <span class="src">(Source: Volmer–Weber classical nucleation theory / Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2e, Ch.5)</span></div></div>
+
+  <div class="two lang-ko">
+    <div class="col2">
+      <p class="lede"><strong>핵생성(nucleation)</strong>은 비등 곡선이 시작되는 지점을 결정합니다. 고전 핵생성 이론(CNT)은 자유에너지가 <strong>표면 생성 비용(+)</strong>과 <strong>체적 상변화 이득(−)</strong>의 경쟁으로 결정된다고 봅니다. 이 경쟁이 만드는 봉우리가 <strong>자유에너지 장벽 $\Delta G^*$</strong>이고, 그 꼭대기에 대응하는 크기가 <strong>임계 반경 $r^*$</strong>입니다.</p>
+      <div class="keqbox">
+        <div class="keq-label">핵심 — 균질 핵생성 (Classical Nucleation Theory)</div>
+        <div class="keqrow"><span class="keqcap">임계 반경</span><span class="keqline">$ r^* = \dfrac{2\sigma}{\Delta p} = \dfrac{2\sigma\,T_{sat}}{\rho_v\,h_{fg}\,\Delta T_{sup}} $</span></div>
+        <div class="keqrow"><span class="keqcap">자유에너지 장벽</span><span class="keqline">$ \Delta G^* = \dfrac{16\pi\sigma^3}{3\,\Delta p^2} = \dfrac{16\pi\sigma^3\,T_{sat}^2}{3\,\rho_v^2 h_{fg}^2\,\Delta T_{sup}^2} $</span></div>
+        <div class="keqrow"><span class="keqcap">핵생성률</span><span class="keqline">$ J = J_0\,\exp\!\left(-\dfrac{\Delta G^*}{k_B T}\right) $</span></div>
+        <div class="keqnote">불균질(표면) 핵생성은 장벽이 접촉각 인자로 줄어듭니다: $\Delta G^*_{het} = f(\theta)\,\Delta G^*_{hom}$, $\ f(\theta) = \dfrac{2+3\cos\theta-\cos^3\theta}{4}$. <span class="src">[Carey Ch.5.2 / Incropera Ch.10]</span></div>
+      </div>
+    </div>
+    <div class="col2">
+      <div class="keq-label">핵심 용어</div>
+      <div class="terms">
+        <div class="term"><b>$r^*$</b> 임계 반경 — 자라기 시작하는 최소 크기</div>
+        <div class="term"><b>$\Delta G^*$</b> 자유에너지 장벽 — 넘어야 할 언덕</div>
+        <div class="term"><b>$\Delta p$</b> 과포화 압력차 $=p_v-p_l$</div>
+        <div class="term"><b>$\Delta T_{sup}$</b> 과열도 $=T_s-T_{sat}$</div>
+        <div class="term"><b>$J$</b> 핵생성률 $[\text{m}^{-3}\text{s}^{-1}]$</div>
+        <div class="term"><b>$f(\theta)$</b> 불균질 계수 — 접촉각 함수</div>
+      </div>
+      <div class="callout key"><div class="ct">핵심</div>배아는 $r<r^*$에서 $\Delta G$가 <strong>오르막</strong>이라 도로 사라지고, $r>r^*$에서 <strong>내리막</strong>이라 자발 성장합니다. 장벽 $\Delta G^*$가 지수 안에 있어 $J$는 과열도에 <strong>극단적으로 민감</strong>합니다.</div>
+    </div>
+  </div>
+
+  <div class="two lang-en">
+    <div class="col2">
+      <p class="lede"><strong>Nucleation</strong> sets where the boiling curve begins. Classical Nucleation Theory (CNT) views the free energy as a competition between a <strong>surface-creation cost (+)</strong> and a <strong>volumetric phase-change gain (−)</strong>. This competition produces a peak — the <strong>free-energy barrier $\Delta G^*$</strong> — whose location is the <strong>critical radius $r^*$</strong>.</p>
+      <div class="keqbox">
+        <div class="keq-label">Key — Homogeneous Nucleation (Classical Nucleation Theory)</div>
+        <div class="keqrow"><span class="keqcap">Critical radius</span><span class="keqline">$ r^* = \dfrac{2\sigma}{\Delta p} = \dfrac{2\sigma\,T_{sat}}{\rho_v\,h_{fg}\,\Delta T_{sup}} $</span></div>
+        <div class="keqrow"><span class="keqcap">Free-energy barrier</span><span class="keqline">$ \Delta G^* = \dfrac{16\pi\sigma^3}{3\,\Delta p^2} = \dfrac{16\pi\sigma^3\,T_{sat}^2}{3\,\rho_v^2 h_{fg}^2\,\Delta T_{sup}^2} $</span></div>
+        <div class="keqrow"><span class="keqcap">Nucleation rate</span><span class="keqline">$ J = J_0\,\exp\!\left(-\dfrac{\Delta G^*}{k_B T}\right) $</span></div>
+        <div class="keqnote">On a surface (heterogeneous), the barrier is reduced by a contact-angle factor: $\Delta G^*_{het} = f(\theta)\,\Delta G^*_{hom}$, $\ f(\theta) = \dfrac{2+3\cos\theta-\cos^3\theta}{4}$. <span class="src">[Carey Ch.5.2 / Incropera Ch.10]</span></div>
+      </div>
+    </div>
+    <div class="col2">
+      <div class="keq-label">Key terms</div>
+      <div class="terms">
+        <div class="term"><b>$r^*$</b> Critical radius — smallest size that grows</div>
+        <div class="term"><b>$\Delta G^*$</b> Free-energy barrier — the hill to climb</div>
+        <div class="term"><b>$\Delta p$</b> Supersaturation $=p_v-p_l$</div>
+        <div class="term"><b>$\Delta T_{sup}$</b> Superheat $=T_s-T_{sat}$</div>
+        <div class="term"><b>$J$</b> Nucleation rate $[\text{m}^{-3}\text{s}^{-1}]$</div>
+        <div class="term"><b>$f(\theta)$</b> Heterogeneous factor — of contact angle</div>
+      </div>
+      <div class="callout key"><div class="ct">Key</div>For $r<r^*$ the free energy climbs <strong>uphill</strong>, so embryos shrink away; for $r>r^*$ it runs <strong>downhill</strong>, so they grow spontaneously. Because $\Delta G^*$ sits inside the exponential, $J$ is <strong>extraordinarily sensitive</strong> to superheat.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 1-3 / 유도 ══════════ -->
+<section class="screen" data-ch="1-3" data-chtitle="핵생성 이론" data-stage="유도">
+  <div class="eyebrow lang-ko">1-3 · 수식 유도 · Derivation</div>
+  <div class="eyebrow lang-en">1-3 · Derivation</div>
+  <h1 class="stage-h lang-ko">$r^*$와 $\Delta G^*$는 어디서 오는가</h1>
+  <h1 class="stage-h lang-en">Where $r^*$ and $\Delta G^*$ Come From</h1>
+
+  <p class="assume lang-ko"><b>공통 관점:</b> 반경 $r$짜리 증기 배아 하나의 자유에너지 변화 $\Delta G(r)$를 세우고, <b>$r$에 대해 극값</b>을 취한다 — 봉우리(최대)가 곧 넘어야 할 장벽이다.</p>
+  <p class="assume lang-en"><b>Common view:</b> Write the free-energy change $\Delta G(r)$ of a single vapor embryo of radius $r$, then take its <b>extremum in $r$</b> — the peak (maximum) is the barrier that must be crossed.</p>
+
+  <div class="deriv lang-ko">
+    <div class="dcard"><h4>① 두 항의 경쟁</h4><div class="sub">표면(+) vs 체적(−)</div><div class="ana">🧗 언덕 — 작은 배아는 표면비용이 지배</div><div class="eq">$ \Delta G(r) = 4\pi r^2\sigma - \tfrac{4}{3}\pi r^3\,\Delta p $</div><p>표면 생성 비용은 $r^2$, 상변화 이득은 $r^3$. 작을 때는 <strong>비용이 우세</strong>해 오르막.</p></div>
+    <div class="dcard"><h4>② 극값 → $r^*,\ \Delta G^*$</h4><div class="sub">$d\Delta G/dr=0$</div><div class="ana">📐 봉우리 — 미분이 0이 되는 점</div><div class="eq">$ r^* = \dfrac{2\sigma}{\Delta p},\quad \Delta G^*=\dfrac{16\pi\sigma^3}{3\,\Delta p^2} $</div><p>미분을 0으로 두면 임계 반경, 대입하면 <strong>장벽 높이</strong>가 나온다.</p></div>
+    <div class="dcard"><h4>③ 불균질 & 핵생성률</h4><div class="sub">표면 위 배아</div><div class="ana">🪨 공동 — 접촉각이 장벽을 깎는다</div><div class="eq">$ \Delta G^*_{het}=f(\theta)\,\Delta G^*_{hom},\ \ J=J_0 e^{-\Delta G^*/k_B T} $</div><p>$f(\theta)\le 1$이라 표면이 장벽을 낮추고, $J$는 장벽에 <strong>지수적</strong>으로 반응.</p></div>
+  </div>
+  <div class="deriv lang-en">
+    <div class="dcard"><h4>① Two competing terms</h4><div class="sub">surface(+) vs volume(−)</div><div class="ana">🧗 The hill — small embryos are surface-dominated</div><div class="eq">$ \Delta G(r) = 4\pi r^2\sigma - \tfrac{4}{3}\pi r^3\,\Delta p $</div><p>Surface cost scales as $r^2$, phase-change gain as $r^3$. When small, <strong>cost wins</strong> → uphill.</p></div>
+    <div class="dcard"><h4>② Extremum → $r^*,\ \Delta G^*$</h4><div class="sub">$d\Delta G/dr=0$</div><div class="ana">📐 The peak — where the derivative vanishes</div><div class="eq">$ r^* = \dfrac{2\sigma}{\Delta p},\quad \Delta G^*=\dfrac{16\pi\sigma^3}{3\,\Delta p^2} $</div><p>Setting the derivative to zero gives the critical radius; substituting gives the <strong>barrier height</strong>.</p></div>
+    <div class="dcard"><h4>③ Heterogeneous &amp; rate</h4><div class="sub">embryo on a surface</div><div class="ana">🪨 Cavities — contact angle carves down the barrier</div><div class="eq">$ \Delta G^*_{het}=f(\theta)\,\Delta G^*_{hom},\ \ J=J_0 e^{-\Delta G^*/k_B T} $</div><p>Since $f(\theta)\le 1$, a surface lowers the barrier, and $J$ responds <strong>exponentially</strong>.</p></div>
+  </div>
+
+  <div class="lang-ko">
+    <div class="dstep2"><div class="step-label">Step 1 · 자유에너지 (표면 비용 − 체적 이득)</div>$$ \Delta G(r) = 4\pi r^2\,\sigma \;-\; \tfrac{4}{3}\pi r^3\,\Delta p $$</div>
+    <div class="dstep2"><div class="step-label">Step 2 · 극값으로 임계 반경</div>$$ \frac{d(\Delta G)}{dr}=8\pi r\sigma - 4\pi r^2\,\Delta p = 0 \;\Rightarrow\; r^*=\frac{2\sigma}{\Delta p} $$</div>
+    <div class="dstep2"><div class="step-label">Step 3 · 대입 + Clausius–Clapeyron</div>$$ \Delta G^*=\frac{16\pi\sigma^3}{3\,\Delta p^2},\qquad \Delta p\approx\frac{\rho_v h_{fg}\,\Delta T_{sup}}{T_{sat}}\ \Rightarrow\ r^*=\frac{2\sigma T_{sat}}{\rho_v h_{fg}\,\Delta T_{sup}} $$</div>
+  </div>
+  <div class="lang-en">
+    <div class="dstep2"><div class="step-label">Step 1 · Free energy (surface cost − volume gain)</div>$$ \Delta G(r) = 4\pi r^2\,\sigma \;-\; \tfrac{4}{3}\pi r^3\,\Delta p $$</div>
+    <div class="dstep2"><div class="step-label">Step 2 · Extremum gives the critical radius</div>$$ \frac{d(\Delta G)}{dr}=8\pi r\sigma - 4\pi r^2\,\Delta p = 0 \;\Rightarrow\; r^*=\frac{2\sigma}{\Delta p} $$</div>
+    <div class="dstep2"><div class="step-label">Step 3 · Substitute + Clausius–Clapeyron</div>$$ \Delta G^*=\frac{16\pi\sigma^3}{3\,\Delta p^2},\qquad \Delta p\approx\frac{\rho_v h_{fg}\,\Delta T_{sup}}{T_{sat}}\ \Rightarrow\ r^*=\frac{2\sigma T_{sat}}{\rho_v h_{fg}\,\Delta T_{sup}} $$</div>
+  </div>
+
+  <div class="callout warn lang-ko"><div class="ct">주의 · 지수 안의 장벽</div>$r^*$와 $\Delta G^*$는 모두 $\Delta T_{sup}$에 반비례($\Delta G^*\propto\Delta T_{sup}^{-2}$)합니다. 대기압 물의 균질 장벽은 $\Delta T_{sup}$가 수 K일 때 $k_B T$의 <strong>수십억 배</strong>라 $J\approx 0$ — 그래서 균질 비등은 초과열 한계(물 $\approx 300\,{}^{\circ}\text{C}$)에서야 폭발한다. 실제 비등은 <strong>표면 공동</strong> 덕에 몇 K에서 시작한다.</div>
+  <div class="callout warn lang-en"><div class="ct">Caution · the barrier is in the exponent</div>Both $r^*$ and $\Delta G^*$ vary inversely with superheat ($\Delta G^*\propto\Delta T_{sup}^{-2}$). For water at 1&nbsp;atm the homogeneous barrier at a few K superheat is <strong>billions of times</strong> $k_B T$, so $J\approx 0$ — homogeneous boiling only erupts near the superheat limit ($\approx 300\,{}^{\circ}\text{C}$ for water). Real boiling begins at a few K thanks to <strong>surface cavities</strong>.</div>
+</section>
+
+<!-- ══════════ 1-3 / 읽을거리 ══════════ -->
+<section class="screen" data-ch="1-3" data-chtitle="핵생성 이론" data-stage="읽을거리">
+  <div class="eyebrow lang-ko">1-3 · 읽을거리 · Reading</div>
+  <div class="eyebrow lang-en">1-3 · Reading</div>
+  <h1 class="stage-h lang-ko">왜 실제 물은 300&nbsp;°C가 아니라 몇 K에서 끓는가</h1>
+  <h1 class="stage-h lang-en">Why Real Water Boils at a Few K, Not 300&nbsp;°C</h1>
+
+  <div class="two lang-ko">
+    <div class="col2 reading">
+      <p><strong>균질 핵생성</strong>은 액체 내부에서 오직 열요동만으로 임계 배아가 만들어지는 이상적 경우입니다. 하지만 장벽 $\Delta G^*\propto\Delta T_{sup}^{-2}$가 워낙 커서, 물이 균질하게 끓으려면 초과열 한계인 <strong>약 300&nbsp;°C</strong>(운동학적 한계 $\sim 0.9\,T_c$)까지 데워야 합니다.</p>
+      <p class="pullquote">현실의 비등은 액체가 아니라 <em>표면의 흠집</em>에서 시작한다.</p>
+      <p>실제 가열면에는 미세한 <strong>공동(cavity)과 스크래치</strong>가 있고, 여기에 갇힌 증기가 이미 존재하는 배아 역할을 합니다. 이 <strong>불균질 핵생성</strong>은 장벽을 $f(\theta)\Delta G^*_{hom}$으로 낮춰, 비등이 <strong>몇 K 과열도</strong>에서 시작되게 합니다. 특히 입구가 좁은 <strong>재진입 공동(reentrant cavity)</strong>은 증기를 강하게 가둬 안정된 활성 핵생성 site가 됩니다.</p>
+      <p><strong>젖음성(wettability)</strong>이 핵심입니다. $f(\theta)$는 완전 젖음($\theta\to 0$)에서 1(장벽 감소 없음), 비젖음($\theta\to 180^\circ$)에서 0(장벽 소멸)입니다. 유전성·비극성 유체처럼 거의 완전히 젖는($\theta\to 0$) 액체는 공동을 <strong>물로 채워버려</strong> 증기를 가두지 못하므로 <strong>더 높은 개시 과열도</strong>가 필요합니다.</p>
+    </div>
+    <div class="col2">
+      <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>균질 장벽은 $\Delta T_{sup}^{-2}$ — 물 균질 비등은 $\approx 300\,{}^{\circ}\text{C}$에서야 가능.</li><li>실제 비등은 <strong>공동/재진입 공동</strong>의 불균질 핵생성으로 몇 K에서 시작.</li><li>완전 젖음($\theta\to 0$, 비극성) → $f\to 1$ → <strong>개시 과열도 높음</strong>.</li></ul></div>
+      <p class="readmeta">참고: Carey(2008) <em>Liquid–Vapor Phase-Change Phenomena</em> 2e, Ch.5 / Incropera et al., Ch.10.4 (기포 개시)</p>
+    </div>
+  </div>
+
+  <div class="two lang-en">
+    <div class="col2 reading">
+      <p><strong>Homogeneous nucleation</strong> is the ideal case where a critical embryo forms in the bulk liquid by thermal fluctuations alone. But the barrier $\Delta G^*\propto\Delta T_{sup}^{-2}$ is so large that homogeneous boiling of water requires heating to the superheat limit of <strong>about 300&nbsp;°C</strong> (kinetic limit $\sim 0.9\,T_c$).</p>
+      <p class="pullquote">Real boiling starts not in the liquid but in the <em>flaws of a surface</em>.</p>
+      <p>A real heater has microscopic <strong>cavities and scratches</strong>, and the vapor trapped inside acts as a ready-made embryo. This <strong>heterogeneous nucleation</strong> lowers the barrier to $f(\theta)\Delta G^*_{hom}$, so boiling begins at only <strong>a few K of superheat</strong>. Narrow-mouthed <strong>reentrant cavities</strong> trap vapor especially well, forming stable, active nucleation sites.</p>
+      <p><strong>Wettability</strong> is decisive. $f(\theta)$ equals 1 at perfect wetting ($\theta\to 0$, no reduction) and 0 at non-wetting ($\theta\to 180^\circ$, barrier gone). Nearly perfectly wetting liquids ($\theta\to 0$, typical of dielectric/non-polar fluids) <strong>flood the cavities with liquid</strong> and cannot trap vapor, so they need a <strong>higher incipient superheat</strong>.</p>
+    </div>
+    <div class="col2">
+      <div class="callout key"><div class="ct">What you must know</div><ul><li>The homogeneous barrier scales as $\Delta T_{sup}^{-2}$ — homogeneous boiling of water needs $\approx 300\,{}^{\circ}\text{C}$.</li><li>Real boiling starts at a few K via heterogeneous nucleation in <strong>cavities / reentrant cavities</strong>.</li><li>Perfect wetting ($\theta\to 0$, non-polar) → $f\to 1$ → <strong>high incipient superheat</strong>.</li></ul></div>
+      <p class="readmeta">Refs: Carey (2008) <em>Liquid–Vapor Phase-Change Phenomena</em> 2e, Ch.5 / Incropera et al., Ch.10.4 (bubble incipience)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 1-3 / 그림·표 ══════════ -->
+<section class="screen" data-ch="1-3" data-chtitle="핵생성 이론" data-stage="그림·표">
+  <div class="eyebrow lang-ko">1-3 · 그림 · 그래프 · 표</div>
+  <div class="eyebrow lang-en">1-3 · Figures · Graphs · Tables</div>
+  <h1 class="stage-h lang-ko">한눈에 — 자유에너지 장벽과 접촉각 인자</h1>
+  <h1 class="stage-h lang-en">At a Glance — The Barrier and the Contact-Angle Factor</h1>
+
+  <div class="vizgrid lang-ko">
+    <div>
+      <div class="vcap">자유에너지 곡선 $\Delta G(r)$ — 봉우리 = 장벽</div>
+      <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar13a" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<line x1="54" y1="210" x2="454" y2="210" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar13a)"/>
+<line x1="54" y1="238" x2="54" y2="26" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar13a)"/>
+<text x="254" y="262" font-size="11.5" fill="#52525b" text-anchor="middle">배아 반경 $r$</text>
+<text x="22" y="132" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 22 132)">자유에너지 $\Delta G$</text>
+<path d="M58 208 Q150 60 232 58" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M232 58 Q340 62 452 178" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<line x1="232" y1="58" x2="232" y2="210" stroke="#71717a" stroke-width="1.25" stroke-dasharray="4 4"/>
+<circle cx="232" cy="58" r="5" fill="#fff" stroke="#c2410c" stroke-width="2.5"/>
+<text x="232" y="44" font-size="12" fill="#c2410c" text-anchor="middle" font-weight="700">$\Delta G^*$ (장벽)</text>
+<text x="232" y="226" font-size="12" fill="#c2410c" text-anchor="middle" font-weight="700">$r^*$</text>
+<path d="M168 150 L120 150" fill="none" stroke="#71717a" stroke-width="2" marker-end="url(#ar13a)"/>
+<text x="150" y="140" font-size="10.5" fill="#71717a" text-anchor="middle">$r<r^*$ 재응축</text>
+<path d="M300 150 L352 165" fill="none" stroke="#71717a" stroke-width="2" marker-end="url(#ar13a)"/>
+<text x="330" y="140" font-size="10.5" fill="#c2410c" text-anchor="middle" font-weight="700">$r>r^*$ 성장</text>
+</svg>
+    </div>
+    <div>
+      <div class="vcap">접촉각 $\theta$와 불균질 계수 $f(\theta)$</div>
+      <svg viewBox="0 0 260 108" width="100%" style="max-width:250px">
+<rect x="8" y="82" width="244" height="18" fill="#f4f4f5" stroke="#d4d4d8" stroke-width="1.25"/>
+<text x="130" y="95" font-size="9.5" fill="#52525b" text-anchor="middle">가열 표면 (solid)</text>
+<path d="M92 82 A40 40 0 0 1 172 82 Z" fill="#c2410c" fill-opacity="0.16" stroke="#c2410c" stroke-width="1.75"/>
+<text x="132" y="60" font-size="10.5" fill="#c2410c" text-anchor="middle" font-weight="700">증기 배아</text>
+<line x1="92" y1="82" x2="140" y2="82" stroke="#71717a" stroke-width="1"/>
+<path d="M92 82 A18 18 0 0 1 104 66" fill="none" stroke="#71717a" stroke-width="1.5"/>
+<text x="118" y="78" font-size="10" fill="#71717a" text-anchor="middle">$\theta$</text>
+</svg>
+      <table class="ktab"><thead><tr><th>접촉각 $\theta$</th><th style="text-align:right">$f(\theta)$</th><th style="text-align:right">해석</th></tr></thead><tbody>
+        <tr><td>$10^\circ$ (거의 완전 젖음)</td><td class="k">1.00</td><td style="text-align:right">감소 없음</td></tr>
+        <tr><td>$30^\circ$</td><td class="k">0.987</td><td style="text-align:right">미약</td></tr>
+        <tr><td>$90^\circ$</td><td class="k">0.500</td><td style="text-align:right">절반</td></tr>
+        <tr><td>$150^\circ$ (비젖음)</td><td class="k">0.013</td><td style="text-align:right">수십 배↓</td></tr>
+      </tbody></table>
+      <div class="keqnote">$f(\theta)=\dfrac{2+3\cos\theta-\cos^3\theta}{4}$ — 잘 젖을수록 1(도움 없음), 안 젖을수록 0(장벽 급감). <span class="src">[Carey Ch.5.2]</span></div>
+    </div>
+  </div>
+
+  <div class="vizgrid lang-en">
+    <div>
+      <div class="vcap">Free-energy curve $\Delta G(r)$ — peak = barrier</div>
+      <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar13b" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<line x1="54" y1="210" x2="454" y2="210" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar13b)"/>
+<line x1="54" y1="238" x2="54" y2="26" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar13b)"/>
+<text x="254" y="262" font-size="11.5" fill="#52525b" text-anchor="middle">embryo radius $r$</text>
+<text x="22" y="132" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 22 132)">free energy $\Delta G$</text>
+<path d="M58 208 Q150 60 232 58" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M232 58 Q340 62 452 178" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<line x1="232" y1="58" x2="232" y2="210" stroke="#71717a" stroke-width="1.25" stroke-dasharray="4 4"/>
+<circle cx="232" cy="58" r="5" fill="#fff" stroke="#c2410c" stroke-width="2.5"/>
+<text x="232" y="44" font-size="12" fill="#c2410c" text-anchor="middle" font-weight="700">$\Delta G^*$ (barrier)</text>
+<text x="232" y="226" font-size="12" fill="#c2410c" text-anchor="middle" font-weight="700">$r^*$</text>
+<path d="M168 150 L120 150" fill="none" stroke="#71717a" stroke-width="2" marker-end="url(#ar13b)"/>
+<text x="150" y="140" font-size="10.5" fill="#71717a" text-anchor="middle">$r<r^*$ recondense</text>
+<path d="M300 150 L352 165" fill="none" stroke="#71717a" stroke-width="2" marker-end="url(#ar13b)"/>
+<text x="330" y="140" font-size="10.5" fill="#c2410c" text-anchor="middle" font-weight="700">$r>r^*$ grow</text>
+</svg>
+    </div>
+    <div>
+      <div class="vcap">Contact angle $\theta$ and factor $f(\theta)$</div>
+      <svg viewBox="0 0 260 108" width="100%" style="max-width:250px">
+<rect x="8" y="82" width="244" height="18" fill="#f4f4f5" stroke="#d4d4d8" stroke-width="1.25"/>
+<text x="130" y="95" font-size="9.5" fill="#52525b" text-anchor="middle">heated surface (solid)</text>
+<path d="M92 82 A40 40 0 0 1 172 82 Z" fill="#c2410c" fill-opacity="0.16" stroke="#c2410c" stroke-width="1.75"/>
+<text x="132" y="60" font-size="10.5" fill="#c2410c" text-anchor="middle" font-weight="700">vapor embryo</text>
+<line x1="92" y1="82" x2="140" y2="82" stroke="#71717a" stroke-width="1"/>
+<path d="M92 82 A18 18 0 0 1 104 66" fill="none" stroke="#71717a" stroke-width="1.5"/>
+<text x="118" y="78" font-size="10" fill="#71717a" text-anchor="middle">$\theta$</text>
+</svg>
+      <table class="ktab"><thead><tr><th>contact angle $\theta$</th><th style="text-align:right">$f(\theta)$</th><th style="text-align:right">meaning</th></tr></thead><tbody>
+        <tr><td>$10^\circ$ (near-perfect wetting)</td><td class="k">1.00</td><td style="text-align:right">no reduction</td></tr>
+        <tr><td>$30^\circ$</td><td class="k">0.987</td><td style="text-align:right">slight</td></tr>
+        <tr><td>$90^\circ$</td><td class="k">0.500</td><td style="text-align:right">half</td></tr>
+        <tr><td>$150^\circ$ (non-wetting)</td><td class="k">0.013</td><td style="text-align:right">tens× lower</td></tr>
+      </tbody></table>
+      <div class="keqnote">$f(\theta)=\dfrac{2+3\cos\theta-\cos^3\theta}{4}$ — better wetting → 1 (no help), poor wetting → 0 (barrier collapses). <span class="src">[Carey Ch.5.2]</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 1-3 / 실습 ══════════ -->
+<section class="screen" data-ch="1-3" data-chtitle="핵생성 이론" data-stage="실습">
+  <div class="eyebrow lang-ko">1-3 · 실습 · Interactive</div>
+  <div class="eyebrow lang-en">1-3 · Interactive</div>
+  <h1 class="stage-h lang-ko">불균질 계수 $f(\theta)$ — 접촉각을 직접 돌려보기</h1>
+  <h1 class="stage-h lang-en">The Heterogeneous Factor $f(\theta)$ — Turn the Contact Angle</h1>
+
+  <p class="lede lang-ko">불균질 핵생성 장벽은 $\Delta G^*_{het}=f(\theta)\Delta G^*_{hom}$이고, $f(\theta)=\dfrac{2+3\cos\theta-\cos^3\theta}{4}$입니다. 슬라이더로 <strong>접촉각 $\theta$</strong>를 바꾸며, 잘 젖는 표면($\theta\to 0$)이 왜 <strong>도움이 안 되는지</strong>(=$f\to 1$) 확인하세요.</p>
+  <p class="lede lang-en">The heterogeneous barrier is $\Delta G^*_{het}=f(\theta)\Delta G^*_{hom}$ with $f(\theta)=\dfrac{2+3\cos\theta-\cos^3\theta}{4}$. Move the slider for <strong>contact angle $\theta$</strong> and see why a well-wetting surface ($\theta\to 0$) gives <strong>no help</strong> ($f\to 1$).</p>
+
+  <div class="calc lang-ko"
+    data-title="불균질 계수 $f(\theta) = (2+3\cos\theta-\cos^3\theta)/4$"
+    data-desc="θ = 접촉각(액체 통과 측정). f=1이면 장벽 감소 없음(균질과 동일), f=0이면 장벽 소멸. 기본값 θ=45° → f≈0.94."
+    data-vars='[{"sym":"theta","label":"$\\theta$ · 접촉각","min":0,"max":180,"val":45,"step":5,"unit":"°"}]'
+    data-expr="(2+3*Math.cos(theta*Math.PI/180)-Math.pow(Math.cos(theta*Math.PI/180),3))/4"
+    data-out="$f(\theta)$" data-out-unit=""
+    data-barmax="1"
+    data-note="θ=45°→f≈0.94(거의 감소 없음), θ=90°→f=0.5, θ=150°→f≈0.013(장벽 ~77배↓). 잘 젖을수록 1에 가까워 개시 과열도가 커진다."></div>
+  <div class="calc lang-en"
+    data-title="Heterogeneous factor $f(\theta) = (2+3\cos\theta-\cos^3\theta)/4$"
+    data-desc="θ = contact angle (through the liquid). f=1 means no barrier reduction (as homogeneous); f=0 means the barrier is gone. Default θ=45° → f≈0.94."
+    data-vars='[{"sym":"theta","label":"$\\theta$ · Contact angle","min":0,"max":180,"val":45,"step":5,"unit":"°"}]'
+    data-expr="(2+3*Math.cos(theta*Math.PI/180)-Math.pow(Math.cos(theta*Math.PI/180),3))/4"
+    data-out="$f(\theta)$" data-out-unit=""
+    data-barmax="1"
+    data-note="θ=45°→f≈0.94 (almost no reduction), θ=90°→f=0.5, θ=150°→f≈0.013 (barrier ~77× lower). Better wetting → closer to 1 → higher incipient superheat."></div>
+
+  <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 불균질 계수 $f(\theta)$ 감: 완전 젖음 표면($\theta\approx 5\text{–}10^\circ$, 유전성·비극성 유체) $f\approx 1.00$ — 장벽 그대로라 <strong>높은 개시 과열도</strong> 필요 · 물–금속($\theta\approx 50\text{–}90^\circ$) $f\approx 0.5\text{–}0.99$ · 거친·소수성 표면·재진입 공동($\theta\gtrsim 120^\circ$) $f\lesssim 0.05$ — 장벽이 수십 배 줄어 <strong>몇 K</strong> 과열도에서 비등 개시. 그래서 균질 한계(물 $\approx 300\,{}^{\circ}\text{C}$)와 달리 실제 비등은 수 $^{\circ}\text{C}$에서 시작한다. <span class="src">(출처: $f(\theta)$ = Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2e, Ch.5.2; 물 초과열 한계 $\approx 300\,{}^{\circ}\text{C}$ = 운동학적 한계 $\sim 0.9\,T_c$)</span></div>
+  <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — a feel for $f(\theta)$: perfectly wetting surface ($\theta\approx 5\text{–}10^\circ$, dielectric/non-polar fluids) $f\approx 1.00$ — barrier intact, so a <strong>high incipient superheat</strong> is needed · water–metal ($\theta\approx 50\text{–}90^\circ$) $f\approx 0.5\text{–}0.99$ · rough/hydrophobic surfaces &amp; reentrant cavities ($\theta\gtrsim 120^\circ$) $f\lesssim 0.05$ — barrier tens× smaller, so boiling begins at <strong>a few K</strong>. That is why real boiling starts at a few $^{\circ}\text{C}$, unlike the homogeneous limit ($\approx 300\,{}^{\circ}\text{C}$ for water). <span class="src">(Source: $f(\theta)$ = Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2e, Ch.5.2; water superheat limit $\approx 300\,{}^{\circ}\text{C}$ = kinetic limit $\sim 0.9\,T_c$)</span></div>
+</section>
+
+<!-- ══════════ 1-3 / 점검 ══════════ -->
+<section class="screen" data-ch="1-3" data-chtitle="핵생성 이론" data-stage="점검">
+  <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+  <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · Instructor view</span></div>
+
+  <div class="cq lang-ko">
+    <p class="qtext"><span class="qn">Q1.</span>임계 반경 $r^*$보다 작은 증기 배아($r<r^*$)는 어떻게 됩니까?</p>
+    <div class="opts">
+      <button class="opt">① 그대로 안정하게 남는다</button>
+      <button class="opt" data-correct="1">② $\Delta G$가 오르막이라 표면장력이 이겨 다시 응축돼 사라진다</button>
+      <button class="opt">③ 즉시 임계 크기로 폭발 성장한다</button>
+    </div>
+    <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+    <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $r<r^*$에서는 $\Delta G(r)$가 증가(오르막)하므로 계는 자유에너지를 낮추려 배아를 줄인다 → 재응축. 자발 성장(내리막)은 $r>r^*$에서만 일어난다. <span class="dim">오답 ①·③: ①불안정 평형이 아니라 소멸하고, ③폭발 성장은 장벽을 넘은 뒤의 거동이다.</span> <span class="agg">학급 n=37 · ① 6 · ② 27 · ③ 4</span></div>
+  </div>
+  <div class="cq lang-ko">
+    <p class="qtext"><span class="qn">Q2.</span>거의 완전히 젖는 표면($\theta\to 0$, 비극성 유체 특성)에서 불균질 계수 $f(\theta)$와 개시 과열도는?</p>
+    <div class="opts">
+      <button class="opt">① $f\to 0$ — 아주 낮은 과열도에서 쉽게 비등한다</button>
+      <button class="opt" data-correct="1">② $f\to 1$ — 장벽이 균질과 같아 개시 과열도가 커진다</button>
+      <button class="opt">③ $f\to 0.5$ — 접촉각과 무관하다</button>
+    </div>
+    <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+    <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $f(0^\circ)=1$이므로 $\Delta G^*_{het}=\Delta G^*_{hom}$, 장벽 감소가 없다. 완전 젖음 액체는 공동을 물로 채워 증기를 못 가둬 잘 안 끓고, 더 높은 과열도가 필요하다. <span class="dim">오답 ①·③: ①$f\to 0$은 비젖음($\theta\to 180^\circ$)의 거동, ③$f$는 접촉각에 강하게 의존한다.</span> <span class="agg">학급 n=37 · ① 12 · ② 21 · ③ 4</span></div>
+  </div>
+
+  <div class="cq lang-en">
+    <p class="qtext"><span class="qn">Q1.</span>What happens to a vapor embryo smaller than the critical radius ($r<r^*$)?</p>
+    <div class="opts">
+      <button class="opt">① It stays stable as it is</button>
+      <button class="opt" data-correct="1">② $\Delta G$ is uphill, so surface tension wins and it recondenses away</button>
+      <button class="opt">③ It immediately grows explosively to critical size</button>
+    </div>
+    <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+    <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ②</b> — For $r<r^*$, $\Delta G(r)$ increases (uphill), so the system lowers its free energy by shrinking the embryo → recondensation. Spontaneous growth (downhill) happens only for $r>r^*$. <span class="dim">Wrong ①·③: ① it vanishes rather than persisting; ③ explosive growth is the behavior after the barrier is crossed.</span> <span class="agg">Class n=37 · ① 6 · ② 27 · ③ 4</span></div>
+  </div>
+  <div class="cq lang-en">
+    <p class="qtext"><span class="qn">Q2.</span>On a nearly perfectly wetting surface ($\theta\to 0$, typical of non-polar fluids), what are $f(\theta)$ and the incipient superheat?</p>
+    <div class="opts">
+      <button class="opt">① $f\to 0$ — boils easily at very low superheat</button>
+      <button class="opt" data-correct="1">② $f\to 1$ — barrier equals homogeneous, so incipient superheat is high</button>
+      <button class="opt">③ $f\to 0.5$ — independent of contact angle</button>
+    </div>
+    <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+    <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ②</b> — Since $f(0^\circ)=1$, $\Delta G^*_{het}=\Delta G^*_{hom}$, i.e. no reduction. A perfectly wetting liquid floods cavities and cannot trap vapor, so it boils poorly and needs higher superheat. <span class="dim">Wrong ①·③: ① $f\to 0$ is the non-wetting limit ($\theta\to 180^\circ$); ③ $f$ depends strongly on the contact angle.</span> <span class="agg">Class n=37 · ① 12 · ② 21 · ③ 4</span></div>
+  </div>
+</section>
+
+<!-- ══════════ 1-3 / 연습 ══════════ -->
+<section class="screen" data-ch="1-3" data-chtitle="핵생성 이론" data-stage="연습">
+  <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+  <div class="panel-head lang-en"><span class="tag">Problems</span><span class="panel-title">Engineering calc · Auto-graded</span></div>
+
+  <div class="prob lang-ko">
+    <div class="prob-num">연습 1 · 기본 · 임계 반경 $r^*$</div>
+    <p class="prob-statement">대기압 포화수($\sigma=0.0589\ \text{N/m}$, $T_{sat}=373\ \text{K}$, $\rho_v=0.596\ \text{kg/m}^3$, $h_{fg}=2.257\times10^6\ \text{J/kg}$)가 과열도 $\Delta T_{sup}=5\ \text{K}$로 초과열되어 있다. <strong>균질 임계 반경 $r^*$</strong>를 $\mu\text{m}$로 구하시오.</p>
+    <div class="given"><span class="chip">$\sigma=0.0589$</span><span class="chip">$T_{sat}=373\ \text{K}$</span><span class="chip">$\rho_v=0.596$</span><span class="chip">$h_{fg}=2.257\times10^6$</span><span class="chip">$\Delta T_{sup}=5\ \text{K}$</span></div>
+    <div class="find"><b>구할 것:</b> $r^*\ [\mu\text{m}]$</div>
+    <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="6.53" data-tol="0.03"/><span class="ans-unit">$\mu\text{m}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+    <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+    <div class="revealable solution">
+      <div class="dstep2"><div class="step-label">Step 1 · Clausius–Clapeyron으로 $\Delta p$</div>$$ \Delta p=\frac{\rho_v h_{fg}\,\Delta T_{sup}}{T_{sat}}=\frac{0.596\times 2.257\times10^6\times 5}{373}\approx 1.80\times10^{4}\ \text{Pa} $$</div>
+      <div class="dstep2"><div class="step-label">Step 2 · $r^*=2\sigma/\Delta p$</div>$$ r^*=\frac{2\times 0.0589}{1.80\times10^{4}}\approx 6.53\times10^{-6}\ \text{m} $$</div>
+      <div class="ans-final"><div class="ans-eq">$$ r^*\approx 6.53\ \mu\text{m} $$</div><b>정답:</b> $r^*\propto 1/\Delta T_{sup}$ — 과열도가 커지면 임계 반경은 작아진다.</div>
+    </div>
+  </div>
+
+  <div class="prob lang-ko">
+    <div class="prob-num">연습 2 · 응용 · 불균질 계수 $f(\theta)$</div>
+    <p class="prob-statement">가열면과 증기 배아의 접촉각이 $\theta=90^\circ$이다. 불균질 계수 $f(\theta)=\dfrac{2+3\cos\theta-\cos^3\theta}{4}$로 <strong>$f(90^\circ)$</strong>를 구하시오(무차원).</p>
+    <div class="given"><span class="chip">$\theta=90^\circ$</span><span class="chip">$\cos 90^\circ=0$</span></div>
+    <div class="find"><b>구할 것:</b> $f(90^\circ)$ (무차원)</div>
+    <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="0.5" data-tol="0.02"/><span class="ans-unit">—</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+    <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+    <div class="revealable solution">
+      <div class="dstep2"><div class="step-label">Step 1 · $\cos 90^\circ=0$ 대입</div>$$ f(90^\circ)=\frac{2+3(0)-(0)^3}{4}=\frac{2}{4} $$</div>
+      <div class="dstep2"><div class="step-label">Step 2 · 정리</div>$$ f(90^\circ)=0.5 $$</div>
+      <div class="ans-final"><div class="ans-eq">$$ f(90^\circ)=0.5 $$</div><b>정답:</b> 장벽이 균질의 절반 $\Delta G^*_{het}=0.5\,\Delta G^*_{hom}$ — 표면이 핵생성을 절반으로 돕는다.</div>
+    </div>
+  </div>
+
+  <div class="prob lang-en">
+    <div class="prob-num">Problem 1 · Basic · Critical radius $r^*$</div>
+    <p class="prob-statement">Saturated water at 1&nbsp;atm ($\sigma=0.0589\ \text{N/m}$, $T_{sat}=373\ \text{K}$, $\rho_v=0.596\ \text{kg/m}^3$, $h_{fg}=2.257\times10^6\ \text{J/kg}$) is superheated by $\Delta T_{sup}=5\ \text{K}$. Find the <strong>homogeneous critical radius $r^*$</strong> in $\mu\text{m}$.</p>
+    <div class="given"><span class="chip">$\sigma=0.0589$</span><span class="chip">$T_{sat}=373\ \text{K}$</span><span class="chip">$\rho_v=0.596$</span><span class="chip">$h_{fg}=2.257\times10^6$</span><span class="chip">$\Delta T_{sup}=5\ \text{K}$</span></div>
+    <div class="find"><b>Find:</b> $r^*\ [\mu\text{m}]$</div>
+    <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="6.53" data-tol="0.03"/><span class="ans-unit">$\mu\text{m}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+    <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+    <div class="revealable solution">
+      <div class="dstep2"><div class="step-label">Step 1 · $\Delta p$ from Clausius–Clapeyron</div>$$ \Delta p=\frac{\rho_v h_{fg}\,\Delta T_{sup}}{T_{sat}}=\frac{0.596\times 2.257\times10^6\times 5}{373}\approx 1.80\times10^{4}\ \text{Pa} $$</div>
+      <div class="dstep2"><div class="step-label">Step 2 · $r^*=2\sigma/\Delta p$</div>$$ r^*=\frac{2\times 0.0589}{1.80\times10^{4}}\approx 6.53\times10^{-6}\ \text{m} $$</div>
+      <div class="ans-final"><div class="ans-eq">$$ r^*\approx 6.53\ \mu\text{m} $$</div><b>Answer:</b> $r^*\propto 1/\Delta T_{sup}$ — higher superheat means a smaller critical radius.</div>
+    </div>
+  </div>
+
+  <div class="prob lang-en">
+    <div class="prob-num">Problem 2 · Applied · Heterogeneous factor $f(\theta)$</div>
+    <p class="prob-statement">The contact angle of a vapor embryo on the heater is $\theta=90^\circ$. Using $f(\theta)=\dfrac{2+3\cos\theta-\cos^3\theta}{4}$, find <strong>$f(90^\circ)$</strong> (dimensionless).</p>
+    <div class="given"><span class="chip">$\theta=90^\circ$</span><span class="chip">$\cos 90^\circ=0$</span></div>
+    <div class="find"><b>Find:</b> $f(90^\circ)$ (dimensionless)</div>
+    <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="0.5" data-tol="0.02"/><span class="ans-unit">—</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+    <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+    <div class="revealable solution">
+      <div class="dstep2"><div class="step-label">Step 1 · Substitute $\cos 90^\circ=0$</div>$$ f(90^\circ)=\frac{2+3(0)-(0)^3}{4}=\frac{2}{4} $$</div>
+      <div class="dstep2"><div class="step-label">Step 2 · Simplify</div>$$ f(90^\circ)=0.5 $$</div>
+      <div class="ans-final"><div class="ans-eq">$$ f(90^\circ)=0.5 $$</div><b>Answer:</b> The barrier is half the homogeneous value, $\Delta G^*_{het}=0.5\,\Delta G^*_{hom}$ — the surface halves the nucleation barrier.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 1-3 / 정리 ══════════ -->
+<section class="screen" data-ch="1-3" data-chtitle="핵생성 이론" data-stage="정리">
+  <div class="eyebrow lang-ko">1-3 · 정리 · Summary</div>
+  <div class="eyebrow lang-en">1-3 · Summary</div>
+  <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 시험 포인트</h1>
+  <h1 class="stage-h lang-en">Key Points · Common Mistakes · Exam Focus</h1>
+
+  <div class="sumgrid lang-ko">
+    <div class="sumcard key"><h4>핵심 정리</h4><ul>
+      <li>임계 반경 $r^*=\dfrac{2\sigma}{\Delta p}=\dfrac{2\sigma T_{sat}}{\rho_v h_{fg}\Delta T_{sup}}$, 장벽 $\Delta G^*=\dfrac{16\pi\sigma^3}{3\Delta p^2}$.</li>
+      <li>$r<r^*$ 재응축, $r>r^*$ 성장. 핵생성률 $J=J_0 e^{-\Delta G^*/k_B T}$.</li>
+      <li>불균질: $\Delta G^*_{het}=f(\theta)\Delta G^*_{hom}$, $f=\dfrac{2+3\cos\theta-\cos^3\theta}{4}$ — $f(0^\circ)=1$, $f(90^\circ)=0.5$, $f(180^\circ)=0$.</li>
+    </ul></div>
+    <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+      <li>$f(\theta)$ 방향 혼동 → 완전 젖음 $\theta\to 0$이 <strong>$f\to 1$</strong>(도움 없음).</li>
+      <li>$h_{fg}$를 $\text{kJ/kg}$로 → 반드시 <strong>$\text{J/kg}$</strong>.</li>
+      <li>균질 핵생성이 실제 비등을 설명한다고 착각 → 실제는 <strong>공동 불균질</strong>.</li>
+    </ul></div>
+    <div class="sumcard exam full"><h4>시험 포인트</h4><ul>
+      <li>$r^*$·$\Delta G^*$의 $\Delta T_{sup}$ 의존($\propto\Delta T_{sup}^{-1}$, $\propto\Delta T_{sup}^{-2}$) 유도·계산.</li>
+      <li>$f(\theta)$ 값 계산($\theta=90^\circ\Rightarrow 0.5$)과 젖음성–개시 과열도 관계 설명.</li>
+      <li>재진입 공동이 왜 안정 핵생성 site인지, 균질 한계($\approx 300\,{}^{\circ}\text{C}$)와의 차이.</li>
+    </ul></div>
+  </div>
+
+  <div class="sumgrid lang-en">
+    <div class="sumcard key"><h4>Key points</h4><ul>
+      <li>Critical radius $r^*=\dfrac{2\sigma}{\Delta p}=\dfrac{2\sigma T_{sat}}{\rho_v h_{fg}\Delta T_{sup}}$, barrier $\Delta G^*=\dfrac{16\pi\sigma^3}{3\Delta p^2}$.</li>
+      <li>$r<r^*$ recondense, $r>r^*$ grow. Rate $J=J_0 e^{-\Delta G^*/k_B T}$.</li>
+      <li>Heterogeneous: $\Delta G^*_{het}=f(\theta)\Delta G^*_{hom}$, $f=\dfrac{2+3\cos\theta-\cos^3\theta}{4}$ — $f(0^\circ)=1$, $f(90^\circ)=0.5$, $f(180^\circ)=0$.</li>
+    </ul></div>
+    <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+      <li>Flipping $f(\theta)$ → perfect wetting $\theta\to 0$ gives <strong>$f\to 1$</strong> (no help).</li>
+      <li>Using $h_{fg}$ in $\text{kJ/kg}$ → must be <strong>$\text{J/kg}$</strong>.</li>
+      <li>Assuming homogeneous nucleation explains real boiling → it is <strong>heterogeneous in cavities</strong>.</li>
+    </ul></div>
+    <div class="sumcard exam full"><h4>Exam focus</h4><ul>
+      <li>Derive/compute the $\Delta T_{sup}$ dependence of $r^*$ and $\Delta G^*$ ($\propto\Delta T_{sup}^{-1}$, $\propto\Delta T_{sup}^{-2}$).</li>
+      <li>Evaluate $f(\theta)$ ($\theta=90^\circ\Rightarrow 0.5$) and explain the wettability–incipient-superheat link.</li>
+      <li>Why reentrant cavities are stable sites, and the contrast with the homogeneous limit ($\approx 300\,{}^{\circ}\text{C}$).</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ══════════ 1-4 / 개념 ══════════ -->
+  <section class="screen" data-ch="1-4" data-chtitle="비극성 유체 물성 대비" data-stage="개념">
+    <div class="eyebrow lang-ko">1-4 · 개념 · Concept</div>
+    <div class="eyebrow lang-en">1-4 · Concept</div>
+    <h1 class="stage-h lang-ko">비극성 유체 물성 대비 — 물과 다르게 끓는다 <span class="en">· 물 vs. FC-72 / HFE-7100 / R245fa</span></h1>
+    <h1 class="stage-h lang-en">Non-Polar &amp; Dielectric Fluids Boil Nothing Like Water <span class="en">· Water vs. FC-72 / HFE-7100 / R245fa</span></h1>
+    <div class="analogy lang-ko"><span class="ic">🧊</span><div class="tx"><b>직관</b> — 물은 <b>극성(수소결합)</b> 분자라 잠열이 거대하고(2257 kJ/kg) 표면장력이 세다(0.0589 N/m). 반면 전자냉각용 <b>비극성·유전체 유체</b>(FC-72, HFE-7100/Novec, R245fa)는 잠열이 물의 <b>1/13~1/25</b>, 표면장력이 <b>1/4~1/7</b>에 불과하다. 그래서 <b>“물에서는 액이 훨씬 무겁고”</b> 끓기 어렵지만, <b>“유전체에서는 액과 기체가 비슷”</b>해 쉽게 핵생성하되 CHF가 훨씬 낮다. <span class="src">(출처: Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, App. A; 3M Fluorinert™/Novec™ product data — 대표 문헌값)</span></div></div>
+    <div class="analogy lang-en"><span class="ic">🧊</span><div class="tx"><b>Intuition</b> — Water is a <b>polar (hydrogen-bonded)</b> molecule, so its latent heat is huge (2257 kJ/kg) and its surface tension is high (0.0589 N/m). By contrast, <b>non-polar / dielectric</b> electronics-cooling fluids (FC-72, HFE-7100/Novec, R245fa) have latent heats only <b>1/13–1/25</b> and surface tension only <b>1/4–1/7</b> of water. So in <b>water the liquid is far heavier</b> and hard to boil, while in a <b>dielectric the liquid and vapor are close</b> — it nucleates easily but its CHF is much lower. <span class="src">(Source: Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, App. A; 3M Fluorinert™/Novec™ product data — representative literature values)</span></div></div>
+    <div class="two lang-ko">
+      <div class="col2">
+        <p class="lede">같은 비등 곡선(1-1)·계면(1-2)·핵생성(1-3) 물리를 배웠어도, <strong>어떤 유체</strong>냐에 따라 곡선의 위치와 CHF가 완전히 달라집니다. 물은 <strong>큰 $h_{fg}$·큰 $\sigma$·유한한 접촉각</strong>으로 CHF가 $\sim 1.1\ \text{MW/m}^2$에 이르지만, 유전체는 <strong>작은 $h_{fg}$·작은 $\sigma$·거의 0에 가까운 접촉각</strong> 때문에 CHF가 물의 <strong>1/4~1/8</strong> 수준입니다.</p>
+        <div class="keqbox">
+          <div class="keq-label">물 vs 비극성·유전체 유체 (대표 문헌값)</div>
+          <div class="keqrow"><span class="keqcap">잠열 $h_{fg}$</span><span class="keqline">물 $2257$ vs 유전체 $88\!\sim\!168\ \text{kJ/kg}$</span></div>
+          <div class="keqrow"><span class="keqcap">표면장력 $\sigma$</span><span class="keqline">물 $0.0589$ vs 유전체 $0.008\!\sim\!0.014\ \text{N/m}$</span></div>
+          <div class="keqrow"><span class="keqcap">접촉각 $\theta$</span><span class="keqline">물 유한(수십°) vs 유전체 $\approx 0°$</span></div>
+          <div class="keqnote">유전체의 <strong>거의 완전 젖음</strong>($\theta\!\approx\!0$)은 미세 홈(cavity)을 액으로 채워 핵생성을 억제 → 비등 개시(ONB) 시 <strong>과열도 급등(temperature overshoot)</strong>을 유발합니다. <span class="src">[You, Simon &amp; Bar-Cohen 1990]</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">핵심 용어</div>
+        <div class="terms">
+          <div class="term"><b>비극성 유체</b> 쌍극자·수소결합 약함 — 낮은 $h_{fg}$·$\sigma$</div>
+          <div class="term"><b>유전체 유체</b> 전기 비전도 — 전자 침수냉각용</div>
+          <div class="term"><b>$h_{fg}$</b> 잠열 — 기포당 운반 에너지 $[\text{kJ/kg}]$</div>
+          <div class="term"><b>$\sigma$</b> 표면장력 — 증기 이탈 구동력 $[\text{N/m}]$</div>
+          <div class="term"><b>$\theta$</b> 접촉각 — 젖음성 (작을수록 잘 젖음)</div>
+          <div class="term"><b>CHF $q''_{max}$</b> 임계 열유속 — 안전 상한</div>
+        </div>
+        <div class="callout key"><div class="ct">핵심</div>물의 남다른 비등 성능은 <strong>극성 = 큰 잠열·큰 표면장력</strong>에서 옵니다. 유전체는 전자기기를 <strong>단락 없이</strong> 담글 수 있는 대신, <strong>낮은 CHF</strong>라는 대가를 치릅니다.</div>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2">
+        <p class="lede">Even after learning the same boiling-curve (1-1), interface (1-2), and nucleation (1-3) physics, <strong>which fluid</strong> you use completely shifts the curve and the CHF. Water — with <strong>large $h_{fg}$, large $\sigma$, and a finite contact angle</strong> — reaches CHF $\sim 1.1\ \text{MW/m}^2$, whereas dielectrics, with <strong>small $h_{fg}$, small $\sigma$, and a near-zero contact angle</strong>, have CHF only <strong>1/4–1/8</strong> that of water.</p>
+        <div class="keqbox">
+          <div class="keq-label">Water vs non-polar / dielectric fluids (representative)</div>
+          <div class="keqrow"><span class="keqcap">latent heat $h_{fg}$</span><span class="keqline">water $2257$ vs dielectric $88\!\sim\!168\ \text{kJ/kg}$</span></div>
+          <div class="keqrow"><span class="keqcap">surface tension $\sigma$</span><span class="keqline">water $0.0589$ vs dielectric $0.008\!\sim\!0.014\ \text{N/m}$</span></div>
+          <div class="keqrow"><span class="keqcap">contact angle $\theta$</span><span class="keqline">water finite (tens of °) vs dielectric $\approx 0°$</span></div>
+          <div class="keqnote">A dielectric's <strong>near-perfect wetting</strong> ($\theta\!\approx\!0$) floods micro-cavities and suppresses nucleation → causing a <strong>temperature overshoot</strong> at the onset of nucleate boiling (ONB). <span class="src">[You, Simon &amp; Bar-Cohen 1990]</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">Key terms</div>
+        <div class="terms">
+          <div class="term"><b>non-polar fluid</b> weak dipole/H-bond — low $h_{fg}$, $\sigma$</div>
+          <div class="term"><b>dielectric fluid</b> electrically insulating — for immersion cooling</div>
+          <div class="term"><b>$h_{fg}$</b> latent heat — energy carried per bubble $[\text{kJ/kg}]$</div>
+          <div class="term"><b>$\sigma$</b> surface tension — vapor-escape driving force $[\text{N/m}]$</div>
+          <div class="term"><b>$\theta$</b> contact angle — wettability (smaller = wets more)</div>
+          <div class="term"><b>CHF $q''_{max}$</b> critical heat flux — safety ceiling</div>
+        </div>
+        <div class="callout key"><div class="ct">Key idea</div>Water's exceptional boiling performance comes from its <strong>polarity = large latent heat and surface tension</strong>. Dielectrics let you submerge electronics <strong>without shorting</strong>, but pay for it with a <strong>low CHF</strong>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-4 / 유도 ══════════ -->
+  <section class="screen" data-ch="1-4" data-chtitle="비극성 유체 물성 대비" data-stage="유도">
+    <div class="eyebrow lang-ko">1-4 · 수식 유도 · Derivation</div>
+    <div class="eyebrow lang-en">1-4 · Derivation</div>
+    <h1 class="stage-h lang-ko">Zuber CHF로 읽는 — 왜 유전체는 CHF가 낮은가</h1>
+    <h1 class="stage-h lang-en">Reading Zuber CHF — Why Dielectrics Have Low CHF</h1>
+    <p class="assume lang-ko"><b>출발점:</b> 임계 열유속은 표면이 아니라 <b>유체 물성</b>으로 정해집니다(유체역학적 한계). Zuber 식 $q''_{max}=C\,h_{fg}\,\rho_v^{1/2}\,[\sigma g(\rho_l-\rho_v)]^{1/4}$에서 $h_{fg}$·$\sigma$·$\rho_v$의 <b>스케일링</b>만 보면 유전체가 왜 물보다 훨씬 낮은지 바로 읽힙니다. <span class="src">[Zuber 1959; Lienhard &amp; Dhir 1973]</span></p>
+    <p class="assume lang-en"><b>Starting point:</b> The critical heat flux is set by <b>fluid properties</b>, not the surface (a hydrodynamic limit). From Zuber's expression $q''_{max}=C\,h_{fg}\,\rho_v^{1/2}\,[\sigma g(\rho_l-\rho_v)]^{1/4}$, the <b>scaling</b> in $h_{fg}$, $\sigma$, and $\rho_v$ alone shows why a dielectric sits far below water. <span class="src">[Zuber 1959; Lienhard &amp; Dhir 1973]</span></p>
+    <div class="deriv lang-ko">
+      <div class="dcard"><h4>① Zuber 식</h4><div class="sub">유체역학적 CHF</div><div class="ana">☁️ 증기 기둥 붕괴 — 액체 보충이 차단되는 순간</div><div class="eq">$ q''_{max}=C\,h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4} $</div><p>$C\approx 0.131$(Zuber 이론, $\pi/24$), <strong>$C\approx 0.149$</strong>(Lienhard, 대형 평판). 표면·과열도 무관, <strong>물성만</strong>.</p></div>
+      <div class="dcard"><h4>② 스케일링</h4><div class="sub">지배 인자 추출</div><div class="ana">📐 잠열이 1등 — 세제곱근·네제곱근보다 선형이 세다</div><div class="eq">$ q''_{max}\propto h_{fg}\cdot\rho_v^{1/2}\cdot\sigma^{1/4} $</div><p>$h_{fg}$는 <strong>1차(선형)</strong>, $\sigma$는 <strong>1/4승</strong>, $\rho_v$는 <strong>1/2승</strong>. 즉 <strong>잠열 감소가 CHF를 가장 크게 끌어내립니다</strong>.</p></div>
+      <div class="dcard"><h4>③ 유전체 대입</h4><div class="sub">물 대비 비</div><div class="ana">🔻 잠열 1/25 → σ·ρ_v 보정해도 CHF 급감</div><div class="eq">$ \frac{q''_{max,d}}{q''_{max,w}}\!\sim\!\frac{h_{fg,d}}{h_{fg,w}}\!\left(\frac{\sigma_d}{\sigma_w}\right)^{\!1/4} $</div><p>FC-72: $h_{fg}$비 $\approx 0.04$, $\sigma$비$^{1/4}\approx 0.62$. $\rho_v$가 커도(고분자량) 잠열이 압도 → CHF $\approx$ 물의 <strong>1/7~1/8</strong>.</p></div>
+    </div>
+    <div class="deriv lang-en">
+      <div class="dcard"><h4>① Zuber expression</h4><div class="sub">hydrodynamic CHF</div><div class="ana">☁️ Vapor-column collapse — the instant liquid resupply is cut off</div><div class="eq">$ q''_{max}=C\,h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4} $</div><p>$C\approx 0.131$ (Zuber, $\pi/24$), <strong>$C\approx 0.149$</strong> (Lienhard, large flat plate). Independent of surface and superheat — <strong>properties only</strong>.</p></div>
+      <div class="dcard"><h4>② Scaling</h4><div class="sub">extract the drivers</div><div class="ana">📐 Latent heat wins — linear beats the 1/4 and 1/2 powers</div><div class="eq">$ q''_{max}\propto h_{fg}\cdot\rho_v^{1/2}\cdot\sigma^{1/4} $</div><p>$h_{fg}$ enters <strong>linearly</strong>, $\sigma$ to the <strong>1/4</strong>, $\rho_v$ to the <strong>1/2</strong>. So <strong>a drop in latent heat pulls CHF down the most</strong>.</p></div>
+      <div class="dcard"><h4>③ Dielectric case</h4><div class="sub">ratio to water</div><div class="ana">🔻 h_fg × 1/25 → even correcting σ, ρ_v, CHF crashes</div><div class="eq">$ \frac{q''_{max,d}}{q''_{max,w}}\!\sim\!\frac{h_{fg,d}}{h_{fg,w}}\!\left(\frac{\sigma_d}{\sigma_w}\right)^{\!1/4} $</div><p>FC-72: $h_{fg}$ ratio $\approx 0.04$, $\sigma$ ratio$^{1/4}\approx 0.62$. Even with high $\rho_v$ (heavy molecule) the latent heat dominates → CHF $\approx$ <strong>1/7–1/8</strong> of water.</p></div>
+    </div>
+    <div class="callout warn lang-ko"><div class="ct">주의 · 단위와 근사</div>Zuber 식은 <strong>SI 단위</strong>($h_{fg}$는 $\text{J/kg}$, $\sigma$는 $\text{N/m}$). ②의 $\propto\sigma^{1/4}$는 $\rho_l\gg\rho_v$일 때의 근사입니다. 유전체는 $\rho_v$가 커($\rho_l-\rho_v$가 조금 작아짐) 실제 CHF는 문헌 실측으로 확정해야 하며, 여기 값은 <strong>대표 문헌값</strong>입니다.</div>
+    <div class="callout warn lang-en"><div class="ct">Caution · Units &amp; approximation</div>Zuber's expression is in <strong>SI units</strong> ($h_{fg}$ in $\text{J/kg}$, $\sigma$ in $\text{N/m}$). The $\propto\sigma^{1/4}$ in ② assumes $\rho_l\gg\rho_v$. Dielectrics have larger $\rho_v$ (so $\rho_l-\rho_v$ is slightly smaller); actual CHF must be fixed by measurement, and the numbers here are <strong>representative literature values</strong>.</div>
+  </section>
+
+  <!-- ══════════ 1-4 / 읽을거리 ══════════ -->
+  <section class="screen" data-ch="1-4" data-chtitle="비극성 유체 물성 대비" data-stage="읽을거리">
+    <div class="eyebrow lang-ko">1-4 · 읽을거리 · Reading</div>
+    <div class="eyebrow lang-en">1-4 · Reading</div>
+    <h1 class="stage-h lang-ko">전자기기를 액에 담그는데, 왜 하필 CHF가 낮은 유체를?</h1>
+    <h1 class="stage-h lang-en">Immersion-Cooling Chips — Why Choose the Low-CHF Fluid?</h1>
+    <div class="two lang-ko">
+      <div class="col2 reading">
+        <p>데이터센터·전력전자의 <strong>침수냉각(immersion cooling)</strong>은 칩을 액체에 통째로 담가 비등으로 열을 뺍니다. 그런데 왜 냉각 성능(CHF)이 물의 1/4~1/8밖에 안 되는 <strong>FC-72·HFE-7100·R245fa</strong>를 쓸까요? 답은 간단합니다 — 이들은 <strong>전기 비전도(유전체)</strong>이자 화학적으로 <strong>불활성</strong>이라, 전자 부품에 직접 닿아도 단락·부식이 없기 때문입니다. 물은 성능은 최고지만 회로를 죽입니다.</p>
+        <p class="pullquote">유전체 냉각은 성능이 아니라 <em>“회로를 죽이지 않는 것”</em>을 먼저 산다.</p>
+        <p>대가는 <strong>낮은 잠열·표면장력</strong>입니다. 잠열이 작아 같은 열을 빼려면 훨씬 많은 유체가 끓어야 하고, 표면장력이 작아 기포는 잘 생기지만 <strong>CHF가 낮아</strong> 열유속 여유가 적습니다. 게다가 <strong>접촉각이 거의 0</strong>이라 미세 홈이 액으로 채워져, 비등이 시작될 때 벽온도가 <strong>확 튀었다 떨어지는 과열도 오버슈트</strong>가 나타납니다. 그래서 유전체 냉각 설계는 <strong>표면 가공(다공질·마이크로핀)</strong>으로 핵생성 site를 만들어 CHF를 끌어올리는 것이 핵심 연구 주제입니다.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>유전체 선택 이유 = <strong>비전도·불활성</strong>(성능 아님).</li><li>대가 = <strong>낮은 $h_{fg}$·$\sigma$ → 낮은 CHF</strong>.</li><li>$\theta\!\approx\!0$ → 비등 개시 시 <strong>과열도 오버슈트</strong>.</li><li>표면 가공으로 CHF 보강이 실무 핵심.</li></ul></div>
+        <p class="readmeta">참고: Bar-Cohen, Arik &amp; Hendrix (2006) <em>Direct liquid cooling of high flux micro/nano electronics</em>; You, Simon &amp; Bar-Cohen (1990) <em>ASME J. Heat Transfer</em>; 3M Novec™ 자료.</p>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2 reading">
+        <p><strong>Immersion cooling</strong> in data centers and power electronics submerges the chip in liquid and removes heat by boiling. But why use <strong>FC-72, HFE-7100, or R245fa</strong>, whose CHF is only 1/4–1/8 that of water? The reason is simple — they are <strong>electrically insulating (dielectric)</strong> and chemically <strong>inert</strong>, so they can touch live components without shorting or corroding. Water has the best performance but kills the circuit.</p>
+        <p class="pullquote">Dielectric cooling first buys <em>"not killing the circuit,"</em> not performance.</p>
+        <p>The price is <strong>low latent heat and surface tension</strong>. Because latent heat is small, far more fluid must boil to remove the same heat; because surface tension is small, bubbles form easily but <strong>CHF is low</strong>, leaving little flux margin. And with a <strong>near-zero contact angle</strong>, micro-cavities flood with liquid, so at boiling incipience the wall temperature shows a <strong>spike-then-drop overshoot</strong>. That is why dielectric-cooling design centers on <strong>surface engineering (porous coatings, micro-fins)</strong> to create nucleation sites and raise CHF.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">What you must know</div><ul><li>Why dielectrics = <strong>insulating &amp; inert</strong> (not performance).</li><li>Price = <strong>low $h_{fg}$, $\sigma$ → low CHF</strong>.</li><li>$\theta\!\approx\!0$ → <strong>superheat overshoot</strong> at onset.</li><li>Surface engineering to boost CHF is the practical key.</li></ul></div>
+        <p class="readmeta">Refs: Bar-Cohen, Arik &amp; Hendrix (2006) <em>Direct liquid cooling of high flux micro/nano electronics</em>; You, Simon &amp; Bar-Cohen (1990) <em>ASME J. Heat Transfer</em>; 3M Novec™ data.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-4 / 그림·표 ══════════ -->
+  <section class="screen" data-ch="1-4" data-chtitle="비극성 유체 물성 대비" data-stage="그림·표">
+    <div class="eyebrow lang-ko">1-4 · 그림 · 그래프 · 표</div>
+    <div class="eyebrow lang-en">1-4 · Figure · Chart · Table</div>
+    <h1 class="stage-h lang-ko">한눈에 — 유체별 CHF와 물성 대비</h1>
+    <h1 class="stage-h lang-en">At a Glance — CHF and Properties by Fluid</h1>
+    <div class="vizgrid lang-ko">
+      <div>
+        <div class="vcap">평활면 풀비등 CHF (대표 문헌값, $\text{kW/m}^2$)</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<line x1="48" y1="248" x2="456" y2="248" stroke="#71717a" stroke-width="1.5"/>
+<line x1="48" y1="248" x2="48" y2="46" stroke="#71717a" stroke-width="1.5"/>
+<text x="18" y="150" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 18 150)">CHF $q''_{max}$ [kW/m²]</text>
+<rect x="65" y="68" width="46" height="180" fill="#c2410c" fill-opacity="0.85" rx="2"/>
+<rect x="167" y="194" width="46" height="54" fill="#c2410c" fill-opacity="0.35" rx="2"/>
+<rect x="269" y="205" width="46" height="43" fill="#c2410c" fill-opacity="0.35" rx="2"/>
+<rect x="371" y="224" width="46" height="24" fill="#c2410c" fill-opacity="0.35" rx="2"/>
+<text x="88" y="60" font-size="11.5" fill="#c2410c" text-anchor="middle" font-weight="700">~1100</text>
+<text x="190" y="186" font-size="11" fill="#52525b" text-anchor="middle" font-weight="700">~332</text>
+<text x="292" y="197" font-size="11" fill="#52525b" text-anchor="middle" font-weight="700">~266</text>
+<text x="394" y="216" font-size="11" fill="#52525b" text-anchor="middle" font-weight="700">~150</text>
+<text x="88" y="264" font-size="10.5" fill="#18181b" text-anchor="middle" font-weight="700">물</text>
+<text x="190" y="264" font-size="10.5" fill="#52525b" text-anchor="middle">R245fa</text>
+<text x="292" y="264" font-size="10.5" fill="#52525b" text-anchor="middle">HFE-7100</text>
+<text x="394" y="264" font-size="10.5" fill="#52525b" text-anchor="middle">FC-72</text>
+<text x="292" y="98" font-size="10.5" fill="#c2410c" text-anchor="middle" font-weight="700">유전체 ≈ 물의 1/4~1/8</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">물성 대비 (1 atm, 대표 문헌값)</div>
+        <table class="ktab"><thead><tr><th>유체</th><th>$h_{fg}$<br>[kJ/kg]</th><th>$\sigma$<br>[N/m]</th><th>$\theta$</th><th>CHF<br>[kW/m²]</th></tr></thead><tbody>
+          <tr><td>물 (극성)</td><td class="k">2257</td><td class="k">0.0589</td><td class="k">수십°</td><td class="k">~1100</td></tr>
+          <tr><td>R245fa</td><td class="k">~168</td><td class="k">~0.014</td><td class="k">작음</td><td class="k">~332</td></tr>
+          <tr><td>HFE-7100</td><td class="k">~112</td><td class="k">~0.0136</td><td class="k">≈0°</td><td class="k">~266</td></tr>
+          <tr><td>FC-72</td><td class="k">~88</td><td class="k">~0.0085</td><td class="k">≈0°</td><td class="k">~150</td></tr>
+        </tbody></table>
+        <div class="keqnote">물 CHF: Zuber $C=0.149$ 계산 시 $\approx 1.26\ \text{MW/m}^2$ (평활면 실측 대표값 $\sim 1.1$). 유전체 CHF·물성은 <strong>대표 문헌값</strong>이며 표면·과냉·압력에 따라 변합니다. 응용: 물=발전·보일러 / 유전체=전자 침수냉각·ORC. <span class="src">[Incropera App.A; 3M data; El-Genk; Arik &amp; Bar-Cohen]</span></div>
+      </div>
+    </div>
+    <div class="vizgrid lang-en">
+      <div>
+        <div class="vcap">Smooth-surface pool-boiling CHF (representative, $\text{kW/m}^2$)</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<line x1="48" y1="248" x2="456" y2="248" stroke="#71717a" stroke-width="1.5"/>
+<line x1="48" y1="248" x2="48" y2="46" stroke="#71717a" stroke-width="1.5"/>
+<text x="18" y="150" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 18 150)">CHF $q''_{max}$ [kW/m²]</text>
+<rect x="65" y="68" width="46" height="180" fill="#c2410c" fill-opacity="0.85" rx="2"/>
+<rect x="167" y="194" width="46" height="54" fill="#c2410c" fill-opacity="0.35" rx="2"/>
+<rect x="269" y="205" width="46" height="43" fill="#c2410c" fill-opacity="0.35" rx="2"/>
+<rect x="371" y="224" width="46" height="24" fill="#c2410c" fill-opacity="0.35" rx="2"/>
+<text x="88" y="60" font-size="11.5" fill="#c2410c" text-anchor="middle" font-weight="700">~1100</text>
+<text x="190" y="186" font-size="11" fill="#52525b" text-anchor="middle" font-weight="700">~332</text>
+<text x="292" y="197" font-size="11" fill="#52525b" text-anchor="middle" font-weight="700">~266</text>
+<text x="394" y="216" font-size="11" fill="#52525b" text-anchor="middle" font-weight="700">~150</text>
+<text x="88" y="264" font-size="10.5" fill="#18181b" text-anchor="middle" font-weight="700">Water</text>
+<text x="190" y="264" font-size="10.5" fill="#52525b" text-anchor="middle">R245fa</text>
+<text x="292" y="264" font-size="10.5" fill="#52525b" text-anchor="middle">HFE-7100</text>
+<text x="394" y="264" font-size="10.5" fill="#52525b" text-anchor="middle">FC-72</text>
+<text x="292" y="98" font-size="10.5" fill="#c2410c" text-anchor="middle" font-weight="700">dielectric ≈ 1/4–1/8 of water</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">Property contrast (1 atm, representative)</div>
+        <table class="ktab"><thead><tr><th>Fluid</th><th>$h_{fg}$<br>[kJ/kg]</th><th>$\sigma$<br>[N/m]</th><th>$\theta$</th><th>CHF<br>[kW/m²]</th></tr></thead><tbody>
+          <tr><td>Water (polar)</td><td class="k">2257</td><td class="k">0.0589</td><td class="k">tens °</td><td class="k">~1100</td></tr>
+          <tr><td>R245fa</td><td class="k">~168</td><td class="k">~0.014</td><td class="k">small</td><td class="k">~332</td></tr>
+          <tr><td>HFE-7100</td><td class="k">~112</td><td class="k">~0.0136</td><td class="k">≈0°</td><td class="k">~266</td></tr>
+          <tr><td>FC-72</td><td class="k">~88</td><td class="k">~0.0085</td><td class="k">≈0°</td><td class="k">~150</td></tr>
+        </tbody></table>
+        <div class="keqnote">Water CHF: Zuber with $C=0.149$ gives $\approx 1.26\ \text{MW/m}^2$ (smooth-surface measured $\sim 1.1$). Dielectric CHF and properties are <strong>representative literature values</strong> and vary with surface, subcooling, and pressure. Use: water = power/boilers / dielectric = electronics immersion, ORC. <span class="src">[Incropera App.A; 3M data; El-Genk; Arik &amp; Bar-Cohen]</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-4 / 실습 ══════════ -->
+  <section class="screen" data-ch="1-4" data-chtitle="비극성 유체 물성 대비" data-stage="실습">
+    <div class="eyebrow lang-ko">1-4 · 실습 · Interactive</div>
+    <div class="eyebrow lang-en">1-4 · Interactive</div>
+    <h1 class="stage-h lang-ko">Zuber CHF — 물성을 유전체로 바꿔보기</h1>
+    <h1 class="stage-h lang-en">Zuber CHF — Swap Properties Toward a Dielectric</h1>
+    <p class="lede lang-ko">Zuber 식 $q''_{max}=C\,h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}$($C=0.149$)로 CHF를 계산합니다. 기본값은 <strong>대기압 물</strong>($h_{fg}=2257$, $\sigma=0.0589$, $\rho_v=0.596$)로 $\approx 1.26\ \text{MW/m}^2$가 나옵니다. <strong>잠열 $h_{fg}$</strong>를 유전체 수준으로 내려보면 CHF가 얼마나 급감하는지 확인하세요 ($\rho_l=958$ 고정 근사).</p>
+    <p class="lede lang-en">Compute CHF with Zuber's expression $q''_{max}=C\,h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}$ ($C=0.149$). The defaults are <strong>atmospheric water</strong> ($h_{fg}=2257$, $\sigma=0.0589$, $\rho_v=0.596$), giving $\approx 1.26\ \text{MW/m}^2$. Lower <strong>latent heat $h_{fg}$</strong> toward dielectric levels to see how sharply CHF collapses ($\rho_l=958$ fixed, approximate).</p>
+    <div class="calc lang-ko"
+      data-title="Zuber CHF $q''_{max}=0.149\,h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}$"
+      data-desc="C=0.149(Lienhard, 대형 평판). ρ_l=958 고정(물). 물 기본값 → ~1.26 MW/m²; h_fg·σ를 유전체 값으로 낮추면 급감."
+      data-vars='[{"sym":"hfg","label":"$h_{fg}$ · 잠열","min":80,"max":2300,"val":2257,"step":1,"unit":"kJ/kg"},{"sym":"sigma","label":"$\\sigma$ · 표면장력","min":0.005,"max":0.06,"val":0.0589,"step":0.0005,"unit":"N/m"},{"sym":"rhov","label":"$\\rho_v$ · 증기밀도","min":0.5,"max":15,"val":0.596,"step":0.1,"unit":"kg/m³"}]'
+      data-expr="0.149*(hfg*1000)*Math.sqrt(rhov)*Math.pow(sigma*9.81*(958-rhov),0.25)"
+      data-out="$q''_{max}$" data-out-unit="$\text{W/m}^2$"
+      data-barmax="1400000"
+      data-note="물 기본값→~1.1–1.3 MW/m²; 잠열 h_fg를 2257→88 kJ/kg(FC-72급)로 낮추면 CHF가 25배 이상 급감 — 유전체가 물보다 CHF가 훨씬 낮은 근본 이유."></div>
+    <div class="calc lang-en"
+      data-title="Zuber CHF $q''_{max}=0.149\,h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}$"
+      data-desc="C=0.149 (Lienhard, large flat plate). ρ_l=958 fixed (water). Water defaults → ~1.26 MW/m²; lowering h_fg·σ to dielectric values crashes it."
+      data-vars='[{"sym":"hfg","label":"$h_{fg}$ · latent heat","min":80,"max":2300,"val":2257,"step":1,"unit":"kJ/kg"},{"sym":"sigma","label":"$\\sigma$ · surface tension","min":0.005,"max":0.06,"val":0.0589,"step":0.0005,"unit":"N/m"},{"sym":"rhov","label":"$\\rho_v$ · vapor density","min":0.5,"max":15,"val":0.596,"step":0.1,"unit":"kg/m³"}]'
+      data-expr="0.149*(hfg*1000)*Math.sqrt(rhov)*Math.pow(sigma*9.81*(958-rhov),0.25)"
+      data-out="$q''_{max}$" data-out-unit="$\text{W/m}^2$"
+      data-barmax="1400000"
+      data-note="Water defaults → ~1.1–1.3 MW/m²; lowering h_fg from 2257→88 kJ/kg (FC-72 level) drops CHF by more than 25× — the root reason dielectrics have far lower CHF than water."></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — CHF $q''_{max}\,[\text{MW/m}^2]$ 감: FC-72 $\approx 0.15$ · HFE-7100 $\approx 0.27$ · R245fa $\approx 0.33$ · 대기압 물 $\approx 1.1\!\sim\!1.26$. 잠열이 <strong>선형(1차)</strong>으로 들어가므로 CHF를 좌우하는 1등 인자입니다 — $\sigma$($1/4$승)·$\rho_v$($1/2$승)를 아무리 조절해도 잠열 감소를 이기지 못합니다. <span class="src">(출처: 물 = Zuber $C=0.149$ 계산; 유전체 = 대표 문헌 CHF값)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering feel</b> — CHF $q''_{max}\,[\text{MW/m}^2]$: FC-72 $\approx 0.15$ · HFE-7100 $\approx 0.27$ · R245fa $\approx 0.33$ · atmospheric water $\approx 1.1\!\sim\!1.26$. Because latent heat enters <strong>linearly</strong>, it is the number-one driver of CHF — no amount of tuning $\sigma$ (1/4 power) or $\rho_v$ (1/2 power) beats the fall in latent heat. <span class="src">(Source: water = Zuber $C=0.149$; dielectric = representative literature CHF)</span></div>
+  </section>
+
+  <!-- ══════════ 1-4 / 점검 ══════════ -->
+  <section class="screen" data-ch="1-4" data-chtitle="비극성 유체 물성 대비" data-stage="점검">
+    <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+    <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · Instructor view</span></div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q1.</span>비극성·유전체 유체가 물보다 CHF가 훨씬 낮은 <strong>가장 큰 이유</strong>는?</p>
+      <div class="opts">
+        <button class="opt">① 접촉각이 커서 표면이 잘 안 젖기 때문</button>
+        <button class="opt" data-correct="1">② 잠열 $h_{fg}$가 물의 1/13~1/25로 작고, Zuber CHF에 $h_{fg}$가 선형으로 들어가기 때문</button>
+        <button class="opt">③ 증기 밀도 $\rho_v$가 물보다 작기 때문</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — Zuber $q''_{max}\propto h_{fg}\rho_v^{1/2}\sigma^{1/4}$에서 잠열은 <strong>1차(선형)</strong>로 가장 크게 작용하고, 유전체는 잠열이 물의 1/13~1/25라 CHF가 급감한다. <span class="dim">오답 ①·③: ①유전체는 오히려 접촉각이 $\approx0°$(잘 젖음)이고, ③FC-72 등은 고분자량이라 $\rho_v$가 오히려 커서 CHF를 조금 올리는 방향이다.</span> <span class="agg">학급 n=34 · ① 6 · ② 24 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q2.</span>CHF가 낮은데도 전자기기 <strong>침수냉각</strong>에 FC-72·HFE-7100을 쓰는 주된 이유는?</p>
+      <div class="opts">
+        <button class="opt">① 물보다 잠열이 커서 열을 더 많이 나르기 때문</button>
+        <button class="opt">② 표면장력이 커서 기포가 잘 이탈하기 때문</button>
+        <button class="opt" data-correct="1">③ 전기 비전도(유전체)·화학적 불활성이라 부품에 직접 닿아도 단락·부식이 없기 때문</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ③</b> — 침수냉각은 액이 회로에 직접 닿으므로 <strong>비전도·불활성</strong>이 절대 조건이다. 유전체는 성능(CHF)을 희생하고 이 조건을 산다. <span class="dim">오답 ①·②: ①유전체 잠열은 물보다 작고, ②표면장력도 물보다 작다 — 둘 다 사실과 반대.</span> <span class="agg">학급 n=34 · ① 4 · ② 5 · ③ 25</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q1.</span>The <strong>main reason</strong> non-polar / dielectric fluids have much lower CHF than water?</p>
+      <div class="opts">
+        <button class="opt">① Their large contact angle keeps the surface poorly wetted</button>
+        <button class="opt" data-correct="1">② Latent heat $h_{fg}$ is 1/13–1/25 that of water, and $h_{fg}$ enters Zuber CHF linearly</button>
+        <button class="opt">③ Their vapor density $\rho_v$ is smaller than water's</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ②</b> — In Zuber $q''_{max}\propto h_{fg}\rho_v^{1/2}\sigma^{1/4}$, latent heat acts <strong>linearly</strong> and dominates; a dielectric's $h_{fg}$ is 1/13–1/25 of water, so CHF collapses. <span class="dim">Wrong ①·③: ① dielectrics actually have $\theta\!\approx\!0°$ (wet very well), and ③ FC-72 is heavy so its $\rho_v$ is larger, nudging CHF up.</span> <span class="agg">Class n=34 · ① 6 · ② 24 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q2.</span>Despite low CHF, why are FC-72 / HFE-7100 chosen for electronics <strong>immersion cooling</strong>?</p>
+      <div class="opts">
+        <button class="opt">① Their latent heat exceeds water's, carrying more heat</button>
+        <button class="opt">② Their surface tension is high, so bubbles depart easily</button>
+        <button class="opt" data-correct="1">③ They are electrically insulating (dielectric) and inert, so contact with live parts causes no shorting or corrosion</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ③</b> — Immersion cooling puts liquid in direct contact with the circuit, so being <strong>insulating and inert</strong> is mandatory. Dielectrics sacrifice performance (CHF) to buy this. <span class="dim">Wrong ①·②: ① dielectric latent heat is lower than water's, and ② their surface tension is lower too — both are the opposite of the truth.</span> <span class="agg">Class n=34 · ① 4 · ② 5 · ③ 25</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-4 / 연습 ══════════ -->
+  <section class="screen" data-ch="1-4" data-chtitle="비극성 유체 물성 대비" data-stage="연습">
+    <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+    <div class="panel-head lang-en"><span class="tag">Problems</span><span class="panel-title">Engineering calc · Auto-graded</span></div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 1 · 기본 · 물의 Zuber CHF</div>
+      <p class="prob-statement">대기압 포화수($h_{fg}=2.257\times10^6\ \text{J/kg}$, $\rho_l=958$, $\rho_v=0.596\ \text{kg/m}^3$, $\sigma=0.0589\ \text{N/m}$, $g=9.81$)에서 $C=0.149$로 <strong>임계 열유속 $q''_{max}$</strong>을 $\text{MW/m}^2$로 구하시오.</p>
+      <div class="given"><span class="chip">$h_{fg}=2.257\times10^6$</span><span class="chip">$\rho_v=0.596$</span><span class="chip">$\rho_l-\rho_v\approx 957.4$</span><span class="chip">$\sigma=0.0589$</span><span class="chip">$C=0.149$</span></div>
+      <div class="find"><b>구할 것:</b> $q''_{max}\ [\text{MW/m}^2]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="1.26" data-tol="0.03"/><span class="ans-unit">$\text{MW/m}^2$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 대괄호 항</div>$$ \sigma g(\rho_l-\rho_v)=0.0589\times9.81\times957.4\approx 553.2 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 거듭제곱</div>$$ (553.2)^{1/4}\approx 4.85,\quad \rho_v^{1/2}=0.596^{1/2}\approx 0.772 $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · Zuber 대입</div>$$ q''_{max}=0.149\times2.257\times10^6\times0.772\times4.85\approx 1.26\times10^{6}\ \text{W/m}^2 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ q''_{max}\approx 1.26\ \text{MW/m}^2 $$</div><b>정답:</b> 물의 잘 알려진 CHF ($C=0.131$이면 $\approx 1.11\ \text{MW/m}^2$).</div>
+      </div>
+    </div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 2 · 응용 · 물 대 유전체 CHF 비</div>
+      <p class="prob-statement">평활면 대표 CHF가 <strong>물 $\approx 1100\ \text{kW/m}^2$</strong>, <strong>FC-72 $\approx 150\ \text{kW/m}^2$</strong>일 때, <strong>물/FC-72 CHF 비</strong>를 구하고 잠열이 지배 인자임을 확인하시오.</p>
+      <div class="given"><span class="chip">$q''_{max,\text{물}}\approx 1100$</span><span class="chip">$q''_{max,\text{FC-72}}\approx 150$</span><span class="chip">$h_{fg}$비 $\approx 25$</span></div>
+      <div class="find"><b>구할 것:</b> $q''_{max,\text{물}}/q''_{max,\text{FC-72}}$ (무차원)</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="7.33" data-tol="0.04"/><span class="ans-unit">배</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · CHF 비</div>$$ \frac{q''_{max,\text{물}}}{q''_{max,\text{FC-72}}}=\frac{1100}{150}\approx 7.3 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 물리 해석</div>$$ \text{잠열비}\approx 25\ \text{but}\ \rho_v^{1/2},\sigma^{1/4}\ \text{보정으로 완화} \Rightarrow \text{CHF비}\approx 7 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \text{물/FC-72 CHF}\approx 7.3\ \text{배} $$</div><b>정답:</b> FC-72는 잠열이 1/25이지만 큰 $\rho_v$(고분자량)가 부분 보정 → CHF는 약 1/7. 그래도 물보다 훨씬 낮다.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Problem 1 · Basic · Zuber CHF of water</div>
+      <p class="prob-statement">For atmospheric saturated water ($h_{fg}=2.257\times10^6\ \text{J/kg}$, $\rho_l=958$, $\rho_v=0.596\ \text{kg/m}^3$, $\sigma=0.0589\ \text{N/m}$, $g=9.81$) with $C=0.149$, find the <strong>critical heat flux $q''_{max}$</strong> in $\text{MW/m}^2$.</p>
+      <div class="given"><span class="chip">$h_{fg}=2.257\times10^6$</span><span class="chip">$\rho_v=0.596$</span><span class="chip">$\rho_l-\rho_v\approx 957.4$</span><span class="chip">$\sigma=0.0589$</span><span class="chip">$C=0.149$</span></div>
+      <div class="find"><b>Find:</b> $q''_{max}\ [\text{MW/m}^2]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="1.26" data-tol="0.03"/><span class="ans-unit">$\text{MW/m}^2$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · Bracket term</div>$$ \sigma g(\rho_l-\rho_v)=0.0589\times9.81\times957.4\approx 553.2 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · Powers</div>$$ (553.2)^{1/4}\approx 4.85,\quad \rho_v^{1/2}=0.596^{1/2}\approx 0.772 $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · Zuber</div>$$ q''_{max}=0.149\times2.257\times10^6\times0.772\times4.85\approx 1.26\times10^{6}\ \text{W/m}^2 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ q''_{max}\approx 1.26\ \text{MW/m}^2 $$</div><b>Answer:</b> the well-known water CHF ($C=0.131$ gives $\approx 1.11\ \text{MW/m}^2$).</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Problem 2 · Applied · Water-to-dielectric CHF ratio</div>
+      <p class="prob-statement">With representative smooth-surface CHF of <strong>water $\approx 1100\ \text{kW/m}^2$</strong> and <strong>FC-72 $\approx 150\ \text{kW/m}^2$</strong>, find the <strong>water/FC-72 CHF ratio</strong> and confirm that latent heat is the dominant driver.</p>
+      <div class="given"><span class="chip">$q''_{max,\text{water}}\approx 1100$</span><span class="chip">$q''_{max,\text{FC-72}}\approx 150$</span><span class="chip">$h_{fg}$ ratio $\approx 25$</span></div>
+      <div class="find"><b>Find:</b> $q''_{max,\text{water}}/q''_{max,\text{FC-72}}$ (dimensionless)</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="7.33" data-tol="0.04"/><span class="ans-unit">×</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · CHF ratio</div>$$ \frac{q''_{max,\text{water}}}{q''_{max,\text{FC-72}}}=\frac{1100}{150}\approx 7.3 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · Physics</div>$$ h_{fg}\ \text{ratio}\approx 25\ \text{but}\ \rho_v^{1/2},\sigma^{1/4}\ \text{soften it} \Rightarrow \text{CHF ratio}\approx 7 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \text{water/FC-72 CHF}\approx 7.3\times $$</div><b>Answer:</b> FC-72 has 1/25 the latent heat, but its large $\rho_v$ (heavy molecule) partly compensates → CHF is about 1/7. Still far below water.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-4 / 정리 ══════════ -->
+  <section class="screen" data-ch="1-4" data-chtitle="비극성 유체 물성 대비" data-stage="정리">
+    <div class="eyebrow lang-ko">1-4 · 정리 · Summary</div>
+    <div class="eyebrow lang-en">1-4 · Summary</div>
+    <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 1주차 한 줄 꿰기</h1>
+    <h1 class="stage-h lang-en">Key Points · Common Mistakes · Tying Week 1 Together</h1>
+    <div class="sumgrid lang-ko">
+      <div class="sumcard key"><h4>핵심 정리</h4><ul>
+        <li>비극성·유전체 유체: <strong>작은 $h_{fg}$·작은 $\sigma$·$\theta\!\approx\!0$</strong> → 물과 완전히 다른 비등.</li>
+        <li>Zuber $q''_{max}\propto h_{fg}\rho_v^{1/2}\sigma^{1/4}$ — 잠열이 <strong>선형(1등 인자)</strong>이라 유전체 CHF가 물의 <strong>1/4~1/8</strong>.</li>
+        <li>유전체를 쓰는 이유 = <strong>비전도·불활성</strong>(성능 아님), 침수냉각의 필수 조건.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+        <li>Zuber에 $h_{fg}$를 $\text{kJ/kg}$로 대입 → 반드시 <strong>$\text{J/kg}$</strong>.</li>
+        <li>유전체도 물처럼 CHF가 클 것이라 가정 → <strong>1/4~1/8</strong>.</li>
+        <li>$\theta\!\approx\!0$을 “좋다”로만 이해 → 미세 홈 침수 → <strong>ONB 과열도 오버슈트</strong>.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>1주차 한 줄 꿰기 · 곡선 → 계면 → 핵생성 → 유체</h4><ul>
+        <li><strong>1-1 비등 곡선</strong>: $\Delta T_e$ 하나로 자유대류·핵비등·CHF·막비등 네 영역이 갈린다.</li>
+        <li><strong>1-2 계면·표면장력</strong>: 기포의 탄생·이탈은 $\sigma$가 만드는 계면 힘의 균형이다.</li>
+        <li><strong>1-3 핵생성</strong>: 미세 홈(cavity)과 젖음성($\theta$)이 어디서·언제 기포가 생길지 정한다.</li>
+        <li><strong>1-4 유체 대비</strong>: 같은 곡선·계면·핵생성 물리라도 <strong>$h_{fg}$·$\sigma$·$\theta$가 다르면</strong> 곡선 위치와 CHF가 통째로 이동한다 — 그래서 물과 유전체는 다르게 끓는다.</li>
+      </ul></div>
+    </div>
+    <div class="sumgrid lang-en">
+      <div class="sumcard key"><h4>Key points</h4><ul>
+        <li>Non-polar / dielectric fluids: <strong>small $h_{fg}$, small $\sigma$, $\theta\!\approx\!0$</strong> → boiling completely unlike water.</li>
+        <li>Zuber $q''_{max}\propto h_{fg}\rho_v^{1/2}\sigma^{1/4}$ — latent heat is <strong>linear (the #1 driver)</strong>, so dielectric CHF is <strong>1/4–1/8</strong> of water.</li>
+        <li>Why use dielectrics = <strong>insulating &amp; inert</strong> (not performance); mandatory for immersion cooling.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+        <li>Feeding $h_{fg}$ into Zuber in $\text{kJ/kg}$ → must be <strong>$\text{J/kg}$</strong>.</li>
+        <li>Assuming dielectrics have water-like CHF → they are <strong>1/4–1/8</strong>.</li>
+        <li>Reading $\theta\!\approx\!0$ as only "good" → flooded cavities → <strong>ONB superheat overshoot</strong>.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>Tying Week 1 · curve → interface → nucleation → fluid</h4><ul>
+        <li><strong>1-1 boiling curve</strong>: one variable $\Delta T_e$ splits free convection, nucleate boiling, CHF, and film boiling.</li>
+        <li><strong>1-2 interface &amp; surface tension</strong>: bubble birth and departure are a balance of interfacial forces set by $\sigma$.</li>
+        <li><strong>1-3 nucleation</strong>: micro-cavities and wettability ($\theta$) decide where and when bubbles form.</li>
+        <li><strong>1-4 fluid contrast</strong>: with the same curve, interface, and nucleation physics, <strong>different $h_{fg}$, $\sigma$, $\theta$</strong> shift the whole curve and CHF — which is why water and dielectrics boil differently.</li>
+      </ul></div>
+    </div>
+  </section>
+</div></main>
+<footer><button class="nav-btn prev" id="prevBtn">← 이전</button><span class="foot-hint" id="footHint">← / → 또는 상단 단계 클릭으로 이동</span><button class="nav-btn next" id="nextBtn">다음 →</button></footer>
+
+<script>
+(function(){
+  var screens=Array.prototype.slice.call(document.querySelectorAll('.screen'));
+  var stage=document.getElementById('stage'), stepbar=document.getElementById('stepbar'), chrail=document.getElementById('chrail');
+  var prevBtn=document.getElementById('prevBtn'), nextBtn=document.getElementById('nextBtn');
+  var N=screens.length, active=0;
+  var chapters=[]; screens.forEach(function(s){var c=s.getAttribute('data-ch'); if(chapters.indexOf(c)<0)chapters.push(c);});
+  function chOf(i){return screens[i].getAttribute('data-ch');} function stOf(i){return screens[i].getAttribute('data-stage');}
+
+  function fitActive(){ var u=screens[active]; if(!u)return; u.style.transform='none'; var avail=stage.clientHeight, nat=u.offsetHeight; if(nat<=0||avail<=0)return; if(nat>avail){u.style.transformOrigin='top center'; u.style.transform='scale('+(avail/nat)+')';} else {u.style.transformOrigin='top center'; var _st=u.getAttribute('data-stage'); var _cap=(_st==='점검'||_st==='연습')?44:(avail-nat)/2; u.style.transform='translateY('+Math.min((avail-nat)/2,_cap)+'px)';} }
+
+  function buildChrail(){ chrail.innerHTML=''; chapters.forEach(function(c){ var d=document.createElement('span'); d.className='chdot'; d.textContent=c; d.addEventListener('click',function(){ for(var k=0;k<N;k++){ if(chOf(k)===c){show(k);break;} } }); chrail.appendChild(d); }); }
+  function buildStepper(){ var ch=chOf(active); var list=[]; for(var i=0;i<N;i++){ if(chOf(i)===ch) list.push(i); } stepbar.innerHTML=''; list.forEach(function(idx,k){ var el=document.createElement('div'); var cls='step'; if(idx===active)cls+=' cur'; else if(idx<active)cls+=' done'; el.className=cls; el.innerHTML='<span class="ix">'+(k+1)+'</span>'+stOf(idx); el.addEventListener('click',function(){show(idx);}); stepbar.appendChild(el); if(k<list.length-1){var ln=document.createElement('span'); ln.className='link'; el.appendChild(ln);} }); }
+
+  function render(){ for(var i=0;i<N;i++) screens[i].classList.toggle('active', i===active); var ch=chOf(active); Array.prototype.forEach.call(chrail.children,function(d){ d.classList.toggle('cur', d.textContent===ch); }); buildStepper(); prevBtn.disabled=(active===0); if(active>=N-1){ nextBtn.textContent='✓ 완료 · 목록으로'; } else { var nx=active+1; nextBtn.textContent=(chOf(nx)===ch)?('다음 · '+stOf(nx)+' →'):('다음 챕터 '+chOf(nx)+' →'); } fitActive(); }
+  function show(i){ if(i<0)i=0; if(i>N-1)i=N-1; active=i; render(); }
+
+  function toggleReveal(btn){ var scope=btn.closest('.prob')||btn.closest('.screen'); var t=scope?scope.querySelector('.revealable.solution'):null; if(!t)return; var open=t.classList.toggle('open'); btn.classList.toggle('is-open',open); var sp=btn.querySelector('span'); if(sp)sp.textContent=open?'풀이 숨기기':'풀이 보기'; fitActive(); }
+
+  document.addEventListener('click',function(e){
+    var opt=e.target.closest?e.target.closest('.opt'):null;
+    if(opt){ var wrap=opt.parentElement; Array.prototype.forEach.call(wrap.children,function(o){o.classList.remove('sel');}); opt.classList.add('sel'); return; }
+    var sub=e.target.closest?e.target.closest('.cp-submit'):null;
+    if(sub){ var cq=sub.closest('.cq')||sub.closest('.screen'); var sel=cq.querySelector('.opt.sel'); var fb=cq.querySelector('.cp-fb'); var prof=cq.querySelector('.cp-exp')||cq.querySelector('.cp-prof'); if(!sel){ if(fb){fb.textContent='먼저 보기를 선택하세요'; fb.style.color='var(--gray2)';} return; } var ok=sel.getAttribute('data-correct')==='1'; if(fb){fb.textContent=ok?'✓ 제출됨 — 정답':'제출됨 — 학급 응답에 반영'; fb.style.color='var(--accent)';} Array.prototype.forEach.call(cq.querySelectorAll('.opt'),function(o){if(o.getAttribute('data-correct')==='1')o.classList.add('correct');}); if(prof)prof.classList.add('show'); fitActive(); return; }
+    var chk=e.target.closest?e.target.closest('.pr-check'):null;
+    if(chk){ var pb=chk.closest('.prob')||chk.closest('.screen'); var input=pb.querySelector('.ans-input'); var pf=pb.querySelector('.pr-fb'); if(!input||!pf)return; var ans=parseFloat(input.getAttribute('data-answer')), tol=parseFloat(input.getAttribute('data-tol')||'0.02'); var raw=(input.value||'').replace(/[,\s]/g,''); if(raw===''){pf.textContent='먼저 답을 입력하세요'; pf.className='check-fb pr-fb no'; return;} var v=parseFloat(raw), good=!isNaN(v)&&Math.abs(v-ans)<=Math.abs(ans)*tol; pf.textContent=good?'✓ 정답입니다 — 풀이로 과정 확인':'✗ 다시 — 풀이로 과정 확인'; pf.className='check-fb pr-fb '+(good?'ok':'no'); fitActive(); return; }
+    var rb=e.target.closest?e.target.closest('.reveal-btn'):null; if(rb){ toggleReveal(rb); return; }
+  });
+  document.addEventListener('keydown',function(e){ if(e.target&&e.target.classList&&e.target.classList.contains('ans-input')){ if(e.key==='Enter'){var b=e.target.closest('.prob').querySelector('.pr-check'); if(b)b.click();} return; } if(e.key==='ArrowRight')show(active+1); else if(e.key==='ArrowLeft')show(active-1); });
+  prevBtn.addEventListener('click',function(){show(active-1);}); nextBtn.addEventListener('click',function(){ if(active>=N-1){location.href='/';} else {show(active+1);} });
+  window.addEventListener('resize',fitActive);
+
+  // ── interactive calc widgets ──
+  function _sup(n){var m={'-':'⁻','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'};return String(n).split('').map(function(c){return m[c]||c;}).join('');} function fnum(x){ if(!isFinite(x))return '—'; var a=Math.abs(x); if(a!==0&&(a<0.01||a>=1e5)){ var e=Math.floor(Math.log10(a)); var mn=x/Math.pow(10,e); return (Math.round(mn*100)/100)+' × 10'+_sup(e); } return (Math.round(x*1000)/1000).toLocaleString(); }
+  function initCalcs(){ Array.prototype.forEach.call(document.querySelectorAll('.calc:not([data-init])'),function(c){ c.setAttribute('data-init','1'); var vars; try{vars=JSON.parse(c.getAttribute('data-vars')||'[]');}catch(e){vars=[];} var expr=c.getAttribute('data-expr')||'0'; var outSym=c.getAttribute('data-out')||''; var outUnit=c.getAttribute('data-out-unit')||''; var barmax=parseFloat(c.getAttribute('data-barmax')||'0'); var title=c.getAttribute('data-title')||''; var desc=c.getAttribute('data-desc')||''; var note=c.getAttribute('data-note')||'';
+    var html='<div class="calc-title">'+title+'</div>'; if(desc)html+='<div class="calc-desc">'+desc+'</div>'; html+='<div class="calc-rows"></div><div class="calc-out"><span class="calc-os">'+outSym+'</span><span>=</span><b class="calc-num">—</b><span class="calc-ou">'+outUnit+'</span></div>'; if(barmax>0)html+='<div class="calc-outbar"><div class="bar"><span class="calc-bar" style="width:0%"></span></div></div>'; if(note)html+='<div class="calc-note">'+note+'</div>'; c.innerHTML=html;
+    var rowsEl=c.querySelector('.calc-rows'); var inputs={}; var fn; try{ fn=Function.apply(null, vars.map(function(v){return v.sym;}).concat(['return ('+expr+');'])); }catch(e){ fn=function(){return NaN;}; }
+    vars.forEach(function(v){ var row=document.createElement('div'); row.className='calc-row'; row.innerHTML='<span class="calc-lab">'+(v.label||v.sym)+'</span><input type="range" min="'+v.min+'" max="'+v.max+'" step="'+(v.step||((v.max-v.min)/100))+'" value="'+v.val+'"><span class="calc-val"></span>'; rowsEl.appendChild(row); var rng=row.querySelector('input'); inputs[v.sym]={rng:rng, val:row.querySelector('.calc-val'), unit:v.unit||''}; rng.addEventListener('input',recompute); });
+    function recompute(){ var args=vars.map(function(v){return parseFloat(inputs[v.sym].rng.value);}); vars.forEach(function(v){ var o=inputs[v.sym]; o.val.textContent=fnum(parseFloat(o.rng.value))+(o.unit?(' '+o.unit):''); }); var y; try{y=fn.apply(null,args);}catch(e){y=NaN;} c.querySelector('.calc-num').textContent=fnum(y); if(barmax>0){ var w=Math.max(0,Math.min(100, y/barmax*100)); var b=c.querySelector('.calc-bar'); if(b)b.style.width=w+'%'; } }
+    recompute();
+  }); }
+
+  function renderMath(){ initCalcs(); if(window.renderMathInElement){ renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false}); } fitActive(); if(window.requestAnimationFrame)requestAnimationFrame(fitActive); }
+
+  function applyDeep(){ var p=new URLSearchParams(location.search), idx=0; var s=parseInt(p.get('slide'),10); if(!isNaN(s))idx=Math.min(Math.max(s,0),N-1); var u=p.get('unit'); if(u){ for(var i=0;i<N;i++){ if(chOf(i)===u){idx=i;break;} } } var rev=p.get('reveal')==='all'; show(idx); if(rev){ Array.prototype.forEach.call(screens[idx].querySelectorAll('.reveal-btn'),function(b){toggleReveal(b);}); Array.prototype.forEach.call(screens[idx].querySelectorAll('.cq'),function(cq){ var o=cq.querySelector('.opt[data-correct]'); if(o){o.classList.add('sel'); var sb=cq.querySelector('.cp-submit'); if(sb)sb.click();} }); } }
+
+  buildChrail();
+  document.addEventListener('DOMContentLoaded',function(){ applyDeep(); renderMath(); });
+  if(document.readyState!=='loading'){ applyDeep(); renderMath(); }
+  window.addEventListener('load',renderMath);
+
+  // ── language toggle (ko / en) ──
+  (function(){
+    var btn=document.getElementById('langToggle'); if(!btn)return;
+    var LABELS={ko:'EN', en:'한국어'};
+    function apply(lang){ var d=document.documentElement; d.classList.remove('lang-ko','lang-en'); d.classList.add('lang-'+lang); btn.textContent=LABELS[lang]; }
+    var lang; try{ lang=localStorage.getItem('lecture_lang'); }catch(e){ lang=null; }
+    if(lang!=='en'&&lang!=='ko') lang='ko';
+    apply(lang);
+    btn.addEventListener('click',function(){
+      lang=(lang==='ko')?'en':'ko';
+      apply(lang);
+      try{ localStorage.setItem('lecture_lang',lang); }catch(e){}
+      if(window.requestAnimationFrame) requestAnimationFrame(fitActive); else fitActive();
+    });
+  })();
+})();
+</script>
+<script>window.HTL_WEEK=1;</script>
+<script src="/htl-track.js" defer></script>
+</body>
+</html>

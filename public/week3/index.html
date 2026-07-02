@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="ko" class="lang-ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.4" />
+<title>상변화열전달 · Week 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<style>
+  :root{ --bg:#ffffff; --ink:#18181b; --gray:#52525b; --gray2:#71717a; --hair:#e4e4e7; --hair2:#f4f4f5; --accent:#b91c1c; --accent-soft:#fef2f2; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; }
+  body{ background:var(--bg); color:var(--ink); font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif; -webkit-font-smoothing:antialiased; overflow:hidden; height:100vh; }
+  .eyebrow .katex, .eyebrow .katex *, .keq-label .katex, .keq-label .katex *, .vcap .katex, .vcap .katex *, .intro-eyebrow .katex, .intro-eyebrow .katex *, table.ktab th .katex, table.ktab th .katex *{ text-transform:none; }
+  .mystery .mq, .mystery .ma, .lcard p, .aggrow .lab, .vs-col .q, .vs-col p, .stat .lbl, .stat .why, .term, .rm-item .rd, .intro-sub, .lede, .qtext, .prob-statement, .callout, .outcomes li, .sumcard li{ word-break:keep-all; }
+
+  header{ height:52px; display:flex; align-items:center; padding:0 26px; border-bottom:1px solid var(--hair); }
+  .brand{ font-size:13px; font-weight:700; color:var(--gray); flex:1; } .brand .sep{ color:var(--hair); margin:0 7px; font-weight:400; }
+  .chrail{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+  .chdot{ font-size:11px; font-weight:700; color:var(--gray2); border:1px solid var(--hair); border-radius:20px; padding:3px 9px; cursor:pointer; transition:all .12s ease; background:#fff; }
+  .chdot:hover{ border-color:var(--accent); color:var(--accent); }
+  .chdot.cur{ background:var(--ink); color:#fff; border-color:var(--ink); }
+
+  .stepbar{ height:44px; display:flex; align-items:center; justify-content:center; gap:0; border-bottom:1px solid var(--hair); padding:0 16px; overflow:hidden; }
+  .step{ display:flex; align-items:center; font-size:12px; font-weight:600; color:var(--gray2); cursor:pointer; white-space:nowrap; }
+  .step .ix{ width:18px; height:18px; border-radius:50%; border:1px solid var(--hair); display:inline-flex; align-items:center; justify-content:center; font-size:10.5px; margin-right:5px; background:#fff; transition:all .12s; }
+  .step.cur{ color:var(--ink); font-weight:800; } .step.cur .ix{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .step.done{ color:var(--gray); } .step.done .ix{ background:var(--accent-soft); border-color:var(--accent); color:var(--accent); }
+  .step .link{ width:20px; height:1px; background:var(--hair); margin:0 7px; }
+  .step:hover:not(.cur){ color:var(--ink); }
+
+  main{ height:calc(100vh - 52px - 44px - 62px); display:flex; align-items:flex-start; justify-content:center; padding:20px 26px 8px; overflow:hidden; }
+  .stage{ width:100%; max-width:1020px; height:100%; display:flex; align-items:flex-start; justify-content:center; overflow:hidden; }
+  .screen{ display:none; width:100%; }
+  .screen.active{ display:block; transform-origin:top center; will-change:transform; animation:fade .16s ease both; }
+  @keyframes fade{ from{opacity:0} to{opacity:1} }
+  @media (prefers-reduced-motion: reduce){ .screen.active{ animation:none; } }
+
+  .eyebrow{ font-size:11.5px; font-weight:800; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+  .stage-h{ font-size:26px; font-weight:800; line-height:1.22; letter-spacing:-.01em; margin-bottom:2px; } .stage-h .en{ font-weight:600; color:var(--gray); font-size:17px; }
+  .lede{ font-size:15px; line-height:1.7; color:var(--gray); margin-top:13px; max-width:780px; } .lede strong{ color:var(--ink); font-weight:700; }
+  .two{ display:grid; grid-template-columns:1fr 1fr; gap:30px; margin-top:16px; align-items:start; } .two .col2{ min-width:0; }
+
+  .keqbox{ margin-top:14px; border-left:3px solid var(--accent); padding:2px 0 2px 18px; }
+  .keq-label{ font-size:11.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--gray2); margin-bottom:11px; }
+  .keqrow{ display:flex; align-items:baseline; gap:14px; margin-bottom:7px; } .keqrow:last-child{ margin-bottom:0; }
+  .keqcap{ font-size:12.5px; font-weight:600; color:var(--gray2); width:200px; flex-shrink:0; } .keqline{ color:var(--ink); }
+  .keqnote{ font-size:12.5px; color:var(--gray2); margin-top:10px; line-height:1.6; }
+
+  /* key terms */
+  .terms{ margin-top:13px; display:grid; grid-template-columns:1fr 1fr; gap:6px 18px; }
+  .term{ font-size:13px; line-height:1.5; color:var(--gray); padding-left:12px; border-left:2px solid var(--hair); }
+  .term b{ color:var(--ink); font-weight:700; }
+
+  /* callouts */
+  .callout{ margin-top:16px; border-radius:10px; padding:13px 16px; font-size:13.5px; line-height:1.65; }
+  .callout .ct{ font-size:11.5px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+  .callout.key{ background:var(--accent-soft); border:1px solid #f5c2c2; } .callout.key .ct{ color:var(--accent); }
+  .callout.warn{ background:var(--hair2); border:1px solid var(--hair); } .callout.warn .ct{ color:var(--gray2); }
+  .callout.exam{ background:#fff; border:1px dashed var(--accent); } .callout.exam .ct{ color:var(--accent); }
+  .callout ul{ margin:0; padding-left:18px; } .callout li{ margin-bottom:3px; } .callout strong{ color:var(--ink); }
+
+  /* derivation */
+  .assume{ font-size:13px; color:var(--gray2); margin-top:10px; } .assume b{ color:var(--ink); }
+  .deriv{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-top:16px; }
+  .dcard{ border:1px solid var(--hair); border-radius:12px; padding:14px 14px 16px; }
+  .dcard h4{ font-size:13px; font-weight:800; margin-bottom:3px; } .dcard .sub{ font-size:11px; color:var(--gray2); font-weight:600; margin-bottom:10px; }
+  .dcard .eq{ background:var(--hair2); border-radius:8px; padding:9px 6px; text-align:center; margin-bottom:9px; } .dcard p{ font-size:12.5px; line-height:1.55; color:var(--gray); } .dcard p strong{ color:var(--ink); }
+  .dcard .ana{ font-size:11.5px; line-height:1.45; color:var(--accent); background:var(--accent-soft); border-radius:7px; padding:7px 9px; margin-bottom:9px; }
+  .analogy{ display:flex; gap:11px; align-items:center; margin-top:10px; background:var(--accent-soft); border:1px solid #f5c2c2; border-radius:10px; padding:9px 15px; } .analogy .ic{ font-size:20px; flex-shrink:0; } .analogy .tx{ font-size:13px; line-height:1.5; color:var(--ink); } .analogy .tx b{ color:var(--accent); font-weight:700; }
+  .steps{ margin-top:14px; } .dstep{ display:flex; gap:12px; margin-bottom:9px; align-items:baseline; }
+  .dstep .n{ flex-shrink:0; width:20px; height:20px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-size:11px; font-weight:800; display:inline-flex; align-items:center; justify-content:center; }
+  .dstep .body{ flex:1; } .dstep .body .t{ font-size:13px; color:var(--gray); line-height:1.5; } .dstep .body .t b{ color:var(--ink); }
+
+  /* reading */
+  .reading{ max-width:720px; margin-top:12px; } .reading p{ font-size:14px; line-height:1.66; color:#3f3f46; margin-bottom:8px; } .reading p strong{ color:var(--ink); font-weight:700; }
+  .pullquote{ border-left:3px solid var(--accent); padding:4px 0 4px 18px; margin:11px 0; font-size:15px; line-height:1.5; color:var(--ink); font-weight:600; }
+  .readmeta{ font-size:12px; color:var(--gray2); margin-top:4px; }
+
+  /* visual */
+  .vizgrid{ display:grid; grid-template-columns:1.05fr .95fr; gap:32px; margin-top:14px; align-items:center; }
+  .vcap{ font-size:11.5px; font-weight:700; color:var(--gray2); letter-spacing:.04em; text-transform:uppercase; margin-bottom:9px; }
+  table.ktab{ width:100%; border-collapse:collapse; font-size:13.5px; }
+  table.ktab th{ text-align:left; font-size:11px; letter-spacing:.04em; text-transform:none; color:var(--gray2); font-weight:700; padding:6px 8px; border-bottom:1px solid var(--hair); }
+  table.ktab td{ padding:7px 8px; border-bottom:1px solid var(--hair2); color:var(--ink); } table.ktab td.k{ text-align:right; font-variant-numeric:tabular-nums; color:var(--gray); } table.ktab tr:last-child td{ border-bottom:none; }
+  .bar{ height:7px; background:var(--accent-soft); border-radius:4px; overflow:hidden; } .bar > span{ display:block; height:100%; background:var(--accent); border-radius:4px; min-width:3px; }
+
+  /* interactive calc widget */
+  .calc{ margin-top:14px; border:1px solid var(--hair); border-radius:14px; padding:18px 20px; max-width:760px; background:#fcfcfc; }
+  .calc-title{ font-size:13px; font-weight:800; color:var(--ink); margin-bottom:4px; } .calc-desc{ font-size:12.5px; color:var(--gray2); margin-bottom:14px; line-height:1.5; }
+  .calc-rows{ display:flex; flex-direction:column; gap:13px; }
+  .calc-row{ display:grid; grid-template-columns:190px 1fr 130px; align-items:center; gap:14px; }
+  .calc-lab{ font-size:13.5px; color:var(--ink); } .calc-val{ font-size:13px; color:var(--gray); font-variant-numeric:tabular-nums; text-align:right; }
+  .calc input[type=range]{ -webkit-appearance:none; appearance:none; height:4px; background:var(--hair); border-radius:4px; outline:none; }
+  .calc input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:var(--accent); cursor:pointer; border:2px solid #fff; box-shadow:0 0 0 1px var(--accent); }
+  .calc-out{ margin-top:16px; padding-top:14px; border-top:1px solid var(--hair); font-size:18px; color:var(--ink); display:flex; align-items:baseline; gap:8px; }
+  .calc-out .calc-num{ font-size:24px; font-weight:800; color:var(--accent); font-variant-numeric:tabular-nums; }
+  .calc-outbar{ margin-top:12px; } .calc-note{ font-size:12px; color:var(--gray2); margin-top:10px; line-height:1.5; }
+
+  /* concept question (cq) + practice (prob) */
+  .panel-head{ display:flex; align-items:center; gap:9px; margin-bottom:9px; }
+  .tag{ font-size:11px; font-weight:800; color:#fff; background:var(--ink); border-radius:5px; padding:2px 8px; } .panel-title{ font-size:15px; font-weight:700; }
+  .cq{ margin-bottom:12px; padding-bottom:4px; } .cq:last-child{ margin-bottom:0; }
+  .qtext{ font-size:14.5px; line-height:1.55; } .qtext .qn{ color:var(--accent); font-weight:800; margin-right:6px; }
+  .opts{ display:flex; flex-direction:column; gap:6px; margin-top:9px; max-width:620px; }
+  .opt{ font-family:inherit; text-align:left; font-size:13.5px; color:var(--ink); background:#fff; border:1px solid var(--hair); border-radius:9px; padding:8px 13px; cursor:pointer; transition:all .12s; } .opt:hover{ border-color:#d4d4d8; background:var(--hair2); } .opt.sel{ border-color:var(--accent); background:var(--accent-soft); } .opt.correct{ border-color:var(--accent); background:var(--accent-soft); font-weight:700; }
+  .submit-row{ display:flex; align-items:center; gap:12px; margin-top:9px; } .submit-fb{ font-size:12.5px; font-weight:700; color:var(--accent); }
+  .btn{ font-family:inherit; font-size:13px; font-weight:600; border-radius:9px; padding:8px 16px; cursor:pointer; border:1px solid var(--hair); background:#fff; color:var(--ink); transition:all .12s; } .btn:hover{ background:var(--hair2); } .btn.primary{ background:var(--accent); color:#fff; border-color:var(--accent); } .btn.primary:hover{ background:#991b1b; }
+  .prof{ display:none; margin-top:13px; border:1px dashed var(--hair); border-radius:11px; padding:13px 15px; background:#fcfcfc; max-width:600px; } .prof.show{ display:block; animation:fade .18s ease both; }
+  .cp-exp{ display:none; margin-top:9px; font-size:12.5px; line-height:1.55; color:var(--gray); background:var(--accent-soft); border:1px solid #f5c2c2; border-radius:10px; padding:9px 13px; max-width:660px; } .cp-exp.show{ display:block; animation:fade .18s ease both; }
+  .cp-exp .exp-h{ font-size:11px; font-weight:800; color:var(--accent); letter-spacing:.04em; margin-right:6px; } .cp-exp .ok{ color:var(--accent); font-weight:700; } .cp-exp .dim{ color:var(--gray2); } .cp-exp .agg{ display:block; margin-top:4px; font-size:11.5px; color:var(--gray2); }
+  .calc-sense{ margin-top:13px; font-size:12px; line-height:1.6; color:var(--gray); border-top:1px solid var(--hair2); padding-top:11px; max-width:760px; } .calc-sense .cs-h{ font-size:11px; font-weight:800; color:var(--accent); letter-spacing:.04em; margin-right:6px; }
+  .src{ font-size:11px; color:var(--gray2); font-weight:400; }
+  .prof .ph{ display:flex; align-items:center; gap:8px; font-size:11.5px; font-weight:800; color:var(--gray2); letter-spacing:.03em; margin-bottom:10px; } .prof .pill{ font-size:10px; font-weight:800; color:var(--accent); background:var(--accent-soft); border-radius:20px; padding:2px 9px; }
+  .agg{ display:flex; flex-direction:column; gap:8px; } .aggrow{ display:grid; grid-template-columns:112px 1fr 40px; align-items:center; gap:10px; font-size:12.5px; } .aggrow .lab{ color:var(--ink); font-weight:600; } .aggrow .cnt{ text-align:right; color:var(--gray2); font-variant-numeric:tabular-nums; }
+  .prof .note{ font-size:11px; color:var(--gray2); margin-top:10px; line-height:1.5; }
+
+  .prob{ margin-bottom:18px; }
+  .screen.active[data-stage="연습"]{ display:grid; grid-template-columns:1fr 1fr; column-gap:26px; align-content:start; }
+  .screen[data-stage="연습"] .panel-head{ grid-column:1 / -1; }
+  .screen[data-stage="연습"] .prob{ margin-bottom:0; min-width:0; } .prob:last-child{ margin-bottom:0; }
+  .prob-num{ font-size:11.5px; font-weight:800; color:var(--accent); letter-spacing:.04em; margin-bottom:5px; }
+  .prob-statement{ font-size:14px; line-height:1.6; color:var(--gray); max-width:720px; } .prob-statement strong{ color:var(--ink); }
+  .given{ display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; } .chip{ font-size:12.5px; color:var(--gray); border:1px solid var(--hair); background:var(--hair2); border-radius:6px; padding:4px 9px; }
+  .find{ font-size:13px; margin-top:9px; } .find b{ color:var(--gray2); font-weight:700; }
+  .ans-row{ display:flex; align-items:center; gap:9px; margin-top:10px; flex-wrap:wrap; } .ans-input{ font-family:inherit; font-size:14px; width:120px; border:1px solid var(--hair); border-radius:8px; padding:7px 11px; outline:none; } .ans-input:focus{ border-color:var(--accent); } .ans-unit{ font-size:13px; color:var(--gray2); } .check-fb{ font-size:12.5px; font-weight:700; } .check-fb.ok{ color:var(--accent); } .check-fb.no{ color:var(--gray2); }
+  .reveal-btn{ margin-top:11px; font-family:inherit; font-size:13px; font-weight:600; color:var(--ink); background:#fff; border:1px solid var(--hair); border-radius:8px; padding:7px 14px; cursor:pointer; display:inline-flex; align-items:center; gap:7px; transition:all .12s; } .reveal-btn:hover{ background:var(--hair2); } .reveal-btn .caret{ font-size:10px; color:var(--gray2); transition:transform .15s; } .reveal-btn.is-open .caret{ transform:rotate(180deg); }
+  .revealable{ display:none; } .revealable.open{ display:block; animation:fade .15s ease both; }
+  .solution{ margin-top:11px; } .dstep2{ margin-bottom:6px; } .step-label{ font-size:12px; font-weight:700; color:var(--gray2); margin-bottom:1px; }
+  .solution .katex-display{ margin:.18em 0; } .solution .katex-display>.katex, .ans-final .katex-display>.katex, .keqline .katex-display>.katex{ text-align:left; } .dcard .eq .katex-display{ margin:.1em 0; }
+  .ans-final{ margin-top:6px; border-top:1px dashed var(--hair); padding-top:9px; font-size:12.5px; color:var(--gray); } .ans-final b{ color:var(--ink); } .ans-final .ans-eq{ color:var(--ink); margin-bottom:4px; }
+
+  /* summary */
+  .sumgrid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px; }
+  .sumcard{ border:1px solid var(--hair); border-radius:12px; padding:15px 16px; } .sumcard.full{ grid-column:1 / -1; }
+  .sumcard h4{ font-size:12.5px; font-weight:800; letter-spacing:.03em; margin-bottom:9px; display:flex; align-items:center; gap:6px; } .sumcard.key h4{ color:var(--accent); }
+  .sumcard ul{ margin:0; padding-left:17px; } .sumcard li{ font-size:13px; line-height:1.6; color:var(--gray); margin-bottom:4px; } .sumcard li strong{ color:var(--ink); }
+
+  /* week intro */
+  .intro{ max-width:940px; }
+  .intro-eyebrow{ font-size:12.5px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+  .intro-h{ font-size:38px; font-weight:800; line-height:1.18; letter-spacing:-.015em; margin-bottom:14px; } .intro-h .hl{ color:var(--accent); }
+  .intro-sub{ font-size:17px; line-height:1.65; color:var(--gray); max-width:780px; margin-bottom:26px; } .intro-sub strong{ color:var(--ink); }
+  .mystery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .mystery{ border:1px solid var(--hair); border-radius:14px; padding:18px 18px 20px; background:#fff; }
+  .mystery .emoji{ font-size:24px; display:block; margin-bottom:10px; }
+  .mystery .mq{ font-size:14.5px; font-weight:700; color:var(--ink); line-height:1.45; margin-bottom:8px; }
+  .mystery .ma{ font-size:12.5px; line-height:1.55; color:var(--gray2); } .mystery .ma b{ color:var(--accent); font-weight:700; }
+  .intro-teaser{ margin-top:22px; border-left:3px solid var(--accent); padding:4px 0 4px 18px; font-size:16px; line-height:1.6; color:var(--ink); font-weight:600; } .intro-teaser em{ color:var(--accent); font-style:normal; }
+  .roadmap{ margin-top:6px; display:flex; flex-direction:column; gap:9px; }
+  .rm-item{ display:flex; align-items:baseline; gap:13px; }
+  .rm-item .rn{ flex-shrink:0; font-size:12px; font-weight:800; color:var(--accent); background:var(--accent-soft); border-radius:20px; padding:2px 10px; min-width:46px; text-align:center; }
+  .rm-item .rt{ font-size:14.5px; color:var(--ink); font-weight:700; } .rm-item .rd{ font-size:13px; color:var(--gray2); }
+  .outcomes{ margin-top:6px; border:1px solid var(--hair); border-radius:12px; padding:16px 18px; background:#fcfcfc; }
+  .outcomes h4{ font-size:12.5px; font-weight:800; color:var(--accent); margin-bottom:10px; letter-spacing:.03em; }
+  .outcomes ul{ margin:0; padding-left:18px; } .outcomes li{ font-size:13.5px; line-height:1.7; color:var(--gray); } .outcomes li strong{ color:var(--ink); }
+  /* intro extras */
+  .vs{ display:grid; grid-template-columns:1fr 56px 1fr; margin-top:20px; align-items:stretch; }
+  .vs-col{ border:1px solid var(--hair); border-radius:14px; padding:20px 22px; } .vs-col.b{ background:var(--accent-soft); border-color:#f5c2c2; }
+  .vs-mid{ display:flex; align-items:center; justify-content:center; font-weight:800; color:var(--gray2); font-size:13px; }
+  .vs-col h4{ font-size:13px; font-weight:800; letter-spacing:.04em; margin-bottom:10px; color:var(--gray2); } .vs-col.b h4{ color:var(--accent); }
+  .vs-col .q{ font-size:16px; font-weight:700; color:var(--ink); line-height:1.45; margin-bottom:10px; } .vs-col p{ font-size:13.5px; line-height:1.6; color:var(--gray); } .vs-col p strong{ color:var(--ink); }
+  .stat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:20px; }
+  .stat{ border:1px solid var(--hair); border-radius:14px; padding:17px 13px; text-align:center; }
+  .stat .big{ font-size:26px; font-weight:800; color:var(--accent); line-height:1.05; } .stat .lbl{ font-size:12.5px; color:var(--ink); margin-top:8px; line-height:1.4; font-weight:600; } .stat .lbl b{ color:var(--ink); }
+  .stat .why{ font-size:11px; color:var(--gray2); margin-top:9px; border-top:1px solid var(--hair2); padding-top:8px; line-height:1.55; }
+  .tl{ margin-top:20px; display:flex; flex-direction:column; gap:13px; max-width:760px; }
+  .tl-item{ display:flex; gap:16px; align-items:baseline; } .tl-item .yr{ flex-shrink:0; font-size:13px; font-weight:800; color:var(--accent); width:120px; } .tl-item .ev{ font-size:14px; color:var(--gray); line-height:1.5; } .tl-item .ev b{ color:var(--ink); font-weight:700; }
+  .flow{ display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin-top:20px; }
+  .flowstep{ border:1px solid var(--hair); border-radius:9px; padding:8px 12px; font-size:13px; font-weight:700; color:var(--ink); background:#fff; } .flowstep.on{ background:var(--accent); color:#fff; border-color:var(--accent); }
+  .flow-arr{ color:var(--gray2); font-size:12px; }
+  .learn-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px; }
+  .lcard{ border:1px solid var(--hair); border-radius:14px; padding:18px; } .lcard .lh{ font-size:14px; font-weight:800; color:var(--ink); margin-bottom:7px; display:flex; align-items:center; gap:7px; } .lcard .le{ font-size:20px; } .lcard p{ font-size:13px; line-height:1.6; color:var(--gray); } .lcard p b{ color:var(--accent); }
+
+  footer{ height:62px; display:flex; align-items:center; justify-content:space-between; padding:0 26px; border-top:1px solid var(--hair); }
+  .nav-btn{ font-family:inherit; font-size:14px; font-weight:600; border-radius:10px; padding:9px 17px; cursor:pointer; border:1px solid var(--hair); background:#fff; color:var(--ink); transition:all .12s; } .nav-btn:hover{ background:var(--hair2); } .nav-btn.prev[disabled]{ opacity:0; pointer-events:none; } .nav-btn.next{ background:var(--accent); color:#fff; border-color:var(--accent); } .nav-btn.next:hover{ background:#991b1b; }
+  .foot-hint{ font-size:12px; color:var(--gray2); }
+  html.lang-en .lang-ko{display:none!important} html.lang-ko .lang-en{display:none!important}
+  .langtog{font:700 11.5px/1 inherit;color:var(--gray2);border:1px solid var(--hair);background:#fff;border-radius:20px;padding:4px 11px;cursor:pointer;margin-left:8px;transition:all .12s} .langtog:hover{border-color:var(--accent);color:var(--accent)}
+</style>
+</head>
+<body>
+<header><span class="brand">MFTEL-PC<span class="sep">·</span>상변화열전달<span class="sep">·</span>Week 3</span>상변화열전달<span class="sep">·</span>Week N</span><div class="chrail" id="chrail"></div><button id="langToggle" class="langtog" type="button" aria-label="Language">EN</button></header>
+<div class="stepbar" id="stepbar"></div>
+<main><div class="stage" id="stage">
+<!-- ════════ 시작1 / 환영 ════════ -->
+<section class="screen" data-ch="시작1" data-chtitle="3주차 개요" data-stage="환영">
+  <div class="intro">
+    <div class="intro-eyebrow lang-ko">상변화 열전달 · 3주차 · 시작</div>
+    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Week 3 · Intro</div>
+
+    <h1 class="intro-h lang-ko">핵비등이 아무리 좋아도<br><span class="hl">넘어서는 안 되는 벽, 임계열유속(CHF)이 있다</span></h1>
+    <h1 class="intro-h lang-en">However good nucleate boiling is,<br><span class="hl">there is a wall you must not cross — the critical heat flux</span></h1>
+
+    <p class="lede lang-ko">핵비등은 과열도 $\Delta T_e$를 조금만 높여도 열유속 $q''$을 급격히 끌어올리는, 열전달의 축복이다. 그러나 이 상승은 무한하지 않다. 어느 순간 가열면에서 <strong>증기가 액체의 재공급을 압도</strong>하기 시작하면, 증기막이 표면을 덮어 액체 접촉을 끊는다. 이 정점이 <strong>임계열유속 $q''_{max}$ (CHF, DNB)</strong>다. 열유속 제어 시스템에서 CHF를 넘으면 온도가 핵비등 영역을 건너뛰고 막비등으로 급등하여 $\Delta T_e$가 수백 K씩 튀는 <strong>번아웃(burnout)</strong>이 일어난다 — 가열면이 순식간에 녹아내린다. 그래서 CHF는 원자로 노심부터 전력 반도체 냉각까지 <strong>설계 안전 한계</strong> 그 자체다. <span class="src">[Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10; Zuber, 1959]</span></p>
+    <p class="lede lang-en">Nucleate boiling is a blessing: a small rise in superheat $\Delta T_e$ lifts the heat flux $q''$ dramatically. But that climb is not without end. At some point the <strong>vapor generated overwhelms the liquid that can be resupplied</strong> to the surface, and a vapor blanket covers the wall, cutting off liquid contact. This peak is the <strong>critical heat flux $q''_{max}$ (CHF, DNB)</strong>. In a flux-controlled system, exceeding CHF makes the surface temperature leap past nucleate boiling straight into film boiling, driving $\Delta T_e$ up by hundreds of kelvin — the dreaded <strong>burnout</strong> that can melt the heater in an instant. That is why CHF is a <strong>design safety limit</strong> itself, from reactor cores to power-electronics cooling. <span class="src">[Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10; Zuber, 1959]</span></p>
+  </div>
+</section>
+
+<!-- ════════ 시작2 / 여정 ════════ -->
+<section class="screen" data-ch="시작2" data-chtitle="3주차 지도" data-stage="여정">
+  <div class="intro">
+    <div class="intro-eyebrow lang-ko">상변화 열전달 · 3주차 지도</div>
+    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Week 3 Roadmap</div>
+
+    <h1 class="intro-h lang-ko">이번 주, <span class="hl">네 개의 챕터</span>로 CHF의 벽과 그 너머를 파고든다</h1>
+    <h1 class="intro-h lang-en">This week: <span class="hl">four chapters</span> into the CHF wall and beyond</h1>
+
+    <div class="roadmap lang-ko" style="margin-top:14px">
+      <div class="rm-item"><span class="rn">3-1</span><span><span class="rt">유체역학적 불안정성</span> <span class="rd">— Kelvin–Helmholtz·Rayleigh–Taylor 불안정성과 증기 제트 붕괴</span></span></div>
+      <div class="rm-item"><span class="rn">3-2</span><span><span class="rt">Zuber CHF·Kutateladze</span> <span class="rd">— 최대 열유속의 이론적 유도와 무차원 $K$ 상수</span></span></div>
+      <div class="rm-item"><span class="rn">3-3</span><span><span class="rt">CHF 파라미터·최소열유속</span> <span class="rd">— 표면·형상·압력 보정과 Leidenfrost 점 $q''_{min}$</span></span></div>
+      <div class="rm-item"><span class="rn">3-4</span><span><span class="rt">막비등·Leidenfrost</span> <span class="rd">— 안정 증기막의 대류·복사 열전달과 Bromley 상관식</span></span></div>
+    </div>
+    <div class="roadmap lang-en" style="margin-top:14px">
+      <div class="rm-item"><span class="rn">3-1</span><span><span class="rt">Hydrodynamic Instabilities</span> <span class="rd">— Kelvin–Helmholtz &amp; Rayleigh–Taylor instabilities and vapor-jet collapse</span></span></div>
+      <div class="rm-item"><span class="rn">3-2</span><span><span class="rt">Zuber CHF &amp; Kutateladze</span> <span class="rd">— theoretical derivation of the peak flux and the dimensionless $K$ constant</span></span></div>
+      <div class="rm-item"><span class="rn">3-3</span><span><span class="rt">CHF Parameters &amp; Min Flux</span> <span class="rd">— surface, geometry, pressure corrections and the Leidenfrost point $q''_{min}$</span></span></div>
+      <div class="rm-item"><span class="rn">3-4</span><span><span class="rt">Film Boiling &amp; Leidenfrost</span> <span class="rd">— convection + radiation across a stable vapor film and the Bromley correlation</span></span></div>
+    </div>
+
+    <div class="outcomes lang-ko" style="margin-top:18px"><h4>이번 주가 끝나면 할 수 있게 된다</h4><ul>
+      <li><strong>Kelvin–Helmholtz·Rayleigh–Taylor 불안정성</strong>이 어떻게 CHF를 지배하는지 설명한다.</li>
+      <li>Zuber 상관식으로 주어진 유체·압력에서 <strong>임계열유속 $q''_{max}$</strong>를 추정한다.</li>
+      <li>표면·형상·압력이 CHF에 주는 보정을 적용하고 <strong>최소열유속 $q''_{min}$</strong>을 구한다.</li>
+      <li>Bromley 상관식으로 <strong>막비등 열전달</strong>과 Leidenfrost 현상을 정량화한다.</li>
+    </ul></div>
+    <div class="outcomes lang-en" style="margin-top:18px"><h4>By the end of this week you will be able to</h4><ul>
+      <li>Explain how the <strong>Kelvin–Helmholtz and Rayleigh–Taylor instabilities</strong> govern CHF.</li>
+      <li>Estimate the <strong>critical heat flux $q''_{max}$</strong> for a given fluid and pressure using Zuber's correlation.</li>
+      <li>Apply surface, geometry, and pressure corrections to CHF and evaluate the <strong>minimum flux $q''_{min}$</strong>.</li>
+      <li>Quantify <strong>film-boiling heat transfer</strong> and the Leidenfrost effect with the Bromley correlation.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ══════════ 3-1 / 개념 ══════════ -->
+  <section class="screen" data-ch="3-1" data-chtitle="유체역학적 불안정성" data-stage="개념">
+    <div class="eyebrow lang-ko">3-1 · 개념 · Concept</div>
+    <div class="eyebrow lang-en">3-1 · Concept</div>
+    <h1 class="stage-h lang-ko">CHF의 근원 — 증기·액체 계면의 불안정</h1>
+    <h1 class="stage-h lang-en">The Origin of CHF — Instability of the Vapor–Liquid Interface</h1>
+    <div class="analogy lang-ko"><span class="ic">💧</span><div class="tx"><b>직관</b> — 뒤집힌 물컵을 종이로 막았다 떼면 물이 우르르 쏟아진다. 무거운 액체가 가벼운 증기 <b>위에</b> 놓이면 계면이 스스로 못 견디고 <b>파문(손가락)</b>을 만들며 무너진다. 핵비등 정점(CHF)은 바로 이 <b>계면 불안정</b>이 액체 공급을 끊는 순간이다 — 히터가 뜨거워서 끝나는 게 아니라, <b>유체역학이 먼저 무너진다</b>. <span class="src">(출처: Zuber 1959 CHF 유체역학 이론 / Lienhard &amp; Dhir 1973)</span></div></div>
+    <div class="analogy lang-en"><span class="ic">💧</span><div class="tx"><b>Intuition</b> — Cover an inverted glass of water with paper, remove it, and the water gushes out. When heavy liquid sits <b>above</b> lighter vapor, the interface cannot hold itself and collapses into <b>ripples (fingers)</b>. The nucleate peak (CHF) is exactly the moment this <b>interfacial instability</b> chokes off the liquid supply — it is not the heater "running out of heat," but <b>hydrodynamics failing first</b>. <span class="src">(Source: Zuber 1959 hydrodynamic CHF theory / Lienhard &amp; Dhir 1973)</span></div></div>
+    <div class="two lang-ko">
+      <div class="col2">
+        <p class="lede">고열유속 핵비등에서는 가열면 위에 <strong>증기 기둥(제트)</strong>이 규칙적으로 솟고 그 사이로 <strong>액체가 내려와</strong> 표면을 적십니다. CHF는 이 <strong>증기-액체 역류(counterflow)</strong>가 두 가지 유체역학적 불안정으로 붕괴할 때 발생합니다 — 무거운 액체가 증기 위에 얹히는 <strong>Rayleigh–Taylor(RT) 불안정</strong>이 증기 방출 간격을 정하고, 증기 제트와 액체 사이의 전단이 만드는 <strong>Kelvin–Helmholtz(KH) 불안정</strong>이 액체 공급을 끊습니다.</p>
+        <div class="keqbox">
+          <div class="keq-label">두 불안정의 역할</div>
+          <div class="keqrow"><span class="keqcap">RT (부력·중력 계면)</span><span class="keqline">증기 방출 <strong>간격 $\lambda$</strong> 결정</span></div>
+          <div class="keqrow"><span class="keqcap">KH (전단 계면)</span><span class="keqline">증기속도 임계 → <strong>액체 차단</strong></span></div>
+          <div class="keqrow"><span class="keqcap">둘의 결합</span><span class="keqline">Zuber CHF 유도의 <strong>물리 기반</strong></span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">핵심 용어</div>
+        <div class="terms">
+          <div class="term"><b>Rayleigh–Taylor 불안정</b> 무거운 유체가 가벼운 유체 위 — 계면이 파동으로 붕괴</div>
+          <div class="term"><b>임계파장 $\lambda_c$</b> RT가 중립(안정↔불안정)이 되는 최소 파장</div>
+          <div class="term"><b>가장 위험 파장 $\lambda_d$</b> 성장률 최대 파장 $=\sqrt{3}\,\lambda_c$</div>
+          <div class="term"><b>Kelvin–Helmholtz 불안정</b> 전단(속도차) 계면의 파동 불안정</div>
+          <div class="term"><b>표면장력 $\sigma$</b> 계면을 매끈하게 유지하려는 복원력 $[\text{N/m}]$</div>
+          <div class="term"><b>Laplace 길이 $L$</b> $=\sqrt{\sigma/[g(\rho_l-\rho_v)]}$ — 계면 특성 길이</div>
+        </div>
+        <div class="callout key"><div class="ct">핵심</div>CHF는 <strong>표면 온도가 아니라 계면 유체역학</strong>이 정합니다. 증기가 너무 빨리 나오면 RT가 정한 통로로 액체가 <strong>못 내려오게</strong> 되고(KH 차단) → 건조(dryout) → burnout.</div>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2">
+        <p class="lede">At high-flux nucleate boiling, <strong>vapor columns (jets)</strong> rise regularly above the heater while <strong>liquid descends between them</strong> to rewet the surface. CHF occurs when this <strong>vapor–liquid counterflow</strong> collapses through two hydrodynamic instabilities — <strong>Rayleigh–Taylor (RT) instability</strong>, with heavy liquid resting on vapor, sets the vapor-release spacing $\lambda$, and <strong>Kelvin–Helmholtz (KH) instability</strong>, from shear between vapor jet and liquid, cuts off the liquid supply.</p>
+        <div class="keqbox">
+          <div class="keq-label">Role of the two instabilities</div>
+          <div class="keqrow"><span class="keqcap">RT (buoyancy·gravity interface)</span><span class="keqline">sets vapor release <strong>spacing $\lambda$</strong></span></div>
+          <div class="keqrow"><span class="keqcap">KH (shear interface)</span><span class="keqline">critical vapor speed → <strong>liquid cutoff</strong></span></div>
+          <div class="keqrow"><span class="keqcap">Combined</span><span class="keqline"><strong>physical basis</strong> of Zuber CHF</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">Key terms</div>
+        <div class="terms">
+          <div class="term"><b>Rayleigh–Taylor instability</b> heavy fluid over light — the interface collapses into waves</div>
+          <div class="term"><b>Critical wavelength $\lambda_c$</b> shortest wave at RT neutral (stable↔unstable)</div>
+          <div class="term"><b>Most dangerous wave $\lambda_d$</b> maximum-growth wave $=\sqrt{3}\,\lambda_c$</div>
+          <div class="term"><b>Kelvin–Helmholtz instability</b> wave instability of a shear (velocity-jump) interface</div>
+          <div class="term"><b>Surface tension $\sigma$</b> restoring force keeping the interface smooth $[\text{N/m}]$</div>
+          <div class="term"><b>Laplace length $L$</b> $=\sqrt{\sigma/[g(\rho_l-\rho_v)]}$ — interface length scale</div>
+        </div>
+        <div class="callout key"><div class="ct">Key</div>CHF is set by <strong>interfacial hydrodynamics, not surface temperature</strong>. If vapor leaves too fast, liquid <strong>can no longer descend</strong> through the RT-set channels (KH cutoff) → dryout → burnout.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-1 / 유도 ══════════ -->
+  <section class="screen" data-ch="3-1" data-chtitle="유체역학적 불안정성" data-stage="유도">
+    <div class="eyebrow lang-ko">3-1 · 수식 유도 · Derivation</div>
+    <div class="eyebrow lang-en">3-1 · Derivation</div>
+    <h1 class="stage-h lang-ko">RT 임계파장과 KH 임계속도 유도</h1>
+    <h1 class="stage-h lang-en">Deriving the RT Critical Wavelength and KH Critical Speed</h1>
+    <p class="lede lang-ko"><b>공통 관점:</b> 계면에 파장 $\lambda$의 작은 파동을 걸고, <b>불안정을 키우는 힘(중력·전단)</b>과 <b>안정으로 되돌리는 힘(표면장력)</b>을 비교합니다. 두 힘이 <b>정확히 균형</b>을 이루는 파장이 임계값이며, 그보다 긴 파장은 불안정합니다.</p>
+    <p class="lede lang-en"><b>Unifying view:</b> impose a small wave of wavelength $\lambda$ on the interface and balance the <b>destabilizing force (gravity·shear)</b> against the <b>restoring force (surface tension)</b>. The wavelength where they <b>exactly balance</b> is the critical value; longer waves are unstable.</p>
+    <div class="deriv lang-ko">
+      <div class="dcard"><h4>1 · RT 분산관계</h4><div class="sub">무거운 액체가 증기 위</div><div class="ana">⚖️ 중력은 불안정, 표면장력은 안정</div><div class="eq">$ \omega^2 = gk\dfrac{\rho_l-\rho_v}{\rho_l+\rho_v} - \dfrac{\sigma k^3}{\rho_l+\rho_v} $</div><p>파수 $k=2\pi/\lambda$. 우변 첫 항(중력)이 양수면 증폭, 둘째 항(표면장력)이 감쇠. $\omega^2>0$이면 불안정.</p></div>
+      <div class="dcard"><h4>2 · 임계파장 $\lambda_c$</h4><div class="sub">$\omega^2=0$ (중립)</div><div class="ana">🎯 두 힘이 정확히 균형</div><div class="eq">$ \lambda_c = 2\pi\sqrt{\dfrac{\sigma}{g(\rho_l-\rho_v)}} $</div><p>$g(\rho_l-\rho_v)k=\sigma k^3$에서 $k_c^2=g(\rho_l-\rho_v)/\sigma$. $\lambda>\lambda_c$인 모든 파동은 불안정.</p></div>
+      <div class="dcard"><h4>3 · 가장 위험 파장 $\lambda_d$</h4><div class="sub">성장률 $\omega^2$ 최대</div><div class="ana">🌊 실제로 관측되는 간격</div><div class="eq">$ \lambda_d = \sqrt{3}\,\lambda_c $</div><p>$d\omega^2/dk=0$ → $k_d^2=k_c^2/3$ → $\lambda_d=\sqrt3\,\lambda_c$. 증기 방출 <strong>실제 간격</strong>이 이 값에 가깝다.</p></div>
+    </div>
+    <div class="deriv lang-en">
+      <div class="dcard"><h4>1 · RT dispersion</h4><div class="sub">heavy liquid over vapor</div><div class="ana">⚖️ gravity destabilizes, surface tension stabilizes</div><div class="eq">$ \omega^2 = gk\dfrac{\rho_l-\rho_v}{\rho_l+\rho_v} - \dfrac{\sigma k^3}{\rho_l+\rho_v} $</div><p>Wavenumber $k=2\pi/\lambda$. A positive first term (gravity) amplifies; the second (surface tension) damps. $\omega^2>0$ means unstable.</p></div>
+      <div class="dcard"><h4>2 · Critical $\lambda_c$</h4><div class="sub">$\omega^2=0$ (neutral)</div><div class="ana">🎯 the two forces exactly balance</div><div class="eq">$ \lambda_c = 2\pi\sqrt{\dfrac{\sigma}{g(\rho_l-\rho_v)}} $</div><p>From $g(\rho_l-\rho_v)k=\sigma k^3$, $k_c^2=g(\rho_l-\rho_v)/\sigma$. Every wave with $\lambda>\lambda_c$ is unstable.</p></div>
+      <div class="dcard"><h4>3 · Most dangerous $\lambda_d$</h4><div class="sub">maximum growth $\omega^2$</div><div class="ana">🌊 the spacing actually observed</div><div class="eq">$ \lambda_d = \sqrt{3}\,\lambda_c $</div><p>$d\omega^2/dk=0$ → $k_d^2=k_c^2/3$ → $\lambda_d=\sqrt3\,\lambda_c$. The <strong>observed spacing</strong> of vapor release is close to this.</p></div>
+    </div>
+    <div class="keqbox lang-ko">
+      <div class="keq-label">KH 임계 증기속도 (전단 계면)</div>
+      <div class="keqrow"><span class="keqcap">분산관계</span><span class="keqline">$ \sigma k = \dfrac{\rho_l\rho_v}{\rho_l+\rho_v}(U_v-U_l)^2 $ (KH 중립)</span></div>
+      <div class="keqrow"><span class="keqcap">임계속도</span><span class="keqline">$ (U_v-U_l)^2_{c} = \dfrac{\sigma k\,(\rho_l+\rho_v)}{\rho_l\rho_v} $</span></div>
+      <div class="keqnote">파장 $\lambda_H=\lambda_d/2$(제트 지름 규모)을 쓰면 임계 증기속도가 정해집니다 — 이 속도를 넘으면 증기 제트가 액체 하강을 <strong>차단</strong>(액체 공급 두절)해 CHF에 도달합니다. (출처: Zuber 1959 §CHF 유체역학 모델)</div>
+    </div>
+    <div class="keqbox lang-en">
+      <div class="keq-label">KH critical vapor speed (shear interface)</div>
+      <div class="keqrow"><span class="keqcap">dispersion</span><span class="keqline">$ \sigma k = \dfrac{\rho_l\rho_v}{\rho_l+\rho_v}(U_v-U_l)^2 $ (KH neutral)</span></div>
+      <div class="keqrow"><span class="keqcap">critical speed</span><span class="keqline">$ (U_v-U_l)^2_{c} = \dfrac{\sigma k\,(\rho_l+\rho_v)}{\rho_l\rho_v} $</span></div>
+      <div class="keqnote">Using wavelength $\lambda_H=\lambda_d/2$ (jet-diameter scale) fixes the critical vapor speed — exceed it and the vapor jets <strong>block</strong> the descending liquid (supply cut off), reaching CHF. (Source: Zuber 1959 §hydrodynamic CHF model)</div>
+    </div>
+    <div class="callout warn lang-ko"><div class="ct">주의 · $\lambda_c$와 $\lambda_d$ 혼동</div>$\lambda_c$는 <strong>불안정이 시작되는 최소 파장</strong>(중립점)이고, $\lambda_d$는 <strong>가장 빨리 자라는 파장</strong>($=\sqrt3\,\lambda_c$)입니다. 실제 증기 방출 간격은 성장률이 최대인 $\lambda_d$에 가깝습니다. 계산에서 둘을 바꿔 쓰지 마세요.</div>
+    <div class="callout warn lang-en"><div class="ct">Caution · confusing $\lambda_c$ and $\lambda_d$</div>$\lambda_c$ is the <strong>shortest wavelength where instability begins</strong> (neutral point); $\lambda_d$ is the <strong>fastest-growing wavelength</strong> ($=\sqrt3\,\lambda_c$). The observed vapor-release spacing is close to $\lambda_d$, the maximum-growth wave. Do not swap them in calculations.</div>
+  </section>
+
+  <!-- ══════════ 3-1 / 읽을거리 ══════════ -->
+  <section class="screen" data-ch="3-1" data-chtitle="유체역학적 불안정성" data-stage="읽을거리">
+    <div class="eyebrow lang-ko">3-1 · 읽을거리 · Reading</div>
+    <div class="eyebrow lang-en">3-1 · Reading</div>
+    <h1 class="stage-h lang-ko">Zuber의 유체역학 CHF 이론과 Lienhard–Dhir</h1>
+    <h1 class="stage-h lang-en">Zuber's Hydrodynamic CHF Theory and Lienhard–Dhir</h1>
+    <div class="two lang-ko">
+      <div class="col2 reading">
+        <p>1959년 <strong>Novak Zuber</strong>는 박사학위 논문에서 CHF를 <strong>가열면의 성질이 아니라 유체역학적 불안정</strong>으로 설명했습니다. 그의 그림에서 증기는 RT 불안정이 정한 간격 $\lambda_d$의 격자 위에서 <strong>증기 제트</strong>로 솟고, 제트가 너무 빨라지면 KH 불안정이 액체 하강을 막아 <strong>액체 공급이 두절</strong>됩니다. 이 순간이 CHF입니다.</p>
+        <p class="pullquote">CHF는 히터가 아니라 <em>증기·액체 계면</em>이 먼저 무너지는 사건이다.</p>
+        <p>Zuber의 유도는 임계열유속을 $q''_{max}=C\,h_{fg}\,\rho_v^{1/2}\,[\sigma g(\rho_l-\rho_v)]^{1/4}$ 형태로 주며, 상수 $C\approx 0.131$($\pi/24$)로 유도됩니다. 1973년 <strong>Lienhard &amp; Dhir</strong>는 유한한 가열체(수평판·실린더·구)에 대해 특성길이를 무차원화($L'=L/\sqrt{\sigma/[g(\rho_l-\rho_v)]}$)해 CHF의 <strong>크기·형상 의존성</strong>을 정리했고, 큰 수평판에서 $C\approx 0.149$를 얻었습니다.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>CHF는 <strong>유체역학적 한계</strong> — 표면 물성만으로 정해지지 않는다.</li><li>$\lambda_d=\sqrt3\,\lambda_c$가 <strong>증기 방출 간격</strong>을 정한다(RT).</li><li>임계 증기속도 초과 = <strong>액체 차단</strong>(KH) = CHF.</li></ul></div>
+        <p class="readmeta">참고: Zuber(1959) <em>박사논문/AEC report AECU-4439</em> / Lienhard &amp; Dhir(1973) <em>J. Heat Transfer 95</em>.</p>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2 reading">
+        <p>In 1959 <strong>Novak Zuber</strong>, in his doctoral work, explained CHF <strong>as a hydrodynamic instability, not a property of the heater</strong>. In his picture, vapor rises as <strong>vapor jets</strong> on a lattice with the RT-set spacing $\lambda_d$; when the jets become too fast, KH instability blocks the descending liquid and the <strong>liquid supply is cut off</strong>. That instant is CHF.</p>
+        <p class="pullquote">CHF is the event where the <em>vapor–liquid interface</em>, not the heater, collapses first.</p>
+        <p>Zuber's derivation gives the critical flux as $q''_{max}=C\,h_{fg}\,\rho_v^{1/2}\,[\sigma g(\rho_l-\rho_v)]^{1/4}$, with the constant derived as $C\approx 0.131$ ($\pi/24$). In 1973 <strong>Lienhard &amp; Dhir</strong> nondimensionalized the characteristic length ($L'=L/\sqrt{\sigma/[g(\rho_l-\rho_v)]}$) for finite heaters (flat plates, cylinders, spheres), organizing CHF's <strong>size and shape dependence</strong>, and obtained $C\approx 0.149$ for a large horizontal plate.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">Must know</div><ul><li>CHF is a <strong>hydrodynamic limit</strong> — not fixed by surface properties alone.</li><li>$\lambda_d=\sqrt3\,\lambda_c$ sets the <strong>vapor-release spacing</strong> (RT).</li><li>Exceeding the critical vapor speed = <strong>liquid cutoff</strong> (KH) = CHF.</li></ul></div>
+        <p class="readmeta">Refs: Zuber (1959) <em>PhD thesis / AEC report AECU-4439</em> / Lienhard &amp; Dhir (1973) <em>J. Heat Transfer 95</em>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-1 / 그림·표 ══════════ -->
+  <section class="screen" data-ch="3-1" data-chtitle="유체역학적 불안정성" data-stage="그림·표">
+    <div class="eyebrow lang-ko">3-1 · 그림 · 그래프 · 표</div>
+    <div class="eyebrow lang-en">3-1 · Figure · Graph · Table</div>
+    <h1 class="stage-h lang-ko">한눈에 — RT 파동과 증기 제트 격자</h1>
+    <h1 class="stage-h lang-en">At a Glance — RT Waves and the Vapor-Jet Lattice</h1>
+    <div class="vizgrid lang-ko">
+      <div>
+        <div class="vcap">RT 불안정 계면과 증기 제트 (간격 $\lambda_d$)</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar31ko" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<rect x="40" y="40" width="400" height="200" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+<text x="360" y="60" font-size="11" fill="#2563eb" text-anchor="middle">액체 (무거움 $\rho_l$)</text>
+<rect x="40" y="222" width="400" height="18" fill="#a1a1aa"/>
+<text x="240" y="235" font-size="10.5" fill="#27272a" text-anchor="middle">가열면 (heater)</text>
+<path d="M40 150 Q90 110 140 150 Q190 190 240 150 Q290 110 340 150 Q390 190 440 150" fill="none" stroke="#c2410c" stroke-width="2.5"/>
+<path d="M90 150 L90 222" stroke="#f97316" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+<path d="M190 150 L190 222" stroke="#f97316" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+<path d="M290 150 L290 222" stroke="#f97316" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+<path d="M390 150 L390 222" stroke="#f97316" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+<text x="90" y="205" font-size="9.5" fill="#c2410c" text-anchor="middle">증기 제트</text>
+<line x1="90" y1="90" x2="290" y2="90" stroke="#52525b" stroke-width="1.2" marker-start="url(#ar31ko)" marker-end="url(#ar31ko)"/>
+<text x="190" y="82" font-size="11" fill="#52525b" text-anchor="middle" font-weight="700">$\lambda_d$</text>
+<path d="M340 100 L340 145" stroke="#2563eb" stroke-width="1.4" marker-end="url(#ar31ko)"/>
+<text x="360" y="118" font-size="9.5" fill="#2563eb" text-anchor="middle">액체 하강</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">대기압 물 물성 &amp; 특성길이 (1 atm, $100\,{}^{\circ}\text{C}$)</div>
+        <table class="ktab"><thead><tr><th>물성</th><th>기호</th><th style="text-align:right">값</th></tr></thead><tbody>
+          <tr><td>액체 밀도</td><td>$\rho_l$</td><td class="k">958 kg/m³</td></tr>
+          <tr><td>증기 밀도</td><td>$\rho_v$</td><td class="k">0.60 kg/m³</td></tr>
+          <tr><td>표면장력</td><td>$\sigma$</td><td class="k">0.0589 N/m</td></tr>
+          <tr><td>증발잠열</td><td>$h_{fg}$</td><td class="k">2257 kJ/kg</td></tr>
+          <tr><td>임계파장</td><td>$\lambda_c$</td><td class="k">≈ 15.7 mm</td></tr>
+          <tr><td>가장 위험 파장</td><td>$\lambda_d$</td><td class="k">≈ 27.2 mm</td></tr>
+        </tbody></table>
+        <div class="keqnote">$\lambda_c=2\pi\sqrt{\sigma/[g(\rho_l-\rho_v)]}=2\pi\sqrt{0.0589/(9.81\times957.4)}\approx 15.7\,\text{mm}$, $\lambda_d=\sqrt3\,\lambda_c\approx 27.2\,\text{mm}$. (물성 출처: Incropera 부록 A.6, 포화수 373 K)</div>
+      </div>
+    </div>
+    <div class="vizgrid lang-en">
+      <div>
+        <div class="vcap">RT-unstable interface &amp; vapor jets (spacing $\lambda_d$)</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar31en" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<rect x="40" y="40" width="400" height="200" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+<text x="355" y="60" font-size="11" fill="#2563eb" text-anchor="middle">liquid (heavy $\rho_l$)</text>
+<rect x="40" y="222" width="400" height="18" fill="#a1a1aa"/>
+<text x="240" y="235" font-size="10.5" fill="#27272a" text-anchor="middle">heater</text>
+<path d="M40 150 Q90 110 140 150 Q190 190 240 150 Q290 110 340 150 Q390 190 440 150" fill="none" stroke="#c2410c" stroke-width="2.5"/>
+<path d="M90 150 L90 222" stroke="#f97316" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+<path d="M190 150 L190 222" stroke="#f97316" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+<path d="M290 150 L290 222" stroke="#f97316" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+<path d="M390 150 L390 222" stroke="#f97316" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+<text x="90" y="205" font-size="9.5" fill="#c2410c" text-anchor="middle">vapor jet</text>
+<line x1="90" y1="90" x2="290" y2="90" stroke="#52525b" stroke-width="1.2" marker-start="url(#ar31en)" marker-end="url(#ar31en)"/>
+<text x="190" y="82" font-size="11" fill="#52525b" text-anchor="middle" font-weight="700">$\lambda_d$</text>
+<path d="M340 100 L340 145" stroke="#2563eb" stroke-width="1.4" marker-end="url(#ar31en)"/>
+<text x="360" y="118" font-size="9.5" fill="#2563eb" text-anchor="middle">liquid down</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">Water properties &amp; length scales (1 atm, $100\,{}^{\circ}\text{C}$)</div>
+        <table class="ktab"><thead><tr><th>Property</th><th>Symbol</th><th style="text-align:right">Value</th></tr></thead><tbody>
+          <tr><td>Liquid density</td><td>$\rho_l$</td><td class="k">958 kg/m³</td></tr>
+          <tr><td>Vapor density</td><td>$\rho_v$</td><td class="k">0.60 kg/m³</td></tr>
+          <tr><td>Surface tension</td><td>$\sigma$</td><td class="k">0.0589 N/m</td></tr>
+          <tr><td>Latent heat</td><td>$h_{fg}$</td><td class="k">2257 kJ/kg</td></tr>
+          <tr><td>Critical wavelength</td><td>$\lambda_c$</td><td class="k">≈ 15.7 mm</td></tr>
+          <tr><td>Most dangerous wave</td><td>$\lambda_d$</td><td class="k">≈ 27.2 mm</td></tr>
+        </tbody></table>
+        <div class="keqnote">$\lambda_c=2\pi\sqrt{\sigma/[g(\rho_l-\rho_v)]}=2\pi\sqrt{0.0589/(9.81\times957.4)}\approx 15.7\,\text{mm}$, $\lambda_d=\sqrt3\,\lambda_c\approx 27.2\,\text{mm}$. (Properties: Incropera App. A.6, saturated water 373 K)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-1 / 실습 ══════════ -->
+  <section class="screen" data-ch="3-1" data-chtitle="유체역학적 불안정성" data-stage="실습">
+    <div class="eyebrow lang-ko">3-1 · 실습 · Interactive</div>
+    <div class="eyebrow lang-en">3-1 · Interactive</div>
+    <h1 class="stage-h lang-ko">임계파장 $\lambda_c$ — 표면장력과 밀도차의 힘겨루기</h1>
+    <h1 class="stage-h lang-en">Critical Wavelength $\lambda_c$ — Surface Tension vs. Density Difference</h1>
+    <p class="lede lang-ko">임계파장 $\lambda_c=2\pi\sqrt{\sigma/[g(\Delta\rho)]}$은 <strong>표면장력 $\sigma$가 크면 커지고</strong>(계면을 매끈하게 유지), <strong>밀도차 $\Delta\rho=\rho_l-\rho_v$가 크면 작아집니다</strong>(중력이 세게 무너뜨림). 슬라이더로 두 값을 바꾸며 대기압 물의 $\lambda_c\approx 15.7\,\text{mm}$ 근방을 확인하세요.</p>
+    <p class="lede lang-en">The critical wavelength $\lambda_c=2\pi\sqrt{\sigma/[g(\Delta\rho)]}$ <strong>grows with surface tension $\sigma$</strong> (keeping the interface smooth) and <strong>shrinks with density difference $\Delta\rho=\rho_l-\rho_v$</strong> (gravity collapses it harder). Move the sliders and check the region around water's $\lambda_c\approx 15.7\,\text{mm}$ at 1 atm.</p>
+    <div class="calc lang-ko"
+      data-title="RT 임계파장 $\lambda_c = 2\pi\sqrt{\sigma/[g\,\Delta\rho]}$"
+      data-desc="σ = 표면장력 [N/m], Δρ = ρ_l−ρ_v [kg/m³], g=9.81 m/s². 기본값 σ=0.0589, Δρ=957.4 → λ_c≈15.7 mm(=0.0157 m). λ_d=√3·λ_c≈27.2 mm."
+      data-vars='[{"sym":"sigma","label":"$\\sigma$ · 표면장력","min":0.01,"max":0.08,"val":0.0589,"step":0.001,"unit":"N/m"},{"sym":"drho","label":"$\\Delta\\rho=\\rho_l-\\rho_v$ · 밀도차","min":100,"max":1200,"val":957.4,"step":10,"unit":"kg/m³"}]'
+      data-expr="2*Math.PI*Math.sqrt(sigma/(9.81*drho))"
+      data-out="$\lambda_c$" data-out-unit="$\text{m}$"
+      data-barmax="0.06"
+      data-note="σ를 2배로 키우면 λ_c는 √2배(≈1.41배) 커지고, Δρ를 2배로 키우면 λ_c는 1/√2배로 줄어듭니다 — 제곱근 의존성."></div>
+    <div class="calc lang-en"
+      data-title="RT critical wavelength $\lambda_c = 2\pi\sqrt{\sigma/[g\,\Delta\rho]}$"
+      data-desc="σ = surface tension [N/m], Δρ = ρ_l−ρ_v [kg/m³], g=9.81 m/s². Default σ=0.0589, Δρ=957.4 → λ_c≈15.7 mm (=0.0157 m). λ_d=√3·λ_c≈27.2 mm."
+      data-vars='[{"sym":"sigma","label":"$\\sigma$ · surface tension","min":0.01,"max":0.08,"val":0.0589,"step":0.001,"unit":"N/m"},{"sym":"drho","label":"$\\Delta\\rho=\\rho_l-\\rho_v$ · density diff.","min":100,"max":1200,"val":957.4,"step":10,"unit":"kg/m³"}]'
+      data-expr="2*Math.PI*Math.sqrt(sigma/(9.81*drho))"
+      data-out="$\lambda_c$" data-out-unit="$\text{m}$"
+      data-barmax="0.06"
+      data-note="Doubling σ raises λ_c by √2 (≈1.41×); doubling Δρ lowers it by 1/√2 — the square-root dependence."></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 대기압 물의 계면 특성길이는 <strong>수 mm ~ 수 cm</strong> 규모입니다: $\lambda_c\approx 16\,\text{mm}$, $\lambda_d\approx 28\,\text{mm}$. 이는 냄비 바닥에서 보이는 큰 거품 기둥 간격과 대략 일치합니다. 저중력(우주정거장)에서는 $g\to 0$이라 $\lambda_c\to\infty$ — 계면이 안정화되어 증기가 배출되지 못하고 CHF가 급감합니다. <span class="src">(출처: RT/CHF 길이척도 = Zuber 1959; 물성 = Incropera 부록 A.6)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — the interfacial length scale of water at 1 atm is <strong>a few mm to a few cm</strong>: $\lambda_c\approx 16\,\text{mm}$, $\lambda_d\approx 28\,\text{mm}$, roughly matching the spacing of the large vapor columns seen on a pot bottom. In low gravity (space station), $g\to 0$ so $\lambda_c\to\infty$ — the interface stabilizes, vapor cannot escape, and CHF drops sharply. <span class="src">(Source: RT/CHF length scales = Zuber 1959; properties = Incropera App. A.6)</span></div>
+  </section>
+
+  <!-- ══════════ 3-1 / 점검 ══════════ -->
+  <section class="screen" data-ch="3-1" data-chtitle="유체역학적 불안정성" data-stage="점검">
+    <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+    <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · instructor view</span></div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q1.</span>Rayleigh–Taylor 불안정에서 <strong>계면을 안정으로 되돌리는</strong> 힘은 무엇입니까?</p>
+      <div class="opts">
+        <button class="opt">① 중력(무거운 액체의 무게)</button>
+        <button class="opt" data-correct="1">② 표면장력 $\sigma$</button>
+        <button class="opt">③ 증기 제트의 관성</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — RT 분산관계 $\omega^2=gk\,\Delta\rho/(\rho_l+\rho_v)-\sigma k^3/(\rho_l+\rho_v)$에서 중력 항은 불안정(증폭), 표면장력 항($\sigma k^3$)이 계면을 매끈하게 되돌리는 복원력이다. <span class="dim">오답 ①·③: ①중력은 오히려 불안정을 키우고, ③증기 제트 관성은 KH(전단) 문제의 요소다.</span> <span class="agg">학급 n=41 · ① 9 · ② 28 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q1.</span>In Rayleigh–Taylor instability, which force <strong>restores</strong> the interface toward stability?</p>
+      <div class="opts">
+        <button class="opt">① gravity (weight of the heavy liquid)</button>
+        <button class="opt" data-correct="1">② surface tension $\sigma$</button>
+        <button class="opt">③ inertia of the vapor jets</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — in the RT dispersion $\omega^2=gk\,\Delta\rho/(\rho_l+\rho_v)-\sigma k^3/(\rho_l+\rho_v)$, the gravity term destabilizes (amplifies) while the surface-tension term ($\sigma k^3$) is the restoring force that smooths the interface. <span class="dim">Wrong ①·③: ① gravity actually feeds the instability; ③ vapor-jet inertia belongs to the KH (shear) problem.</span> <span class="agg">class n=41 · ① 9 · ② 28 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q2.</span>가장 위험한 파장 $\lambda_d$와 임계파장 $\lambda_c$의 관계로 옳은 것은?</p>
+      <div class="opts">
+        <button class="opt">① $\lambda_d = \lambda_c$ (동일)</button>
+        <button class="opt" data-correct="1">② $\lambda_d = \sqrt{3}\,\lambda_c$ (성장률 최대)</button>
+        <button class="opt">③ $\lambda_d = \tfrac{1}{2}\lambda_c$ (더 짧음)</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $\omega^2(k)$를 $k$로 미분해 최댓값을 찾으면 $k_d^2=k_c^2/3$, 즉 $\lambda_d=\sqrt3\,\lambda_c$이다. 실제 증기 방출 간격은 성장률이 최대인 $\lambda_d$에 가깝다. <span class="dim">오답 ①·③: ①$\lambda_c$는 중립(성장률 0)점이라 관측 간격이 아니고, ③$\lambda_d$는 $\lambda_c$보다 길다(짧지 않다).</span> <span class="agg">학급 n=41 · ① 6 · ② 30 · ③ 5</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q2.</span>Which relation between the most dangerous wave $\lambda_d$ and the critical wavelength $\lambda_c$ is correct?</p>
+      <div class="opts">
+        <button class="opt">① $\lambda_d = \lambda_c$ (equal)</button>
+        <button class="opt" data-correct="1">② $\lambda_d = \sqrt{3}\,\lambda_c$ (maximum growth)</button>
+        <button class="opt">③ $\lambda_d = \tfrac{1}{2}\lambda_c$ (shorter)</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — differentiating $\omega^2(k)$ with respect to $k$ for its maximum gives $k_d^2=k_c^2/3$, i.e. $\lambda_d=\sqrt3\,\lambda_c$. The observed vapor-release spacing is close to $\lambda_d$, the maximum-growth wave. <span class="dim">Wrong ①·③: ① $\lambda_c$ is the neutral (zero-growth) point, not an observed spacing; ③ $\lambda_d$ is longer than $\lambda_c$, not shorter.</span> <span class="agg">class n=41 · ① 6 · ② 30 · ③ 5</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-1 / 연습 ══════════ -->
+  <section class="screen" data-ch="3-1" data-chtitle="유체역학적 불안정성" data-stage="연습">
+    <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+    <div class="panel-head lang-en"><span class="tag">Practice</span><span class="panel-title">Engineering calc · auto-graded</span></div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 1 · 기본 · RT 임계파장</div>
+      <p class="prob-statement">대기압 포화수($\sigma=0.0589\,\text{N/m}$, $\rho_l=958\,\text{kg/m}^3$, $\rho_v=0.60\,\text{kg/m}^3$, $g=9.81\,\text{m/s}^2$)의 <strong>RT 임계파장 $\lambda_c$</strong>를 mm 단위로 구하시오.</p>
+      <div class="given"><span class="chip">$\sigma=0.0589\,\text{N/m}$</span><span class="chip">$\rho_l-\rho_v=957.4\,\text{kg/m}^3$</span><span class="chip">$g=9.81\,\text{m/s}^2$</span></div>
+      <div class="find"><b>구할 것:</b> $\lambda_c\ [\text{mm}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="15.7" data-tol="0.03"/><span class="ans-unit">$\text{mm}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 공식 대입</div>$$ \lambda_c = 2\pi\sqrt{\frac{\sigma}{g(\rho_l-\rho_v)}} = 2\pi\sqrt{\frac{0.0589}{9.81\times 957.4}} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 계산</div>$$ =2\pi\sqrt{6.27\times10^{-6}}=2\pi(2.50\times10^{-3})\approx 0.0157\ \text{m} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \lambda_c \approx 15.7\ \text{mm} $$</div><b>정답:</b> 참고로 $\lambda_d=\sqrt3\,\lambda_c\approx 27.2\,\text{mm}$가 증기 방출 간격이다.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 1 · Basic · RT critical wavelength</div>
+      <p class="prob-statement">For saturated water at 1 atm ($\sigma=0.0589\,\text{N/m}$, $\rho_l=958\,\text{kg/m}^3$, $\rho_v=0.60\,\text{kg/m}^3$, $g=9.81\,\text{m/s}^2$), find the <strong>RT critical wavelength $\lambda_c$</strong> in mm.</p>
+      <div class="given"><span class="chip">$\sigma=0.0589\,\text{N/m}$</span><span class="chip">$\rho_l-\rho_v=957.4\,\text{kg/m}^3$</span><span class="chip">$g=9.81\,\text{m/s}^2$</span></div>
+      <div class="find"><b>Find:</b> $\lambda_c\ [\text{mm}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="15.7" data-tol="0.03"/><span class="ans-unit">$\text{mm}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · substitute</div>$$ \lambda_c = 2\pi\sqrt{\frac{\sigma}{g(\rho_l-\rho_v)}} = 2\pi\sqrt{\frac{0.0589}{9.81\times 957.4}} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · evaluate</div>$$ =2\pi\sqrt{6.27\times10^{-6}}=2\pi(2.50\times10^{-3})\approx 0.0157\ \text{m} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \lambda_c \approx 15.7\ \text{mm} $$</div><b>Answer:</b> for reference $\lambda_d=\sqrt3\,\lambda_c\approx 27.2\,\text{mm}$ is the vapor-release spacing.</div>
+      </div>
+    </div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 2 · 응용 · 가장 위험 파장 $\lambda_d$</div>
+      <p class="prob-statement">위 문제에서 얻은 임계파장 $\lambda_c=15.7\,\text{mm}$을 이용해, RT 성장률이 최대가 되는 <strong>가장 위험 파장 $\lambda_d=\sqrt3\,\lambda_c$</strong>를 mm 단위로 구하시오.</p>
+      <div class="given"><span class="chip">$\lambda_c=15.7\,\text{mm}$</span><span class="chip">$\lambda_d=\sqrt3\,\lambda_c$</span><span class="chip">$\sqrt3\approx 1.732$</span></div>
+      <div class="find"><b>구할 것:</b> $\lambda_d\ [\text{mm}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="27.2" data-tol="0.03"/><span class="ans-unit">$\text{mm}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 관계식</div>$$ \lambda_d = \sqrt3\,\lambda_c = 1.732\times 15.7\ \text{mm} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 계산</div>$$ \lambda_d \approx 27.2\ \text{mm} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \lambda_d \approx 27.2\ \text{mm} $$</div><b>정답:</b> 이 값이 가열면 위 증기 제트 격자의 <strong>실제 간격</strong>에 해당한다(Zuber CHF 모델).</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 2 · Applied · most dangerous wave $\lambda_d$</div>
+      <p class="prob-statement">Using the critical wavelength $\lambda_c=15.7\,\text{mm}$ from above, find the <strong>most dangerous wavelength $\lambda_d=\sqrt3\,\lambda_c$</strong> (maximum RT growth) in mm.</p>
+      <div class="given"><span class="chip">$\lambda_c=15.7\,\text{mm}$</span><span class="chip">$\lambda_d=\sqrt3\,\lambda_c$</span><span class="chip">$\sqrt3\approx 1.732$</span></div>
+      <div class="find"><b>Find:</b> $\lambda_d\ [\text{mm}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="27.2" data-tol="0.03"/><span class="ans-unit">$\text{mm}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · relation</div>$$ \lambda_d = \sqrt3\,\lambda_c = 1.732\times 15.7\ \text{mm} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · evaluate</div>$$ \lambda_d \approx 27.2\ \text{mm} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \lambda_d \approx 27.2\ \text{mm} $$</div><b>Answer:</b> this is the <strong>actual spacing</strong> of the vapor-jet lattice above the heater (Zuber CHF model).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-1 / 정리 ══════════ -->
+  <section class="screen" data-ch="3-1" data-chtitle="유체역학적 불안정성" data-stage="정리">
+    <div class="eyebrow lang-ko">3-1 · 정리 · Summary</div>
+    <div class="eyebrow lang-en">3-1 · Summary</div>
+    <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 시험 포인트</h1>
+    <h1 class="stage-h lang-en">Key Points · Common Mistakes · Exam Focus</h1>
+    <div class="sumgrid lang-ko">
+      <div class="sumcard key"><h4>핵심 정리</h4><ul>
+        <li>CHF의 근원 = <strong>증기·액체 계면의 유체역학적 불안정</strong>(표면 물성 아님).</li>
+        <li><strong>RT</strong>: $\lambda_c=2\pi\sqrt{\sigma/[g(\rho_l-\rho_v)]}$, $\lambda_d=\sqrt3\,\lambda_c$ → 증기 방출 간격.</li>
+        <li><strong>KH</strong>: 임계 증기속도 초과 → 액체 공급 차단 → CHF.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+        <li>$\lambda_c$(중립)와 $\lambda_d=\sqrt3\,\lambda_c$(성장 최대)를 혼동.</li>
+        <li>밀도차를 $\rho_l$만으로 계산 → 반드시 <strong>$\rho_l-\rho_v$</strong>.</li>
+        <li>표면장력을 불안정 요인으로 오해 → 실제는 <strong>안정(복원)</strong>.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>시험 포인트</h4><ul>
+        <li>$\lambda_c$·$\lambda_d$ 물성 대입 계산(단위: m↔mm 환산 주의).</li>
+        <li>RT 분산관계에서 중력 항 vs 표면장력 항 부호와 역할.</li>
+        <li>Zuber(1959)·Lienhard–Dhir(1973) CHF 유체역학 모델의 핵심 논리.</li>
+      </ul></div>
+    </div>
+    <div class="sumgrid lang-en">
+      <div class="sumcard key"><h4>Key points</h4><ul>
+        <li>Origin of CHF = <strong>hydrodynamic instability of the vapor–liquid interface</strong> (not surface properties).</li>
+        <li><strong>RT</strong>: $\lambda_c=2\pi\sqrt{\sigma/[g(\rho_l-\rho_v)]}$, $\lambda_d=\sqrt3\,\lambda_c$ → vapor-release spacing.</li>
+        <li><strong>KH</strong>: exceeding the critical vapor speed → liquid supply cut off → CHF.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+        <li>Confusing $\lambda_c$ (neutral) with $\lambda_d=\sqrt3\,\lambda_c$ (max growth).</li>
+        <li>Using $\rho_l$ alone for the density term → it must be <strong>$\rho_l-\rho_v$</strong>.</li>
+        <li>Treating surface tension as destabilizing → it is actually <strong>stabilizing (restoring)</strong>.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>Exam focus</h4><ul>
+        <li>Plug-in calculations of $\lambda_c$·$\lambda_d$ (watch m↔mm conversion).</li>
+        <li>Signs and roles of the gravity vs surface-tension terms in the RT dispersion.</li>
+        <li>Core logic of the Zuber (1959) / Lienhard–Dhir (1973) hydrodynamic CHF model.</li>
+      </ul></div>
+    </div>
+  </section>
+
+<!-- ══════════ 3-2 / 개념 ══════════ -->
+  <section class="screen" data-ch="3-2" data-chtitle="Zuber CHF와 Kutateladze" data-stage="개념">
+    <div class="eyebrow lang-ko">3-2 · 개념 · Concept</div>
+    <div class="eyebrow lang-en">3-2 · Concept</div>
+    <h1 class="stage-h lang-ko">CHF의 천장은 어디서 오는가 — Zuber의 수력학 한계</h1>
+    <h1 class="stage-h lang-en">Where the CHF Ceiling Comes From — Zuber's Hydrodynamic Limit</h1>
+    <div class="analogy lang-ko"><span class="ic">🌪️</span><div class="tx"><b>직관</b> — 냄비 바닥에서 <b>증기 기둥</b>이 위로 솟고, 그 사이 틈으로 차가운 물이 내려와야 표면을 계속 적신다. 열유속을 계속 올리면 증기 기둥이 너무 빨라져 <b>내려오는 물길이 막히고</b>, 표면은 증기에 뒤덮인다. CHF는 표면 물성이 아니라 <b>증기–액체의 상대운동(수력학)</b>이 무너지는 지점이다. <span class="src">(출처: Zuber 1959 박사학위 논문 / Lienhard–Dhir 1973)</span></div></div>
+    <div class="analogy lang-en"><span class="ic">🌪️</span><div class="tx"><b>Intuition</b> — <b>vapor columns</b> rise from the pot bottom, and cool liquid must flow down through the gaps to keep the surface wet. Raise the heat flux enough and the vapor columns become so fast that the <b>downward liquid path is choked off</b>, blanketing the surface. CHF is not a surface property but the point where the <b>vapor–liquid relative motion (hydrodynamics)</b> collapses. <span class="src">(Source: Zuber 1959 PhD dissertation / Lienhard–Dhir 1973)</span></div></div>
+    <div class="two lang-ko">
+      <div class="col2">
+        <p class="lede"><strong>임계열유속(CHF)</strong>은 핵비등 곡선의 정점(점 C)입니다. Zuber(1959)는 이 한계가 <strong>Helmholtz·Rayleigh–Taylor 불안정</strong>이라는 두 유체역학적 불안정의 결합으로 정해진다고 보고, 순수한 <strong>수력학 논거</strong>만으로 다음 형태를 유도했습니다. 놀랍게도 표면 물성(재질·거칠기)이 명시적으로 들어가지 않습니다.</p>
+        <div class="keqbox">
+          <div class="keq-label">Zuber 수력학 CHF (무한 평판)</div>
+          <div class="keqrow"><span class="keqcap">$q''_{max}$</span><span class="keqline">$ = C\,h_{fg}\,\rho_v^{1/2}\left[\sigma g(\rho_l-\rho_v)\right]^{1/4} $</span></div>
+          <div class="keqrow"><span class="keqcap">$C$ (Zuber)</span><span class="keqline">$ = \dfrac{\pi}{24} \approx 0.131 $</span></div>
+          <div class="keqrow"><span class="keqcap">$C$ (Lienhard 대형평판)</span><span class="keqline">$ \approx 0.149 $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">핵심 용어</div>
+        <div class="terms">
+          <div class="term"><b>$q''_{max}$</b> 임계열유속 CHF $[\text{W/m}^2]$ — 대기압 물 $\approx 1.1\!\sim\!1.26\,\text{MW/m}^2$</div>
+          <div class="term"><b>$h_{fg}$</b> 증발잠열 $[\text{J/kg}]$ — 물 1 atm $\approx 2.26\times10^6$</div>
+          <div class="term"><b>$\rho_v,\ \rho_l$</b> 증기·액체 밀도 $[\text{kg/m}^3]$</div>
+          <div class="term"><b>$\sigma$</b> 표면장력 $[\text{N/m}]$ — 물 100 ${}^{\circ}\text{C}$ $\approx 0.0589$</div>
+          <div class="term"><b>$C$</b> Zuber 상수 $\pi/24\approx0.131$ (무차원, 표면 무관)</div>
+          <div class="term"><b>Kutateladze 수 $K$</b> $=C$ — CHF 무차원 형태</div>
+        </div>
+        <div class="callout key"><div class="ct">핵심</div>CHF는 <strong>수력학적 한계</strong>입니다 — 증기가 표면에서 빠져나가는 속도와 액체가 되돌아오는 흐름이 균형을 잃는 지점. 그래서 상수 $C$가 <strong>표면 재질과 무관</strong>하게 거의 일정($\approx0.13\!\sim\!0.15$)합니다.</div>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2">
+        <p class="lede">The <strong>critical heat flux (CHF)</strong> is the peak of the nucleate boiling curve (point C). Zuber (1959) argued this limit is set by two hydrodynamic instabilities — the <strong>Helmholtz and Rayleigh–Taylor instabilities</strong> — and derived the form below from a purely <strong>hydrodynamic argument</strong>. Remarkably, surface properties (material, roughness) do not appear explicitly.</p>
+        <div class="keqbox">
+          <div class="keq-label">Zuber hydrodynamic CHF (infinite plate)</div>
+          <div class="keqrow"><span class="keqcap">$q''_{max}$</span><span class="keqline">$ = C\,h_{fg}\,\rho_v^{1/2}\left[\sigma g(\rho_l-\rho_v)\right]^{1/4} $</span></div>
+          <div class="keqrow"><span class="keqcap">$C$ (Zuber)</span><span class="keqline">$ = \dfrac{\pi}{24} \approx 0.131 $</span></div>
+          <div class="keqrow"><span class="keqcap">$C$ (Lienhard large plate)</span><span class="keqline">$ \approx 0.149 $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">Key terms</div>
+        <div class="terms">
+          <div class="term"><b>$q''_{max}$</b> critical heat flux, CHF $[\text{W/m}^2]$ — water at 1 atm $\approx 1.1\!\sim\!1.26\,\text{MW/m}^2$</div>
+          <div class="term"><b>$h_{fg}$</b> latent heat of vaporization $[\text{J/kg}]$ — water 1 atm $\approx 2.26\times10^6$</div>
+          <div class="term"><b>$\rho_v,\ \rho_l$</b> vapor & liquid density $[\text{kg/m}^3]$</div>
+          <div class="term"><b>$\sigma$</b> surface tension $[\text{N/m}]$ — water at 100 ${}^{\circ}\text{C}$ $\approx 0.0589$</div>
+          <div class="term"><b>$C$</b> Zuber constant $\pi/24\approx0.131$ (dimensionless, surface-independent)</div>
+          <div class="term"><b>Kutateladze number $K$</b> $=C$ — dimensionless CHF form</div>
+        </div>
+        <div class="callout key"><div class="ct">Key</div>CHF is a <strong>hydrodynamic limit</strong> — the point where the vapor escape rate and the returning liquid flow lose their balance. That is why the constant $C$ is nearly fixed ($\approx0.13\!\sim\!0.15$), <strong>independent of surface material</strong>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-2 / 유도 ══════════ -->
+  <section class="screen" data-ch="3-2" data-chtitle="Zuber CHF와 Kutateladze" data-stage="유도">
+    <div class="eyebrow lang-ko">3-2 · 수식 유도 · Derivation</div>
+    <div class="eyebrow lang-en">3-2 · Derivation</div>
+    <h1 class="stage-h lang-ko">두 불안정으로 CHF 유도하기</h1>
+    <h1 class="stage-h lang-en">Deriving CHF from Two Instabilities</h1>
+    <p class="lede lang-ko"><b>골격:</b> 증기는 지름 $\lambda_d/2$의 <b>증기 기둥(jet)</b>으로 표면을 빠져나갑니다. 기둥 배열은 <b>Rayleigh–Taylor 불안정</b>이 정하는 임계 파장 $\lambda_d$로, 기둥 표면의 최대 증기속도는 <b>Helmholtz 불안정</b>이 정합니다. 이 최대 속도가 CHF를 결정합니다. <span class="src">(Zuber 1959; Lienhard–Dhir 1973)</span></p>
+    <p class="lede lang-en"><b>Skeleton:</b> vapor escapes as <b>vapor columns (jets)</b> of diameter $\lambda_d/2$. The column spacing is set by the critical wavelength $\lambda_d$ of the <b>Rayleigh–Taylor instability</b>, and the maximum vapor velocity at the jet interface is set by the <b>Helmholtz instability</b>. This maximum velocity fixes CHF. <span class="src">(Zuber 1959; Lienhard–Dhir 1973)</span></p>
+    <div class="deriv lang-ko">
+      <div class="dcard"><h4>① 임계 파장 (Rayleigh–Taylor)</h4><div class="sub">기둥 간격 결정</div><div class="ana">📏 무거운 액체가 가벼운 증기 위 — 가장 잘 자라는 파장</div><div class="eq">$ \lambda_d = 2\pi\sqrt{\dfrac{3\sigma}{g(\rho_l-\rho_v)}} $</div><p>가장 위험한 Taylor 파장이 증기 기둥의 <strong>간격</strong>을 정합니다. 기둥 지름은 $\lambda_d/2$.</p></div>
+      <div class="dcard"><h4>② 임계 증기속도 (Helmholtz)</h4><div class="sub">기둥 표면 붕괴 속도</div><div class="ana">💨 기둥 표면을 스치는 증기가 너무 빠르면 파열</div><div class="eq">$ u_{v} = \sqrt{\dfrac{2\pi\sigma}{\rho_v\,\lambda_H}} $</div><p>Helmholtz 파장 $\lambda_H$에서 기둥 계면이 불안정해지는 <strong>최대 증기속도</strong>. 이 속도 이상이면 표면 재습윤이 막힙니다.</p></div>
+      <div class="dcard"><h4>③ CHF 조립</h4><div class="sub">$q''_{max}=\rho_v h_{fg}u_v\cdot(A_j/A)$</div><div class="ana">🧮 증기속도 × 잠열 × 기둥 면적비 → 상수 $\pi/24$</div><div class="eq">$ q''_{max}=\dfrac{\pi}{24}h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4} $</div><p>기둥 면적비 $A_j/A=\pi/16$과 Helmholtz 관계를 대입·정리하면 <strong>$C=\pi/24\approx0.131$</strong>이 떨어집니다.</p></div>
+    </div>
+    <div class="deriv lang-en">
+      <div class="dcard"><h4>① Critical wavelength (Rayleigh–Taylor)</h4><div class="sub">sets column spacing</div><div class="ana">📏 Heavy liquid over light vapor — the fastest-growing wave</div><div class="eq">$ \lambda_d = 2\pi\sqrt{\dfrac{3\sigma}{g(\rho_l-\rho_v)}} $</div><p>The most dangerous Taylor wavelength fixes the <strong>spacing</strong> of the vapor columns; each column has diameter $\lambda_d/2$.</p></div>
+      <div class="dcard"><h4>② Critical vapor velocity (Helmholtz)</h4><div class="sub">jet break-up velocity</div><div class="ana">💨 Vapor grazing the jet surface tears it apart if too fast</div><div class="eq">$ u_{v} = \sqrt{\dfrac{2\pi\sigma}{\rho_v\,\lambda_H}} $</div><p>The <strong>maximum vapor velocity</strong> at which the jet interface becomes unstable at Helmholtz wavelength $\lambda_H$. Above it, surface rewetting is blocked.</p></div>
+      <div class="dcard"><h4>③ Assembling CHF</h4><div class="sub">$q''_{max}=\rho_v h_{fg}u_v\cdot(A_j/A)$</div><div class="ana">🧮 vapor velocity × latent heat × jet area ratio → constant $\pi/24$</div><div class="eq">$ q''_{max}=\dfrac{\pi}{24}h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4} $</div><p>Substituting the jet area ratio $A_j/A=\pi/16$ and the Helmholtz relation yields <strong>$C=\pi/24\approx0.131$</strong>.</p></div>
+    </div>
+    <div class="callout warn lang-ko"><div class="ct">주의 · 상수 $C$의 값 차이</div>Zuber의 이상화($C=\pi/24\approx0.131$)와 Lienhard–Dhir가 넓은 평판 실험으로 보정한 $C\approx0.149$는 <strong>약 14% 차이</strong>가 납니다. 가열면 크기·형상($L^*=L/\sqrt{\sigma/[g(\rho_l-\rho_v)]}$)에 따라 $C$가 변하므로, 문제에서 <strong>어떤 $C$를 쓰는지 반드시 명시</strong>해야 합니다.</div>
+    <div class="callout warn lang-en"><div class="ct">Caution · value of the constant $C$</div>Zuber's idealization ($C=\pi/24\approx0.131$) and Lienhard–Dhir's large-plate fit ($C\approx0.149$) differ by <strong>about 14%</strong>. Because $C$ varies with heater size/geometry ($L^*=L/\sqrt{\sigma/[g(\rho_l-\rho_v)]}$), <strong>always state which $C$ is used</strong> in a problem.</div>
+  </section>
+
+  <!-- ══════════ 3-2 / 읽을거리 ══════════ -->
+  <section class="screen" data-ch="3-2" data-chtitle="Zuber CHF와 Kutateladze" data-stage="읽을거리">
+    <div class="eyebrow lang-ko">3-2 · 읽을거리 · Reading</div>
+    <div class="eyebrow lang-en">3-2 · Reading</div>
+    <h1 class="stage-h lang-ko">Kutateladze의 무차원수와 Zuber의 수력학 이론</h1>
+    <h1 class="stage-h lang-en">Kutateladze's Dimensionless Number and Zuber's Hydrodynamic Theory</h1>
+    <div class="two lang-ko">
+      <div class="col2 reading">
+        <p>CHF 이론의 두 기둥은 각각 다른 나라에서 자랐습니다. 소련의 <strong>S. S. Kutateladze</strong>는 1948년 <strong>차원해석</strong>만으로 CHF를 무차원화해, 어떤 유체·압력에서도 거의 일정한 무차원수를 발견했습니다:</p>
+        <p class="pullquote">$K=\dfrac{q''_{max}}{h_{fg}\,\rho_v^{1/2}\,[\sigma g(\rho_l-\rho_v)]^{1/4}}\approx 0.131\!\sim\!0.149$</p>
+        <p>11년 뒤 미국의 <strong>Novak Zuber</strong>(1959)는 같은 결과를 <strong>물리적 메커니즘(Helmholtz·Rayleigh–Taylor 불안정)</strong>으로 유도해, Kutateladze의 무차원수 $K$가 곧 상수 $C$임을 보였습니다. 차원해석(Kutateladze)과 기구 유도(Zuber)가 <strong>같은 값에 수렴</strong>한 것은 CHF가 순수 수력학 현상임을 강하게 뒷받침합니다. 이후 <strong>Lienhard–Dhir</strong>(1973)가 유한 크기·형상 보정을 더했습니다.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>$K$(Kutateladze)와 $C$(Zuber)는 <strong>같은 무차원수</strong>이다 ($\approx0.13\!\sim\!0.15$).</li><li>차원해석과 기구 유도가 <strong>독립적으로 같은 값</strong>에 도달.</li><li>CHF는 표면 물성이 아닌 <strong>유체 물성·중력</strong>이 지배.</li></ul></div>
+        <p class="readmeta">참고: Kutateladze(1948) / Zuber(1959) PhD, UCLA / Lienhard &amp; Dhir(1973) <em>J. Heat Transfer</em></p>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2 reading">
+        <p>The two pillars of CHF theory grew in different countries. In the USSR, <strong>S. S. Kutateladze</strong> (1948) non-dimensionalized CHF by <strong>dimensional analysis</strong> alone, finding a dimensionless number nearly constant across fluids and pressures:</p>
+        <p class="pullquote">$K=\dfrac{q''_{max}}{h_{fg}\,\rho_v^{1/2}\,[\sigma g(\rho_l-\rho_v)]^{1/4}}\approx 0.131\!\sim\!0.149$</p>
+        <p>Eleven years later, in the USA, <strong>Novak Zuber</strong> (1959) derived the same result from <strong>physical mechanisms (Helmholtz and Rayleigh–Taylor instabilities)</strong>, showing that Kutateladze's dimensionless number $K$ equals the constant $C$. The convergence of dimensional analysis (Kutateladze) and mechanistic derivation (Zuber) to the <strong>same value</strong> strongly supports CHF being a pure hydrodynamic phenomenon. Later, <strong>Lienhard–Dhir</strong> (1973) added finite size/geometry corrections.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">Must know</div><ul><li>$K$ (Kutateladze) and $C$ (Zuber) are the <strong>same dimensionless number</strong> ($\approx0.13\!\sim\!0.15$).</li><li>Dimensional analysis and mechanistic derivation reach the <strong>same value independently</strong>.</li><li>CHF is governed by <strong>fluid properties and gravity</strong>, not surface properties.</li></ul></div>
+        <p class="readmeta">Refs: Kutateladze (1948) / Zuber (1959) PhD, UCLA / Lienhard &amp; Dhir (1973) <em>J. Heat Transfer</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-2 / 그림·표 ══════════ -->
+  <section class="screen" data-ch="3-2" data-chtitle="Zuber CHF와 Kutateladze" data-stage="그림·표">
+    <div class="eyebrow lang-ko">3-2 · 그림 · 그래프 · 표</div>
+    <div class="eyebrow lang-en">3-2 · Figure · Graph · Table</div>
+    <h1 class="stage-h lang-ko">한눈에 — 증기 기둥 모형과 CHF 상수</h1>
+    <h1 class="stage-h lang-en">At a Glance — Vapor-Column Model and CHF Constants</h1>
+    <div class="vizgrid lang-ko">
+      <div>
+        <div class="vcap">Zuber 증기 기둥 · 액체 하강 모형</div>
+        <svg viewBox="0 0 480 300" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar32ko" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<rect x="40" y="250" width="400" height="26" fill="#fca5a5" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="240" y="268" font-size="11" fill="#7f1d1d" text-anchor="middle" font-weight="700">가열면 ($q''_{max}$)</text>
+<rect x="40" y="30" width="400" height="220" fill="#dbeafe" opacity="0.55"/>
+<rect x="90" y="40" width="46" height="210" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+<rect x="216" y="40" width="46" height="210" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+<rect x="342" y="40" width="46" height="210" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+<line x1="113" y1="235" x2="113" y2="55" stroke="#d97706" stroke-width="1.5" marker-end="url(#ar32ko)"/>
+<line x1="239" y1="235" x2="239" y2="55" stroke="#d97706" stroke-width="1.5" marker-end="url(#ar32ko)"/>
+<line x1="365" y1="235" x2="365" y2="55" stroke="#d97706" stroke-width="1.5" marker-end="url(#ar32ko)"/>
+<text x="139" y="150" font-size="10.5" fill="#92400e">증기</text>
+<line x1="178" y1="55" x2="178" y2="235" stroke="#2563eb" stroke-width="1.5" marker-end="url(#ar32ko)"/>
+<line x1="304" y1="55" x2="304" y2="235" stroke="#2563eb" stroke-width="1.5" marker-end="url(#ar32ko)"/>
+<text x="196" y="150" font-size="10.5" fill="#1d4ed8">액체</text>
+<line x1="113" y1="18" x2="239" y2="18" stroke="#52525b" stroke-width="1.2"/>
+<text x="176" y="13" font-size="10.5" fill="#52525b" text-anchor="middle">$\lambda_d$</text>
+</svg>
+        <div class="keqnote">증기 기둥(노랑)이 위로 상승 $u_v$, 그 사이로 액체(파랑)가 하강해 표면 재습윤. 기둥 간격 $=\lambda_d$ (Rayleigh–Taylor).</div>
+      </div>
+      <div>
+        <div class="vcap">CHF 상수 $C$와 대기압 물 물성</div>
+        <table class="ktab"><thead><tr><th>항목</th><th>값</th><th style="text-align:right">출처</th></tr></thead><tbody>
+          <tr><td>$C$ Zuber (무한평판)</td><td class="k">$\pi/24\approx0.131$</td><td>Zuber 1959</td></tr>
+          <tr><td>$C$ Lienhard (대형평판)</td><td class="k">$\approx0.149$</td><td>Lienhard–Dhir 1973</td></tr>
+          <tr><td>$h_{fg}$ (물 1 atm)</td><td class="k">$2.26\times10^6$ J/kg</td><td>NIST</td></tr>
+          <tr><td>$\rho_v$ (물 100 °C)</td><td class="k">$0.598$ kg/m³</td><td>NIST</td></tr>
+          <tr><td>$\rho_l$ (물 100 °C)</td><td class="k">$958$ kg/m³</td><td>NIST</td></tr>
+          <tr><td>$\sigma$ (물 100 °C)</td><td class="k">$0.0589$ N/m</td><td>NIST</td></tr>
+        </tbody></table>
+        <div class="keqnote">위 물성으로 $q''_{max}\approx1.1\,(C=0.131)\!\sim\!1.26\,(C=0.149)\ \text{MW/m}^2$. (출처: Incropera Ch.10.4)</div>
+      </div>
+    </div>
+    <div class="vizgrid lang-en">
+      <div>
+        <div class="vcap">Zuber vapor-column · liquid-downflow model</div>
+        <svg viewBox="0 0 480 300" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar32en" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<rect x="40" y="250" width="400" height="26" fill="#fca5a5" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="240" y="268" font-size="11" fill="#7f1d1d" text-anchor="middle" font-weight="700">heated surface ($q''_{max}$)</text>
+<rect x="40" y="30" width="400" height="220" fill="#dbeafe" opacity="0.55"/>
+<rect x="90" y="40" width="46" height="210" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+<rect x="216" y="40" width="46" height="210" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+<rect x="342" y="40" width="46" height="210" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+<line x1="113" y1="235" x2="113" y2="55" stroke="#d97706" stroke-width="1.5" marker-end="url(#ar32en)"/>
+<line x1="239" y1="235" x2="239" y2="55" stroke="#d97706" stroke-width="1.5" marker-end="url(#ar32en)"/>
+<line x1="365" y1="235" x2="365" y2="55" stroke="#d97706" stroke-width="1.5" marker-end="url(#ar32en)"/>
+<text x="139" y="150" font-size="10.5" fill="#92400e">vapor</text>
+<line x1="178" y1="55" x2="178" y2="235" stroke="#2563eb" stroke-width="1.5" marker-end="url(#ar32en)"/>
+<line x1="304" y1="55" x2="304" y2="235" stroke="#2563eb" stroke-width="1.5" marker-end="url(#ar32en)"/>
+<text x="196" y="150" font-size="10.5" fill="#1d4ed8">liquid</text>
+<line x1="113" y1="18" x2="239" y2="18" stroke="#52525b" stroke-width="1.2"/>
+<text x="176" y="13" font-size="10.5" fill="#52525b" text-anchor="middle">$\lambda_d$</text>
+</svg>
+        <div class="keqnote">Vapor columns (yellow) rise at $u_v$; liquid (blue) descends between them to rewet the surface. Column spacing $=\lambda_d$ (Rayleigh–Taylor).</div>
+      </div>
+      <div>
+        <div class="vcap">CHF constant $C$ and water properties at 1 atm</div>
+        <table class="ktab"><thead><tr><th>Item</th><th>Value</th><th style="text-align:right">Source</th></tr></thead><tbody>
+          <tr><td>$C$ Zuber (infinite plate)</td><td class="k">$\pi/24\approx0.131$</td><td>Zuber 1959</td></tr>
+          <tr><td>$C$ Lienhard (large plate)</td><td class="k">$\approx0.149$</td><td>Lienhard–Dhir 1973</td></tr>
+          <tr><td>$h_{fg}$ (water 1 atm)</td><td class="k">$2.26\times10^6$ J/kg</td><td>NIST</td></tr>
+          <tr><td>$\rho_v$ (water 100 °C)</td><td class="k">$0.598$ kg/m³</td><td>NIST</td></tr>
+          <tr><td>$\rho_l$ (water 100 °C)</td><td class="k">$958$ kg/m³</td><td>NIST</td></tr>
+          <tr><td>$\sigma$ (water 100 °C)</td><td class="k">$0.0589$ N/m</td><td>NIST</td></tr>
+        </tbody></table>
+        <div class="keqnote">With these properties, $q''_{max}\approx1.1\,(C=0.131)\!\sim\!1.26\,(C=0.149)\ \text{MW/m}^2$. (Source: Incropera Ch.10.4)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-2 / 실습 ══════════ -->
+  <section class="screen" data-ch="3-2" data-chtitle="Zuber CHF와 Kutateladze" data-stage="실습">
+    <div class="eyebrow lang-ko">3-2 · 실습 · Interactive</div>
+    <div class="eyebrow lang-en">3-2 · Interactive</div>
+    <h1 class="stage-h lang-ko">Zuber CHF 계산기 — 상수·물성 바꿔보기</h1>
+    <h1 class="stage-h lang-en">Zuber CHF Calculator — Vary Constant &amp; Properties</h1>
+    <p class="lede lang-ko">Zuber 식 $q''_{max}=C\,h_{fg}\,\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}$을 직접 계산합니다. 기본값(물 1 atm: $C=0.149$, $\sigma=0.0589$, $\rho_v=0.598$, $h_{fg}=2.26\times10^6$, $\rho_l=958$, $g=9.81$)에서 <strong>$\approx1.26\,\text{MW/m}^2$</strong>이 나오는지 확인하세요. $C$를 $0.131$로 낮추면 값이 어떻게 변하나요?</p>
+    <p class="lede lang-en">Compute the Zuber form $q''_{max}=C\,h_{fg}\,\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}$ directly. At the defaults (water 1 atm: $C=0.149$, $\sigma=0.0589$, $\rho_v=0.598$, $h_{fg}=2.26\times10^6$, $\rho_l=958$, $g=9.81$) verify you get <strong>$\approx1.26\,\text{MW/m}^2$</strong>. What happens if you lower $C$ to $0.131$?</p>
+    <div class="calc lang-ko"
+      data-title="Zuber CHF $q''_{max}=C\,h_{fg}\,\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}$"
+      data-desc="C=CHF 상수(0.131 Zuber ~ 0.149 Lienhard), σ=표면장력 [N/m], ρ_v=증기밀도 [kg/m³]. 기본값(물 1 atm)에서 q''_max≈1.26 MW/m². ρ_l=958, h_fg=2.26e6, g=9.81 고정 가정."
+      data-vars='[{"sym":"C","label":"$C$ · CHF 상수","min":0.13,"max":0.15,"val":0.149,"step":0.001,"unit":""},{"sym":"sig","label":"$\\sigma$ · 표면장력","min":0.03,"max":0.075,"val":0.0589,"step":0.0005,"unit":"N/m"},{"sym":"rv","label":"$\\rho_v$ · 증기밀도","min":0.3,"max":3,"val":0.598,"step":0.01,"unit":"kg/m³"}]'
+      data-expr="C*2.26e6*Math.sqrt(rv)*Math.pow(sig*9.81*(958-rv),0.25)"
+      data-out="$q''_{max}$" data-out-unit="$\text{W/m}^2$"
+      data-barmax="2000000"
+      data-note="C를 0.149→0.131로 낮추면 q''_max는 약 12% 감소(≈1.26→1.11 MW/m²) — 상수 차이가 그대로 안전 여유의 차이."></div>
+    <div class="calc lang-en"
+      data-title="Zuber CHF $q''_{max}=C\,h_{fg}\,\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}$"
+      data-desc="C=CHF constant (0.131 Zuber ~ 0.149 Lienhard), σ=surface tension [N/m], ρ_v=vapor density [kg/m³]. At defaults (water 1 atm) q''_max≈1.26 MW/m². Fixed: ρ_l=958, h_fg=2.26e6, g=9.81."
+      data-vars='[{"sym":"C","label":"$C$ · CHF constant","min":0.13,"max":0.15,"val":0.149,"step":0.001,"unit":""},{"sym":"sig","label":"$\\sigma$ · surface tension","min":0.03,"max":0.075,"val":0.0589,"step":0.0005,"unit":"N/m"},{"sym":"rv","label":"$\\rho_v$ · vapor density","min":0.3,"max":3,"val":0.598,"step":0.01,"unit":"kg/m³"}]'
+      data-expr="C*2.26e6*Math.sqrt(rv)*Math.pow(sig*9.81*(958-rv),0.25)"
+      data-out="$q''_{max}$" data-out-unit="$\text{W/m}^2$"
+      data-barmax="2000000"
+      data-note="Lowering C from 0.149→0.131 drops q''_max about 12% (≈1.26→1.11 MW/m²) — the constant difference is directly a safety-margin difference."></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — Zuber 식은 $q''_{max}\propto\rho_v^{1/2}\sigma^{1/4}$입니다. 압력이 오르면 $\rho_v$가 크게 증가해 CHF도 증가하다가, 임계압 근처에서 $\rho_l-\rho_v\to0$이 되어 다시 $0$으로 무너집니다 — 그래서 CHF는 <strong>중간 압력에서 최대</strong>(물 $\approx0.3\,p_c$)입니다. 대기압 물 CHF $\approx1.1\!\sim\!1.26\,\text{MW/m}^2$가 감의 기준점. <span class="src">(출처: Zuber 1959 / Incropera Ch.10.4)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — the Zuber form gives $q''_{max}\propto\rho_v^{1/2}\sigma^{1/4}$. As pressure rises, $\rho_v$ grows sharply so CHF increases, then collapses back toward $0$ near the critical pressure where $\rho_l-\rho_v\to0$ — hence CHF <strong>peaks at intermediate pressure</strong> (water $\approx0.3\,p_c$). Water CHF at 1 atm $\approx1.1\!\sim\!1.26\,\text{MW/m}^2$ is the reference feel. <span class="src">(Source: Zuber 1959 / Incropera Ch.10.4)</span></div>
+  </section>
+
+  <!-- ══════════ 3-2 / 점검 ══════════ -->
+  <section class="screen" data-ch="3-2" data-chtitle="Zuber CHF와 Kutateladze" data-stage="점검">
+    <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+    <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · instructor view</span></div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q1.</span>Zuber의 CHF 유도에서 상수 $C=\pi/24$가 <strong>표면 재질에 거의 무관</strong>한 이유는?</p>
+      <div class="opts">
+        <button class="opt">① 표면 거칠기가 CHF를 결정하기 때문</button>
+        <button class="opt" data-correct="1">② CHF가 증기–액체 상대운동의 수력학적 불안정으로 정해지기 때문</button>
+        <button class="opt">③ 표면장력을 무시했기 때문</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — Zuber는 Helmholtz·Rayleigh–Taylor 불안정이라는 순수 수력학 논거로 CHF를 유도했다. 상수는 유체 물성·중력·표면장력의 조합이며 표면 재질은 명시적으로 들어가지 않는다. <span class="dim">오답 ①·③: ①거칠기는 핵비등 열전달계수에 영향을 주지만 CHF 수력학 한계엔 1차적으로 무관하고, ③표면장력 $\sigma$는 오히려 식의 핵심 인자다.</span> <span class="agg">학급 n=41 · ① 8 · ② 29 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q1.</span>In Zuber's CHF derivation, why is the constant $C=\pi/24$ <strong>nearly independent of surface material</strong>?</p>
+      <div class="opts">
+        <button class="opt">① because surface roughness determines CHF</button>
+        <button class="opt" data-correct="1">② because CHF is set by the hydrodynamic instability of vapor–liquid relative motion</button>
+        <button class="opt">③ because surface tension was neglected</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — Zuber derived CHF from a purely hydrodynamic argument (Helmholtz and Rayleigh–Taylor instabilities). The constant combines fluid properties, gravity, and surface tension, with no explicit surface-material term. <span class="dim">Wrong ①·③: ① roughness affects the nucleate heat-transfer coefficient but not the CHF hydrodynamic limit to first order; ③ surface tension $\sigma$ is in fact a key factor of the equation.</span> <span class="agg">class n=41 · ① 8 · ② 29 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q2.</span>Kutateladze 수 $K$와 Zuber 상수 $C$의 관계로 옳은 것은?</p>
+      <div class="opts">
+        <button class="opt">① 서로 무관한 별개의 무차원수</button>
+        <button class="opt" data-correct="1">② 같은 무차원수 ($K=C\approx0.131\!\sim\!0.149$)</button>
+        <button class="opt">③ $K$는 차원이 있고 $C$는 무차원이다</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — Kutateladze는 차원해석으로, Zuber는 불안정 기구 유도로 같은 무차원수에 도달했다. $K=q''_{max}/(h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4})\approx0.131\!\sim\!0.149$로 곧 $C$이다. <span class="dim">오답 ①·③: ①두 값은 동일하며, ③둘 다 무차원수다.</span> <span class="agg">학급 n=41 · ① 6 · ② 31 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q2.</span>Which correctly relates the Kutateladze number $K$ to the Zuber constant $C$?</p>
+      <div class="opts">
+        <button class="opt">① separate, unrelated dimensionless numbers</button>
+        <button class="opt" data-correct="1">② the same dimensionless number ($K=C\approx0.131\!\sim\!0.149$)</button>
+        <button class="opt">③ $K$ is dimensional while $C$ is dimensionless</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — Kutateladze reached it by dimensional analysis and Zuber by mechanistic derivation, both landing on the same dimensionless number: $K=q''_{max}/(h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4})\approx0.131\!\sim\!0.149$, i.e. $C$. <span class="dim">Wrong ①·③: ① the values are identical; ③ both are dimensionless.</span> <span class="agg">class n=41 · ① 6 · ② 31 · ③ 4</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-2 / 연습 ══════════ -->
+  <section class="screen" data-ch="3-2" data-chtitle="Zuber CHF와 Kutateladze" data-stage="연습">
+    <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+    <div class="panel-head lang-en"><span class="tag">Practice</span><span class="panel-title">Engineering calc · auto-graded</span></div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 1 · 기본 · Kutateladze 수로 CHF 역산</div>
+      <p class="prob-statement">어떤 유체의 CHF를 무차원화했더니 $q''_{max}=1.20\ \text{MW/m}^2$이고 $h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}=8.00\ \text{MW/m}^2$였다. <strong>Kutateladze 수 $K$</strong>를 구하시오.</p>
+      <div class="given"><span class="chip">$q''_{max}=1.20\ \text{MW/m}^2$</span><span class="chip">$h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}=8.00\ \text{MW/m}^2$</span></div>
+      <div class="find"><b>구할 것:</b> $K$ (무차원)</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="0.15" data-tol="0.03"/><span class="ans-unit">(무차원)</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 정의</div>$$ K=\dfrac{q''_{max}}{h_{fg}\,\rho_v^{1/2}\,[\sigma g(\rho_l-\rho_v)]^{1/4}} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 대입</div>$$ K=\dfrac{1.20}{8.00}=0.15 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ K = 0.15 $$</div><b>정답:</b> Zuber–Kutateladze 예상 범위($0.131\!\sim\!0.149$)의 상단과 일치 — Lienhard 대형평판 값에 가깝다.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 1 · Basic · CHF back-out via Kutateladze number</div>
+      <p class="prob-statement">Non-dimensionalizing a fluid's CHF gives $q''_{max}=1.20\ \text{MW/m}^2$ with $h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}=8.00\ \text{MW/m}^2$. Find the <strong>Kutateladze number $K$</strong>.</p>
+      <div class="given"><span class="chip">$q''_{max}=1.20\ \text{MW/m}^2$</span><span class="chip">$h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}=8.00\ \text{MW/m}^2$</span></div>
+      <div class="find"><b>Find:</b> $K$ (dimensionless)</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="0.15" data-tol="0.03"/><span class="ans-unit">(dimensionless)</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · definition</div>$$ K=\dfrac{q''_{max}}{h_{fg}\,\rho_v^{1/2}\,[\sigma g(\rho_l-\rho_v)]^{1/4}} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · substitute</div>$$ K=\dfrac{1.20}{8.00}=0.15 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ K = 0.15 $$</div><b>Answer:</b> matches the upper end of the Zuber–Kutateladze range ($0.131\!\sim\!0.149$) — close to the Lienhard large-plate value.</div>
+      </div>
+    </div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 2 · 응용 · Zuber 식으로 물 CHF 계산</div>
+      <p class="prob-statement">대기압 물의 CHF를 Zuber 식으로 추정하시오. $C=0.149$, $h_{fg}=2.26\times10^6\ \text{J/kg}$, $\rho_v=0.598\ \text{kg/m}^3$, $\rho_l=958\ \text{kg/m}^3$, $\sigma=0.0589\ \text{N/m}$, $g=9.81\ \text{m/s}^2$. <strong>$q''_{max}$</strong>을 $\text{MW/m}^2$로 구하시오.</p>
+      <div class="given"><span class="chip">$C=0.149$</span><span class="chip">$h_{fg}=2.26\times10^6$</span><span class="chip">$\rho_v=0.598$</span><span class="chip">$\rho_l=958$</span><span class="chip">$\sigma=0.0589$</span><span class="chip">$g=9.81$</span></div>
+      <div class="find"><b>구할 것:</b> $q''_{max}\ [\text{MW/m}^2]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="1.26" data-tol="0.05"/><span class="ans-unit">$\text{MW/m}^2$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 대괄호 항</div>$$ \sigma g(\rho_l-\rho_v)=0.0589\times9.81\times957.4\approx553.2 $$ $$ [\,\cdot\,]^{1/4}=553.2^{0.25}\approx4.85 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 증기밀도 항</div>$$ \rho_v^{1/2}=0.598^{0.5}\approx0.773 $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · 조립</div>$$ q''_{max}=0.149\times2.26\times10^6\times0.773\times4.85\approx1.26\times10^6\ \text{W/m}^2 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ q''_{max}\approx1.26\ \text{MW/m}^2 $$</div><b>정답:</b> 대기압 물의 실측 CHF 범위($1.1\!\sim\!1.26$)와 일치. $C=0.131$을 쓰면 $\approx1.11\ \text{MW/m}^2$.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 2 · Applied · water CHF via the Zuber equation</div>
+      <p class="prob-statement">Estimate the CHF of water at 1 atm with the Zuber equation. $C=0.149$, $h_{fg}=2.26\times10^6\ \text{J/kg}$, $\rho_v=0.598\ \text{kg/m}^3$, $\rho_l=958\ \text{kg/m}^3$, $\sigma=0.0589\ \text{N/m}$, $g=9.81\ \text{m/s}^2$. Find <strong>$q''_{max}$</strong> in $\text{MW/m}^2$.</p>
+      <div class="given"><span class="chip">$C=0.149$</span><span class="chip">$h_{fg}=2.26\times10^6$</span><span class="chip">$\rho_v=0.598$</span><span class="chip">$\rho_l=958$</span><span class="chip">$\sigma=0.0589$</span><span class="chip">$g=9.81$</span></div>
+      <div class="find"><b>Find:</b> $q''_{max}\ [\text{MW/m}^2]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="1.26" data-tol="0.05"/><span class="ans-unit">$\text{MW/m}^2$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · bracket term</div>$$ \sigma g(\rho_l-\rho_v)=0.0589\times9.81\times957.4\approx553.2 $$ $$ [\,\cdot\,]^{1/4}=553.2^{0.25}\approx4.85 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · vapor-density term</div>$$ \rho_v^{1/2}=0.598^{0.5}\approx0.773 $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · assemble</div>$$ q''_{max}=0.149\times2.26\times10^6\times0.773\times4.85\approx1.26\times10^6\ \text{W/m}^2 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ q''_{max}\approx1.26\ \text{MW/m}^2 $$</div><b>Answer:</b> matches the measured CHF range for water at 1 atm ($1.1\!\sim\!1.26$). Using $C=0.131$ gives $\approx1.11\ \text{MW/m}^2$.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-2 / 정리 ══════════ -->
+  <section class="screen" data-ch="3-2" data-chtitle="Zuber CHF와 Kutateladze" data-stage="정리">
+    <div class="eyebrow lang-ko">3-2 · 정리 · Summary</div>
+    <div class="eyebrow lang-en">3-2 · Summary</div>
+    <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 시험 포인트</h1>
+    <h1 class="stage-h lang-en">Key Points · Common Mistakes · Exam Focus</h1>
+    <div class="sumgrid lang-ko">
+      <div class="sumcard key"><h4>핵심 정리</h4><ul>
+        <li>Zuber CHF: <strong>$q''_{max}=C\,h_{fg}\,\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}$</strong>.</li>
+        <li>$C=\pi/24\approx0.131$ (Zuber 무한평판) / $\approx0.149$ (Lienhard 대형평판).</li>
+        <li>Kutateladze 수 $K=C\approx0.131\!\sim\!0.149$ — 표면 무관, 대기압 물 $q''_{max}\approx1.1\!\sim\!1.26\,\text{MW/m}^2$.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+        <li>대괄호에 <strong>지수 $1/4$</strong> 빠뜨림 / $\rho_v$에 <strong>제곱근 $1/2$</strong> 누락.</li>
+        <li>$C$ 값을 혼용 (0.131 vs 0.149) → 문제 조건 확인.</li>
+        <li>CHF가 표면 거칠기로 결정된다고 오해 → <strong>수력학</strong> 한계.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>시험 포인트</h4><ul>
+        <li>Zuber 식 대입 계산 → 대기압 물 $\approx1.26\,\text{MW/m}^2$ 재현.</li>
+        <li>$K$ 정의로 CHF 역산 / 무차원화.</li>
+        <li>$q''_{max}\propto\rho_v^{1/2}\sigma^{1/4}$ → 압력에 따른 CHF 최대(중간압) 설명.</li>
+      </ul></div>
+    </div>
+    <div class="sumgrid lang-en">
+      <div class="sumcard key"><h4>Key points</h4><ul>
+        <li>Zuber CHF: <strong>$q''_{max}=C\,h_{fg}\,\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}$</strong>.</li>
+        <li>$C=\pi/24\approx0.131$ (Zuber infinite plate) / $\approx0.149$ (Lienhard large plate).</li>
+        <li>Kutateladze number $K=C\approx0.131\!\sim\!0.149$ — surface-independent; water at 1 atm $q''_{max}\approx1.1\!\sim\!1.26\,\text{MW/m}^2$.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+        <li>Dropping the <strong>$1/4$ exponent</strong> on the bracket / omitting the <strong>$1/2$ root</strong> on $\rho_v$.</li>
+        <li>Mixing up $C$ values (0.131 vs 0.149) → check the problem statement.</li>
+        <li>Thinking CHF is set by surface roughness → it is a <strong>hydrodynamic</strong> limit.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>Exam focus</h4><ul>
+        <li>Plug into the Zuber equation → reproduce water at 1 atm $\approx1.26\,\text{MW/m}^2$.</li>
+        <li>Use the $K$ definition to back out or non-dimensionalize CHF.</li>
+        <li>$q''_{max}\propto\rho_v^{1/2}\sigma^{1/4}$ → explain the CHF peak at intermediate pressure.</li>
+      </ul></div>
+    </div>
+  </section>
+
+<!-- ══════════ 3-3 / 개념 ══════════ -->
+  <section class="screen" data-ch="3-3" data-chtitle="CHF 파라미터와 최소열유속" data-stage="개념">
+    <div class="eyebrow lang-ko">3-3 · 개념 · Concept</div>
+    <div class="eyebrow lang-en">3-3 · Concept</div>
+    <h1 class="stage-h lang-ko">CHF를 흔드는 손잡이들 — 크기·방향·과냉·압력</h1>
+    <h1 class="stage-h lang-en">The Knobs That Shift CHF — Size, Orientation, Subcooling, Pressure</h1>
+    <div class="analogy lang-ko"><span class="ic">🎚️</span><div class="tx"><b>직관</b> — Zuber의 CHF 예측 $q''_{max}=0.149\,h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}$은 "무한 평판"의 값입니다. 실제 가열면은 <b>작거나·기울어져 있거나·차가운 물에 잠겨 있거나·압력이 다릅니다</b>. 이 네 손잡이를 돌리면 CHF가 위아래로 크게 움직입니다. 마찬가지로 막비등이 무너지기 시작하는 최저점 <b>최소열유속(Leidenfrost)</b>도 물성으로 예측됩니다. <span class="src">(출처: Zuber 1959 / Lienhard–Dhir 1973 / Incropera Ch.10)</span></div></div>
+    <div class="analogy lang-en"><span class="ic">🎚️</span><div class="tx"><b>Intuition</b> — Zuber's CHF prediction $q''_{max}=0.149\,h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4}$ is the value for an "infinite flat plate." Real heaters are <b>small, tilted, immersed in cold liquid, or at different pressure</b>. Turning these four knobs moves CHF up and down substantially. Likewise the lowest point where film boiling collapses — the <b>minimum heat flux (Leidenfrost)</b> — is predicted from properties. <span class="src">(Source: Zuber 1959 / Lienhard–Dhir 1973 / Incropera Ch.10)</span></div></div>
+    <div class="two lang-ko">
+      <div class="col2">
+        <p class="lede"><strong>임계열유속(CHF)</strong>은 무한 평판을 가정한 <strong>Zuber 값</strong>을 기준으로, 실제 조건에 따라 보정됩니다. 가열면의 <strong>무차원 크기</strong> $L^{*}=L\,[g(\rho_l-\rho_v)/\sigma]^{1/2}$가 작으면(작은 히터) 증기 탈출이 쉬워 CHF가 커지고, <strong>방향</strong>(수평 위보기 vs 수직 vs 아래보기)에 따라, <strong>과냉도</strong> $\Delta T_{sub}=T_{sat}-T_l$이 크면 증기가 재응축돼 CHF가 커지며, <strong>압력</strong>도 물성을 통해 영향을 줍니다. <strong>유동비등</strong>의 CHF는 강제 대류가 증기를 쓸어내므로 대개 풀비등보다 <strong>큽니다</strong>.</p>
+        <div class="keqbox">
+          <div class="keq-label">CHF를 흔드는 네 파라미터</div>
+          <div class="keqrow"><span class="keqcap">무차원 크기 $L^{*}$</span><span class="keqline">$ L^{*}=L\,[g(\rho_l-\rho_v)/\sigma]^{1/2} $</span></div>
+          <div class="keqrow"><span class="keqcap">방향</span><span class="keqline">수평(위) &gt; 수직 &gt; 아래보기</span></div>
+          <div class="keqrow"><span class="keqcap">과냉도 $\Delta T_{sub}$</span><span class="keqline">$ \Delta T_{sub}\uparrow \Rightarrow q''_{max}\uparrow $</span></div>
+          <div class="keqrow"><span class="keqcap">압력</span><span class="keqline">물성 $\rho_v,\sigma,h_{fg}$ 통해 영향</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">핵심 용어</div>
+        <div class="terms">
+          <div class="term"><b>CHF $q''_{max}$</b> 핵비등 정점, 안전 한계 $[\text{W/m}^2]$</div>
+          <div class="term"><b>무차원 크기 $L^{*}$</b> 히터 크기 ÷ 라플라스 길이 $[-]$</div>
+          <div class="term"><b>라플라스 길이 $L_c$</b> $=[\sigma/g(\rho_l-\rho_v)]^{1/2}$ — 거품 길이 척도</div>
+          <div class="term"><b>과냉도 $\Delta T_{sub}$</b> $=T_{sat}-T_l$ — 액체가 포화보다 얼마나 찬가</div>
+          <div class="term"><b>최소열유속 $q''_{min}$</b> 막비등 최저점 = Leidenfrost 점(점 D)</div>
+          <div class="term"><b>유동비등</b> 강제 대류 + 비등, CHF $&gt;$ 풀비등 CHF</div>
+        </div>
+        <div class="callout key"><div class="ct">핵심</div>Zuber CHF는 <strong>무한 평판 기준값</strong>일 뿐이며, 실제 CHF는 $L^{*}$·방향·$\Delta T_{sub}$·압력·유동으로 <strong>보정</strong>됩니다. 곡선의 다른 끝 <strong>$q''_{min}$</strong>은 막비등이 무너지는 <strong>Leidenfrost 점</strong>을 결정합니다.</div>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2">
+        <p class="lede">The <strong>critical heat flux (CHF)</strong> uses the infinite-flat-plate <strong>Zuber value</strong> as a baseline, then is corrected for real conditions. If the heater's <strong>dimensionless size</strong> $L^{*}=L\,[g(\rho_l-\rho_v)/\sigma]^{1/2}$ is small (a small heater), vapor escapes easily and CHF rises; it depends on <strong>orientation</strong> (horizontal-up vs vertical vs facing-down); a large <strong>subcooling</strong> $\Delta T_{sub}=T_{sat}-T_l$ recondenses vapor and raises CHF; and <strong>pressure</strong> acts through the properties. In <strong>flow boiling</strong>, forced convection sweeps away vapor, so CHF is usually <strong>higher</strong> than in pool boiling.</p>
+        <div class="keqbox">
+          <div class="keq-label">Four parameters that shift CHF</div>
+          <div class="keqrow"><span class="keqcap">Dimensionless size $L^{*}$</span><span class="keqline">$ L^{*}=L\,[g(\rho_l-\rho_v)/\sigma]^{1/2} $</span></div>
+          <div class="keqrow"><span class="keqcap">Orientation</span><span class="keqline">horiz.(up) &gt; vertical &gt; facing-down</span></div>
+          <div class="keqrow"><span class="keqcap">Subcooling $\Delta T_{sub}$</span><span class="keqline">$ \Delta T_{sub}\uparrow \Rightarrow q''_{max}\uparrow $</span></div>
+          <div class="keqrow"><span class="keqcap">Pressure</span><span class="keqline">acts via $\rho_v,\sigma,h_{fg}$</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">Key terms</div>
+        <div class="terms">
+          <div class="term"><b>CHF $q''_{max}$</b> nucleate peak, safety limit $[\text{W/m}^2]$</div>
+          <div class="term"><b>Dimensionless size $L^{*}$</b> heater size ÷ Laplace length $[-]$</div>
+          <div class="term"><b>Laplace length $L_c$</b> $=[\sigma/g(\rho_l-\rho_v)]^{1/2}$ — bubble length scale</div>
+          <div class="term"><b>Subcooling $\Delta T_{sub}$</b> $=T_{sat}-T_l$ — how far below saturation the liquid is</div>
+          <div class="term"><b>Minimum flux $q''_{min}$</b> film-boiling minimum = Leidenfrost point (D)</div>
+          <div class="term"><b>Flow boiling</b> forced convection + boiling, CHF $&gt;$ pool CHF</div>
+        </div>
+        <div class="callout key"><div class="ct">Key</div>Zuber CHF is only the <strong>infinite-plate baseline</strong>; the real CHF is <strong>corrected</strong> for $L^{*}$, orientation, $\Delta T_{sub}$, pressure, and flow. The other end of the curve, <strong>$q''_{min}$</strong>, sets the <strong>Leidenfrost point</strong> where film boiling collapses.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-3 / 유도 ══════════ -->
+  <section class="screen" data-ch="3-3" data-chtitle="CHF 파라미터와 최소열유속" data-stage="유도">
+    <div class="eyebrow lang-ko">3-3 · 수식 유도 · Derivation</div>
+    <div class="eyebrow lang-en">3-3 · Derivation</div>
+    <h1 class="stage-h lang-ko">최소열유속의 유도 — Taylor 불안정이 막을 무너뜨린다</h1>
+    <h1 class="stage-h lang-en">Deriving the Minimum Heat Flux — Taylor Instability Collapses the Film</h1>
+    <p class="lede lang-ko"><b>공통 관점:</b> 막비등에서는 가열면 위 증기막의 <b>상부 계면(무거운 액체가 가벼운 증기 위에 놓임)</b>이 <b>Rayleigh–Taylor 불안정</b>합니다. 이 불안정 파장으로 증기 방울이 규칙적으로 이탈하는데, 그 이탈률이 막을 겨우 유지하는 <b>최소 증기 생성률</b>이 곧 $q''_{min}$입니다.</p>
+    <p class="lede lang-en"><b>Unifying view:</b> in film boiling the <b>upper interface of the vapor film (heavy liquid resting on light vapor)</b> is <b>Rayleigh–Taylor unstable</b>. Vapor bubbles depart regularly at this instability wavelength; the departure rate that barely sustains the film is the <b>minimum vapor-generation rate</b>, giving $q''_{min}$.</p>
+    <div class="deriv lang-ko">
+      <div class="dcard"><h4>Taylor 파장</h4><div class="sub">RT 불안정</div><div class="ana">🌊 무거운 액체가 가벼운 증기를 누른다 — 규칙적 파문</div><div class="eq">$ \lambda_d = 2\pi\sqrt{3}\,\Big[\dfrac{\sigma}{g(\rho_l-\rho_v)}\Big]^{1/2} $</div><p>가장 빠르게 자라는(가장 위험한) 불안정 파장 $\lambda_d$. 이 격자 위에서 증기 방울이 반복 이탈합니다.</p></div>
+      <div class="dcard"><h4>거품 이탈률</h4><div class="sub">차원 해석</div><div class="ana">🫧 파장·주파수의 곱 = 증기 부피 유량</div><div class="eq">$ j_v \sim \dfrac{\text{증기 부피}}{\text{면적}\cdot\text{시간}} $</div><p>이탈 거품 크기 $\sim\lambda_d/2$, 이탈 주파수 $\sim$ RT 성장률로 잡으면 단위면적당 증기 체적유속 $j_v$가 물성만으로 정해집니다.</p></div>
+      <div class="dcard"><h4>Zuber 최소열유속</h4><div class="sub">$q''_{min}=\rho_v h_{fg} j_v$</div><div class="ana">🔥 증기 유량 × 잠열 = 최소 열유속</div><div class="eq">$ q''_{min}=0.09\,\rho_v h_{fg}\Big[\dfrac{\sigma g(\rho_l-\rho_v)}{(\rho_l+\rho_v)^2}\Big]^{1/4} $</div><p>비례상수 $0.09$는 이론 $\approx 0.177$을 실험으로 낮춘 값(Berenson 보정). 물 1 atm에서 $\sim$ 수십 $\text{kW/m}^2$.</p></div>
+    </div>
+    <div class="deriv lang-en">
+      <div class="dcard"><h4>Taylor wavelength</h4><div class="sub">RT instability</div><div class="ana">🌊 Heavy liquid presses down on light vapor — regular ripples</div><div class="eq">$ \lambda_d = 2\pi\sqrt{3}\,\Big[\dfrac{\sigma}{g(\rho_l-\rho_v)}\Big]^{1/2} $</div><p>The fastest-growing (most dangerous) instability wavelength $\lambda_d$. Vapor bubbles depart repeatedly on this lattice.</p></div>
+      <div class="dcard"><h4>Bubble departure rate</h4><div class="sub">dimensional analysis</div><div class="ana">🫧 wavelength × frequency = vapor volume flux</div><div class="eq">$ j_v \sim \dfrac{\text{vapor volume}}{\text{area}\cdot\text{time}} $</div><p>Taking departing bubble size $\sim\lambda_d/2$ and departure frequency $\sim$ RT growth rate fixes the volumetric vapor flux $j_v$ per area from properties alone.</p></div>
+      <div class="dcard"><h4>Zuber minimum flux</h4><div class="sub">$q''_{min}=\rho_v h_{fg} j_v$</div><div class="ana">🔥 vapor flux × latent heat = minimum heat flux</div><div class="eq">$ q''_{min}=0.09\,\rho_v h_{fg}\Big[\dfrac{\sigma g(\rho_l-\rho_v)}{(\rho_l+\rho_v)^2}\Big]^{1/4} $</div><p>The constant $0.09$ lowers the theory value $\approx 0.177$ to match experiment (Berenson correction). For water at 1 atm this is $\sim$ tens of $\text{kW/m}^2$.</p></div>
+    </div>
+    <div class="callout warn lang-ko"><div class="ct">주의 · 상수와 적용 한계</div>Zuber 식의 이론 상수는 $\approx 0.177$이나, 실험 정합을 위해 흔히 <strong>$0.09$</strong>를 씁니다(Berenson 1961, 대형 수평 평판). 작은 히터·강한 과냉·유동에서는 이 식이 <strong>과소예측</strong>할 수 있으니 보정계수·상관식을 확인해야 합니다.</div>
+    <div class="callout warn lang-en"><div class="ct">Caution · constant & validity</div>The theoretical Zuber constant is $\approx 0.177$, but <strong>$0.09$</strong> is commonly used for experimental agreement (Berenson 1961, large horizontal plates). For small heaters, strong subcooling, or flow, this formula can <strong>underpredict</strong>, so correction factors / correlations should be checked.</div>
+  </section>
+
+  <!-- ══════════ 3-3 / 읽을거리 ══════════ -->
+  <section class="screen" data-ch="3-3" data-chtitle="CHF 파라미터와 최소열유속" data-stage="읽을거리">
+    <div class="eyebrow lang-ko">3-3 · 읽을거리 · Reading</div>
+    <div class="eyebrow lang-en">3-3 · Reading</div>
+    <h1 class="stage-h lang-ko">Lienhard–Dhir와 히터 크기 — 왜 작은 선이 더 잘 견디나</h1>
+    <h1 class="stage-h lang-en">Lienhard–Dhir and Heater Size — Why a Thin Wire Endures More</h1>
+    <div class="two lang-ko">
+      <div class="col2 reading">
+        <p>1973년 <strong>Lienhard와 Dhir</strong>는 다양한 형상·크기의 가열면에서 CHF를 정리하며, 무차원 크기 <strong>$L^{*}=L\,[g(\rho_l-\rho_v)/\sigma]^{1/2}$</strong>가 CHF를 결정하는 지배 변수임을 보였습니다. $L^{*}$가 <strong>클 때(대형 평판)</strong> CHF는 Zuber 값에 수렴하지만, $L^{*}$가 <strong>작아지면(가는 선)</strong> 증기가 옆으로 쉽게 빠져나가 CHF가 <strong>오히려 커집니다</strong>.</p>
+        <p class="pullquote">Zuber CHF는 <em>무한 평판의 하한</em>일 뿐, 작은 히터는 더 견딘다.</p>
+        <p>이는 실험실의 얇은 백금선(Nukiyama)이 대형 원자로 연료봉보다 훨씬 큰 겉보기 CHF를 보이는 이유이기도 합니다. 여기에 <strong>과냉도</strong>가 더해지면(차가운 물) 이탈한 증기가 벌크에서 재응축돼 계면이 안정화되고 CHF가 더 올라가며, 그 반대편 끝 <strong>$q''_{min}$</strong>(Leidenfrost)도 압력·과냉으로 이동합니다. 자동차 브레이크·초고온 담금질에서 rewetting 시점을 예측할 때 바로 이 최소열유속이 쓰입니다.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>CHF 지배 변수 = 무차원 크기 <strong>$L^{*}$</strong>; 작으면 CHF↑.</li><li>과냉도 $\Delta T_{sub}\uparrow$ → CHF↑ (증기 재응축).</li><li>$q''_{min}$은 <strong>Zuber 0.09 식</strong>으로 예측 — Leidenfrost 점.</li></ul></div>
+        <p class="readmeta">참고: Lienhard &amp; Dhir(1973) <em>J. Heat Transfer</em> / Zuber(1959) Ph.D. thesis / Incropera Ch.10.4–10.5</p>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2 reading">
+        <p>In 1973, <strong>Lienhard and Dhir</strong> organized CHF data over many heater shapes and sizes, showing that the dimensionless size <strong>$L^{*}=L\,[g(\rho_l-\rho_v)/\sigma]^{1/2}$</strong> is the governing variable. For <strong>large $L^{*}$ (big plates)</strong>, CHF approaches the Zuber value; for <strong>small $L^{*}$ (thin wires)</strong>, vapor escapes sideways easily and CHF is actually <strong>higher</strong>.</p>
+        <p class="pullquote">Zuber CHF is only the <em>infinite-plate lower bound</em>; small heaters endure more.</p>
+        <p>This is also why a laboratory platinum wire (Nukiyama) shows a much larger apparent CHF than a large reactor fuel rod. Adding <strong>subcooling</strong> (cold liquid) recondenses departing vapor in the bulk, stabilizing the interface and raising CHF further; the opposite end, <strong>$q''_{min}$</strong> (Leidenfrost), also shifts with pressure and subcooling. This minimum flux is exactly what is used to predict the rewetting point in automotive brakes and ultra-high-temperature quenching.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">Must know</div><ul><li>CHF governing variable = dimensionless size <strong>$L^{*}$</strong>; small → CHF↑.</li><li>Subcooling $\Delta T_{sub}\uparrow$ → CHF↑ (vapor recondenses).</li><li>$q''_{min}$ is predicted by the <strong>Zuber 0.09 formula</strong> — the Leidenfrost point.</li></ul></div>
+        <p class="readmeta">Refs: Lienhard &amp; Dhir (1973) <em>J. Heat Transfer</em> / Zuber (1959) Ph.D. thesis / Incropera Ch.10.4–10.5</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-3 / 그림·표 ══════════ -->
+  <section class="screen" data-ch="3-3" data-chtitle="CHF 파라미터와 최소열유속" data-stage="그림·표">
+    <div class="eyebrow lang-ko">3-3 · 그림 · 그래프 · 표</div>
+    <div class="eyebrow lang-en">3-3 · Figure · Graph · Table</div>
+    <h1 class="stage-h lang-ko">한눈에 — 파라미터가 곡선을 어떻게 옮기나</h1>
+    <h1 class="stage-h lang-en">At a Glance — How Parameters Shift the Curve</h1>
+    <div class="vizgrid lang-ko">
+      <div>
+        <div class="vcap">과냉·크기가 CHF·$q''_{min}$을 옮긴다</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar33ko" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<line x1="52" y1="248" x2="452" y2="248" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar33ko)"/>
+<line x1="52" y1="248" x2="52" y2="24" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar33ko)"/>
+<text x="252" y="272" font-size="11.5" fill="#52525b" text-anchor="middle">초과온도 $\Delta T_e$ (로그)</text>
+<text x="20" y="135" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 20 135)">열유속 $q''$ (로그)</text>
+<path d="M62 240 Q120 205 150 168" fill="none" stroke="#94a3b8" stroke-width="2.25" stroke-linecap="round"/>
+<path d="M150 168 Q200 110 236 66" fill="none" stroke="#94a3b8" stroke-width="2.25" stroke-linecap="round"/>
+<path d="M236 66 Q300 120 356 152" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round"/>
+<path d="M62 236 Q120 196 150 150" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M150 150 Q200 90 236 40" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M236 40 Q300 100 356 128" fill="none" stroke="#c2410c" stroke-width="2.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+<circle cx="236" cy="66" r="4.5" fill="#fff" stroke="#94a3b8" stroke-width="2.25"/>
+<circle cx="236" cy="40" r="5" fill="#fff" stroke="#c2410c" stroke-width="2.5"/>
+<text x="236" y="26" font-size="11" fill="#c2410c" text-anchor="middle" font-weight="700">CHF ↑</text>
+<circle cx="356" cy="152" r="4.5" fill="#fff" stroke="#94a3b8" stroke-width="2.25"/>
+<circle cx="356" cy="128" r="5" fill="#fff" stroke="#c2410c" stroke-width="2.5"/>
+<text x="392" y="122" font-size="10.5" fill="#c2410c" text-anchor="middle" font-weight="700">$q''_{min}$↑</text>
+<text x="118" y="238" font-size="10" fill="#94a3b8" text-anchor="middle">포화</text>
+<text x="112" y="180" font-size="10" fill="#c2410c" text-anchor="middle" font-weight="700">과냉/소형</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">파라미터 → CHF · $q''_{min}$ 영향</div>
+        <table class="ktab"><thead><tr><th>파라미터</th><th>변화</th><th style="text-align:right">효과</th></tr></thead><tbody>
+          <tr><td>무차원 크기 $L^{*}$</td><td class="k">작아짐</td><td>CHF ↑ (소형 히터)</td></tr>
+          <tr><td>방향</td><td class="k">위→아래</td><td>CHF ↓ (증기 갇힘)</td></tr>
+          <tr><td>과냉도 $\Delta T_{sub}$</td><td class="k">↑</td><td>CHF ↑, $q''_{min}$↑</td></tr>
+          <tr><td>압력</td><td class="k">↑</td><td>물성 통해 CHF 정점 이동</td></tr>
+          <tr><td>유동(강제대류)</td><td class="k">유속 ↑</td><td>CHF ↑ (풀비등 초과)</td></tr>
+        </tbody></table>
+        <div class="keqnote">대기압 물: CHF $\approx 1.1\!\sim\!1.26\,\text{MW/m}^2$; $q''_{min}=0.09\,\rho_v h_{fg}[\sigma g(\rho_l-\rho_v)/(\rho_l+\rho_v)^2]^{1/4}\approx$ 수십 $\text{kW/m}^2$(대표값 $\sim 19\,\text{kW/m}^2$, 조건 의존). (출처: Zuber 1959 / Incropera Ch.10)</div>
+      </div>
+    </div>
+    <div class="vizgrid lang-en">
+      <div>
+        <div class="vcap">Subcooling &amp; size shift CHF and $q''_{min}$</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar33en" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<line x1="52" y1="248" x2="452" y2="248" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar33en)"/>
+<line x1="52" y1="248" x2="52" y2="24" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar33en)"/>
+<text x="252" y="272" font-size="11.5" fill="#52525b" text-anchor="middle">excess temp. $\Delta T_e$ (log)</text>
+<text x="20" y="135" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 20 135)">heat flux $q''$ (log)</text>
+<path d="M62 240 Q120 205 150 168" fill="none" stroke="#94a3b8" stroke-width="2.25" stroke-linecap="round"/>
+<path d="M150 168 Q200 110 236 66" fill="none" stroke="#94a3b8" stroke-width="2.25" stroke-linecap="round"/>
+<path d="M236 66 Q300 120 356 152" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round"/>
+<path d="M62 236 Q120 196 150 150" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M150 150 Q200 90 236 40" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M236 40 Q300 100 356 128" fill="none" stroke="#c2410c" stroke-width="2.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+<circle cx="236" cy="66" r="4.5" fill="#fff" stroke="#94a3b8" stroke-width="2.25"/>
+<circle cx="236" cy="40" r="5" fill="#fff" stroke="#c2410c" stroke-width="2.5"/>
+<text x="236" y="26" font-size="11" fill="#c2410c" text-anchor="middle" font-weight="700">CHF ↑</text>
+<circle cx="356" cy="152" r="4.5" fill="#fff" stroke="#94a3b8" stroke-width="2.25"/>
+<circle cx="356" cy="128" r="5" fill="#fff" stroke="#c2410c" stroke-width="2.5"/>
+<text x="392" y="122" font-size="10.5" fill="#c2410c" text-anchor="middle" font-weight="700">$q''_{min}$↑</text>
+<text x="118" y="238" font-size="10" fill="#94a3b8" text-anchor="middle">sat.</text>
+<text x="112" y="180" font-size="10" fill="#c2410c" text-anchor="middle" font-weight="700">subcooled/small</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">Parameter → CHF · $q''_{min}$ effect</div>
+        <table class="ktab"><thead><tr><th>Parameter</th><th>Change</th><th style="text-align:right">Effect</th></tr></thead><tbody>
+          <tr><td>Dim. size $L^{*}$</td><td class="k">smaller</td><td>CHF ↑ (small heater)</td></tr>
+          <tr><td>Orientation</td><td class="k">up→down</td><td>CHF ↓ (vapor trapped)</td></tr>
+          <tr><td>Subcooling $\Delta T_{sub}$</td><td class="k">↑</td><td>CHF ↑, $q''_{min}$↑</td></tr>
+          <tr><td>Pressure</td><td class="k">↑</td><td>peak shifts via properties</td></tr>
+          <tr><td>Flow (forced conv.)</td><td class="k">velocity ↑</td><td>CHF ↑ (exceeds pool)</td></tr>
+        </tbody></table>
+        <div class="keqnote">Water at 1 atm: CHF $\approx 1.1\!\sim\!1.26\,\text{MW/m}^2$; $q''_{min}=0.09\,\rho_v h_{fg}[\sigma g(\rho_l-\rho_v)/(\rho_l+\rho_v)^2]^{1/4}\approx$ tens of $\text{kW/m}^2$ (representative $\sim 19\,\text{kW/m}^2$, condition-dependent). (Source: Zuber 1959 / Incropera Ch.10)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-3 / 실습 ══════════ -->
+  <section class="screen" data-ch="3-3" data-chtitle="CHF 파라미터와 최소열유속" data-stage="실습">
+    <div class="eyebrow lang-ko">3-3 · 실습 · Interactive</div>
+    <div class="eyebrow lang-en">3-3 · Interactive</div>
+    <h1 class="stage-h lang-ko">최소열유속 $q''_{min}$ 계산기 — 물성으로 직접</h1>
+    <h1 class="stage-h lang-en">Minimum Heat Flux $q''_{min}$ Calculator — Straight from Properties</h1>
+    <p class="lede lang-ko">Zuber 최소열유속 $q''_{min}=0.09\,\rho_v h_{fg}\,[\sigma g(\rho_l-\rho_v)/(\rho_l+\rho_v)^2]^{1/4}$을 직접 계산합니다. 슬라이더로 <strong>증기 밀도 $\rho_v$</strong>(압력이 올라가면 증가)와 <strong>표면장력 $\sigma$</strong>를 바꾸며 Leidenfrost 최저 열유속이 어떻게 움직이는지 확인하세요. 기본값은 대기압 물($\rho_l=958$, $h_{fg}=2.257\times10^6$, $g=9.81$ 고정).</p>
+    <p class="lede lang-en">Compute the Zuber minimum flux $q''_{min}=0.09\,\rho_v h_{fg}\,[\sigma g(\rho_l-\rho_v)/(\rho_l+\rho_v)^2]^{1/4}$ directly. Move the sliders for <strong>vapor density $\rho_v$</strong> (rises with pressure) and <strong>surface tension $\sigma$</strong> to see how the Leidenfrost minimum flux shifts. Defaults are water at 1 atm ($\rho_l=958$, $h_{fg}=2.257\times10^6$, $g=9.81$ fixed).</p>
+    <div class="calc lang-ko"
+      data-title="Zuber 최소열유속 $q''_{min}$"
+      data-desc="rho_v = 증기 밀도 [kg/m³] (물 1 atm ≈ 0.60), sigma = 표면장력 [N/m] (물 100°C ≈ 0.0589). rho_l=958, h_fg=2.257e6, g=9.81 고정. 기본값 → q''_min ≈ 1.9×10⁴ W/m²."
+      data-vars='[{"sym":"rho_v","label":"$\\rho_v$ · 증기 밀도","min":0.3,"max":10,"val":0.6,"step":0.1,"unit":"kg/m³"},{"sym":"sigma","label":"$\\sigma$ · 표면장력","min":0.02,"max":0.075,"val":0.0589,"step":0.001,"unit":"N/m"}]'
+      data-expr="0.09*rho_v*2.257e6*(sigma*9.81*(958-rho_v)/((958+rho_v)**2))**0.25"
+      data-out="$q''_{min}$" data-out-unit="$\text{W/m}^2$"
+      data-barmax="60000"
+      data-note="압력이 올라 ρ_v가 커지면 q''_min이 커집니다 — 증기 생성이 늘어 막이 더 높은 열유속에서 유지됩니다."></div>
+    <div class="calc lang-en"
+      data-title="Zuber minimum heat flux $q''_{min}$"
+      data-desc="rho_v = vapor density [kg/m³] (water 1 atm ≈ 0.60), sigma = surface tension [N/m] (water 100°C ≈ 0.0589). rho_l=958, h_fg=2.257e6, g=9.81 fixed. Defaults → q''_min ≈ 1.9×10⁴ W/m²."
+      data-vars='[{"sym":"rho_v","label":"$\\rho_v$ · vapor density","min":0.3,"max":10,"val":0.6,"step":0.1,"unit":"kg/m³"},{"sym":"sigma","label":"$\\sigma$ · surface tension","min":0.02,"max":0.075,"val":0.0589,"step":0.001,"unit":"N/m"}]'
+      data-expr="0.09*rho_v*2.257e6*(sigma*9.81*(958-rho_v)/((958+rho_v)**2))**0.25"
+      data-out="$q''_{min}$" data-out-unit="$\text{W/m}^2$"
+      data-barmax="60000"
+      data-note="As pressure raises ρ_v, q''_min grows — more vapor is generated, so the film survives to a higher heat flux."></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 대기압 물의 최소열유속은 $\sim$ 수십 $\text{kW/m}^2$(대표값 $\sim 19\,\text{kW/m}^2$)로, CHF($\sim 1.2\,\text{MW/m}^2$)의 <strong>약 1.5% 수준</strong>입니다. 즉 막비등에서 열유속을 CHF의 100분의 1 아래로 낮춰야 비로소 막이 무너지며 재습윤(rewetting)이 시작됩니다. 이 큰 이력(hysteresis)이 담금질·burnout 복구가 어려운 이유입니다. <span class="src">(출처: $q''_{min}$ 식 = Zuber 1959, 상수 0.09 = Berenson 1961)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — the minimum flux for water at 1 atm is $\sim$ tens of $\text{kW/m}^2$ (representative $\sim 19\,\text{kW/m}^2$), about <strong>1.5% of CHF</strong> ($\sim 1.2\,\text{MW/m}^2$). So in film boiling the flux must drop below roughly 1/100 of CHF before the film collapses and rewetting begins. This large hysteresis is why quenching and burnout recovery are so difficult. <span class="src">(Source: $q''_{min}$ formula = Zuber 1959, constant 0.09 = Berenson 1961)</span></div>
+  </section>
+
+  <!-- ══════════ 3-3 / 점검 ══════════ -->
+  <section class="screen" data-ch="3-3" data-chtitle="CHF 파라미터와 최소열유속" data-stage="점검">
+    <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+    <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · instructor view</span></div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q1.</span>과냉도 $\Delta T_{sub}=T_{sat}-T_l$이 커지면 <strong>CHF</strong>는 어떻게 됩니까?</p>
+      <div class="opts">
+        <button class="opt">① 감소한다 (차가운 물이 비등을 억제)</button>
+        <button class="opt" data-correct="1">② 증가한다 (이탈 증기가 벌크에서 재응축)</button>
+        <button class="opt">③ 변하지 않는다 (CHF는 물성만의 함수)</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 과냉 액체(포화보다 찬 물)는 계면을 떠난 증기를 벌크에서 재응축시켜 증기 축적을 지연시키므로 CHF가 커진다. <span class="dim">오답 ①·③: ①차가움이 비등을 억제하는 게 아니라 증기 제거를 도와 CHF↑, ③CHF는 물성뿐 아니라 과냉·크기·방향·압력·유동에 따라 보정된다.</span> <span class="agg">학급 n=41 · ① 9 · ② 28 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q1.</span>As subcooling $\Delta T_{sub}=T_{sat}-T_l$ increases, what happens to <strong>CHF</strong>?</p>
+      <div class="opts">
+        <button class="opt">① it decreases (cold liquid suppresses boiling)</button>
+        <button class="opt" data-correct="1">② it increases (departing vapor recondenses in the bulk)</button>
+        <button class="opt">③ it is unchanged (CHF depends only on properties)</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — subcooled liquid recondenses vapor that leaves the interface, delaying vapor accumulation, so CHF rises. <span class="dim">Wrong ①·③: ① cold liquid aids vapor removal rather than suppressing boiling, raising CHF; ③ CHF is corrected for subcooling, size, orientation, pressure, and flow, not properties alone.</span> <span class="agg">class n=41 · ① 9 · ② 28 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q2.</span>Zuber의 최소열유속 식에서 <strong>비례상수 0.09</strong>는 무엇을 반영합니까?</p>
+      <div class="opts">
+        <button class="opt">① 순수 이론값이라 물마다 다르다</button>
+        <button class="opt" data-correct="1">② 이론값 $\approx 0.177$을 실험 정합용으로 낮춘 값(Berenson 보정)</button>
+        <button class="opt">③ 무차원 크기 $L^{*}$에 따라 변하는 함수</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — Taylor 불안정 이론은 상수 $\approx 0.177$을 주지만, 대형 수평 평판 실험과 맞추기 위해 흔히 $0.09$를 쓴다(Berenson 1961). <span class="dim">오답 ①·③: ①상수는 이론이 아니라 실험 보정값이고, ③이 식의 크기 의존은 상수가 아니라 별도 보정계수로 다룬다.</span> <span class="agg">학급 n=41 · ① 8 · ② 27 · ③ 6</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q2.</span>In Zuber's minimum-flux formula, what does the <strong>constant 0.09</strong> reflect?</p>
+      <div class="opts">
+        <button class="opt">① a pure theoretical value that varies by fluid</button>
+        <button class="opt" data-correct="1">② the theoretical $\approx 0.177$ lowered for experimental fit (Berenson correction)</button>
+        <button class="opt">③ a function that varies with dimensionless size $L^{*}$</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — Taylor-instability theory gives $\approx 0.177$, but $0.09$ is commonly used to match large horizontal-plate experiments (Berenson 1961). <span class="dim">Wrong ①·③: ① the constant is an experimental correction, not raw theory; ③ size dependence is handled by separate correction factors, not by this constant.</span> <span class="agg">class n=41 · ① 8 · ② 27 · ③ 6</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-3 / 연습 ══════════ -->
+  <section class="screen" data-ch="3-3" data-chtitle="CHF 파라미터와 최소열유속" data-stage="연습">
+    <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+    <div class="panel-head lang-en"><span class="tag">Practice</span><span class="panel-title">Engineering calc · auto-graded</span></div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 1 · 기본 · 과냉도 계산</div>
+      <p class="prob-statement">대기압($T_{sat}=100\,{}^{\circ}\text{C}$) 물이 <strong>$T_l=70\,{}^{\circ}\text{C}$</strong>로 과냉되어 있다. <strong>과냉도 $\Delta T_{sub}$</strong>를 구하고, 이 과냉이 CHF에 미치는 정성적 영향을 서술하시오.</p>
+      <div class="given"><span class="chip">$T_{sat}=100\,{}^{\circ}\text{C}$</span><span class="chip">$T_l=70\,{}^{\circ}\text{C}$</span></div>
+      <div class="find"><b>구할 것:</b> $\Delta T_{sub}\ [{}^{\circ}\text{C}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="30" data-tol="0.02"/><span class="ans-unit">${}^{\circ}\text{C}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 정의 대입</div>$$ \Delta T_{sub} = T_{sat} - T_l = 100 - 70 = 30\ {}^{\circ}\text{C} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 정성 판단</div>$$ \Delta T_{sub}\uparrow \ \Rightarrow\ q''_{max}\uparrow\ (\text{증기 재응축}) $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \Delta T_{sub} = 30\ {}^{\circ}\text{C} $$</div><b>정답:</b> 과냉도 30°C — 이탈 증기가 벌크에서 재응축돼 CHF가 포화 대비 증가한다.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 1 · Basic · subcooling</div>
+      <p class="prob-statement">Water at 1 atm ($T_{sat}=100\,{}^{\circ}\text{C}$) is subcooled to <strong>$T_l=70\,{}^{\circ}\text{C}$</strong>. Find the <strong>subcooling $\Delta T_{sub}$</strong> and state its qualitative effect on CHF.</p>
+      <div class="given"><span class="chip">$T_{sat}=100\,{}^{\circ}\text{C}$</span><span class="chip">$T_l=70\,{}^{\circ}\text{C}$</span></div>
+      <div class="find"><b>Find:</b> $\Delta T_{sub}\ [{}^{\circ}\text{C}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="30" data-tol="0.02"/><span class="ans-unit">${}^{\circ}\text{C}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · apply definition</div>$$ \Delta T_{sub} = T_{sat} - T_l = 100 - 70 = 30\ {}^{\circ}\text{C} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · qualitative effect</div>$$ \Delta T_{sub}\uparrow \ \Rightarrow\ q''_{max}\uparrow\ (\text{vapor recondenses}) $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \Delta T_{sub} = 30\ {}^{\circ}\text{C} $$</div><b>Answer:</b> 30°C subcooling — departing vapor recondenses in the bulk, raising CHF above the saturated value.</div>
+      </div>
+    </div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 2 · 응용 · 최소열유속 계산</div>
+      <p class="prob-statement">대기압 물의 <strong>최소열유속 $q''_{min}$</strong>을 Zuber 식으로 구하시오. $q''_{min}=0.09\,\rho_v h_{fg}\,[\sigma g(\rho_l-\rho_v)/(\rho_l+\rho_v)^2]^{1/4}$, $\rho_v=0.60$, $\rho_l=958$, $h_{fg}=2.257\times10^6$, $\sigma=0.0589$, $g=9.81$ (SI).</p>
+      <div class="given"><span class="chip">$\rho_v=0.60\ \text{kg/m}^3$</span><span class="chip">$\rho_l=958\ \text{kg/m}^3$</span><span class="chip">$h_{fg}=2.257\times10^6\ \text{J/kg}$</span><span class="chip">$\sigma=0.0589\ \text{N/m}$</span><span class="chip">$g=9.81\ \text{m/s}^2$</span></div>
+      <div class="find"><b>구할 것:</b> $q''_{min}\ [\text{W/m}^2]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="18900" data-tol="0.05"/><span class="ans-unit">$\text{W/m}^2$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 대괄호 항</div>$$ \frac{\sigma g(\rho_l-\rho_v)}{(\rho_l+\rho_v)^2}=\frac{0.0589\cdot 9.81\cdot 957.4}{(958.6)^2}\approx 6.02\times10^{-4} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 1/4 제곱</div>$$ (6.02\times10^{-4})^{1/4}\approx 0.1567 $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · 대입</div>$$ q''_{min}=0.09\cdot 0.60\cdot 2.257\times10^6\cdot 0.1567\approx 1.9\times10^{4}\ \text{W/m}^2 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ q''_{min}\approx 1.9\times10^{4}\ \text{W/m}^2 $$</div><b>정답:</b> 약 $19\,\text{kW/m}^2$ — CHF($\sim 1.2\,\text{MW/m}^2$)의 약 1.5% 수준. (대표값, 물성·상수에 따라 변동)</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 2 · Applied · minimum heat flux</div>
+      <p class="prob-statement">Find the <strong>minimum heat flux $q''_{min}$</strong> for water at 1 atm using Zuber's formula. $q''_{min}=0.09\,\rho_v h_{fg}\,[\sigma g(\rho_l-\rho_v)/(\rho_l+\rho_v)^2]^{1/4}$, $\rho_v=0.60$, $\rho_l=958$, $h_{fg}=2.257\times10^6$, $\sigma=0.0589$, $g=9.81$ (SI).</p>
+      <div class="given"><span class="chip">$\rho_v=0.60\ \text{kg/m}^3$</span><span class="chip">$\rho_l=958\ \text{kg/m}^3$</span><span class="chip">$h_{fg}=2.257\times10^6\ \text{J/kg}$</span><span class="chip">$\sigma=0.0589\ \text{N/m}$</span><span class="chip">$g=9.81\ \text{m/s}^2$</span></div>
+      <div class="find"><b>Find:</b> $q''_{min}\ [\text{W/m}^2]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="18900" data-tol="0.05"/><span class="ans-unit">$\text{W/m}^2$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · bracket term</div>$$ \frac{\sigma g(\rho_l-\rho_v)}{(\rho_l+\rho_v)^2}=\frac{0.0589\cdot 9.81\cdot 957.4}{(958.6)^2}\approx 6.02\times10^{-4} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 1/4 power</div>$$ (6.02\times10^{-4})^{1/4}\approx 0.1567 $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · substitute</div>$$ q''_{min}=0.09\cdot 0.60\cdot 2.257\times10^6\cdot 0.1567\approx 1.9\times10^{4}\ \text{W/m}^2 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ q''_{min}\approx 1.9\times10^{4}\ \text{W/m}^2 $$</div><b>Answer:</b> about $19\,\text{kW/m}^2$ — roughly 1.5% of CHF ($\sim 1.2\,\text{MW/m}^2$). (Representative; varies with properties/constant.)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-3 / 정리 ══════════ -->
+  <section class="screen" data-ch="3-3" data-chtitle="CHF 파라미터와 최소열유속" data-stage="정리">
+    <div class="eyebrow lang-ko">3-3 · 정리 · Summary</div>
+    <div class="eyebrow lang-en">3-3 · Summary</div>
+    <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 시험 포인트</h1>
+    <h1 class="stage-h lang-en">Key Points · Common Mistakes · Exam Focus</h1>
+    <div class="sumgrid lang-ko">
+      <div class="sumcard key"><h4>핵심 정리</h4><ul>
+        <li>CHF 보정 4손잡이: <strong>$L^{*}$</strong>(작을수록 ↑) · 방향(위&gt;아래) · <strong>$\Delta T_{sub}$↑ → ↑</strong> · 압력.</li>
+        <li>유동비등 CHF $&gt;$ 풀비등 CHF (강제대류가 증기 제거).</li>
+        <li>최소열유속 <strong>$q''_{min}=0.09\,\rho_v h_{fg}[\sigma g(\rho_l-\rho_v)/(\rho_l+\rho_v)^2]^{1/4}$</strong> = Leidenfrost 점, 물 $\sim$ 수십 $\text{kW/m}^2$.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+        <li>과냉이 CHF를 낮춘다고 오해 → 실제는 <strong>CHF↑</strong>.</li>
+        <li>$q''_{min}$ 상수를 $0.177$로 사용 → 실무는 <strong>$0.09$</strong>(Berenson).</li>
+        <li>$L^{*}=L\cdot[g(\rho_l-\rho_v)/\sigma]^{1/2}$의 <strong>제곱근·부호</strong> 실수.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>시험 포인트</h4><ul>
+        <li>$\Delta T_{sub}=T_{sat}-T_l$ 계산과 CHF 정성 영향.</li>
+        <li>$q''_{min}$ Zuber 식 대입 계산 (1/4 제곱 주의).</li>
+        <li>$L^{*}$·방향·과냉·압력·유동이 CHF·$q''_{min}$을 옮기는 방향(Lienhard–Dhir).</li>
+      </ul></div>
+    </div>
+    <div class="sumgrid lang-en">
+      <div class="sumcard key"><h4>Key points</h4><ul>
+        <li>Four CHF knobs: <strong>$L^{*}$</strong> (smaller → ↑) · orientation (up&gt;down) · <strong>$\Delta T_{sub}$↑ → ↑</strong> · pressure.</li>
+        <li>Flow-boiling CHF $&gt;$ pool-boiling CHF (forced convection removes vapor).</li>
+        <li>Minimum flux <strong>$q''_{min}=0.09\,\rho_v h_{fg}[\sigma g(\rho_l-\rho_v)/(\rho_l+\rho_v)^2]^{1/4}$</strong> = Leidenfrost point, water $\sim$ tens of $\text{kW/m}^2$.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+        <li>Thinking subcooling lowers CHF → it actually <strong>raises CHF</strong>.</li>
+        <li>Using $0.177$ for the $q''_{min}$ constant → practice uses <strong>$0.09$</strong> (Berenson).</li>
+        <li>Errors in the <strong>square root / sign</strong> of $L^{*}=L\cdot[g(\rho_l-\rho_v)/\sigma]^{1/2}$.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>Exam focus</h4><ul>
+        <li>Compute $\Delta T_{sub}=T_{sat}-T_l$ and its qualitative CHF effect.</li>
+        <li>Substitute into Zuber's $q''_{min}$ formula (mind the 1/4 power).</li>
+        <li>How $L^{*}$, orientation, subcooling, pressure, flow shift CHF and $q''_{min}$ (Lienhard–Dhir).</li>
+      </ul></div>
+    </div>
+  </section>
+
+<!-- ══════════ 3-4 / 개념 ══════════ -->
+  <section class="screen" data-ch="3-4" data-chtitle="막비등과 Leidenfrost (Bromley+복사)" data-stage="개념">
+    <div class="eyebrow lang-ko">3-4 · 개념 · Concept</div>
+    <div class="eyebrow lang-en">3-4 · Concept</div>
+    <h1 class="stage-h lang-ko">막비등 — 증기 이불이 표면을 단열하다</h1>
+    <h1 class="stage-h lang-en">Film Boiling — a Vapor Blanket Insulates the Surface</h1>
+    <div class="analogy lang-ko"><span class="ic">💧</span><div class="tx"><b>직관</b> — 아주 뜨거운 프라이팬에 물방울을 떨어뜨리면 지글지글 증발하지 않고 <b>공처럼 굴러다니며</b> 오래 살아남습니다. 물방울 아래에 얇은 <b>증기 막</b>이 생겨 팬과 물방울을 떼어놓기 때문입니다. 이 증기막이 열을 막아버리는 것이 <b>막비등(film boiling)</b>이고, 그 시작 온도가 <b>Leidenfrost 온도</b>입니다. <span class="src">(출처: Leidenfrost 1756 <i>De Aquae Communis Nonnullis Qualitatibus Tractatus</i> / Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10.6)</span></div></div>
+    <div class="analogy lang-en"><span class="ic">💧</span><div class="tx"><b>Intuition</b> — Drop water onto a very hot frying pan and it does not sizzle away; instead it <b>rolls around like a bead</b> and survives for a long time. A thin <b>vapor film</b> forms beneath the droplet, separating it from the pan. This heat-blocking film is <b>film boiling</b>, and the temperature at which it begins is the <b>Leidenfrost temperature</b>. <span class="src">(Source: Leidenfrost 1756 <i>De Aquae Communis Nonnullis Qualitatibus Tractatus</i> / Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10.6)</span></div></div>
+    <div class="two lang-ko">
+      <div class="col2">
+        <p class="lede"><strong>막비등</strong>은 비등 곡선에서 <strong>Leidenfrost 점(점 D)</strong>을 지난 고과열도 영역($\Delta T_e\gtrsim 120\,{}^{\circ}\text{C}$)입니다. 가열면이 연속 <strong>증기막</strong>으로 완전히 덮여 액체가 표면에 직접 닿지 못합니다. 증기의 열전도도 $k_v$는 액체보다 훨씬 작아 이 막이 <strong>단열층</strong>이 되고, 열은 막을 <strong>가로질러 전도·대류</strong>로만 전달됩니다. 표면온도가 매우 높으므로 <strong>복사(radiation)</strong>가 무시할 수 없게 가세합니다.</p>
+        <div class="keqbox">
+          <div class="keq-label">막비등 열전달의 두 경로</div>
+          <div class="keqrow"><span class="keqcap">막 가로 대류·전도</span><span class="keqline">$ h_{conv} $ (Bromley)</span></div>
+          <div class="keqrow"><span class="keqcap">고온 복사</span><span class="keqline">$ h_{rad} \propto (T_s^4 - T_{sat}^4) $</span></div>
+          <div class="keqrow"><span class="keqcap">결합 총계수</span><span class="keqline">$ h^{4/3} = h_{conv}^{4/3} + h_{rad}\,h^{1/3} $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">핵심 용어</div>
+        <div class="terms">
+          <div class="term"><b>막비등</b> 연속 증기막이 표면을 덮는 고과열도 영역</div>
+          <div class="term"><b>Leidenfrost 온도</b> 막비등이 시작되는 최저 표면온도(점 D)</div>
+          <div class="term"><b>$h_{conv}$</b> 증기막 가로 대류·전도 계수 — Bromley 상관식</div>
+          <div class="term"><b>$h_{rad}$</b> 고온 복사 등가 열전달계수 $[\text{W/m}^2\text{K}]$</div>
+          <div class="term"><b>$h_{fg}$</b> 증발잠열, 과열 보정 $h_{fg}'=h_{fg}+0.8\,c_{pv}\Delta T_e$</div>
+          <div class="term"><b>$\varepsilon$</b> 표면 방사율(0~1), 복사 세기 좌우</div>
+        </div>
+        <div class="callout key"><div class="ct">핵심</div>막비등에서 열은 <strong>대류(막 가로)</strong>와 <strong>복사(고온)</strong> 두 경로로 흐릅니다. 둘은 단순 합이 아니라 <strong>$h^{4/3}=h_{conv}^{4/3}+h_{rad}h^{1/3}$</strong>의 비선형 결합으로 더해집니다.</div>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2">
+        <p class="lede"><strong>Film boiling</strong> is the high-superheat regime beyond the <strong>Leidenfrost point (point D)</strong> on the boiling curve ($\Delta T_e\gtrsim 120\,{}^{\circ}\text{C}$). The heated surface is fully covered by a continuous <strong>vapor film</strong>, so liquid never touches it directly. Because vapor conductivity $k_v$ is far below that of liquid, this film acts as an <strong>insulating layer</strong>, and heat crosses it only by <strong>conduction and convection</strong>. Since the surface is very hot, <strong>radiation</strong> is no longer negligible.</p>
+        <div class="keqbox">
+          <div class="keq-label">Two paths for film-boiling heat transfer</div>
+          <div class="keqrow"><span class="keqcap">Convection across film</span><span class="keqline">$ h_{conv} $ (Bromley)</span></div>
+          <div class="keqrow"><span class="keqcap">High-temperature radiation</span><span class="keqline">$ h_{rad} \propto (T_s^4 - T_{sat}^4) $</span></div>
+          <div class="keqrow"><span class="keqcap">Combined coefficient</span><span class="keqline">$ h^{4/3} = h_{conv}^{4/3} + h_{rad}\,h^{1/3} $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">Key terms</div>
+        <div class="terms">
+          <div class="term"><b>Film boiling</b> high-superheat regime with a continuous vapor film</div>
+          <div class="term"><b>Leidenfrost temp.</b> minimum surface temp. where film boiling begins (point D)</div>
+          <div class="term"><b>$h_{conv}$</b> convection/conduction coeff. across the film — Bromley correlation</div>
+          <div class="term"><b>$h_{rad}$</b> equivalent radiative heat-transfer coeff. $[\text{W/m}^2\text{K}]$</div>
+          <div class="term"><b>$h_{fg}$</b> latent heat; superheat-corrected $h_{fg}'=h_{fg}+0.8\,c_{pv}\Delta T_e$</div>
+          <div class="term"><b>$\varepsilon$</b> surface emissivity (0–1), sets radiation strength</div>
+        </div>
+        <div class="callout key"><div class="ct">Key</div>In film boiling heat flows by two paths — <strong>convection (across the film)</strong> and <strong>radiation (high temperature)</strong>. They do not simply add; they combine nonlinearly as <strong>$h^{4/3}=h_{conv}^{4/3}+h_{rad}h^{1/3}$</strong>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-4 / 유도 ══════════ -->
+  <section class="screen" data-ch="3-4" data-chtitle="막비등과 Leidenfrost (Bromley+복사)" data-stage="유도">
+    <div class="eyebrow lang-ko">3-4 · 수식 유도 · Derivation</div>
+    <div class="eyebrow lang-en">3-4 · Derivation</div>
+    <h1 class="stage-h lang-ko">Bromley 상관식과 복사 결합 유도</h1>
+    <h1 class="stage-h lang-en">Deriving the Bromley Correlation and Radiation Coupling</h1>
+    <p class="lede lang-ko"><b>공통 관점:</b> 수평 실린더 아래로 흐르는 <b>층류 증기막</b>은 응축의 Nusselt 막이론과 <b>수학적으로 쌍대</b>입니다 — 액체 막 대신 증기 막이, 응축 대신 증발이 일어날 뿐. 여기에 고온 <b>복사</b>가 막을 두껍게 만들어 대류를 약화시키는 상호작용까지 더합니다.</p>
+    <p class="lede lang-en"><b>Unifying view:</b> the <b>laminar vapor film</b> flowing under a horizontal cylinder is <b>mathematically dual</b> to the Nusselt film theory of condensation — only now a vapor film replaces the liquid film and evaporation replaces condensation. On top of this, high-temperature <b>radiation</b> thickens the film and weakens convection, an interaction we must couple.</p>
+    <div class="deriv lang-ko">
+      <div class="dcard"><h4>① 대류 — Bromley</h4><div class="sub">수평 실린더, 층류 증기막</div><div class="ana">☁️ 증기막이 부력으로 위로 흐른다</div><div class="eq">$ h_{conv}=0.62\!\left[\dfrac{k_v^3\rho_v(\rho_l-\rho_v)g\,h_{fg}'}{\mu_v D\,\Delta T_e}\right]^{1/4} $</div><p>부력구동 층류 막에 대한 힘·에너지 균형에서 $h\propto \Delta T_e^{-1/4}$가 나옵니다. 상수 <strong>0.62</strong>는 실린더 기하, $h_{fg}'=h_{fg}+0.8\,c_{pv}\Delta T_e$는 <strong>막 과열</strong> 보정.</p></div>
+      <div class="dcard"><h4>② 복사 — 등가계수</h4><div class="sub">회색체 근사 $\varepsilon$</div><div class="ana">🔴 표면이 빨갛게 달아 복사</div><div class="eq">$ h_{rad}=\dfrac{\varepsilon\,\sigma_{SB}(T_s^4-T_{sat}^4)}{T_s-T_{sat}} $</div><p>Stefan–Boltzmann 복사 $q''_{rad}=\varepsilon\sigma_{SB}(T_s^4-T_{sat}^4)$을 $\Delta T_e$로 나눠 <strong>등가 열전달계수</strong>로 표현합니다. $T$는 반드시 <strong>절대온도(K)</strong>.</p></div>
+      <div class="dcard"><h4>③ 결합 — 비선형 합</h4><div class="sub">복사가 막을 두껍게</div><div class="ana">🔗 두 경로가 서로 간섭</div><div class="eq">$ h^{4/3}=h_{conv}^{4/3}+h_{rad}\,h^{1/3} $</div><p>복사가 증발을 더 일으켜 막을 두껍게 하면 $h_{conv}$이 약해집니다. 이 되먹임 때문에 단순 합이 아닌 위 <strong>암시식</strong>이 됩니다. $h_{rad}\ll h_{conv}$이면 $h\approx h_{conv}+\tfrac34 h_{rad}$.</p></div>
+    </div>
+    <div class="deriv lang-en">
+      <div class="dcard"><h4>① Convection — Bromley</h4><div class="sub">horizontal cylinder, laminar vapor film</div><div class="ana">☁️ the vapor film rises by buoyancy</div><div class="eq">$ h_{conv}=0.62\!\left[\dfrac{k_v^3\rho_v(\rho_l-\rho_v)g\,h_{fg}'}{\mu_v D\,\Delta T_e}\right]^{1/4} $</div><p>A force–energy balance on the buoyancy-driven laminar film gives $h\propto \Delta T_e^{-1/4}$. The constant <strong>0.62</strong> is the cylinder geometry factor; $h_{fg}'=h_{fg}+0.8\,c_{pv}\Delta T_e$ corrects for <strong>film superheat</strong>.</p></div>
+      <div class="dcard"><h4>② Radiation — equivalent coeff.</h4><div class="sub">gray-body approx. $\varepsilon$</div><div class="ana">🔴 the surface glows red and radiates</div><div class="eq">$ h_{rad}=\dfrac{\varepsilon\,\sigma_{SB}(T_s^4-T_{sat}^4)}{T_s-T_{sat}} $</div><p>Divide the Stefan–Boltzmann flux $q''_{rad}=\varepsilon\sigma_{SB}(T_s^4-T_{sat}^4)$ by $\Delta T_e$ to write it as an <strong>equivalent heat-transfer coefficient</strong>. Here $T$ must be <strong>absolute (K)</strong>.</p></div>
+      <div class="dcard"><h4>③ Coupling — nonlinear sum</h4><div class="sub">radiation thickens the film</div><div class="ana">🔗 the two paths interfere</div><div class="eq">$ h^{4/3}=h_{conv}^{4/3}+h_{rad}\,h^{1/3} $</div><p>Extra radiative evaporation thickens the film, weakening $h_{conv}$. This feedback makes the total an <strong>implicit</strong> relation, not a plain sum. If $h_{rad}\ll h_{conv}$ then $h\approx h_{conv}+\tfrac34 h_{rad}$.</p></div>
+    </div>
+    <div class="callout warn lang-ko"><div class="ct">주의 · 절대온도와 과열 보정</div>복사항의 $T_s^4,\,T_{sat}^4$은 반드시 <strong>켈빈(K)</strong>으로 계산하세요 — ${}^{\circ}\text{C}$로 4제곱하면 완전히 틀립니다. 또한 잠열은 <strong>$h_{fg}'=h_{fg}+0.8\,c_{pv}\Delta T_e$</strong>로 막 과열을 반영해야 하며, 순수 $h_{fg}$만 쓰면 $h_{conv}$을 과소평가합니다.</div>
+    <div class="callout warn lang-en"><div class="ct">Caution · absolute temperature & superheat correction</div>In the radiation term, compute $T_s^4,\,T_{sat}^4$ in <strong>kelvin (K)</strong> — raising ${}^{\circ}\text{C}$ to the fourth power is completely wrong. Also use the corrected latent heat <strong>$h_{fg}'=h_{fg}+0.8\,c_{pv}\Delta T_e$</strong> to account for film superheat; using bare $h_{fg}$ underestimates $h_{conv}$.</div>
+  </section>
+
+  <!-- ══════════ 3-4 / 읽을거리 ══════════ -->
+  <section class="screen" data-ch="3-4" data-chtitle="막비등과 Leidenfrost (Bromley+복사)" data-stage="읽을거리">
+    <div class="eyebrow lang-ko">3-4 · 읽을거리 · Reading</div>
+    <div class="eyebrow lang-en">3-4 · Reading</div>
+    <h1 class="stage-h lang-ko">Leidenfrost 방울과 비극성 유체의 낮은 온도</h1>
+    <h1 class="stage-h lang-en">Leidenfrost Droplets and the Low Onset of Nonpolar Fluids</h1>
+    <div class="two lang-ko">
+      <div class="col2 reading">
+        <p>1756년 독일 의사 <strong>Johann Gottlob Leidenfrost</strong>는 벌겋게 달군 쇠숟가락 위의 물방울이 30초 넘게 춤추듯 살아남는 것을 기록했습니다. 그 아래 얇은 증기막이 방울을 떠받쳐 <strong>직접 접촉을 막고</strong> 증발을 극적으로 늦춘 것입니다. 오늘날 이 <strong>Leidenfrost 온도</strong>는 막비등이 안정적으로 시작되는 하한(비등 곡선 점 D)으로 정의됩니다.</p>
+        <p class="pullquote">증기막은 열의 통로가 아니라 <em>단열 이불</em>이다.</p>
+        <p>산업적으로 이 영역은 <strong>양날의 칼</strong>입니다. 금속 <strong>급속 냉각(quenching)</strong>에서 막비등은 냉각을 느리게 해 잔류 열응력을 남기고, 원자로 <strong>노심 냉각</strong>에서는 막비등 전이가 곧 CHF·burnout 위험 신호입니다. 한편 <strong>비극성 유체</strong>(예: 냉매·질소)는 물보다 극성 인력이 약해 표면 습윤성이 낮고 잠열도 작아, <strong>Leidenfrost 온도가 훨씬 낮게</strong> 나타나 더 쉽게 막비등에 들어갑니다.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>막비등 = <strong>증기막이 단열</strong> → $h$가 급감, $T_s$ 폭주 위험.</li><li>Bromley: $h_{conv}\propto \Delta T_e^{-1/4}$ (수평 실린더, 상수 0.62).</li><li>고온일수록 <strong>복사 비중</strong>이 커진다 ($h_{rad}\propto T^4$).</li><li>비극성 유체는 <strong>Leidenfrost 온도가 낮다</strong>.</li></ul></div>
+        <p class="readmeta">참고: Bromley(1950) <em>Chem. Eng. Prog.</em> 46, 221 / Incropera et al., Ch.10.6</p>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2 reading">
+        <p>In 1756 the German physician <strong>Johann Gottlob Leidenfrost</strong> recorded a water droplet dancing on a red-hot iron spoon for over 30 seconds. A thin vapor film beneath it held the droplet up, <strong>preventing direct contact</strong> and dramatically slowing evaporation. Today this <strong>Leidenfrost temperature</strong> is defined as the lower bound where film boiling stably begins (point D on the boiling curve).</p>
+        <p class="pullquote">The vapor film is not a channel for heat but an <em>insulating blanket</em>.</p>
+        <p>Industrially this regime is a <strong>double-edged sword</strong>. In metal <strong>quenching</strong>, film boiling slows cooling and leaves residual thermal stress; in reactor <strong>core cooling</strong>, the transition to film boiling signals CHF and burnout danger. Meanwhile <strong>nonpolar fluids</strong> (e.g. refrigerants, nitrogen) have weaker polar attraction than water, giving lower wettability and smaller latent heat, so their <strong>Leidenfrost temperature is much lower</strong> and film boiling sets in more easily.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">Must know</div><ul><li>Film boiling = <strong>vapor film insulates</strong> → $h$ plummets, $T_s$ runaway risk.</li><li>Bromley: $h_{conv}\propto \Delta T_e^{-1/4}$ (horizontal cylinder, constant 0.62).</li><li>The hotter it gets, the larger the <strong>radiation share</strong> ($h_{rad}\propto T^4$).</li><li>Nonpolar fluids have a <strong>lower Leidenfrost temperature</strong>.</li></ul></div>
+        <p class="readmeta">Refs: Bromley (1950) <em>Chem. Eng. Prog.</em> 46, 221 / Incropera et al., Ch.10.6</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-4 / 그림·표 ══════════ -->
+  <section class="screen" data-ch="3-4" data-chtitle="막비등과 Leidenfrost (Bromley+복사)" data-stage="그림·표">
+    <div class="eyebrow lang-ko">3-4 · 그림 · 표</div>
+    <div class="eyebrow lang-en">3-4 · Figure · Table</div>
+    <h1 class="stage-h lang-ko">한눈에 — 증기막 구조와 물성표</h1>
+    <h1 class="stage-h lang-en">At a Glance — Vapor-Film Structure and Properties</h1>
+    <div class="vizgrid lang-ko">
+      <div>
+        <div class="vcap">수평 실린더 막비등 — 증기막·부력·복사</div>
+        <svg viewBox="0 0 480 300" width="100%" style="max-width:440px">
+<defs>
+<marker id="arf34ko" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#0369a1"/></marker>
+</defs>
+<rect x="24" y="20" width="432" height="260" rx="6" fill="#f0f9ff" stroke="#bae6fd"/>
+<text x="240" y="40" font-size="11" fill="#0369a1" text-anchor="middle">액체 $T_{sat}$ (풀)</text>
+<circle cx="240" cy="175" r="66" fill="#f97316" stroke="#c2410c" stroke-width="2"/>
+<text x="240" y="172" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">가열 실린더</text>
+<text x="240" y="190" font-size="11" fill="#fff" text-anchor="middle">$T_s,\ D$</text>
+<circle cx="240" cy="175" r="76" fill="none" stroke="#38bdf8" stroke-width="9" stroke-opacity="0.55"/>
+<text x="240" y="262" font-size="10.5" fill="#0369a1" text-anchor="middle">증기막 (두께 $\delta$, $k_v$)</text>
+<path d="M182 128 Q170 96 178 62" fill="none" stroke="#0369a1" stroke-width="1.6" marker-end="url(#arf34ko)"/>
+<path d="M298 128 Q310 96 302 62" fill="none" stroke="#0369a1" stroke-width="1.6" marker-end="url(#arf34ko)"/>
+<text x="150" y="92" font-size="10" fill="#0369a1" text-anchor="middle">증기 부력 ↑</text>
+<line x1="300" y1="175" x2="360" y2="175" stroke="#dc2626" stroke-width="1.4" stroke-dasharray="4 3"/>
+<line x1="290" y1="150" x2="345" y2="132" stroke="#dc2626" stroke-width="1.4" stroke-dasharray="4 3"/>
+<line x1="290" y1="200" x2="345" y2="218" stroke="#dc2626" stroke-width="1.4" stroke-dasharray="4 3"/>
+<text x="378" y="178" font-size="10" fill="#dc2626" text-anchor="middle" font-weight="700">복사 $q''_{rad}$</text>
+</svg>
+        <div class="keqnote">증기막이 실린더를 감싸 액체 직접 접촉을 차단 — 열은 막 가로 대류($h_{conv}$)와 복사($h_{rad}$)로만 전달. (출처: Incropera Ch.10.6)</div>
+      </div>
+      <div>
+        <div class="vcap">막비등 계산용 대표 증기 물성</div>
+        <table class="ktab"><thead><tr><th>물성</th><th>기호</th><th style="text-align:right">대표값</th></tr></thead><tbody>
+          <tr><td>증기 열전도도</td><td>$k_v$</td><td class="k">$\approx 0.05\ \text{W/mK}$</td></tr>
+          <tr><td>증기 밀도</td><td>$\rho_v$</td><td class="k">$\approx 0.6\ \text{kg/m}^3$</td></tr>
+          <tr><td>액체 밀도</td><td>$\rho_l$</td><td class="k">$\approx 958\ \text{kg/m}^3$</td></tr>
+          <tr><td>증기 점성</td><td>$\mu_v$</td><td class="k">$\approx 1.3\!\times\!10^{-5}$</td></tr>
+          <tr><td>증발잠열</td><td>$h_{fg}$</td><td class="k">$\approx 2.26\ \text{MJ/kg}$</td></tr>
+          <tr><td>증기 비열</td><td>$c_{pv}$</td><td class="k">$\approx 2000\ \text{J/kgK}$</td></tr>
+        </tbody></table>
+        <div class="keqnote">대기압 물($T_{sat}=100\,{}^{\circ}\text{C}$) 막온도 평가 근사값 — <em>대표값이며 막 평균온도에서 재평가 필요</em>. $\sigma_{SB}=5.67\times10^{-8}\ \text{W/m}^2\text{K}^4$. (출처: Incropera 부록 A, 포화 증기표)</div>
+      </div>
+    </div>
+    <div class="vizgrid lang-en">
+      <div>
+        <div class="vcap">Film boiling on a horizontal cylinder — film, buoyancy, radiation</div>
+        <svg viewBox="0 0 480 300" width="100%" style="max-width:440px">
+<defs>
+<marker id="arf34en" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#0369a1"/></marker>
+</defs>
+<rect x="24" y="20" width="432" height="260" rx="6" fill="#f0f9ff" stroke="#bae6fd"/>
+<text x="240" y="40" font-size="11" fill="#0369a1" text-anchor="middle">liquid $T_{sat}$ (pool)</text>
+<circle cx="240" cy="175" r="66" fill="#f97316" stroke="#c2410c" stroke-width="2"/>
+<text x="240" y="172" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">heated cyl.</text>
+<text x="240" y="190" font-size="11" fill="#fff" text-anchor="middle">$T_s,\ D$</text>
+<circle cx="240" cy="175" r="76" fill="none" stroke="#38bdf8" stroke-width="9" stroke-opacity="0.55"/>
+<text x="240" y="262" font-size="10.5" fill="#0369a1" text-anchor="middle">vapor film (thickness $\delta$, $k_v$)</text>
+<path d="M182 128 Q170 96 178 62" fill="none" stroke="#0369a1" stroke-width="1.6" marker-end="url(#arf34en)"/>
+<path d="M298 128 Q310 96 302 62" fill="none" stroke="#0369a1" stroke-width="1.6" marker-end="url(#arf34en)"/>
+<text x="150" y="92" font-size="10" fill="#0369a1" text-anchor="middle">vapor buoyancy ↑</text>
+<line x1="300" y1="175" x2="360" y2="175" stroke="#dc2626" stroke-width="1.4" stroke-dasharray="4 3"/>
+<line x1="290" y1="150" x2="345" y2="132" stroke="#dc2626" stroke-width="1.4" stroke-dasharray="4 3"/>
+<line x1="290" y1="200" x2="345" y2="218" stroke="#dc2626" stroke-width="1.4" stroke-dasharray="4 3"/>
+<text x="378" y="178" font-size="10" fill="#dc2626" text-anchor="middle" font-weight="700">radiation $q''_{rad}$</text>
+</svg>
+        <div class="keqnote">The vapor film wraps the cylinder, blocking direct liquid contact — heat crosses only by convection ($h_{conv}$) and radiation ($h_{rad}$). (Source: Incropera Ch.10.6)</div>
+      </div>
+      <div>
+        <div class="vcap">Representative vapor properties for film-boiling calc</div>
+        <table class="ktab"><thead><tr><th>Property</th><th>Symbol</th><th style="text-align:right">Rep. value</th></tr></thead><tbody>
+          <tr><td>Vapor conductivity</td><td>$k_v$</td><td class="k">$\approx 0.05\ \text{W/mK}$</td></tr>
+          <tr><td>Vapor density</td><td>$\rho_v$</td><td class="k">$\approx 0.6\ \text{kg/m}^3$</td></tr>
+          <tr><td>Liquid density</td><td>$\rho_l$</td><td class="k">$\approx 958\ \text{kg/m}^3$</td></tr>
+          <tr><td>Vapor viscosity</td><td>$\mu_v$</td><td class="k">$\approx 1.3\!\times\!10^{-5}$</td></tr>
+          <tr><td>Latent heat</td><td>$h_{fg}$</td><td class="k">$\approx 2.26\ \text{MJ/kg}$</td></tr>
+          <tr><td>Vapor spec. heat</td><td>$c_{pv}$</td><td class="k">$\approx 2000\ \text{J/kgK}$</td></tr>
+        </tbody></table>
+        <div class="keqnote">Water at 1 atm ($T_{sat}=100\,{}^{\circ}\text{C}$), approximate film-temperature values — <em>representative; re-evaluate at the mean film temperature</em>. $\sigma_{SB}=5.67\times10^{-8}\ \text{W/m}^2\text{K}^4$. (Source: Incropera App. A, saturated-vapor tables)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-4 / 실습 ══════════ -->
+  <section class="screen" data-ch="3-4" data-chtitle="막비등과 Leidenfrost (Bromley+복사)" data-stage="실습">
+    <div class="eyebrow lang-ko">3-4 · 실습 · Interactive</div>
+    <div class="eyebrow lang-en">3-4 · Interactive</div>
+    <h1 class="stage-h lang-ko">Bromley $h_{conv}$ — $\Delta T_e$·$D$로 조절해보기</h1>
+    <h1 class="stage-h lang-en">Bromley $h_{conv}$ — Tune $\Delta T_e$ and $D$</h1>
+    <p class="lede lang-ko">Bromley 상관식에서 대류계수는 <strong>$h_{conv}\propto(\Delta T_e\,D)^{-1/4}$</strong>로 과열도와 지름에 각각 $-1/4$승으로 약하게 의존합니다. 대표 증기 물성($k_v,\rho_v,\rho_l,\mu_v,h_{fg}'$)을 상수로 고정한 뒤, 슬라이더로 <strong>$\Delta T_e$</strong>와 실린더 지름 <strong>$D$</strong>를 바꿔 $h_{conv}$ 변화를 확인하세요. (복사는 별도, 여기선 대류만.)</p>
+    <p class="lede lang-en">In the Bromley correlation the convective coefficient scales as <strong>$h_{conv}\propto(\Delta T_e\,D)^{-1/4}$</strong> — a weak $-1/4$-power dependence on both superheat and diameter. With representative vapor properties ($k_v,\rho_v,\rho_l,\mu_v,h_{fg}'$) held constant, slide <strong>$\Delta T_e$</strong> and cylinder diameter <strong>$D$</strong> to watch $h_{conv}$ change. (Radiation is separate; convection only here.)</p>
+    <div class="calc lang-ko"
+      data-title="Bromley 대류계수 $h_{conv}=0.62\,[C/(\Delta T_e\,D)]^{1/4}$"
+      data-desc="대표 물성 묶음 C = k_v³·ρ_v(ρ_l−ρ_v)·g·h_fg' / μ_v ≈ 0.05³·0.6·957.4·9.81·2.74e6 / 1.3e−5 ≈ 1.49e11. 기본값 ΔT_e=300°C, D=0.02 m → h_conv≈246 W/m²K(대표 막비등 규모)."
+      data-vars='[{"sym":"dT","label":"$\\Delta T_e$ · 초과온도","min":120,"max":600,"val":300,"step":10,"unit":"°C"},{"sym":"D","label":"$D$ · 실린더 지름","min":0.005,"max":0.05,"val":0.02,"step":0.005,"unit":"m"}]'
+      data-expr="0.62*(1.485e11/(dT*D))**0.25"
+      data-out="$h_{conv}$" data-out-unit="$\text{W/m}^2\text{K}$"
+      data-barmax="700"
+      data-note="ΔT_e를 2배 올려도 h_conv는 (2)^-1/4≈0.84배로 조금만 줄어듭니다 — 막비등의 완만한 -1/4승 거동."></div>
+    <div class="calc lang-en"
+      data-title="Bromley coeff. $h_{conv}=0.62\,[C/(\Delta T_e\,D)]^{1/4}$"
+      data-desc="Property group C = k_v³·ρ_v(ρ_l−ρ_v)·g·h_fg' / μ_v ≈ 0.05³·0.6·957.4·9.81·2.74e6 / 1.3e−5 ≈ 1.49e11. Default ΔT_e=300°C, D=0.02 m → h_conv≈246 W/m²K (representative film-boiling magnitude)."
+      data-vars='[{"sym":"dT","label":"$\\Delta T_e$ · excess temp.","min":120,"max":600,"val":300,"step":10,"unit":"°C"},{"sym":"D","label":"$D$ · cylinder diameter","min":0.005,"max":0.05,"val":0.02,"step":0.005,"unit":"m"}]'
+      data-expr="0.62*(1.485e11/(dT*D))**0.25"
+      data-out="$h_{conv}$" data-out-unit="$\text{W/m}^2\text{K}$"
+      data-barmax="700"
+      data-note="Doubling ΔT_e drops h_conv only to (2)^-1/4≈0.84× — the gentle -1/4-power behavior of film boiling."></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 막비등 $h\,[\text{W/m}^2\text{K}]$ 감: 대류 $h_{conv}\approx 100\!\sim\!300$(핵비등의 수천~수만보다 훨씬 작다 → 그래서 단열·위험). 고온에서 복사 $h_{rad}$이 수십~수백까지 커져 결합 $h$을 끌어올립니다. 기본값($\Delta T_e=300\,{}^{\circ}\text{C}$, $D=0.02\,\text{m}$)의 $h_{conv}\approx246$은 굵은 파이프 급속냉각 규모. 지름이 작을수록(가는 선) 막이 얇아 $h_{conv}$이 큽니다. <span class="src">(출처: Bromley 1950 / Incropera Ch.10.6)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — feel for film-boiling $h\,[\text{W/m}^2\text{K}]$: convection $h_{conv}\approx 100\!\sim\!300$ (far below nucleate's thousands–tens of thousands → hence insulating and dangerous). At high temperature $h_{rad}$ grows to tens–hundreds and lifts the combined $h$. The default ($\Delta T_e=300\,{}^{\circ}\text{C}$, $D=0.02\,\text{m}$) gives $h_{conv}\approx246$, on the scale of quenching a thick pipe. Smaller diameter (thin wire) means a thinner film and larger $h_{conv}$. <span class="src">(Source: Bromley 1950 / Incropera Ch.10.6)</span></div>
+  </section>
+
+  <!-- ══════════ 3-4 / 점검 ══════════ -->
+  <section class="screen" data-ch="3-4" data-chtitle="막비등과 Leidenfrost (Bromley+복사)" data-stage="점검">
+    <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+    <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · instructor view</span></div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q1.</span>막비등에서 표면의 열전달계수 $h$가 핵비등보다 <strong>훨씬 작아지는</strong> 근본 이유는?</p>
+      <div class="opts">
+        <button class="opt">① 액체가 표면에 더 강하게 밀착하기 때문</button>
+        <button class="opt" data-correct="1">② 연속 증기막($k_v$ 작음)이 표면을 덮어 단열층이 되기 때문</button>
+        <button class="opt">③ 표면온도가 낮아 열구동력이 없기 때문</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 막비등에서는 액체가 표면에 닿지 못하고 열전도도가 작은 증기막($k_v\approx0.05\ \text{W/mK}$)이 표면을 덮어 <strong>단열층</strong>으로 작용하므로 $h$가 급감한다. <span class="dim">오답 ①·③: ①오히려 액체는 막에 막혀 접촉이 끊기고, ③막비등은 $\Delta T_e$가 매우 큰 고과열도 영역이다.</span> <span class="agg">학급 n=41 · ① 6 · ② 30 · ③ 5</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q1.</span>Why does the heat-transfer coefficient $h$ in film boiling become <strong>far smaller</strong> than in nucleate boiling?</p>
+      <div class="opts">
+        <button class="opt">① because liquid presses harder onto the surface</button>
+        <button class="opt" data-correct="1">② because a continuous vapor film (low $k_v$) covers the surface as an insulating layer</button>
+        <button class="opt">③ because the surface temperature is low, giving no driving force</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — in film boiling the liquid cannot touch the surface; a low-conductivity vapor film ($k_v\approx0.05\ \text{W/mK}$) blankets it and acts as an <strong>insulating layer</strong>, so $h$ drops sharply. <span class="dim">Wrong ①·③: ① the film actually breaks contact; ③ film boiling is the very-high-superheat regime with large $\Delta T_e$.</span> <span class="agg">class n=41 · ① 6 · ② 30 · ③ 5</span></div>
+    </div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q2.</span>복사 등가계수 $h_{rad}=\varepsilon\sigma_{SB}(T_s^4-T_{sat}^4)/(T_s-T_{sat})$를 계산할 때 <strong>반드시</strong> 지켜야 할 것은?</p>
+      <div class="opts">
+        <button class="opt">① 온도를 ${}^{\circ}\text{C}$로 4제곱한다</button>
+        <button class="opt" data-correct="1">② 온도를 절대온도(K)로 넣는다</button>
+        <button class="opt">③ 방사율 $\varepsilon$을 항상 1로 둔다</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — Stefan–Boltzmann 복사는 절대온도의 4제곱에 비례하므로 $T_s,\,T_{sat}$은 반드시 <strong>켈빈(K)</strong>이어야 한다. <span class="dim">오답 ①·③: ①${}^{\circ}\text{C}$로 4제곱하면 완전히 틀리고, ③$\varepsilon$은 표면 상태에 따른 0~1의 실제 방사율로, 1은 흑체 이상화일 뿐이다.</span> <span class="agg">학급 n=41 · ① 9 · ② 28 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q2.</span>When computing the radiative coefficient $h_{rad}=\varepsilon\sigma_{SB}(T_s^4-T_{sat}^4)/(T_s-T_{sat})$, what <strong>must</strong> you do?</p>
+      <div class="opts">
+        <button class="opt">① raise temperatures in ${}^{\circ}\text{C}$ to the fourth power</button>
+        <button class="opt" data-correct="1">② use absolute temperature (K)</button>
+        <button class="opt">③ always set emissivity $\varepsilon$ to 1</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — Stefan–Boltzmann radiation scales with the fourth power of absolute temperature, so $T_s,\,T_{sat}$ must be in <strong>kelvin (K)</strong>. <span class="dim">Wrong ①·③: ① using ${}^{\circ}\text{C}$ is completely wrong; ③ $\varepsilon$ is the real emissivity (0–1) set by surface condition; 1 is only the blackbody idealization.</span> <span class="agg">class n=41 · ① 9 · ② 28 · ③ 4</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-4 / 연습 ══════════ -->
+  <section class="screen" data-ch="3-4" data-chtitle="막비등과 Leidenfrost (Bromley+복사)" data-stage="연습">
+    <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+    <div class="panel-head lang-en"><span class="tag">Practice</span><span class="panel-title">Engineering calc · auto-graded</span></div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 1 · 기본 · 복사 등가계수</div>
+      <p class="prob-statement">막비등 중인 표면이 $T_s=800\ \text{K}$, 포화 $T_{sat}=400\ \text{K}$, 방사율 $\varepsilon=0.5$이다. <strong>복사 등가 열전달계수 $h_{rad}$</strong>를 구하시오. ($\sigma_{SB}=5.67\times10^{-8}\ \text{W/m}^2\text{K}^4$)</p>
+      <div class="given"><span class="chip">$T_s=800\ \text{K}$</span><span class="chip">$T_{sat}=400\ \text{K}$</span><span class="chip">$\varepsilon=0.5$</span></div>
+      <div class="find"><b>구할 것:</b> $h_{rad}\ [\text{W/m}^2\text{K}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="27.22" data-tol="0.03"/><span class="ans-unit">$\text{W/m}^2\text{K}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 4제곱차 (절대온도)</div>$$ T_s^4-T_{sat}^4 = 800^4-400^4 = (4.096-0.256)\times10^{11}=3.84\times10^{11}\ \text{K}^4 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 복사 열유속</div>$$ q''_{rad}=\varepsilon\sigma_{SB}(T_s^4-T_{sat}^4)=0.5\cdot5.67\!\times\!10^{-8}\cdot3.84\!\times\!10^{11}=1.089\!\times\!10^{4}\ \text{W/m}^2 $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · $\Delta T_e$로 나눔</div>$$ h_{rad}=\frac{q''_{rad}}{T_s-T_{sat}}=\frac{1.089\times10^{4}}{400}=27.2\ \text{W/m}^2\text{K} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ h_{rad}\approx 27.2\ \text{W/m}^2\text{K} $$</div><b>정답:</b> 이 정도 복사계수도 Bromley $h_{conv}$($\sim$수백)에 무시 못 할 비중으로 가세한다.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 1 · Basic · radiative coefficient</div>
+      <p class="prob-statement">A film-boiling surface has $T_s=800\ \text{K}$, saturation $T_{sat}=400\ \text{K}$, emissivity $\varepsilon=0.5$. Find the <strong>radiative equivalent coefficient $h_{rad}$</strong>. ($\sigma_{SB}=5.67\times10^{-8}\ \text{W/m}^2\text{K}^4$)</p>
+      <div class="given"><span class="chip">$T_s=800\ \text{K}$</span><span class="chip">$T_{sat}=400\ \text{K}$</span><span class="chip">$\varepsilon=0.5$</span></div>
+      <div class="find"><b>Find:</b> $h_{rad}\ [\text{W/m}^2\text{K}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="27.22" data-tol="0.03"/><span class="ans-unit">$\text{W/m}^2\text{K}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · fourth-power difference (absolute)</div>$$ T_s^4-T_{sat}^4 = 800^4-400^4 = (4.096-0.256)\times10^{11}=3.84\times10^{11}\ \text{K}^4 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · radiative flux</div>$$ q''_{rad}=\varepsilon\sigma_{SB}(T_s^4-T_{sat}^4)=0.5\cdot5.67\!\times\!10^{-8}\cdot3.84\!\times\!10^{11}=1.089\!\times\!10^{4}\ \text{W/m}^2 $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · divide by $\Delta T_e$</div>$$ h_{rad}=\frac{q''_{rad}}{T_s-T_{sat}}=\frac{1.089\times10^{4}}{400}=27.2\ \text{W/m}^2\text{K} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ h_{rad}\approx 27.2\ \text{W/m}^2\text{K} $$</div><b>Answer:</b> even this radiative coefficient adds a non-negligible share to Bromley $h_{conv}$ ($\sim$ hundreds).</div>
+      </div>
+    </div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 2 · 응용 · 결합 총계수</div>
+      <p class="prob-statement">막비등에서 $h_{conv}=200\ \text{W/m}^2\text{K}$, $h_{rad}=54\ \text{W/m}^2\text{K}$이다. $h_{rad}\ll h_{conv}$ 근사 <strong>$h\approx h_{conv}+\tfrac34 h_{rad}$</strong>로 <strong>결합 총계수 $h$</strong>를 구하시오.</p>
+      <div class="given"><span class="chip">$h_{conv}=200\ \text{W/m}^2\text{K}$</span><span class="chip">$h_{rad}=54\ \text{W/m}^2\text{K}$</span></div>
+      <div class="find"><b>구할 것:</b> $h\ [\text{W/m}^2\text{K}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="240.5" data-tol="0.02"/><span class="ans-unit">$\text{W/m}^2\text{K}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 근사식</div>$$ h \approx h_{conv} + \tfrac{3}{4}\,h_{rad} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 대입</div>$$ h = 200 + 0.75\times 54 = 200 + 40.5 = 240.5\ \text{W/m}^2\text{K} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ h \approx 240.5\ \text{W/m}^2\text{K} $$</div><b>정답:</b> 복사가 총계수를 약 20% 끌어올렸다. $h_{rad}$이 더 커지면 완전한 암시식 $h^{4/3}=h_{conv}^{4/3}+h_{rad}h^{1/3}$을 반복 풀어야 한다.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 2 · Applied · combined coefficient</div>
+      <p class="prob-statement">In film boiling $h_{conv}=200\ \text{W/m}^2\text{K}$ and $h_{rad}=54\ \text{W/m}^2\text{K}$. Using the $h_{rad}\ll h_{conv}$ approximation <strong>$h\approx h_{conv}+\tfrac34 h_{rad}$</strong>, find the <strong>combined coefficient $h$</strong>.</p>
+      <div class="given"><span class="chip">$h_{conv}=200\ \text{W/m}^2\text{K}$</span><span class="chip">$h_{rad}=54\ \text{W/m}^2\text{K}$</span></div>
+      <div class="find"><b>Find:</b> $h\ [\text{W/m}^2\text{K}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="240.5" data-tol="0.02"/><span class="ans-unit">$\text{W/m}^2\text{K}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · approximation</div>$$ h \approx h_{conv} + \tfrac{3}{4}\,h_{rad} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · substitute</div>$$ h = 200 + 0.75\times 54 = 200 + 40.5 = 240.5\ \text{W/m}^2\text{K} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ h \approx 240.5\ \text{W/m}^2\text{K} $$</div><b>Answer:</b> radiation lifted the total by ~20%. For larger $h_{rad}$ one must iterate the full implicit relation $h^{4/3}=h_{conv}^{4/3}+h_{rad}h^{1/3}$.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3-4 / 정리 ══════════ -->
+  <section class="screen" data-ch="3-4" data-chtitle="막비등과 Leidenfrost (Bromley+복사)" data-stage="정리">
+    <div class="eyebrow lang-ko">3-4 · 정리 · Summary</div>
+    <div class="eyebrow lang-en">3-4 · Summary</div>
+    <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 시험 포인트</h1>
+    <h1 class="stage-h lang-en">Key Points · Common Mistakes · Exam Focus</h1>
+    <div class="sumgrid lang-ko">
+      <div class="sumcard key"><h4>핵심 정리</h4><ul>
+        <li>막비등 = <strong>증기막 단열</strong>, Leidenfrost 점(점 D) 이후 고과열도 영역.</li>
+        <li>Bromley(수평 실린더): $h_{conv}=0.62\!\left[\dfrac{k_v^3\rho_v(\rho_l-\rho_v)g\,h_{fg}'}{\mu_v D\,\Delta T_e}\right]^{1/4}$, $h_{fg}'=h_{fg}+0.8c_{pv}\Delta T_e$.</li>
+        <li>복사: $h_{rad}=\dfrac{\varepsilon\sigma_{SB}(T_s^4-T_{sat}^4)}{T_s-T_{sat}}$, 결합 $h^{4/3}=h_{conv}^{4/3}+h_{rad}h^{1/3}$.</li>
+        <li>비극성 유체는 <strong>Leidenfrost 온도가 낮다</strong>.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+        <li>복사항 온도를 ${}^{\circ}\text{C}$로 4제곱 → 반드시 <strong>K</strong>.</li>
+        <li>$h=h_{conv}+h_{rad}$ 단순 합 → 실제는 <strong>비선형 결합</strong>(약근사 $+\tfrac34h_{rad}$).</li>
+        <li>순수 $h_{fg}$ 사용 → <strong>과열 보정 $h_{fg}'$</strong> 필요.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>시험 포인트</h4><ul>
+        <li>Bromley $h_{conv}\propto(\Delta T_e D)^{-1/4}$ 스케일링 계산.</li>
+        <li>$h_{rad}$ 계산(절대온도 4제곱) + 결합식 대입.</li>
+        <li>막비등 vs 핵비등 $h$ 규모 비교, Leidenfrost 물리적 의미.</li>
+      </ul></div>
+    </div>
+    <div class="sumgrid lang-en">
+      <div class="sumcard key"><h4>Key points</h4><ul>
+        <li>Film boiling = <strong>insulating vapor film</strong>, the high-superheat regime beyond point D.</li>
+        <li>Bromley (horizontal cylinder): $h_{conv}=0.62\!\left[\dfrac{k_v^3\rho_v(\rho_l-\rho_v)g\,h_{fg}'}{\mu_v D\,\Delta T_e}\right]^{1/4}$, $h_{fg}'=h_{fg}+0.8c_{pv}\Delta T_e$.</li>
+        <li>Radiation: $h_{rad}=\dfrac{\varepsilon\sigma_{SB}(T_s^4-T_{sat}^4)}{T_s-T_{sat}}$, combined $h^{4/3}=h_{conv}^{4/3}+h_{rad}h^{1/3}$.</li>
+        <li>Nonpolar fluids have a <strong>lower Leidenfrost temperature</strong>.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+        <li>Raising the radiation temps in ${}^{\circ}\text{C}$ → they must be <strong>K</strong>.</li>
+        <li>Plain sum $h=h_{conv}+h_{rad}$ → it is a <strong>nonlinear coupling</strong> (weak approx. $+\tfrac34h_{rad}$).</li>
+        <li>Using bare $h_{fg}$ → the <strong>superheat-corrected $h_{fg}'$</strong> is needed.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>Exam focus</h4><ul>
+        <li>Bromley $h_{conv}\propto(\Delta T_e D)^{-1/4}$ scaling calculations.</li>
+        <li>Computing $h_{rad}$ (absolute-temp fourth power) + substituting into the coupling.</li>
+        <li>Comparing film vs nucleate $h$ magnitude; physical meaning of Leidenfrost.</li>
+      </ul></div>
+    </div>
+  </section>
+</div></main>
+<footer><button class="nav-btn prev" id="prevBtn">← 이전</button><span class="foot-hint" id="footHint">← / → 또는 상단 단계 클릭으로 이동</span><button class="nav-btn next" id="nextBtn">다음 →</button></footer>
+
+<script>
+(function(){
+  var screens=Array.prototype.slice.call(document.querySelectorAll('.screen'));
+  var stage=document.getElementById('stage'), stepbar=document.getElementById('stepbar'), chrail=document.getElementById('chrail');
+  var prevBtn=document.getElementById('prevBtn'), nextBtn=document.getElementById('nextBtn');
+  var N=screens.length, active=0;
+  var chapters=[]; screens.forEach(function(s){var c=s.getAttribute('data-ch'); if(chapters.indexOf(c)<0)chapters.push(c);});
+  function chOf(i){return screens[i].getAttribute('data-ch');} function stOf(i){return screens[i].getAttribute('data-stage');}
+
+  function fitActive(){ var u=screens[active]; if(!u)return; u.style.transform='none'; var avail=stage.clientHeight, nat=u.offsetHeight; if(nat<=0||avail<=0)return; if(nat>avail){u.style.transformOrigin='top center'; u.style.transform='scale('+(avail/nat)+')';} else {u.style.transformOrigin='top center'; var _st=u.getAttribute('data-stage'); var _cap=(_st==='점검'||_st==='연습')?44:(avail-nat)/2; u.style.transform='translateY('+Math.min((avail-nat)/2,_cap)+'px)';} }
+
+  function buildChrail(){ chrail.innerHTML=''; chapters.forEach(function(c){ var d=document.createElement('span'); d.className='chdot'; d.textContent=c; d.addEventListener('click',function(){ for(var k=0;k<N;k++){ if(chOf(k)===c){show(k);break;} } }); chrail.appendChild(d); }); }
+  function buildStepper(){ var ch=chOf(active); var list=[]; for(var i=0;i<N;i++){ if(chOf(i)===ch) list.push(i); } stepbar.innerHTML=''; list.forEach(function(idx,k){ var el=document.createElement('div'); var cls='step'; if(idx===active)cls+=' cur'; else if(idx<active)cls+=' done'; el.className=cls; el.innerHTML='<span class="ix">'+(k+1)+'</span>'+stOf(idx); el.addEventListener('click',function(){show(idx);}); stepbar.appendChild(el); if(k<list.length-1){var ln=document.createElement('span'); ln.className='link'; el.appendChild(ln);} }); }
+
+  function render(){ for(var i=0;i<N;i++) screens[i].classList.toggle('active', i===active); var ch=chOf(active); Array.prototype.forEach.call(chrail.children,function(d){ d.classList.toggle('cur', d.textContent===ch); }); buildStepper(); prevBtn.disabled=(active===0); if(active>=N-1){ nextBtn.textContent='✓ 완료 · 목록으로'; } else { var nx=active+1; nextBtn.textContent=(chOf(nx)===ch)?('다음 · '+stOf(nx)+' →'):('다음 챕터 '+chOf(nx)+' →'); } fitActive(); }
+  function show(i){ if(i<0)i=0; if(i>N-1)i=N-1; active=i; render(); }
+
+  function toggleReveal(btn){ var scope=btn.closest('.prob')||btn.closest('.screen'); var t=scope?scope.querySelector('.revealable.solution'):null; if(!t)return; var open=t.classList.toggle('open'); btn.classList.toggle('is-open',open); var sp=btn.querySelector('span'); if(sp)sp.textContent=open?'풀이 숨기기':'풀이 보기'; fitActive(); }
+
+  document.addEventListener('click',function(e){
+    var opt=e.target.closest?e.target.closest('.opt'):null;
+    if(opt){ var wrap=opt.parentElement; Array.prototype.forEach.call(wrap.children,function(o){o.classList.remove('sel');}); opt.classList.add('sel'); return; }
+    var sub=e.target.closest?e.target.closest('.cp-submit'):null;
+    if(sub){ var cq=sub.closest('.cq')||sub.closest('.screen'); var sel=cq.querySelector('.opt.sel'); var fb=cq.querySelector('.cp-fb'); var prof=cq.querySelector('.cp-exp')||cq.querySelector('.cp-prof'); if(!sel){ if(fb){fb.textContent='먼저 보기를 선택하세요'; fb.style.color='var(--gray2)';} return; } var ok=sel.getAttribute('data-correct')==='1'; if(fb){fb.textContent=ok?'✓ 제출됨 — 정답':'제출됨 — 학급 응답에 반영'; fb.style.color='var(--accent)';} Array.prototype.forEach.call(cq.querySelectorAll('.opt'),function(o){if(o.getAttribute('data-correct')==='1')o.classList.add('correct');}); if(prof)prof.classList.add('show'); fitActive(); return; }
+    var chk=e.target.closest?e.target.closest('.pr-check'):null;
+    if(chk){ var pb=chk.closest('.prob')||chk.closest('.screen'); var input=pb.querySelector('.ans-input'); var pf=pb.querySelector('.pr-fb'); if(!input||!pf)return; var ans=parseFloat(input.getAttribute('data-answer')), tol=parseFloat(input.getAttribute('data-tol')||'0.02'); var raw=(input.value||'').replace(/[,\s]/g,''); if(raw===''){pf.textContent='먼저 답을 입력하세요'; pf.className='check-fb pr-fb no'; return;} var v=parseFloat(raw), good=!isNaN(v)&&Math.abs(v-ans)<=Math.abs(ans)*tol; pf.textContent=good?'✓ 정답입니다 — 풀이로 과정 확인':'✗ 다시 — 풀이로 과정 확인'; pf.className='check-fb pr-fb '+(good?'ok':'no'); fitActive(); return; }
+    var rb=e.target.closest?e.target.closest('.reveal-btn'):null; if(rb){ toggleReveal(rb); return; }
+  });
+  document.addEventListener('keydown',function(e){ if(e.target&&e.target.classList&&e.target.classList.contains('ans-input')){ if(e.key==='Enter'){var b=e.target.closest('.prob').querySelector('.pr-check'); if(b)b.click();} return; } if(e.key==='ArrowRight')show(active+1); else if(e.key==='ArrowLeft')show(active-1); });
+  prevBtn.addEventListener('click',function(){show(active-1);}); nextBtn.addEventListener('click',function(){ if(active>=N-1){location.href='/';} else {show(active+1);} });
+  window.addEventListener('resize',fitActive);
+
+  // ── interactive calc widgets ──
+  function _sup(n){var m={'-':'⁻','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'};return String(n).split('').map(function(c){return m[c]||c;}).join('');} function fnum(x){ if(!isFinite(x))return '—'; var a=Math.abs(x); if(a!==0&&(a<0.01||a>=1e5)){ var e=Math.floor(Math.log10(a)); var mn=x/Math.pow(10,e); return (Math.round(mn*100)/100)+' × 10'+_sup(e); } return (Math.round(x*1000)/1000).toLocaleString(); }
+  function initCalcs(){ Array.prototype.forEach.call(document.querySelectorAll('.calc:not([data-init])'),function(c){ c.setAttribute('data-init','1'); var vars; try{vars=JSON.parse(c.getAttribute('data-vars')||'[]');}catch(e){vars=[];} var expr=c.getAttribute('data-expr')||'0'; var outSym=c.getAttribute('data-out')||''; var outUnit=c.getAttribute('data-out-unit')||''; var barmax=parseFloat(c.getAttribute('data-barmax')||'0'); var title=c.getAttribute('data-title')||''; var desc=c.getAttribute('data-desc')||''; var note=c.getAttribute('data-note')||'';
+    var html='<div class="calc-title">'+title+'</div>'; if(desc)html+='<div class="calc-desc">'+desc+'</div>'; html+='<div class="calc-rows"></div><div class="calc-out"><span class="calc-os">'+outSym+'</span><span>=</span><b class="calc-num">—</b><span class="calc-ou">'+outUnit+'</span></div>'; if(barmax>0)html+='<div class="calc-outbar"><div class="bar"><span class="calc-bar" style="width:0%"></span></div></div>'; if(note)html+='<div class="calc-note">'+note+'</div>'; c.innerHTML=html;
+    var rowsEl=c.querySelector('.calc-rows'); var inputs={}; var fn; try{ fn=Function.apply(null, vars.map(function(v){return v.sym;}).concat(['return ('+expr+');'])); }catch(e){ fn=function(){return NaN;}; }
+    vars.forEach(function(v){ var row=document.createElement('div'); row.className='calc-row'; row.innerHTML='<span class="calc-lab">'+(v.label||v.sym)+'</span><input type="range" min="'+v.min+'" max="'+v.max+'" step="'+(v.step||((v.max-v.min)/100))+'" value="'+v.val+'"><span class="calc-val"></span>'; rowsEl.appendChild(row); var rng=row.querySelector('input'); inputs[v.sym]={rng:rng, val:row.querySelector('.calc-val'), unit:v.unit||''}; rng.addEventListener('input',recompute); });
+    function recompute(){ var args=vars.map(function(v){return parseFloat(inputs[v.sym].rng.value);}); vars.forEach(function(v){ var o=inputs[v.sym]; o.val.textContent=fnum(parseFloat(o.rng.value))+(o.unit?(' '+o.unit):''); }); var y; try{y=fn.apply(null,args);}catch(e){y=NaN;} c.querySelector('.calc-num').textContent=fnum(y); if(barmax>0){ var w=Math.max(0,Math.min(100, y/barmax*100)); var b=c.querySelector('.calc-bar'); if(b)b.style.width=w+'%'; } }
+    recompute();
+  }); }
+
+  function renderMath(){ initCalcs(); if(window.renderMathInElement){ renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false}); } fitActive(); if(window.requestAnimationFrame)requestAnimationFrame(fitActive); }
+
+  function applyDeep(){ var p=new URLSearchParams(location.search), idx=0; var s=parseInt(p.get('slide'),10); if(!isNaN(s))idx=Math.min(Math.max(s,0),N-1); var u=p.get('unit'); if(u){ for(var i=0;i<N;i++){ if(chOf(i)===u){idx=i;break;} } } var rev=p.get('reveal')==='all'; show(idx); if(rev){ Array.prototype.forEach.call(screens[idx].querySelectorAll('.reveal-btn'),function(b){toggleReveal(b);}); Array.prototype.forEach.call(screens[idx].querySelectorAll('.cq'),function(cq){ var o=cq.querySelector('.opt[data-correct]'); if(o){o.classList.add('sel'); var sb=cq.querySelector('.cp-submit'); if(sb)sb.click();} }); } }
+
+  buildChrail();
+  document.addEventListener('DOMContentLoaded',function(){ applyDeep(); renderMath(); });
+  if(document.readyState!=='loading'){ applyDeep(); renderMath(); }
+  window.addEventListener('load',renderMath);
+
+  // ── language toggle (ko / en) ──
+  (function(){
+    var btn=document.getElementById('langToggle'); if(!btn)return;
+    var LABELS={ko:'EN', en:'한국어'};
+    function apply(lang){ var d=document.documentElement; d.classList.remove('lang-ko','lang-en'); d.classList.add('lang-'+lang); btn.textContent=LABELS[lang]; }
+    var lang; try{ lang=localStorage.getItem('lecture_lang'); }catch(e){ lang=null; }
+    if(lang!=='en'&&lang!=='ko') lang='ko';
+    apply(lang);
+    btn.addEventListener('click',function(){
+      lang=(lang==='ko')?'en':'ko';
+      apply(lang);
+      try{ localStorage.setItem('lecture_lang',lang); }catch(e){}
+      if(window.requestAnimationFrame) requestAnimationFrame(fitActive); else fitActive();
+    });
+  })();
+})();
+</script>
+<script>window.HTL_WEEK=3;</script>
+<script src="/htl-track.js" defer></script>
+</body>
+</html>
