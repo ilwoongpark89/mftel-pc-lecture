@@ -215,16 +215,16 @@
       <div class="rm-item"><span class="rn">1-2</span><span><span class="rt">계면 열역학</span> <span class="rd">— Young–Laplace 곡률 압력과 Clausius–Clapeyron 관계</span></span></div>
       <div class="rm-item"><span class="rn">1-3</span><span><span class="rt">핵생성 이론</span> <span class="rd">— 임계 반경 $r^{*}$, 균질·불균질 핵생성</span></span></div>
       <div class="rm-item"><span class="rn">1-4</span><span><span class="rt">비극성 유체 물성 대비</span> <span class="rd">— 물 대 냉매·FC 유체의 $h_{fg}$·$\sigma$ 차이</span></span></div>
-      <div class="rm-item"><span class="rn">1-5</span><span><span class="rt">핵생성 사이트 밀도·ONB</span> <span class="rd">— 활성 사이트 밀도 $N_a$와 핵비등 개시 $\text{ONB}$</span></span></div>
-      <div class="rm-item"><span class="rn">1-6</span><span><span class="rt">표면 조절·핵비등 증강</span> <span class="rd">— 거칠기·젖음성·구조 표면으로 $h$와 CHF 끌어올리기</span></span></div>
+      <div class="rm-item"><span class="rn">1-5</span><span><span class="rt">핵생성 사이트 밀도와 ONB</span> <span class="rd">— 활성 사이트 밀도 $N_a$와 핵비등 개시 $\text{ONB}$</span></span></div>
+      <div class="rm-item"><span class="rn">1-6</span><span><span class="rt">표면 거칠기·젖음 조절과 핵비등 증강</span> <span class="rd">— 거칠기·젖음성·구조 표면으로 $h$와 CHF 끌어올리기</span></span></div>
     </div>
     <div class="roadmap lang-en" style="margin-top:14px">
       <div class="rm-item"><span class="rn">1-1</span><span><span class="rt">Pool Boiling Curve &amp; Regimes</span> <span class="rd">— free convection, nucleate, transition, film; the superheat $\Delta T_e$</span></span></div>
       <div class="rm-item"><span class="rn">1-2</span><span><span class="rt">Interfacial Thermodynamics</span> <span class="rd">— Young–Laplace curvature pressure and the Clausius–Clapeyron relation</span></span></div>
       <div class="rm-item"><span class="rn">1-3</span><span><span class="rt">Nucleation Theory</span> <span class="rd">— critical radius $r^{*}$, homogeneous vs heterogeneous nucleation</span></span></div>
       <div class="rm-item"><span class="rn">1-4</span><span><span class="rt">Non-polar Fluid Contrasts</span> <span class="rd">— water vs refrigerants &amp; FC fluids in $h_{fg}$ and $\sigma$</span></span></div>
-      <div class="rm-item"><span class="rn">1-5</span><span><span class="rt">Site Density &amp; ONB</span> <span class="rd">— active site density $N_a$ and the onset of nucleate boiling $\text{ONB}$</span></span></div>
-      <div class="rm-item"><span class="rn">1-6</span><span><span class="rt">Surface Tuning &amp; Enhancement</span> <span class="rd">— roughness, wettability &amp; structured surfaces to raise $h$ and CHF</span></span></div>
+      <div class="rm-item"><span class="rn">1-5</span><span><span class="rt">Nucleation Site Density &amp; ONB</span> <span class="rd">— active site density $N_a$ and the onset of nucleate boiling $\text{ONB}$</span></span></div>
+      <div class="rm-item"><span class="rn">1-6</span><span><span class="rt">Surface Roughness &amp; Wetting Tuning, Nucleate-Boiling Enhancement</span> <span class="rd">— roughness, wettability &amp; structured surfaces to raise $h$ and CHF</span></span></div>
     </div>
 
     <div class="outcomes lang-ko" style="margin-top:18px"><h4>이번 파트가 끝나면 할 수 있게 된다</h4><ul>
@@ -311,12 +311,12 @@
     <div class="deriv lang-ko">
       <div class="dcard"><h4>자유대류 영역</h4><div class="sub">$\Delta T_e<5\,{}^{\circ}\text{C}$</div><div class="ana">🌊 거품 없이 — 부력만으로 천천히 휘젓는다</div><div class="eq">$ q'' = h_{nc}\,\Delta T_e $</div><p>아직 핵생성이 없어 <strong>단상 자연대류</strong>로만 열이 전달됩니다. 기울기 완만.</p></div>
       <div class="dcard"><h4>핵비등 영역</h4><div class="sub">$5<\Delta T_e<30\,{}^{\circ}\text{C}$</div><div class="ana">🫧 거품 폭발 — 미세 거품이 격렬히 교반</div><div class="eq">$ q'' \propto \Delta T_e^{\,3} $</div><p>표면 cavity에서 거품이 <strong>생성·이탈</strong>하며 액체를 강하게 휘저어 $q''$이 급증. 정점이 <strong>CHF(점 C)</strong>.</p></div>
-      <div class="dcard"><h4>천이·막비등</h4><div class="sub">$\Delta T_e>30\,{}^{\circ}\text{C}$</div><div class="ana">☁️ 증기 이불 — 막이 표면을 덮어 단열</div><div class="eq">$ q'' \downarrow \ \text{then} \ \propto \Delta T_e^{\,4} $</div><p>거품이 합쳐져 불안정 막 형성(천이) → 안정 증기막(막비등, 점 D 이후). 막비등은 <strong>복사가 가세</strong>.</p></div>
+      <div class="dcard"><h4>천이·막비등</h4><div class="sub">$\Delta T_e>30\,{}^{\circ}\text{C}$</div><div class="ana">☁️ 증기 이불 — 막이 표면을 덮어 단열</div><div class="eq">$ q'' \downarrow \ \text{then} \ \propto \Delta T_e^{\,3/4} $</div><p>거품이 합쳐져 불안정 막 형성(천이) → 안정 증기막(막비등, 점 D 이후). 막대류는 $q''\propto\Delta T_e^{\,3/4}$(Bromley)이고, 여기에 <strong>복사 $\varepsilon\sigma(T_s^{4}-T_{sat}^{4})$가 가세</strong>.</p></div>
     </div>
     <div class="deriv lang-en">
       <div class="dcard"><h4>Free-convection regime</h4><div class="sub">$\Delta T_e<5\,{}^{\circ}\text{C}$</div><div class="ana">🌊 No bubbles — buoyancy stirs slowly</div><div class="eq">$ q'' = h_{nc}\,\Delta T_e $</div><p>With no nucleation yet, heat moves only by <strong>single-phase natural convection</strong>. Gentle slope.</p></div>
       <div class="dcard"><h4>Nucleate regime</h4><div class="sub">$5<\Delta T_e<30\,{}^{\circ}\text{C}$</div><div class="ana">🫧 Bubble burst — tiny bubbles stir fiercely</div><div class="eq">$ q'' \propto \Delta T_e^{\,3} $</div><p>Bubbles <strong>nucleate and depart</strong> from surface cavities, strongly agitating the liquid so $q''$ soars. The peak is <strong>CHF (point C)</strong>.</p></div>
-      <div class="dcard"><h4>Transition & film</h4><div class="sub">$\Delta T_e>30\,{}^{\circ}\text{C}$</div><div class="ana">☁️ Vapor blanket — a film insulates the surface</div><div class="eq">$ q'' \downarrow \ \text{then} \ \propto \Delta T_e^{\,4} $</div><p>Bubbles merge into an unstable film (transition) → stable vapor film (film boiling, beyond point D). Film boiling gains a <strong>radiation contribution</strong>.</p></div>
+      <div class="dcard"><h4>Transition & film</h4><div class="sub">$\Delta T_e>30\,{}^{\circ}\text{C}$</div><div class="ana">☁️ Vapor blanket — a film insulates the surface</div><div class="eq">$ q'' \downarrow \ \text{then} \ \propto \Delta T_e^{\,3/4} $</div><p>Bubbles merge into an unstable film (transition) → stable vapor film (film boiling, beyond point D). Film convection gives $q''\propto\Delta T_e^{\,3/4}$ (Bromley), plus an additive <strong>radiation term $\varepsilon\sigma(T_s^{4}-T_{sat}^{4})$</strong>.</p></div>
     </div>
     <div class="callout warn lang-ko"><div class="ct">주의 · 음의 기울기와 burnout</div>천이비등에서 $q''$은 $\Delta T_e$가 커질수록 <strong>오히려 감소</strong>합니다(음의 기울기 = 불안정). 열유속 제어 가열기는 CHF를 넘는 순간 천이 영역을 <strong>건너뛰고 막비등으로 급점프</strong>해 $T_s$가 폭주합니다.</div>
     <div class="callout warn lang-en"><div class="ct">Caution · negative slope & burnout</div>In transition boiling $q''$ actually <strong>decreases</strong> as $\Delta T_e$ grows (negative slope = unstable). A heat-flux-controlled heater, upon exceeding CHF, <strong>skips the transition regime and jumps to film boiling</strong>, and $T_s$ runs away.</div>
@@ -442,7 +442,7 @@
     <p class="lede lang-en">In the nucleate regime the heat flux scales with the cube of superheat ($q''\propto\Delta T_e^{3}$; the Rohsenow skeleton). Move the sliders for <strong>$\Delta T_e$</strong> and the proportionality constant $A$ to see how a small superheat change swings $q''$.</p>
     <div class="calc lang-ko"
       data-title="핵비등 열유속 $q'' = A\,\Delta T_e^{\,3}$"
-      data-desc="A = 핵비등 비례상수 [W/(m²·K³)]. 기본값 A≈18, ΔT_e=30°C → q''≈0.49 MW/m²(핵비등 상부). CHF≈1.26 MW/m²에 닿으려면 A≈47."
+      data-desc="A = 핵비등 비례상수 [W/(m²·K³)]. 기본값 A≈18, ΔT_e=15°C → q''≈6×10⁴ W/m²; ΔT_e=30°C로 올리면 q''≈0.49 MW/m²(핵비등 상부). CHF≈1.26 MW/m²에 닿으려면 A≈47."
       data-vars='[{"sym":"dT","label":"$\\Delta T_e$ · 초과온도","min":5,"max":30,"val":15,"step":1,"unit":"°C"},{"sym":"A","label":"$A$ · 비례상수","min":5,"max":50,"val":18,"step":1,"unit":""}]'
       data-expr="A*dT**3"
       data-out="$q''$" data-out-unit="$\text{W/m}^2$"
@@ -450,7 +450,7 @@
       data-note="ΔT_e를 2배(15→30°C)로 올리면 q''은 약 8배가 됩니다 — 핵비등의 가파른 세제곱 거동."></div>
     <div class="calc lang-en"
       data-title="Nucleate heat flux $q'' = A\,\Delta T_e^{\,3}$"
-      data-desc="A = nucleate proportionality constant [W/(m²·K³)]. Default A≈18, ΔT_e=30°C → q''≈0.49 MW/m² (upper nucleate). Reaching CHF≈1.26 MW/m² needs A≈47."
+      data-desc="A = nucleate proportionality constant [W/(m²·K³)]. Default A≈18, ΔT_e=15°C → q''≈6×10⁴ W/m²; raising ΔT_e to 30°C gives q''≈0.49 MW/m² (upper nucleate). Reaching CHF≈1.26 MW/m² needs A≈47."
       data-vars='[{"sym":"dT","label":"$\\Delta T_e$ · excess temp.","min":5,"max":30,"val":15,"step":1,"unit":"°C"},{"sym":"A","label":"$A$ · proportionality const","min":5,"max":50,"val":18,"step":1,"unit":""}]'
       data-expr="A*dT**3"
       data-out="$q''$" data-out-unit="$\text{W/m}^2$"
@@ -472,7 +472,7 @@
         <button class="opt">③ 열유속 $q''$</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 비등 곡선의 가로축은 포화온도를 기준으로 한 과열도, 곧 초과온도 $\Delta T_e=T_s-T_{sat}$이다. <span class="dim">오답 ①·③: ①$T_s$ 자체가 아니라 포화온도와의 차이가 비등 거동을 결정하고, ③$q''$은 세로축이다.</span> <span class="agg">학급 n=38 · ① 7 · ② 27 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 비등 곡선의 가로축은 포화온도를 기준으로 한 과열도, 곧 초과온도 $\Delta T_e=T_s-T_{sat}$이다. <span class="dim">오답 ①·③: ①$T_s$ 자체가 아니라 포화온도와의 차이가 비등 거동을 결정하고, ③$q''$은 세로축이다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>What is the <strong>horizontal axis</strong> of the pool boiling curve?</p>
@@ -482,7 +482,7 @@
         <button class="opt">③ heat flux $q''$</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — the horizontal axis is the superheat measured from saturation, i.e. the excess temperature $\Delta T_e=T_s-T_{sat}$. <span class="dim">Wrong ①·③: ① it is the difference from saturation, not $T_s$ alone, that sets boiling behavior; ③ $q''$ is the vertical axis.</span> <span class="agg">class n=38 · ① 7 · ② 27 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — the horizontal axis is the superheat measured from saturation, i.e. the excess temperature $\Delta T_e=T_s-T_{sat}$. <span class="dim">Wrong ①·③: ① it is the difference from saturation, not $T_s$ alone, that sets boiling behavior; ③ $q''$ is the vertical axis.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span>열유속을 제어하며 CHF를 넘으면 무슨 일이 생깁니까?</p>
@@ -492,7 +492,7 @@
         <button class="opt">③ 열유속이 더 커지며 비등이 안정화된다</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 천이비등은 음의 기울기라 열유속 제어로는 불안정해 곡선이 점 C(CHF)에서 막비등으로 수직 점프하고 표면온도가 수백 ${}^{\circ}\text{C}$ 치솟는다(Nukiyama burnout). <span class="dim">오답 ①·③: ①천이는 건너뛰어지고, ③CHF는 핵비등의 천장이라 그 이상에서 더 안정되지 않는다.</span> <span class="agg">학급 n=38 · ① 12 · ② 22 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 천이비등은 음의 기울기라 열유속 제어로는 불안정해 곡선이 점 C(CHF)에서 막비등으로 수직 점프하고 표면온도가 수백 ${}^{\circ}\text{C}$ 치솟는다(Nukiyama burnout). <span class="dim">오답 ①·③: ①천이는 건너뛰어지고, ③CHF는 핵비등의 천장이라 그 이상에서 더 안정되지 않는다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>Under heat-flux control, what happens when CHF is exceeded?</p>
@@ -502,7 +502,7 @@
         <button class="opt">③ the flux keeps rising and boiling stabilizes</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — transition boiling has a negative slope, so under flux control it is unstable; the curve jumps vertically from point C (CHF) to film boiling and the surface temperature spikes by hundreds of ${}^{\circ}\text{C}$ (Nukiyama burnout). <span class="dim">Wrong ①·③: ① the transition is skipped; ③ CHF is the nucleate ceiling, so boiling does not stabilize above it.</span> <span class="agg">class n=38 · ① 12 · ② 22 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — transition boiling has a negative slope, so under flux control it is unstable; the curve jumps vertically from point C (CHF) to film boiling and the surface temperature spikes by hundreds of ${}^{\circ}\text{C}$ (Nukiyama burnout). <span class="dim">Wrong ①·③: ① the transition is skipped; ③ CHF is the nucleate ceiling, so boiling does not stabilize above it.</span></div>
     </div>
   </section>
 
@@ -900,7 +900,7 @@
       <button class="opt">③ $\Delta p$는 커지지만 과열도는 변하지 않는다</button>
     </div>
     <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-    <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $\Delta p=2\sigma/r$과 $\Delta T_{sup}=2\sigma T_{sat}/(\rho_v h_{fg} r)$는 모두 $1/r$에 비례하므로, $r$이 작아지면 함께 커진다. <span class="dim">오답 ①·③: 반비례라 감소하지 않으며, 과열도도 압력 도약과 같은 $1/r$ 의존성을 가진다.</span> <span class="agg">학급 n=41 · ① 6 · ② 30 · ③ 5</span></div>
+    <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $\Delta p=2\sigma/r$과 $\Delta T_{sup}=2\sigma T_{sat}/(\rho_v h_{fg} r)$는 모두 $1/r$에 비례하므로, $r$이 작아지면 함께 커진다. <span class="dim">오답 ①·③: 반비례라 감소하지 않으며, 과열도도 압력 도약과 같은 $1/r$ 의존성을 가진다.</span></div>
   </div>
   <div class="cq lang-en">
     <p class="qtext"><span class="qn">Q1.</span>As the bubble radius $r$ shrinks (a smaller embryo), what happens to $\Delta p$ and the required superheat?</p>
@@ -910,7 +910,7 @@
       <button class="opt">③ $\Delta p$ increases but the superheat is unchanged</button>
     </div>
     <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-    <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ②</b> — both $\Delta p=2\sigma/r$ and $\Delta T_{sup}=2\sigma T_{sat}/(\rho_v h_{fg} r)$ scale as $1/r$, so both grow as $r$ shrinks. <span class="dim">Wrong ①·③: the relation is inverse (not decreasing), and the superheat carries the same $1/r$ dependence as the pressure jump.</span> <span class="agg">Class n=41 · ① 6 · ② 30 · ③ 5</span></div>
+    <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ②</b> — both $\Delta p=2\sigma/r$ and $\Delta T_{sup}=2\sigma T_{sat}/(\rho_v h_{fg} r)$ scale as $1/r$, so both grow as $r$ shrinks. <span class="dim">Wrong ①·③: the relation is inverse (not decreasing), and the superheat carries the same $1/r$ dependence as the pressure jump.</span></div>
   </div>
   <div class="cq lang-ko">
     <p class="qtext"><span class="qn">Q2.</span>매끈하고 깨끗한 표면에서 액체가 큰 과열도까지 끓지 않는 이유는?</p>
@@ -920,7 +920,7 @@
       <button class="opt">③ 표면장력 $\sigma$가 0이 되기 때문</button>
     </div>
     <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-    <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 매끈한 표면은 기체를 가둔 미세 홈이 없어 유한 반지름 배아를 못 만든다. $r\to0$이면 $\Delta T_{sup}\propto 1/r$가 폭증해 큰 과열도까지 준안정 상태로 버틴다. <span class="dim">오답 ①·③: $h_{fg}$·$\sigma$는 물성으로 표면 거칠기와 무관하며, $\sigma=0$은 물리적으로 성립하지 않는다.</span> <span class="agg">학급 n=41 · ① 8 · ② 28 · ③ 5</span></div>
+    <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 매끈한 표면은 기체를 가둔 미세 홈이 없어 유한 반지름 배아를 못 만든다. $r\to0$이면 $\Delta T_{sup}\propto 1/r$가 폭증해 큰 과열도까지 준안정 상태로 버틴다. <span class="dim">오답 ①·③: $h_{fg}$·$\sigma$는 물성으로 표면 거칠기와 무관하며, $\sigma=0$은 물리적으로 성립하지 않는다.</span></div>
   </div>
   <div class="cq lang-en">
     <p class="qtext"><span class="qn">Q2.</span>Why does a liquid on a smooth, clean surface stay unboiled up to a large superheat?</p>
@@ -930,7 +930,7 @@
       <button class="opt">③ because the surface tension $\sigma$ drops to zero</button>
     </div>
     <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-    <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ②</b> — a smooth surface has no gas-trapping cavities to seed a finite-radius embryo. As $r\to0$, $\Delta T_{sup}\propto 1/r$ blows up, so the liquid holds a metastable state to a large superheat. <span class="dim">Wrong ①·③: $h_{fg}$ and $\sigma$ are properties independent of roughness, and $\sigma=0$ is unphysical.</span> <span class="agg">Class n=41 · ① 8 · ② 28 · ③ 5</span></div>
+    <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ②</b> — a smooth surface has no gas-trapping cavities to seed a finite-radius embryo. As $r\to0$, $\Delta T_{sup}\propto 1/r$ blows up, so the liquid holds a metastable state to a large superheat. <span class="dim">Wrong ①·③: $h_{fg}$ and $\sigma$ are properties independent of roughness, and $\sigma=0$ is unphysical.</span></div>
   </div>
 </section>
 
@@ -1288,8 +1288,8 @@
     data-barmax="1"
     data-note="θ=45°→f≈0.94 (almost no reduction), θ=90°→f=0.5, θ=150°→f≈0.013 (barrier ~77× lower). Better wetting → closer to 1 → higher incipient superheat."></div>
 
-  <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 불균질 계수 $f(\theta)$ 감: 완전 젖음 표면($\theta\approx 5\text{–}10^\circ$, 유전성·비극성 유체) $f\approx 1.00$ — 장벽 그대로라 <strong>높은 개시 과열도</strong> 필요 · 물–금속($\theta\approx 50\text{–}90^\circ$) $f\approx 0.5\text{–}0.99$ · 거친·소수성 표면·재진입 공동($\theta\gtrsim 120^\circ$) $f\lesssim 0.05$ — 장벽이 수십 배 줄어 <strong>몇 K</strong> 과열도에서 비등 개시. 그래서 균질 한계(물 $\approx 300\,{}^{\circ}\text{C}$)와 달리 실제 비등은 수 $^{\circ}\text{C}$에서 시작한다. <span class="src">(출처: $f(\theta)$ = Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2e, Ch.5.2; 물 초과열 한계 $\approx 300\,{}^{\circ}\text{C}$ = 운동학적 한계 $\sim 0.9\,T_c$)</span></div>
-  <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — a feel for $f(\theta)$: perfectly wetting surface ($\theta\approx 5\text{–}10^\circ$, dielectric/non-polar fluids) $f\approx 1.00$ — barrier intact, so a <strong>high incipient superheat</strong> is needed · water–metal ($\theta\approx 50\text{–}90^\circ$) $f\approx 0.5\text{–}0.99$ · rough/hydrophobic surfaces &amp; reentrant cavities ($\theta\gtrsim 120^\circ$) $f\lesssim 0.05$ — barrier tens× smaller, so boiling begins at <strong>a few K</strong>. That is why real boiling starts at a few $^{\circ}\text{C}$, unlike the homogeneous limit ($\approx 300\,{}^{\circ}\text{C}$ for water). <span class="src">(Source: $f(\theta)$ = Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2e, Ch.5.2; water superheat limit $\approx 300\,{}^{\circ}\text{C}$ = kinetic limit $\sim 0.9\,T_c$)</span></div>
+  <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 불균질 계수 $f(\theta)$ 감: 완전 젖음 표면($\theta\approx 5\text{–}10^\circ$, 유전성·비극성 유체) $f\approx 1.00$ — 장벽 그대로라 <strong>높은 개시 과열도</strong> 필요 · 물–금속($\theta\approx 50\text{–}90^\circ$) $f\approx 0.5\text{–}0.92$ · 거친·소수성 표면·재진입 공동($\theta\gtrsim 135\text{–}140^\circ$) $f\lesssim 0.05$ — 장벽이 수십 배 줄어 <strong>몇 K</strong> 과열도에서 비등 개시. 그래서 균질 한계(물 $\approx 300\,{}^{\circ}\text{C}$)와 달리 실제 비등은 수 $^{\circ}\text{C}$에서 시작한다. <span class="src">(출처: $f(\theta)$ = Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2e, Ch.5.2; 물 초과열 한계 $\approx 300\,{}^{\circ}\text{C}$ = 운동학적 한계 $\sim 0.9\,T_c$)</span></div>
+  <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — a feel for $f(\theta)$: perfectly wetting surface ($\theta\approx 5\text{–}10^\circ$, dielectric/non-polar fluids) $f\approx 1.00$ — barrier intact, so a <strong>high incipient superheat</strong> is needed · water–metal ($\theta\approx 50\text{–}90^\circ$) $f\approx 0.5\text{–}0.92$ · rough/hydrophobic surfaces &amp; reentrant cavities ($\theta\gtrsim 135\text{–}140^\circ$) $f\lesssim 0.05$ — barrier tens× smaller, so boiling begins at <strong>a few K</strong>. That is why real boiling starts at a few $^{\circ}\text{C}$, unlike the homogeneous limit ($\approx 300\,{}^{\circ}\text{C}$ for water). <span class="src">(Source: $f(\theta)$ = Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2e, Ch.5.2; water superheat limit $\approx 300\,{}^{\circ}\text{C}$ = kinetic limit $\sim 0.9\,T_c$)</span></div>
 </section>
 
 <!-- ══════════ 1-3 / 점검 ══════════ -->
@@ -1305,7 +1305,7 @@
       <button class="opt">③ 즉시 임계 크기로 폭발 성장한다</button>
     </div>
     <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-    <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $r<r^*$에서는 $\Delta G(r)$가 증가(오르막)하므로 계는 자유에너지를 낮추려 배아를 줄인다 → 재응축. 자발 성장(내리막)은 $r>r^*$에서만 일어난다. <span class="dim">오답 ①·③: ①불안정 평형이 아니라 소멸하고, ③폭발 성장은 장벽을 넘은 뒤의 거동이다.</span> <span class="agg">학급 n=37 · ① 6 · ② 27 · ③ 4</span></div>
+    <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $r<r^*$에서는 $\Delta G(r)$가 증가(오르막)하므로 계는 자유에너지를 낮추려 배아를 줄인다 → 재응축. 자발 성장(내리막)은 $r>r^*$에서만 일어난다. <span class="dim">오답 ①·③: ①불안정 평형이 아니라 소멸하고, ③폭발 성장은 장벽을 넘은 뒤의 거동이다.</span></div>
   </div>
   <div class="cq lang-ko">
     <p class="qtext"><span class="qn">Q2.</span>거의 완전히 젖는 표면($\theta\to 0$, 비극성 유체 특성)에서 불균질 계수 $f(\theta)$와 개시 과열도는?</p>
@@ -1315,7 +1315,7 @@
       <button class="opt">③ $f\to 0.5$ — 접촉각과 무관하다</button>
     </div>
     <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-    <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $f(0^\circ)=1$이므로 $\Delta G^*_{het}=\Delta G^*_{hom}$, 장벽 감소가 없다. 완전 젖음 액체는 공동을 물로 채워 증기를 못 가둬 잘 안 끓고, 더 높은 과열도가 필요하다. <span class="dim">오답 ①·③: ①$f\to 0$은 비젖음($\theta\to 180^\circ$)의 거동, ③$f$는 접촉각에 강하게 의존한다.</span> <span class="agg">학급 n=37 · ① 12 · ② 21 · ③ 4</span></div>
+    <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $f(0^\circ)=1$이므로 $\Delta G^*_{het}=\Delta G^*_{hom}$, 장벽 감소가 없다. 완전 젖음 액체는 공동을 물로 채워 증기를 못 가둬 잘 안 끓고, 더 높은 과열도가 필요하다. <span class="dim">오답 ①·③: ①$f\to 0$은 비젖음($\theta\to 180^\circ$)의 거동, ③$f$는 접촉각에 강하게 의존한다.</span></div>
   </div>
 
   <div class="cq lang-en">
@@ -1326,7 +1326,7 @@
       <button class="opt">③ It immediately grows explosively to critical size</button>
     </div>
     <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-    <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ②</b> — For $r<r^*$, $\Delta G(r)$ increases (uphill), so the system lowers its free energy by shrinking the embryo → recondensation. Spontaneous growth (downhill) happens only for $r>r^*$. <span class="dim">Wrong ①·③: ① it vanishes rather than persisting; ③ explosive growth is the behavior after the barrier is crossed.</span> <span class="agg">Class n=37 · ① 6 · ② 27 · ③ 4</span></div>
+    <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ②</b> — For $r<r^*$, $\Delta G(r)$ increases (uphill), so the system lowers its free energy by shrinking the embryo → recondensation. Spontaneous growth (downhill) happens only for $r>r^*$. <span class="dim">Wrong ①·③: ① it vanishes rather than persisting; ③ explosive growth is the behavior after the barrier is crossed.</span></div>
   </div>
   <div class="cq lang-en">
     <p class="qtext"><span class="qn">Q2.</span>On a nearly perfectly wetting surface ($\theta\to 0$, typical of non-polar fluids), what are $f(\theta)$ and the incipient superheat?</p>
@@ -1336,7 +1336,7 @@
       <button class="opt">③ $f\to 0.5$ — independent of contact angle</button>
     </div>
     <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-    <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ②</b> — Since $f(0^\circ)=1$, $\Delta G^*_{het}=\Delta G^*_{hom}$, i.e. no reduction. A perfectly wetting liquid floods cavities and cannot trap vapor, so it boils poorly and needs higher superheat. <span class="dim">Wrong ①·③: ① $f\to 0$ is the non-wetting limit ($\theta\to 180^\circ$); ③ $f$ depends strongly on the contact angle.</span> <span class="agg">Class n=37 · ① 12 · ② 21 · ③ 4</span></div>
+    <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ②</b> — Since $f(0^\circ)=1$, $\Delta G^*_{het}=\Delta G^*_{hom}$, i.e. no reduction. A perfectly wetting liquid floods cavities and cannot trap vapor, so it boils poorly and needs higher superheat. <span class="dim">Wrong ①·③: ① $f\to 0$ is the non-wetting limit ($\theta\to 180^\circ$); ③ $f$ depends strongly on the contact angle.</span></div>
   </div>
 </section>
 
@@ -1346,16 +1346,16 @@
   <div class="panel-head lang-en"><span class="tag">Problems</span><span class="panel-title">Engineering calc · Auto-graded</span></div>
 
   <div class="prob lang-ko">
-    <div class="prob-num">연습 1 · 기본 · 임계 반경 $r^*$</div>
-    <p class="prob-statement">대기압 포화수($\sigma=0.0589\ \text{N/m}$, $T_{sat}=373\ \text{K}$, $\rho_v=0.596\ \text{kg/m}^3$, $h_{fg}=2.257\times10^6\ \text{J/kg}$)가 과열도 $\Delta T_{sup}=5\ \text{K}$로 초과열되어 있다. <strong>균질 임계 반경 $r^*$</strong>를 $\mu\text{m}$로 구하시오.</p>
-    <div class="given"><span class="chip">$\sigma=0.0589$</span><span class="chip">$T_{sat}=373\ \text{K}$</span><span class="chip">$\rho_v=0.596$</span><span class="chip">$h_{fg}=2.257\times10^6$</span><span class="chip">$\Delta T_{sup}=5\ \text{K}$</span></div>
+    <div class="prob-num">연습 1 · 기본 · 임계 반경 $r^*$ — 유전체 FC-72</div>
+    <p class="prob-statement">대기압 포화 FC-72($\sigma=0.0084\ \text{N/m}$, $T_{sat}=329\ \text{K}$, $\rho_v=13.4\ \text{kg/m}^3$, $h_{fg}=8.8\times10^4\ \text{J/kg}$)가 과열도 $\Delta T_{sup}=5\ \text{K}$로 초과열되어 있다. <strong>균질 임계 반경 $r^*$</strong>를 $\mu\text{m}$로 구하시오. (같은 5 K의 물이라면 $r^*\approx 6.5\ \mu\text{m}$ — 1-2장 연습 2의 역산.)</p>
+    <div class="given"><span class="chip">$\sigma=0.0084$</span><span class="chip">$T_{sat}=329\ \text{K}$</span><span class="chip">$\rho_v=13.4$</span><span class="chip">$h_{fg}=8.8\times10^4$</span><span class="chip">$\Delta T_{sup}=5\ \text{K}$</span></div>
     <div class="find"><b>구할 것:</b> $r^*\ [\mu\text{m}]$</div>
-    <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="6.53" data-tol="0.03"/><span class="ans-unit">$\mu\text{m}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+    <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="0.94" data-tol="0.03"/><span class="ans-unit">$\mu\text{m}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
     <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
     <div class="revealable solution">
-      <div class="dstep2"><div class="step-label">Step 1 · Clausius–Clapeyron으로 $\Delta p$</div>$$ \Delta p=\frac{\rho_v h_{fg}\,\Delta T_{sup}}{T_{sat}}=\frac{0.596\times 2.257\times10^6\times 5}{373}\approx 1.80\times10^{4}\ \text{Pa} $$</div>
-      <div class="dstep2"><div class="step-label">Step 2 · $r^*=2\sigma/\Delta p$</div>$$ r^*=\frac{2\times 0.0589}{1.80\times10^{4}}\approx 6.53\times10^{-6}\ \text{m} $$</div>
-      <div class="ans-final"><div class="ans-eq">$$ r^*\approx 6.53\ \mu\text{m} $$</div><b>정답:</b> $r^*\propto 1/\Delta T_{sup}$ — 과열도가 커지면 임계 반경은 작아진다.</div>
+      <div class="dstep2"><div class="step-label">Step 1 · Clausius–Clapeyron으로 $\Delta p$</div>$$ \Delta p=\frac{\rho_v h_{fg}\,\Delta T_{sup}}{T_{sat}}=\frac{13.4\times 8.8\times10^4\times 5}{329}\approx 1.79\times10^{4}\ \text{Pa} $$</div>
+      <div class="dstep2"><div class="step-label">Step 2 · $r^*=2\sigma/\Delta p$</div>$$ r^*=\frac{2\times 0.0084}{1.79\times10^{4}}\approx 9.4\times10^{-7}\ \text{m} $$</div>
+      <div class="ans-final"><div class="ans-eq">$$ r^*\approx 0.94\ \mu\text{m} $$</div><b>정답:</b> 작은 $\sigma$ 덕분에 같은 5 K에서 물($6.5\ \mu\text{m}$)보다 배아가 약 7배 작아도 생존 — 유전체가 낮은 과열도에서 쉽게 핵생성하는 이유.</div>
     </div>
   </div>
 
@@ -1374,16 +1374,16 @@
   </div>
 
   <div class="prob lang-en">
-    <div class="prob-num">Problem 1 · Basic · Critical radius $r^*$</div>
-    <p class="prob-statement">Saturated water at 1&nbsp;atm ($\sigma=0.0589\ \text{N/m}$, $T_{sat}=373\ \text{K}$, $\rho_v=0.596\ \text{kg/m}^3$, $h_{fg}=2.257\times10^6\ \text{J/kg}$) is superheated by $\Delta T_{sup}=5\ \text{K}$. Find the <strong>homogeneous critical radius $r^*$</strong> in $\mu\text{m}$.</p>
-    <div class="given"><span class="chip">$\sigma=0.0589$</span><span class="chip">$T_{sat}=373\ \text{K}$</span><span class="chip">$\rho_v=0.596$</span><span class="chip">$h_{fg}=2.257\times10^6$</span><span class="chip">$\Delta T_{sup}=5\ \text{K}$</span></div>
+    <div class="prob-num">Problem 1 · Basic · Critical radius $r^*$ — dielectric FC-72</div>
+    <p class="prob-statement">Saturated FC-72 at 1&nbsp;atm ($\sigma=0.0084\ \text{N/m}$, $T_{sat}=329\ \text{K}$, $\rho_v=13.4\ \text{kg/m}^3$, $h_{fg}=8.8\times10^4\ \text{J/kg}$) is superheated by $\Delta T_{sup}=5\ \text{K}$. Find the <strong>homogeneous critical radius $r^*$</strong> in $\mu\text{m}$. (Water at the same 5 K would give $r^*\approx 6.5\ \mu\text{m}$ — the inverse of ch. 1-2, Problem 2.)</p>
+    <div class="given"><span class="chip">$\sigma=0.0084$</span><span class="chip">$T_{sat}=329\ \text{K}$</span><span class="chip">$\rho_v=13.4$</span><span class="chip">$h_{fg}=8.8\times10^4$</span><span class="chip">$\Delta T_{sup}=5\ \text{K}$</span></div>
     <div class="find"><b>Find:</b> $r^*\ [\mu\text{m}]$</div>
-    <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="6.53" data-tol="0.03"/><span class="ans-unit">$\mu\text{m}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+    <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="0.94" data-tol="0.03"/><span class="ans-unit">$\mu\text{m}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
     <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
     <div class="revealable solution">
-      <div class="dstep2"><div class="step-label">Step 1 · $\Delta p$ from Clausius–Clapeyron</div>$$ \Delta p=\frac{\rho_v h_{fg}\,\Delta T_{sup}}{T_{sat}}=\frac{0.596\times 2.257\times10^6\times 5}{373}\approx 1.80\times10^{4}\ \text{Pa} $$</div>
-      <div class="dstep2"><div class="step-label">Step 2 · $r^*=2\sigma/\Delta p$</div>$$ r^*=\frac{2\times 0.0589}{1.80\times10^{4}}\approx 6.53\times10^{-6}\ \text{m} $$</div>
-      <div class="ans-final"><div class="ans-eq">$$ r^*\approx 6.53\ \mu\text{m} $$</div><b>Answer:</b> $r^*\propto 1/\Delta T_{sup}$ — higher superheat means a smaller critical radius.</div>
+      <div class="dstep2"><div class="step-label">Step 1 · $\Delta p$ from Clausius–Clapeyron</div>$$ \Delta p=\frac{\rho_v h_{fg}\,\Delta T_{sup}}{T_{sat}}=\frac{13.4\times 8.8\times10^4\times 5}{329}\approx 1.79\times10^{4}\ \text{Pa} $$</div>
+      <div class="dstep2"><div class="step-label">Step 2 · $r^*=2\sigma/\Delta p$</div>$$ r^*=\frac{2\times 0.0084}{1.79\times10^{4}}\approx 9.4\times10^{-7}\ \text{m} $$</div>
+      <div class="ans-final"><div class="ans-eq">$$ r^*\approx 0.94\ \mu\text{m} $$</div><b>Answer:</b> thanks to the small $\sigma$, an embryo about 7× smaller than water's ($6.5\ \mu\text{m}$) survives at the same 5 K — why dielectrics nucleate readily at low superheat.</div>
     </div>
   </div>
 
@@ -1540,7 +1540,7 @@
       </div>
       <div class="col2">
         <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>유전체 선택 이유 = <strong>비전도·불활성</strong>(성능 아님).</li><li>대가 = <strong>낮은 $h_{fg}$·$\sigma$ → 낮은 CHF</strong>.</li><li>$\theta\!\approx\!0$ → 비등 개시 시 <strong>과열도 오버슈트</strong>.</li><li>표면 가공으로 CHF 보강이 실무 핵심.</li></ul></div>
-        <p class="readmeta">참고: Bar-Cohen, Arik &amp; Hendrix (2006) <em>Direct liquid cooling of high flux micro/nano electronics</em>; You, Simon &amp; Bar-Cohen (1990) <em>ASME J. Heat Transfer</em>; 3M Novec™ 자료.</p>
+        <p class="readmeta">참고: Bar-Cohen, Arik &amp; Ohadi (2006) <em>Direct liquid cooling of high flux micro/nano electronics</em>, <em>Proc. IEEE</em> 94(8); You, Simon &amp; Bar-Cohen (1990) <em>ASME J. Heat Transfer</em>; 3M Novec™ 자료.</p>
       </div>
     </div>
     <div class="two lang-en">
@@ -1551,7 +1551,7 @@
       </div>
       <div class="col2">
         <div class="callout key"><div class="ct">What you must know</div><ul><li>Why dielectrics = <strong>insulating &amp; inert</strong> (not performance).</li><li>Price = <strong>low $h_{fg}$, $\sigma$ → low CHF</strong>.</li><li>$\theta\!\approx\!0$ → <strong>superheat overshoot</strong> at onset.</li><li>Surface engineering to boost CHF is the practical key.</li></ul></div>
-        <p class="readmeta">Refs: Bar-Cohen, Arik &amp; Hendrix (2006) <em>Direct liquid cooling of high flux micro/nano electronics</em>; You, Simon &amp; Bar-Cohen (1990) <em>ASME J. Heat Transfer</em>; 3M Novec™ data.</p>
+        <p class="readmeta">Refs: Bar-Cohen, Arik &amp; Ohadi (2006) <em>Direct liquid cooling of high flux micro/nano electronics</em>, <em>Proc. IEEE</em> 94(8); You, Simon &amp; Bar-Cohen (1990) <em>ASME J. Heat Transfer</em>; 3M Novec™ data.</p>
       </div>
     </div>
   </section>
@@ -1670,7 +1670,7 @@
         <button class="opt">③ 증기 밀도 $\rho_v$가 물보다 작기 때문</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — Zuber $q''_{max}\propto h_{fg}\rho_v^{1/2}\sigma^{1/4}$에서 잠열은 <strong>1차(선형)</strong>로 가장 크게 작용하고, 유전체는 잠열이 물의 1/13~1/25라 CHF가 급감한다. <span class="dim">오답 ①·③: ①유전체는 오히려 접촉각이 $\approx0°$(잘 젖음)이고, ③FC-72 등은 고분자량이라 $\rho_v$가 오히려 커서 CHF를 조금 올리는 방향이다.</span> <span class="agg">학급 n=34 · ① 6 · ② 24 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — Zuber $q''_{max}\propto h_{fg}\rho_v^{1/2}\sigma^{1/4}$에서 잠열은 <strong>1차(선형)</strong>로 가장 크게 작용하고, 유전체는 잠열이 물의 1/13~1/25라 CHF가 급감한다. <span class="dim">오답 ①·③: ①유전체는 오히려 접촉각이 $\approx0°$(잘 젖음)이고, ③FC-72 등은 고분자량이라 $\rho_v$가 오히려 커서 CHF를 조금 올리는 방향이다.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span>CHF가 낮은데도 전자기기 <strong>침수냉각</strong>에 FC-72·HFE-7100을 쓰는 주된 이유는?</p>
@@ -1680,7 +1680,7 @@
         <button class="opt" data-correct="1">③ 전기 비전도(유전체)·화학적 불활성이라 부품에 직접 닿아도 단락·부식이 없기 때문</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ③</b> — 침수냉각은 액이 회로에 직접 닿으므로 <strong>비전도·불활성</strong>이 절대 조건이다. 유전체는 성능(CHF)을 희생하고 이 조건을 산다. <span class="dim">오답 ①·②: ①유전체 잠열은 물보다 작고, ②표면장력도 물보다 작다 — 둘 다 사실과 반대.</span> <span class="agg">학급 n=34 · ① 4 · ② 5 · ③ 25</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ③</b> — 침수냉각은 액이 회로에 직접 닿으므로 <strong>비전도·불활성</strong>이 절대 조건이다. 유전체는 성능(CHF)을 희생하고 이 조건을 산다. <span class="dim">오답 ①·②: ①유전체 잠열은 물보다 작고, ②표면장력도 물보다 작다 — 둘 다 사실과 반대.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>The <strong>main reason</strong> non-polar / dielectric fluids have much lower CHF than water?</p>
@@ -1690,7 +1690,7 @@
         <button class="opt">③ Their vapor density $\rho_v$ is smaller than water's</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ②</b> — In Zuber $q''_{max}\propto h_{fg}\rho_v^{1/2}\sigma^{1/4}$, latent heat acts <strong>linearly</strong> and dominates; a dielectric's $h_{fg}$ is 1/13–1/25 of water, so CHF collapses. <span class="dim">Wrong ①·③: ① dielectrics actually have $\theta\!\approx\!0°$ (wet very well), and ③ FC-72 is heavy so its $\rho_v$ is larger, nudging CHF up.</span> <span class="agg">Class n=34 · ① 6 · ② 24 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ②</b> — In Zuber $q''_{max}\propto h_{fg}\rho_v^{1/2}\sigma^{1/4}$, latent heat acts <strong>linearly</strong> and dominates; a dielectric's $h_{fg}$ is 1/13–1/25 of water, so CHF collapses. <span class="dim">Wrong ①·③: ① dielectrics actually have $\theta\!\approx\!0°$ (wet very well), and ③ FC-72 is heavy so its $\rho_v$ is larger, nudging CHF up.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>Despite low CHF, why are FC-72 / HFE-7100 chosen for electronics <strong>immersion cooling</strong>?</p>
@@ -1700,7 +1700,7 @@
         <button class="opt" data-correct="1">③ They are electrically insulating (dielectric) and inert, so contact with live parts causes no shorting or corrosion</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ③</b> — Immersion cooling puts liquid in direct contact with the circuit, so being <strong>insulating and inert</strong> is mandatory. Dielectrics sacrifice performance (CHF) to buy this. <span class="dim">Wrong ①·②: ① dielectric latent heat is lower than water's, and ② their surface tension is lower too — both are the opposite of the truth.</span> <span class="agg">Class n=34 · ① 4 · ② 5 · ③ 25</span></div>
+      <div class="cp-exp"><b class="exp-h">Solution</b> <b class="ok">Answer ③</b> — Immersion cooling puts liquid in direct contact with the circuit, so being <strong>insulating and inert</strong> is mandatory. Dielectrics sacrifice performance (CHF) to buy this. <span class="dim">Wrong ①·②: ① dielectric latent heat is lower than water's, and ② their surface tension is lower too — both are the opposite of the truth.</span></div>
     </div>
   </section>
 
@@ -2084,7 +2084,7 @@
         <button class="opt">③ 표면의 모든 구덩이가 동시에 활성화된다</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 곡률 과열 $\Delta T_{sat}\propto 1/r_c$ 때문에 너무 작은 구덩이는 요구 과열이 커 활성 안 되고, 너무 큰 구덩이는 열경계층 밖이라 데워지지 않으므로 <strong>활성은 반경 window(밴드)</strong> 안에서만 일어난다(Hsu 1962). <span class="dim">오답 ①·③: ①작은 구덩이는 오히려 더 큰 과열을 요구하고, ③모두 동시가 아니라 window 안만.</span> <span class="agg">학급 n=41 · ① 9 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 곡률 과열 $\Delta T_{sat}\propto 1/r_c$ 때문에 너무 작은 구덩이는 요구 과열이 커 활성 안 되고, 너무 큰 구덩이는 열경계층 밖이라 데워지지 않으므로 <strong>활성은 반경 window(밴드)</strong> 안에서만 일어난다(Hsu 1962). <span class="dim">오답 ①·③: ①작은 구덩이는 오히려 더 큰 과열을 요구하고, ③모두 동시가 아니라 window 안만.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>Which best describes cavity activation at a given $\Delta T_e$?</p>
@@ -2094,7 +2094,7 @@
         <button class="opt">③ every cavity on the surface activates at once</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — because curvature superheat $\Delta T_{sat}\propto 1/r_c$, cavities too small demand too much superheat and cavities too large sit outside the thermal layer, so <strong>activation occurs only within a radius window (band)</strong> (Hsu 1962). <span class="dim">Wrong ①·③: ① small cavities actually need more superheat; ③ not all at once, only within the window.</span> <span class="agg">class n=41 · ① 9 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — because curvature superheat $\Delta T_{sat}\propto 1/r_c$, cavities too small demand too much superheat and cavities too large sit outside the thermal layer, so <strong>activation occurs only within a radius window (band)</strong> (Hsu 1962). <span class="dim">Wrong ①·③: ① small cavities actually need more superheat; ③ not all at once, only within the window.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span>젖음성이 매우 좋은 매끈한 표면(예: 냉매)에서 흔히 나타나는 온도 오버슈트의 원인은?</p>
@@ -2104,7 +2104,7 @@
         <button class="opt">③ 포화온도가 낮아져 $\Delta T_e$가 저절로 작아지기 때문</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ①</b> — 젖음성이 좋으면 액체가 작은 구덩이까지 파고들어 <strong>갇힌 기체 씨앗을 지워</strong> 활성 사이트가 사라진다. 씨앗이 없으니 비등 개시에 훨씬 큰 과열이 필요해 $\Delta T_e$가 정상값보다 높이 튀었다가(오버슈트) 개시 후 급락하는 이력을 보인다(비극성·저표면장력 유체에서 특히 큼). <span class="dim">오답 ②·③: 열전도도나 포화온도 변화가 아니라 씨앗 소멸이 원인.</span> <span class="agg">학급 n=41 · ① 30 · ② 7 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ①</b> — 젖음성이 좋으면 액체가 작은 구덩이까지 파고들어 <strong>갇힌 기체 씨앗을 지워</strong> 활성 사이트가 사라진다. 씨앗이 없으니 비등 개시에 훨씬 큰 과열이 필요해 $\Delta T_e$가 정상값보다 높이 튀었다가(오버슈트) 개시 후 급락하는 이력을 보인다(비극성·저표면장력 유체에서 특히 큼). <span class="dim">오답 ②·③: 열전도도나 포화온도 변화가 아니라 씨앗 소멸이 원인.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>What causes the temperature overshoot common on very well-wetting smooth surfaces (e.g. refrigerants)?</p>
@@ -2114,7 +2114,7 @@
         <button class="opt">③ the saturation temperature drops so $\Delta T_e$ shrinks by itself</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ①</b> — good wetting lets liquid penetrate small cavities and <strong>erase trapped gas seeds</strong>, so active sites vanish. Without seeds, onset needs far more superheat, so $\Delta T_e$ spikes above the steady value (overshoot) then drops sharply after onset — a hysteresis (especially large for non-polar, low-surface-tension fluids). <span class="dim">Wrong ②·③: the cause is seed erasure, not conductivity or a saturation-temperature change.</span> <span class="agg">class n=41 · ① 30 · ② 7 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ①</b> — good wetting lets liquid penetrate small cavities and <strong>erase trapped gas seeds</strong>, so active sites vanish. Without seeds, onset needs far more superheat, so $\Delta T_e$ spikes above the steady value (overshoot) then drops sharply after onset — a hysteresis (especially large for non-polar, low-surface-tension fluids). <span class="dim">Wrong ②·③: the cause is seed erasure, not conductivity or a saturation-temperature change.</span></div>
     </div>
   </section>
 
@@ -2123,31 +2123,31 @@
     <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
     <div class="panel-head lang-en"><span class="tag">Practice</span><span class="panel-title">Engineering calc · auto-graded</span></div>
     <div class="prob lang-ko">
-      <div class="prob-num">연습 1 · 기본 · 곡률 과열과 활성 반경</div>
-      <p class="prob-statement">대기압 물($\sigma=0.0589\ \text{N/m}$, $T_{sat}=373\ \text{K}$, $\rho_v=0.60\ \text{kg/m}^3$, $h_{fg}=2257\times10^{3}\ \text{J/kg}$)에서, 반경 $r_c=1\ \mu\text{m}$인 구덩이를 활성화하는 데 필요한 <strong>곡률 과열 $\Delta T_{sat}$</strong>을 구하시오. 관계식은 $\Delta T_{sat}=\dfrac{2\sigma T_{sat}}{\rho_v h_{fg}\, r_c}$.</p>
-      <div class="given"><span class="chip">$\sigma=0.0589\ \text{N/m}$</span><span class="chip">$T_{sat}=373\ \text{K}$</span><span class="chip">$\rho_v=0.60\ \text{kg/m}^3$</span><span class="chip">$h_{fg}=2257\ \text{kJ/kg}$</span><span class="chip">$r_c=1\times10^{-6}\ \text{m}$</span></div>
+      <div class="prob-num">연습 1 · 기본 · 곡률 과열과 활성 반경 — 가압 조건</div>
+      <p class="prob-statement">10 bar 포화수($\sigma=0.0422\ \text{N/m}$, $T_{sat}=453\ \text{K}$, $\rho_v=5.15\ \text{kg/m}^3$, $h_{fg}=2015\times10^{3}\ \text{J/kg}$)에서, 반경 $r_c=1\ \mu\text{m}$인 구덩이를 활성화하는 데 필요한 <strong>곡률 과열 $\Delta T_{sat}$</strong>을 구하시오. 관계식은 $\Delta T_{sat}=\dfrac{2\sigma T_{sat}}{\rho_v h_{fg}\, r_c}$. (1 atm에서는 같은 구덩이에 $\approx 32\ {}^{\circ}\text{C}$가 필요했다.)</p>
+      <div class="given"><span class="chip">$\sigma=0.0422\ \text{N/m}$</span><span class="chip">$T_{sat}=453\ \text{K}$</span><span class="chip">$\rho_v=5.15\ \text{kg/m}^3$</span><span class="chip">$h_{fg}=2015\ \text{kJ/kg}$</span><span class="chip">$r_c=1\times10^{-6}\ \text{m}$</span></div>
       <div class="find"><b>구할 것:</b> $\Delta T_{sat}\ [{}^{\circ}\text{C}]$</div>
-      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="32.4" data-tol="0.03"/><span class="ans-unit">${}^{\circ}\text{C}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="3.68" data-tol="0.03"/><span class="ans-unit">${}^{\circ}\text{C}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
       <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
       <div class="revealable solution">
-        <div class="dstep2"><div class="step-label">Step 1 · 분자</div>$$ 2\sigma T_{sat} = 2(0.0589)(373) = 43.9\ \text{N·K/m} $$</div>
-        <div class="dstep2"><div class="step-label">Step 2 · 분모</div>$$ \rho_v h_{fg} r_c = (0.60)(2.257\times10^{6})(1\times10^{-6}) = 1.354\ \text{N/m} $$</div>
-        <div class="dstep2"><div class="step-label">Step 3 · 대입</div>$$ \Delta T_{sat} = \frac{43.9}{1.354} \approx 32.4\ \text{K} = 32.4\ {}^{\circ}\text{C} $$</div>
-        <div class="ans-final"><div class="ans-eq">$$ \Delta T_{sat} \approx 32.4\ {}^{\circ}\text{C} $$</div><b>정답:</b> $1\ \mu\text{m}$ 구덩이는 큰 과열을 요구($\propto 1/r_c$). 더 작은 구덩이일수록 더 큰 과열이 필요하다.</div>
+        <div class="dstep2"><div class="step-label">Step 1 · 분자</div>$$ 2\sigma T_{sat} = 2(0.0422)(453) = 38.2\ \text{N·K/m} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 분모</div>$$ \rho_v h_{fg} r_c = (5.15)(2.015\times10^{6})(1\times10^{-6}) = 10.38\ \text{N/m} $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · 대입</div>$$ \Delta T_{sat} = \frac{38.2}{10.38} \approx 3.68\ \text{K} = 3.68\ {}^{\circ}\text{C} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \Delta T_{sat} \approx 3.68\ {}^{\circ}\text{C} $$</div><b>정답:</b> 가압으로 $\rho_v$가 급증(0.60→5.15)해 같은 $1\ \mu\text{m}$ 구덩이가 1 atm의 $\approx 32\ {}^{\circ}\text{C}$ 대신 약 3.7 ${}^{\circ}\text{C}$면 활성화 — 가압 시스템이 낮은 과열도에서 끓는 이유.</div>
       </div>
     </div>
     <div class="prob lang-en">
-      <div class="prob-num">Practice 1 · Basic · curvature superheat &amp; active radius</div>
-      <p class="prob-statement">For water at 1 atm ($\sigma=0.0589\ \text{N/m}$, $T_{sat}=373\ \text{K}$, $\rho_v=0.60\ \text{kg/m}^3$, $h_{fg}=2257\times10^{3}\ \text{J/kg}$), find the <strong>curvature superheat $\Delta T_{sat}$</strong> needed to activate a cavity of radius $r_c=1\ \mu\text{m}$. Use $\Delta T_{sat}=\dfrac{2\sigma T_{sat}}{\rho_v h_{fg}\, r_c}$.</p>
-      <div class="given"><span class="chip">$\sigma=0.0589\ \text{N/m}$</span><span class="chip">$T_{sat}=373\ \text{K}$</span><span class="chip">$\rho_v=0.60\ \text{kg/m}^3$</span><span class="chip">$h_{fg}=2257\ \text{kJ/kg}$</span><span class="chip">$r_c=1\times10^{-6}\ \text{m}$</span></div>
+      <div class="prob-num">Practice 1 · Basic · curvature superheat &amp; active radius — elevated pressure</div>
+      <p class="prob-statement">For saturated water at 10 bar ($\sigma=0.0422\ \text{N/m}$, $T_{sat}=453\ \text{K}$, $\rho_v=5.15\ \text{kg/m}^3$, $h_{fg}=2015\times10^{3}\ \text{J/kg}$), find the <strong>curvature superheat $\Delta T_{sat}$</strong> needed to activate a cavity of radius $r_c=1\ \mu\text{m}$. Use $\Delta T_{sat}=\dfrac{2\sigma T_{sat}}{\rho_v h_{fg}\, r_c}$. (At 1 atm the same cavity needed $\approx 32\ {}^{\circ}\text{C}$.)</p>
+      <div class="given"><span class="chip">$\sigma=0.0422\ \text{N/m}$</span><span class="chip">$T_{sat}=453\ \text{K}$</span><span class="chip">$\rho_v=5.15\ \text{kg/m}^3$</span><span class="chip">$h_{fg}=2015\ \text{kJ/kg}$</span><span class="chip">$r_c=1\times10^{-6}\ \text{m}$</span></div>
       <div class="find"><b>Find:</b> $\Delta T_{sat}\ [{}^{\circ}\text{C}]$</div>
-      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="32.4" data-tol="0.03"/><span class="ans-unit">${}^{\circ}\text{C}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="3.68" data-tol="0.03"/><span class="ans-unit">${}^{\circ}\text{C}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
       <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
       <div class="revealable solution">
-        <div class="dstep2"><div class="step-label">Step 1 · numerator</div>$$ 2\sigma T_{sat} = 2(0.0589)(373) = 43.9\ \text{N·K/m} $$</div>
-        <div class="dstep2"><div class="step-label">Step 2 · denominator</div>$$ \rho_v h_{fg} r_c = (0.60)(2.257\times10^{6})(1\times10^{-6}) = 1.354\ \text{N/m} $$</div>
-        <div class="dstep2"><div class="step-label">Step 3 · substitute</div>$$ \Delta T_{sat} = \frac{43.9}{1.354} \approx 32.4\ \text{K} = 32.4\ {}^{\circ}\text{C} $$</div>
-        <div class="ans-final"><div class="ans-eq">$$ \Delta T_{sat} \approx 32.4\ {}^{\circ}\text{C} $$</div><b>Answer:</b> a $1\ \mu\text{m}$ cavity demands a large superheat ($\propto 1/r_c$); smaller cavities need still more.</div>
+        <div class="dstep2"><div class="step-label">Step 1 · numerator</div>$$ 2\sigma T_{sat} = 2(0.0422)(453) = 38.2\ \text{N·K/m} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · denominator</div>$$ \rho_v h_{fg} r_c = (5.15)(2.015\times10^{6})(1\times10^{-6}) = 10.38\ \text{N/m} $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · substitute</div>$$ \Delta T_{sat} = \frac{38.2}{10.38} \approx 3.68\ \text{K} = 3.68\ {}^{\circ}\text{C} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \Delta T_{sat} \approx 3.68\ {}^{\circ}\text{C} $$</div><b>Answer:</b> pressurization boosts $\rho_v$ (0.60→5.15), so the same $1\ \mu\text{m}$ cavity activates at about 3.7 ${}^{\circ}\text{C}$ instead of $\approx 32\ {}^{\circ}\text{C}$ at 1 atm — why pressurized systems boil at low superheat.</div>
       </div>
     </div>
     <div class="prob lang-ko">
@@ -2452,7 +2452,7 @@
         <button class="opt">③ 변하지 않는다 — $C_{sf}$는 $\Delta T_e$와 무관</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ①</b> — $\Delta T_e \propto C_{sf}\,q''^{r}$이므로 $C_{sf}$가 작아지면 같은 $q''$에 필요한 $\Delta T_e$가 줄고, 비등 곡선이 왼쪽으로 이동해 성능이 좋아진다. <span class="dim">오답 ②·③: ②는 방향 반대, ③은 $C_{sf}$가 $\Delta T_e$에 선형으로 직접 들어가므로 무관하지 않다.</span> <span class="agg">학급 n=41 · ① 30 · ② 8 · ③ 3</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ①</b> — $\Delta T_e \propto C_{sf}\,q''^{r}$이므로 $C_{sf}$가 작아지면 같은 $q''$에 필요한 $\Delta T_e$가 줄고, 비등 곡선이 왼쪽으로 이동해 성능이 좋아진다. <span class="dim">오답 ②·③: ②는 방향 반대, ③은 $C_{sf}$가 $\Delta T_e$에 선형으로 직접 들어가므로 무관하지 않다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>In the Rohsenow correlation, if roughening the surface <strong>lowers $C_{sf}$</strong>, what happens to the superheat $\Delta T_e$ needed at the same $q''$?</p>
@@ -2462,7 +2462,7 @@
         <button class="opt">③ it is unchanged — $C_{sf}$ is independent of $\Delta T_e$</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ①</b> — since $\Delta T_e \propto C_{sf}\,q''^{r}$, a smaller $C_{sf}$ lowers the $\Delta T_e$ needed at the same $q''$; the boiling curve shifts left and performance improves. <span class="dim">Wrong ②·③: ② has the direction reversed; ③ $C_{sf}$ enters $\Delta T_e$ linearly, so it is not independent.</span> <span class="agg">class n=41 · ① 30 · ② 8 · ③ 3</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ①</b> — since $\Delta T_e \propto C_{sf}\,q''^{r}$, a smaller $C_{sf}$ lowers the $\Delta T_e$ needed at the same $q''$; the boiling curve shifts left and performance improves. <span class="dim">Wrong ②·③: ② has the direction reversed; ③ $C_{sf}$ enters $\Delta T_e$ linearly, so it is not independent.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span><strong>완전젖음 비극성 유체</strong>(접촉각 $\theta\approx0$, 예: 냉매)에서 미세/나노 <strong>구조 표면</strong>이 중요한 이유는?</p>
@@ -2472,7 +2472,7 @@
         <button class="opt">③ 유체의 표면장력 $\sigma$를 직접 낮추기 때문</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 완전젖음 유체는 매끈한 원뿔 공동을 액체로 flooding시켜 site를 죽인다. 재진입 공동의 좁은 목이 젖음선을 정지시켜 증기를 포집하므로 site가 유지되고 핵비등이 살아난다. <span class="dim">오답 ①·③: ①구조 효과의 본질은 site 유지이지 단상 대류가 아니고, ③구조는 $\sigma$(유체 물성)를 바꾸지 않는다.</span> <span class="agg">학급 n=41 · ① 9 · ② 27 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 완전젖음 유체는 매끈한 원뿔 공동을 액체로 flooding시켜 site를 죽인다. 재진입 공동의 좁은 목이 젖음선을 정지시켜 증기를 포집하므로 site가 유지되고 핵비등이 살아난다. <span class="dim">오답 ①·③: ①구조 효과의 본질은 site 유지이지 단상 대류가 아니고, ③구조는 $\sigma$(유체 물성)를 바꾸지 않는다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>For a <strong>fully wetting non-polar fluid</strong> ($\theta\approx0$, e.g. a refrigerant), why do micro/nano <strong>structured surfaces</strong> matter?</p>
@@ -2482,7 +2482,7 @@
         <button class="opt">③ they directly lower the fluid's surface tension $\sigma$</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — a fully wetting fluid floods smooth conical cavities with liquid and kills the sites. The narrow re-entrant neck pins the wetting line and entraps vapor, keeping sites alive and restoring nucleate boiling. <span class="dim">Wrong ①·③: ① the essence is seed retention, not single-phase convection; ③ structure does not change $\sigma$ (a fluid property).</span> <span class="agg">class n=41 · ① 9 · ② 27 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — a fully wetting fluid floods smooth conical cavities with liquid and kills the sites. The narrow re-entrant neck pins the wetting line and entraps vapor, keeping sites alive and restoring nucleate boiling. <span class="dim">Wrong ①·③: ① the essence is seed retention, not single-phase convection; ③ structure does not change $\sigma$ (a fluid property).</span></div>
     </div>
   </section>
 

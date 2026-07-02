@@ -320,13 +320,13 @@
       <div class="keq-label">KH 임계 증기속도 (전단 계면)</div>
       <div class="keqrow"><span class="keqcap">분산관계</span><span class="keqline">$ \sigma k = \dfrac{\rho_l\rho_v}{\rho_l+\rho_v}(U_v-U_l)^2 $ (KH 중립)</span></div>
       <div class="keqrow"><span class="keqcap">임계속도</span><span class="keqline">$ (U_v-U_l)^2_{c} = \dfrac{\sigma k\,(\rho_l+\rho_v)}{\rho_l\rho_v} $</span></div>
-      <div class="keqnote">파장 $\lambda_H=\lambda_d/2$(제트 지름 규모)을 쓰면 임계 증기속도가 정해집니다 — 이 속도를 넘으면 증기 제트가 액체 하강을 <strong>차단</strong>(액체 공급 두절)해 CHF에 도달합니다. (출처: Zuber 1959 §CHF 유체역학 모델)</div>
+      <div class="keqnote">Helmholtz 파장 $\lambda_H$의 선택이 임계 증기속도를 정합니다 — Lienhard–Dhir(1973)처럼 $\lambda_H=\lambda_d$를 쓰면 $C\approx0.149$가 나오고, Zuber(1959)의 제트 둘레 규모 선택($\lambda_H\sim\pi\lambda_d/2$)이 $C=\pi/24$로 이어집니다. 임계속도를 넘으면 증기 제트가 액체 하강을 <strong>차단</strong>(액체 공급 두절)해 CHF에 도달합니다. (출처: Zuber 1959 §CHF 유체역학 모델 / Lienhard–Dhir 1973)</div>
     </div>
     <div class="keqbox lang-en">
       <div class="keq-label">KH critical vapor speed (shear interface)</div>
       <div class="keqrow"><span class="keqcap">dispersion</span><span class="keqline">$ \sigma k = \dfrac{\rho_l\rho_v}{\rho_l+\rho_v}(U_v-U_l)^2 $ (KH neutral)</span></div>
       <div class="keqrow"><span class="keqcap">critical speed</span><span class="keqline">$ (U_v-U_l)^2_{c} = \dfrac{\sigma k\,(\rho_l+\rho_v)}{\rho_l\rho_v} $</span></div>
-      <div class="keqnote">Using wavelength $\lambda_H=\lambda_d/2$ (jet-diameter scale) fixes the critical vapor speed — exceed it and the vapor jets <strong>block</strong> the descending liquid (supply cut off), reaching CHF. (Source: Zuber 1959 §hydrodynamic CHF model)</div>
+      <div class="keqnote">The choice of Helmholtz wavelength $\lambda_H$ fixes the critical vapor speed — taking $\lambda_H=\lambda_d$ as Lienhard–Dhir (1973) gives $C\approx0.149$, while Zuber's (1959) jet-circumference-scale choice ($\lambda_H\sim\pi\lambda_d/2$) leads to $C=\pi/24$. Exceed the critical speed and the vapor jets <strong>block</strong> the descending liquid (supply cut off), reaching CHF. (Source: Zuber 1959 §hydrodynamic CHF model / Lienhard–Dhir 1973)</div>
     </div>
     <div class="callout warn lang-ko"><div class="ct">주의 · $\lambda_c$와 $\lambda_d$ 혼동</div>$\lambda_c$는 <strong>불안정이 시작되는 최소 파장</strong>(중립점)이고, $\lambda_d$는 <strong>가장 빨리 자라는 파장</strong>($=\sqrt3\,\lambda_c$)입니다. 실제 증기 방출 간격은 성장률이 최대인 $\lambda_d$에 가깝습니다. 계산에서 둘을 바꿔 쓰지 마세요.</div>
     <div class="callout warn lang-en"><div class="ct">Caution · confusing $\lambda_c$ and $\lambda_d$</div>$\lambda_c$ is the <strong>shortest wavelength where instability begins</strong> (neutral point); $\lambda_d$ is the <strong>fastest-growing wavelength</strong> ($=\sqrt3\,\lambda_c$). The observed vapor-release spacing is close to $\lambda_d$, the maximum-growth wave. Do not swap them in calculations.</div>
@@ -482,7 +482,7 @@
         <button class="opt">③ 증기 제트의 관성</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — RT 분산관계 $\omega^2=gk\,\Delta\rho/(\rho_l+\rho_v)-\sigma k^3/(\rho_l+\rho_v)$에서 중력 항은 불안정(증폭), 표면장력 항($\sigma k^3$)이 계면을 매끈하게 되돌리는 복원력이다. <span class="dim">오답 ①·③: ①중력은 오히려 불안정을 키우고, ③증기 제트 관성은 KH(전단) 문제의 요소다.</span> <span class="agg">학급 n=41 · ① 9 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — RT 분산관계 $\omega^2=gk\,\Delta\rho/(\rho_l+\rho_v)-\sigma k^3/(\rho_l+\rho_v)$에서 중력 항은 불안정(증폭), 표면장력 항($\sigma k^3$)이 계면을 매끈하게 되돌리는 복원력이다. <span class="dim">오답 ①·③: ①중력은 오히려 불안정을 키우고, ③증기 제트 관성은 KH(전단) 문제의 요소다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>In Rayleigh–Taylor instability, which force <strong>restores</strong> the interface toward stability?</p>
@@ -492,7 +492,7 @@
         <button class="opt">③ inertia of the vapor jets</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — in the RT dispersion $\omega^2=gk\,\Delta\rho/(\rho_l+\rho_v)-\sigma k^3/(\rho_l+\rho_v)$, the gravity term destabilizes (amplifies) while the surface-tension term ($\sigma k^3$) is the restoring force that smooths the interface. <span class="dim">Wrong ①·③: ① gravity actually feeds the instability; ③ vapor-jet inertia belongs to the KH (shear) problem.</span> <span class="agg">class n=41 · ① 9 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — in the RT dispersion $\omega^2=gk\,\Delta\rho/(\rho_l+\rho_v)-\sigma k^3/(\rho_l+\rho_v)$, the gravity term destabilizes (amplifies) while the surface-tension term ($\sigma k^3$) is the restoring force that smooths the interface. <span class="dim">Wrong ①·③: ① gravity actually feeds the instability; ③ vapor-jet inertia belongs to the KH (shear) problem.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span>가장 위험한 파장 $\lambda_d$와 임계파장 $\lambda_c$의 관계로 옳은 것은?</p>
@@ -502,7 +502,7 @@
         <button class="opt">③ $\lambda_d = \tfrac{1}{2}\lambda_c$ (더 짧음)</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $\omega^2(k)$를 $k$로 미분해 최댓값을 찾으면 $k_d^2=k_c^2/3$, 즉 $\lambda_d=\sqrt3\,\lambda_c$이다. 실제 증기 방출 간격은 성장률이 최대인 $\lambda_d$에 가깝다. <span class="dim">오답 ①·③: ①$\lambda_c$는 중립(성장률 0)점이라 관측 간격이 아니고, ③$\lambda_d$는 $\lambda_c$보다 길다(짧지 않다).</span> <span class="agg">학급 n=41 · ① 6 · ② 30 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $\omega^2(k)$를 $k$로 미분해 최댓값을 찾으면 $k_d^2=k_c^2/3$, 즉 $\lambda_d=\sqrt3\,\lambda_c$이다. 실제 증기 방출 간격은 성장률이 최대인 $\lambda_d$에 가깝다. <span class="dim">오답 ①·③: ①$\lambda_c$는 중립(성장률 0)점이라 관측 간격이 아니고, ③$\lambda_d$는 $\lambda_c$보다 길다(짧지 않다).</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>Which relation between the most dangerous wave $\lambda_d$ and the critical wavelength $\lambda_c$ is correct?</p>
@@ -512,7 +512,7 @@
         <button class="opt">③ $\lambda_d = \tfrac{1}{2}\lambda_c$ (shorter)</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — differentiating $\omega^2(k)$ with respect to $k$ for its maximum gives $k_d^2=k_c^2/3$, i.e. $\lambda_d=\sqrt3\,\lambda_c$. The observed vapor-release spacing is close to $\lambda_d$, the maximum-growth wave. <span class="dim">Wrong ①·③: ① $\lambda_c$ is the neutral (zero-growth) point, not an observed spacing; ③ $\lambda_d$ is longer than $\lambda_c$, not shorter.</span> <span class="agg">class n=41 · ① 6 · ② 30 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — differentiating $\omega^2(k)$ with respect to $k$ for its maximum gives $k_d^2=k_c^2/3$, i.e. $\lambda_d=\sqrt3\,\lambda_c$. The observed vapor-release spacing is close to $\lambda_d$, the maximum-growth wave. <span class="dim">Wrong ①·③: ① $\lambda_c$ is the neutral (zero-growth) point, not an observed spacing; ③ $\lambda_d$ is longer than $\lambda_c$, not shorter.</span></div>
     </div>
   </section>
 
@@ -682,12 +682,12 @@
     <p class="lede lang-en"><b>Skeleton:</b> vapor escapes as <b>vapor columns (jets)</b> of diameter $\lambda_d/2$. The column spacing is set by the critical wavelength $\lambda_d$ of the <b>Rayleigh–Taylor instability</b>, and the maximum vapor velocity at the jet interface is set by the <b>Helmholtz instability</b>. This maximum velocity fixes CHF. <span class="src">(Zuber 1959; Lienhard–Dhir 1973)</span></p>
     <div class="deriv lang-ko">
       <div class="dcard"><h4>① 임계 파장 (Rayleigh–Taylor)</h4><div class="sub">기둥 간격 결정</div><div class="ana">📏 무거운 액체가 가벼운 증기 위 — 가장 잘 자라는 파장</div><div class="eq">$ \lambda_d = 2\pi\sqrt{\dfrac{3\sigma}{g(\rho_l-\rho_v)}} $</div><p>가장 위험한 Taylor 파장이 증기 기둥의 <strong>간격</strong>을 정합니다. 기둥 지름은 $\lambda_d/2$.</p></div>
-      <div class="dcard"><h4>② 임계 증기속도 (Helmholtz)</h4><div class="sub">기둥 표면 붕괴 속도</div><div class="ana">💨 기둥 표면을 스치는 증기가 너무 빠르면 파열</div><div class="eq">$ u_{v} = \sqrt{\dfrac{2\pi\sigma}{\rho_v\,\lambda_H}} $</div><p>Helmholtz 파장 $\lambda_H$에서 기둥 계면이 불안정해지는 <strong>최대 증기속도</strong>. 이 속도 이상이면 표면 재습윤이 막힙니다.</p></div>
+      <div class="dcard"><h4>② 임계 증기속도 (Helmholtz)</h4><div class="sub">기둥 표면 붕괴 속도</div><div class="ana">💨 기둥 표면을 스치는 증기가 너무 빠르면 파열</div><div class="eq">$ u_{v} = \sqrt{\dfrac{2\pi\sigma}{\rho_v\,\lambda_H}} $</div><p>Helmholtz 파장 $\lambda_H$에서 기둥 계면이 불안정해지는 <strong>최대 증기속도</strong>. Zuber는 $\lambda_H$를 기둥 지름이 아닌 <strong>제트 둘레 규모($\lambda_H\sim\pi\lambda_d/2$)</strong>로 잡아 $C=\pi/24$를 얻습니다. 이 속도 이상이면 표면 재습윤이 막힙니다.</p></div>
       <div class="dcard"><h4>③ CHF 조립</h4><div class="sub">$q''_{max}=\rho_v h_{fg}u_v\cdot(A_j/A)$</div><div class="ana">🧮 증기속도 × 잠열 × 기둥 면적비 → 상수 $\pi/24$</div><div class="eq">$ q''_{max}=\dfrac{\pi}{24}h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4} $</div><p>기둥 면적비 $A_j/A=\pi/16$과 Helmholtz 관계를 대입·정리하면 <strong>$C=\pi/24\approx0.131$</strong>이 떨어집니다.</p></div>
     </div>
     <div class="deriv lang-en">
       <div class="dcard"><h4>① Critical wavelength (Rayleigh–Taylor)</h4><div class="sub">sets column spacing</div><div class="ana">📏 Heavy liquid over light vapor — the fastest-growing wave</div><div class="eq">$ \lambda_d = 2\pi\sqrt{\dfrac{3\sigma}{g(\rho_l-\rho_v)}} $</div><p>The most dangerous Taylor wavelength fixes the <strong>spacing</strong> of the vapor columns; each column has diameter $\lambda_d/2$.</p></div>
-      <div class="dcard"><h4>② Critical vapor velocity (Helmholtz)</h4><div class="sub">jet break-up velocity</div><div class="ana">💨 Vapor grazing the jet surface tears it apart if too fast</div><div class="eq">$ u_{v} = \sqrt{\dfrac{2\pi\sigma}{\rho_v\,\lambda_H}} $</div><p>The <strong>maximum vapor velocity</strong> at which the jet interface becomes unstable at Helmholtz wavelength $\lambda_H$. Above it, surface rewetting is blocked.</p></div>
+      <div class="dcard"><h4>② Critical vapor velocity (Helmholtz)</h4><div class="sub">jet break-up velocity</div><div class="ana">💨 Vapor grazing the jet surface tears it apart if too fast</div><div class="eq">$ u_{v} = \sqrt{\dfrac{2\pi\sigma}{\rho_v\,\lambda_H}} $</div><p>The <strong>maximum vapor velocity</strong> at which the jet interface becomes unstable at Helmholtz wavelength $\lambda_H$. Zuber takes $\lambda_H$ not as the jet diameter but as a <strong>jet-circumference scale ($\lambda_H\sim\pi\lambda_d/2$)</strong>, giving $C=\pi/24$. Above it, surface rewetting is blocked.</p></div>
       <div class="dcard"><h4>③ Assembling CHF</h4><div class="sub">$q''_{max}=\rho_v h_{fg}u_v\cdot(A_j/A)$</div><div class="ana">🧮 vapor velocity × latent heat × jet area ratio → constant $\pi/24$</div><div class="eq">$ q''_{max}=\dfrac{\pi}{24}h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4} $</div><p>Substituting the jet area ratio $A_j/A=\pi/16$ and the Helmholtz relation yields <strong>$C=\pi/24\approx0.131$</strong>.</p></div>
     </div>
     <div class="callout warn lang-ko"><div class="ct">주의 · 상수 $C$의 값 차이</div>Zuber의 이상화($C=\pi/24\approx0.131$)와 Lienhard–Dhir가 넓은 평판 실험으로 보정한 $C\approx0.149$는 <strong>약 14% 차이</strong>가 납니다. 가열면 크기·형상($L^*=L/\sqrt{\sigma/[g(\rho_l-\rho_v)]}$)에 따라 $C$가 변하므로, 문제에서 <strong>어떤 $C$를 쓰는지 반드시 명시</strong>해야 합니다.</div>
@@ -848,7 +848,7 @@
         <button class="opt">③ 표면장력을 무시했기 때문</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — Zuber는 Helmholtz·Rayleigh–Taylor 불안정이라는 순수 수력학 논거로 CHF를 유도했다. 상수는 유체 물성·중력·표면장력의 조합이며 표면 재질은 명시적으로 들어가지 않는다. <span class="dim">오답 ①·③: ①거칠기는 핵비등 열전달계수에 영향을 주지만 CHF 수력학 한계엔 1차적으로 무관하고, ③표면장력 $\sigma$는 오히려 식의 핵심 인자다.</span> <span class="agg">학급 n=41 · ① 8 · ② 29 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — Zuber는 Helmholtz·Rayleigh–Taylor 불안정이라는 순수 수력학 논거로 CHF를 유도했다. 상수는 유체 물성·중력·표면장력의 조합이며 표면 재질은 명시적으로 들어가지 않는다. <span class="dim">오답 ①·③: ①거칠기는 핵비등 열전달계수에 영향을 주지만 CHF 수력학 한계엔 1차적으로 무관하고, ③표면장력 $\sigma$는 오히려 식의 핵심 인자다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>In Zuber's CHF derivation, why is the constant $C=\pi/24$ <strong>nearly independent of surface material</strong>?</p>
@@ -858,7 +858,7 @@
         <button class="opt">③ because surface tension was neglected</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — Zuber derived CHF from a purely hydrodynamic argument (Helmholtz and Rayleigh–Taylor instabilities). The constant combines fluid properties, gravity, and surface tension, with no explicit surface-material term. <span class="dim">Wrong ①·③: ① roughness affects the nucleate heat-transfer coefficient but not the CHF hydrodynamic limit to first order; ③ surface tension $\sigma$ is in fact a key factor of the equation.</span> <span class="agg">class n=41 · ① 8 · ② 29 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — Zuber derived CHF from a purely hydrodynamic argument (Helmholtz and Rayleigh–Taylor instabilities). The constant combines fluid properties, gravity, and surface tension, with no explicit surface-material term. <span class="dim">Wrong ①·③: ① roughness affects the nucleate heat-transfer coefficient but not the CHF hydrodynamic limit to first order; ③ surface tension $\sigma$ is in fact a key factor of the equation.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span>Kutateladze 수 $K$와 Zuber 상수 $C$의 관계로 옳은 것은?</p>
@@ -868,7 +868,7 @@
         <button class="opt">③ $K$는 차원이 있고 $C$는 무차원이다</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — Kutateladze는 차원해석으로, Zuber는 불안정 기구 유도로 같은 무차원수에 도달했다. $K=q''_{max}/(h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4})\approx0.131\!\sim\!0.149$로 곧 $C$이다. <span class="dim">오답 ①·③: ①두 값은 동일하며, ③둘 다 무차원수다.</span> <span class="agg">학급 n=41 · ① 6 · ② 31 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — Kutateladze는 차원해석으로, Zuber는 불안정 기구 유도로 같은 무차원수에 도달했다. $K=q''_{max}/(h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4})\approx0.131\!\sim\!0.149$로 곧 $C$이다. <span class="dim">오답 ①·③: ①두 값은 동일하며, ③둘 다 무차원수다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>Which correctly relates the Kutateladze number $K$ to the Zuber constant $C$?</p>
@@ -878,7 +878,7 @@
         <button class="opt">③ $K$ is dimensional while $C$ is dimensionless</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — Kutateladze reached it by dimensional analysis and Zuber by mechanistic derivation, both landing on the same dimensionless number: $K=q''_{max}/(h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4})\approx0.131\!\sim\!0.149$, i.e. $C$. <span class="dim">Wrong ①·③: ① the values are identical; ③ both are dimensionless.</span> <span class="agg">class n=41 · ① 6 · ② 31 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — Kutateladze reached it by dimensional analysis and Zuber by mechanistic derivation, both landing on the same dimensionless number: $K=q''_{max}/(h_{fg}\rho_v^{1/2}[\sigma g(\rho_l-\rho_v)]^{1/4})\approx0.131\!\sim\!0.149$, i.e. $C$. <span class="dim">Wrong ①·③: ① the values are identical; ③ both are dimensionless.</span></div>
     </div>
   </section>
 
@@ -896,7 +896,7 @@
       <div class="revealable solution">
         <div class="dstep2"><div class="step-label">Step 1 · 정의</div>$$ K=\dfrac{q''_{max}}{h_{fg}\,\rho_v^{1/2}\,[\sigma g(\rho_l-\rho_v)]^{1/4}} $$</div>
         <div class="dstep2"><div class="step-label">Step 2 · 대입</div>$$ K=\dfrac{1.20}{8.00}=0.15 $$</div>
-        <div class="ans-final"><div class="ans-eq">$$ K = 0.15 $$</div><b>정답:</b> Zuber–Kutateladze 예상 범위($0.131\!\sim\!0.149$)의 상단과 일치 — Lienhard 대형평판 값에 가깝다.</div>
+        <div class="ans-final"><div class="ans-eq">$$ K = 0.15 $$</div><b>정답:</b> Lienhard 대형평판 값 $0.149$를 약간 웃도는 값 — 실험 산포 범위 안이다(Kutateladze 자신은 $K\approx0.16$을 인용).</div>
       </div>
     </div>
     <div class="prob lang-en">
@@ -909,7 +909,7 @@
       <div class="revealable solution">
         <div class="dstep2"><div class="step-label">Step 1 · definition</div>$$ K=\dfrac{q''_{max}}{h_{fg}\,\rho_v^{1/2}\,[\sigma g(\rho_l-\rho_v)]^{1/4}} $$</div>
         <div class="dstep2"><div class="step-label">Step 2 · substitute</div>$$ K=\dfrac{1.20}{8.00}=0.15 $$</div>
-        <div class="ans-final"><div class="ans-eq">$$ K = 0.15 $$</div><b>Answer:</b> matches the upper end of the Zuber–Kutateladze range ($0.131\!\sim\!0.149$) — close to the Lienhard large-plate value.</div>
+        <div class="ans-final"><div class="ans-eq">$$ K = 0.15 $$</div><b>Answer:</b> slightly above the Lienhard large-plate value $0.149$ — within experimental scatter (Kutateladze himself quoted $K\approx0.16$).</div>
       </div>
     </div>
     <div class="prob lang-ko">
@@ -1220,7 +1220,7 @@
         <button class="opt">③ 변하지 않는다 (CHF는 물성만의 함수)</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 과냉 액체(포화보다 찬 물)는 계면을 떠난 증기를 벌크에서 재응축시켜 증기 축적을 지연시키므로 CHF가 커진다. <span class="dim">오답 ①·③: ①차가움이 비등을 억제하는 게 아니라 증기 제거를 도와 CHF↑, ③CHF는 물성뿐 아니라 과냉·크기·방향·압력·유동에 따라 보정된다.</span> <span class="agg">학급 n=41 · ① 9 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 과냉 액체(포화보다 찬 물)는 계면을 떠난 증기를 벌크에서 재응축시켜 증기 축적을 지연시키므로 CHF가 커진다. <span class="dim">오답 ①·③: ①차가움이 비등을 억제하는 게 아니라 증기 제거를 도와 CHF↑, ③CHF는 물성뿐 아니라 과냉·크기·방향·압력·유동에 따라 보정된다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>As subcooling $\Delta T_{sub}=T_{sat}-T_l$ increases, what happens to <strong>CHF</strong>?</p>
@@ -1230,7 +1230,7 @@
         <button class="opt">③ it is unchanged (CHF depends only on properties)</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — subcooled liquid recondenses vapor that leaves the interface, delaying vapor accumulation, so CHF rises. <span class="dim">Wrong ①·③: ① cold liquid aids vapor removal rather than suppressing boiling, raising CHF; ③ CHF is corrected for subcooling, size, orientation, pressure, and flow, not properties alone.</span> <span class="agg">class n=41 · ① 9 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — subcooled liquid recondenses vapor that leaves the interface, delaying vapor accumulation, so CHF rises. <span class="dim">Wrong ①·③: ① cold liquid aids vapor removal rather than suppressing boiling, raising CHF; ③ CHF is corrected for subcooling, size, orientation, pressure, and flow, not properties alone.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span>Zuber의 최소열유속 식에서 <strong>비례상수 0.09</strong>는 무엇을 반영합니까?</p>
@@ -1240,7 +1240,7 @@
         <button class="opt">③ 무차원 크기 $L^{*}$에 따라 변하는 함수</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — Taylor 불안정 이론은 상수 $\approx 0.177$을 주지만, 대형 수평 평판 실험과 맞추기 위해 흔히 $0.09$를 쓴다(Berenson 1961). <span class="dim">오답 ①·③: ①상수는 이론이 아니라 실험 보정값이고, ③이 식의 크기 의존은 상수가 아니라 별도 보정계수로 다룬다.</span> <span class="agg">학급 n=41 · ① 8 · ② 27 · ③ 6</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — Taylor 불안정 이론은 상수 $\approx 0.177$을 주지만, 대형 수평 평판 실험과 맞추기 위해 흔히 $0.09$를 쓴다(Berenson 1961). <span class="dim">오답 ①·③: ①상수는 이론이 아니라 실험 보정값이고, ③이 식의 크기 의존은 상수가 아니라 별도 보정계수로 다룬다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>In Zuber's minimum-flux formula, what does the <strong>constant 0.09</strong> reflect?</p>
@@ -1250,7 +1250,7 @@
         <button class="opt">③ a function that varies with dimensionless size $L^{*}$</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — Taylor-instability theory gives $\approx 0.177$, but $0.09$ is commonly used to match large horizontal-plate experiments (Berenson 1961). <span class="dim">Wrong ①·③: ① the constant is an experimental correction, not raw theory; ③ size dependence is handled by separate correction factors, not by this constant.</span> <span class="agg">class n=41 · ① 8 · ② 27 · ③ 6</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — Taylor-instability theory gives $\approx 0.177$, but $0.09$ is commonly used to match large horizontal-plate experiments (Berenson 1961). <span class="dim">Wrong ①·③: ① the constant is an experimental correction, not raw theory; ③ size dependence is handled by separate correction factors, not by this constant.</span></div>
     </div>
   </section>
 
@@ -1438,28 +1438,28 @@
   <section class="screen" data-ch="3-4" data-chtitle="막비등과 Leidenfrost (Bromley+복사)" data-stage="읽을거리">
     <div class="eyebrow lang-ko">3-4 · 읽을거리 · Reading</div>
     <div class="eyebrow lang-en">3-4 · Reading</div>
-    <h1 class="stage-h lang-ko">Leidenfrost 방울과 비극성 유체의 낮은 온도</h1>
-    <h1 class="stage-h lang-en">Leidenfrost Droplets and the Low Onset of Nonpolar Fluids</h1>
+    <h1 class="stage-h lang-ko">Bromley에서 Berenson까지 — 막비등 상관식의 계보</h1>
+    <h1 class="stage-h lang-en">From Bromley to Berenson — a Lineage of Film-Boiling Correlations</h1>
     <div class="two lang-ko">
       <div class="col2 reading">
-        <p>1756년 독일 의사 <strong>Johann Gottlob Leidenfrost</strong>는 벌겋게 달군 쇠숟가락 위의 물방울이 30초 넘게 춤추듯 살아남는 것을 기록했습니다. 그 아래 얇은 증기막이 방울을 떠받쳐 <strong>직접 접촉을 막고</strong> 증발을 극적으로 늦춘 것입니다. 오늘날 이 <strong>Leidenfrost 온도</strong>는 막비등이 안정적으로 시작되는 하한(비등 곡선 점 D)으로 정의됩니다.</p>
-        <p class="pullquote">증기막은 열의 통로가 아니라 <em>단열 이불</em>이다.</p>
-        <p>산업적으로 이 영역은 <strong>양날의 칼</strong>입니다. 금속 <strong>급속 냉각(quenching)</strong>에서 막비등은 냉각을 느리게 해 잔류 열응력을 남기고, 원자로 <strong>노심 냉각</strong>에서는 막비등 전이가 곧 CHF·burnout 위험 신호입니다. 한편 <strong>비극성 유체</strong>(예: 냉매·질소)는 물보다 극성 인력이 약해 표면 습윤성이 낮고 잠열도 작아, <strong>Leidenfrost 온도가 훨씬 낮게</strong> 나타나 더 쉽게 막비등에 들어갑니다.</p>
+        <p>1950년 <strong>L. A. Bromley</strong>는 수평 실린더를 감싼 안정 증기막을 <strong>Nusselt 응축 필름 이론의 거울상</strong>으로 풀었습니다. 액막이 중력으로 흘러내리는 응축 대신, 증기막이 부력으로 실린더를 타고 오르는 흐름 — 같은 4승근 구조에 상수 <strong>0.62</strong>가 붙은 $h_{conv}\propto(\Delta T_e\,D)^{-1/4}$ 상관식이 그 결과입니다.</p>
+        <p class="pullquote">막비등은 응축의 거울상이다 — 액막의 자리를 증기막이 차지할 뿐.</p>
+        <p>1961년 <strong>P. J. Berenson</strong>은 이를 <strong>수평 평판</strong>으로 확장했습니다. 평판에는 지름 $D$가 없으므로 특성길이로 <strong>RT 불안정 파장 규모</strong> $\sqrt{\sigma/[g(\rho_l-\rho_v)]}$를 채택해 상수 <strong>0.425</strong>의 같은 구조 상관식을 얻었고, 최소 막비등점(점 D)의 $q''_{min}$ 예측(상수 0.09)도 함께 정리했습니다. 표면이 벌겋게 달아오르는 고온에서는 <strong>복사</strong>가 가세하는데, 복사가 증발을 늘려 막을 두껍게 하므로 단순 합이 아니라 <strong>$h^{4/3}=h_{conv}^{4/3}+h_{rad}\,h^{1/3}$</strong>의 음함수 결합(Bromley)이 필요합니다 — 급냉(quenching) 해석과 원자로 post-CHF 열전달 평가가 모두 이 상관식 계보 위에 서 있습니다.</p>
       </div>
       <div class="col2">
-        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>막비등 = <strong>증기막이 단열</strong> → $h$가 급감, $T_s$ 폭주 위험.</li><li>Bromley: $h_{conv}\propto \Delta T_e^{-1/4}$ (수평 실린더, 상수 0.62).</li><li>고온일수록 <strong>복사 비중</strong>이 커진다 ($h_{rad}\propto T^4$).</li><li>비극성 유체는 <strong>Leidenfrost 온도가 낮다</strong>.</li></ul></div>
-        <p class="readmeta">참고: Bromley(1950) <em>Chem. Eng. Prog.</em> 46, 221 / Incropera et al., Ch.10.6</p>
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>막비등 = <strong>증기막이 단열</strong> → $h$가 급감, $T_s$ 폭주 위험.</li><li>Bromley: $h_{conv}\propto \Delta T_e^{-1/4}$ (수평 실린더, 상수 0.62).</li><li>Berenson(1961): <strong>수평 평판</strong> 확장 — 특성길이 = RT 파장 규모, 상수 0.425.</li><li>고온일수록 <strong>복사 비중</strong>이 커진다 ($h_{rad}\propto T^4$) — 결합은 $h^{4/3}$ 음함수식.</li></ul></div>
+        <p class="readmeta">참고: Bromley(1950) <em>Chem. Eng. Prog.</em> 46, 221 / Berenson(1961) <em>J. Heat Transfer</em> 83, 351 / Incropera et al., Ch.10.6</p>
       </div>
     </div>
     <div class="two lang-en">
       <div class="col2 reading">
-        <p>In 1756 the German physician <strong>Johann Gottlob Leidenfrost</strong> recorded a water droplet dancing on a red-hot iron spoon for over 30 seconds. A thin vapor film beneath it held the droplet up, <strong>preventing direct contact</strong> and dramatically slowing evaporation. Today this <strong>Leidenfrost temperature</strong> is defined as the lower bound where film boiling stably begins (point D on the boiling curve).</p>
-        <p class="pullquote">The vapor film is not a channel for heat but an <em>insulating blanket</em>.</p>
-        <p>Industrially this regime is a <strong>double-edged sword</strong>. In metal <strong>quenching</strong>, film boiling slows cooling and leaves residual thermal stress; in reactor <strong>core cooling</strong>, the transition to film boiling signals CHF and burnout danger. Meanwhile <strong>nonpolar fluids</strong> (e.g. refrigerants, nitrogen) have weaker polar attraction than water, giving lower wettability and smaller latent heat, so their <strong>Leidenfrost temperature is much lower</strong> and film boiling sets in more easily.</p>
+        <p>In 1950 <strong>L. A. Bromley</strong> solved the stable vapor film wrapping a horizontal cylinder as the <strong>mirror image of Nusselt's condensation-film theory</strong>. Instead of a liquid film draining under gravity, a vapor film rides buoyantly up the cylinder — the result is the same fourth-root structure with constant <strong>0.62</strong>: $h_{conv}\propto(\Delta T_e\,D)^{-1/4}$.</p>
+        <p class="pullquote">Film boiling is condensation's mirror image — a vapor film simply takes the liquid film's place.</p>
+        <p>In 1961 <strong>P. J. Berenson</strong> extended this to the <strong>horizontal flat plate</strong>. A plate has no diameter $D$, so he adopted the <strong>RT-instability wavelength scale</strong> $\sqrt{\sigma/[g(\rho_l-\rho_v)]}$ as the characteristic length, obtaining the same-structure correlation with constant <strong>0.425</strong>, and also organized the prediction of the minimum-film-boiling flux $q''_{min}$ (constant 0.09) at point D. At glowing-hot temperatures <strong>radiation</strong> joins in; because radiation thickens the film by adding evaporation, the two paths combine not as a plain sum but through the implicit relation <strong>$h^{4/3}=h_{conv}^{4/3}+h_{rad}\,h^{1/3}$</strong> (Bromley) — quenching analysis and reactor post-CHF heat-transfer assessments all rest on this lineage of correlations.</p>
       </div>
       <div class="col2">
-        <div class="callout key"><div class="ct">Must know</div><ul><li>Film boiling = <strong>vapor film insulates</strong> → $h$ plummets, $T_s$ runaway risk.</li><li>Bromley: $h_{conv}\propto \Delta T_e^{-1/4}$ (horizontal cylinder, constant 0.62).</li><li>The hotter it gets, the larger the <strong>radiation share</strong> ($h_{rad}\propto T^4$).</li><li>Nonpolar fluids have a <strong>lower Leidenfrost temperature</strong>.</li></ul></div>
-        <p class="readmeta">Refs: Bromley (1950) <em>Chem. Eng. Prog.</em> 46, 221 / Incropera et al., Ch.10.6</p>
+        <div class="callout key"><div class="ct">Must know</div><ul><li>Film boiling = <strong>vapor film insulates</strong> → $h$ plummets, $T_s$ runaway risk.</li><li>Bromley: $h_{conv}\propto \Delta T_e^{-1/4}$ (horizontal cylinder, constant 0.62).</li><li>Berenson (1961): <strong>flat-plate</strong> extension — characteristic length = RT wavelength scale, constant 0.425.</li><li>The hotter it gets, the larger the <strong>radiation share</strong> ($h_{rad}\propto T^4$) — coupled via the implicit $h^{4/3}$ relation.</li></ul></div>
+        <p class="readmeta">Refs: Bromley (1950) <em>Chem. Eng. Prog.</em> 46, 221 / Berenson (1961) <em>J. Heat Transfer</em> 83, 351 / Incropera et al., Ch.10.6</p>
       </div>
     </div>
   </section>
@@ -1586,7 +1586,7 @@
         <button class="opt">③ 표면온도가 낮아 열구동력이 없기 때문</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 막비등에서는 액체가 표면에 닿지 못하고 열전도도가 작은 증기막($k_v\approx0.05\ \text{W/mK}$)이 표면을 덮어 <strong>단열층</strong>으로 작용하므로 $h$가 급감한다. <span class="dim">오답 ①·③: ①오히려 액체는 막에 막혀 접촉이 끊기고, ③막비등은 $\Delta T_e$가 매우 큰 고과열도 영역이다.</span> <span class="agg">학급 n=41 · ① 6 · ② 30 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 막비등에서는 액체가 표면에 닿지 못하고 열전도도가 작은 증기막($k_v\approx0.05\ \text{W/mK}$)이 표면을 덮어 <strong>단열층</strong>으로 작용하므로 $h$가 급감한다. <span class="dim">오답 ①·③: ①오히려 액체는 막에 막혀 접촉이 끊기고, ③막비등은 $\Delta T_e$가 매우 큰 고과열도 영역이다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>Why does the heat-transfer coefficient $h$ in film boiling become <strong>far smaller</strong> than in nucleate boiling?</p>
@@ -1596,7 +1596,7 @@
         <button class="opt">③ because the surface temperature is low, giving no driving force</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — in film boiling the liquid cannot touch the surface; a low-conductivity vapor film ($k_v\approx0.05\ \text{W/mK}$) blankets it and acts as an <strong>insulating layer</strong>, so $h$ drops sharply. <span class="dim">Wrong ①·③: ① the film actually breaks contact; ③ film boiling is the very-high-superheat regime with large $\Delta T_e$.</span> <span class="agg">class n=41 · ① 6 · ② 30 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — in film boiling the liquid cannot touch the surface; a low-conductivity vapor film ($k_v\approx0.05\ \text{W/mK}$) blankets it and acts as an <strong>insulating layer</strong>, so $h$ drops sharply. <span class="dim">Wrong ①·③: ① the film actually breaks contact; ③ film boiling is the very-high-superheat regime with large $\Delta T_e$.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span>복사 등가계수 $h_{rad}=\varepsilon\sigma_{SB}(T_s^4-T_{sat}^4)/(T_s-T_{sat})$를 계산할 때 <strong>반드시</strong> 지켜야 할 것은?</p>
@@ -1606,7 +1606,7 @@
         <button class="opt">③ 방사율 $\varepsilon$을 항상 1로 둔다</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — Stefan–Boltzmann 복사는 절대온도의 4제곱에 비례하므로 $T_s,\,T_{sat}$은 반드시 <strong>켈빈(K)</strong>이어야 한다. <span class="dim">오답 ①·③: ①${}^{\circ}\text{C}$로 4제곱하면 완전히 틀리고, ③$\varepsilon$은 표면 상태에 따른 0~1의 실제 방사율로, 1은 흑체 이상화일 뿐이다.</span> <span class="agg">학급 n=41 · ① 9 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — Stefan–Boltzmann 복사는 절대온도의 4제곱에 비례하므로 $T_s,\,T_{sat}$은 반드시 <strong>켈빈(K)</strong>이어야 한다. <span class="dim">오답 ①·③: ①${}^{\circ}\text{C}$로 4제곱하면 완전히 틀리고, ③$\varepsilon$은 표면 상태에 따른 0~1의 실제 방사율로, 1은 흑체 이상화일 뿐이다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>When computing the radiative coefficient $h_{rad}=\varepsilon\sigma_{SB}(T_s^4-T_{sat}^4)/(T_s-T_{sat})$, what <strong>must</strong> you do?</p>
@@ -1616,7 +1616,7 @@
         <button class="opt">③ always set emissivity $\varepsilon$ to 1</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — Stefan–Boltzmann radiation scales with the fourth power of absolute temperature, so $T_s,\,T_{sat}$ must be in <strong>kelvin (K)</strong>. <span class="dim">Wrong ①·③: ① using ${}^{\circ}\text{C}$ is completely wrong; ③ $\varepsilon$ is the real emissivity (0–1) set by surface condition; 1 is only the blackbody idealization.</span> <span class="agg">class n=41 · ① 9 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — Stefan–Boltzmann radiation scales with the fourth power of absolute temperature, so $T_s,\,T_{sat}$ must be in <strong>kelvin (K)</strong>. <span class="dim">Wrong ①·③: ① using ${}^{\circ}\text{C}$ is completely wrong; ③ $\varepsilon$ is the real emissivity (0–1) set by surface condition; 1 is only the blackbody idealization.</span></div>
     </div>
   </section>
 
@@ -1814,10 +1814,10 @@
       <div class="col2 reading">
         <p>초기 CHF 증강은 단순히 표면을 <strong>거칠게</strong> 하는 것이었습니다 — 미세 cavity가 핵생성 site를 늘려 핵비등을 강화했죠. 다음 세대는 <strong>젖음성(wettability)</strong>을 제어했습니다. 친수성(작은 접촉각 $\theta$) 표면은 증기가 덮으려 할 때 액체가 더 잘 파고들어 재습윤을 돕습니다.</p>
         <p class="pullquote">CHF 증강의 본질은 "증기를 막는 것"이 아니라 "액체를 되돌리는 것"이다.</p>
-        <p>2000년대 이후 초점은 <strong>미세·나노 구조의 wicking</strong>과 <strong>다공성 매질</strong>로 옮겨갔습니다. 개기공 <strong>금속폼</strong>은 넓은 표면적과 강한 모세관 wicking을 동시에 제공해, 대표 리뷰(RSER 2025)는 물에서 CHF 최대 <strong>+441%</strong>, 열전달계수(HTC) <strong>+382%</strong>, 비극성 유체에서 CHF <strong>+332%</strong>를 보고합니다(모두 대표값·조건 의존). 다만 폼 두께에는 <strong>최적점($\leq 1\,\text{mm}$)</strong>이 있어 무작정 두껍게 하면 오히려 손해입니다. <strong>나노유체</strong>는 비등 중 나노입자가 표면에 침착돼 젖음성을 바꾸는 <em>제자리(in-situ)</em> 개질로 CHF를 올립니다.</p>
+        <p>2000년대 이후 초점은 <strong>미세·나노 구조의 wicking</strong>과 <strong>다공성 매질</strong>로 옮겨갔습니다. 개기공 <strong>금속폼</strong>은 넓은 표면적과 강한 모세관 wicking을 동시에 제공해, 대표 리뷰(RSER 2025)는 물에서 CHF 최대 <strong>+441%</strong>, 열전달계수(HTC) <strong>+532%</strong>, 비수계 유체에서 CHF <strong>+332%</strong>, HTC <strong>+382%</strong>를 보고합니다(모두 대표값·조건 의존). 다만 폼 두께에는 <strong>최적점($\leq 1\,\text{mm}$)</strong>이 있어 무작정 두껍게 하면 오히려 손해입니다. <strong>나노유체</strong>는 비등 중 나노입자가 표면에 침착돼 젖음성을 바꾸는 <em>제자리(in-situ)</em> 개질로 CHF를 올립니다.</p>
       </div>
       <div class="col2">
-        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>증강의 공통 뿌리는 <strong>재습윤(rewetting) 촉진</strong>이다.</li><li>친수성($\theta\downarrow$)·wicking·다공성 = 증기막 형성 <strong>지연</strong>.</li><li>금속폼 대표값: 물 CHF <strong>+441%</strong>, HTC <strong>+382%</strong> / 두께 최적 <strong>$\leq 1\,\text{mm}$</strong>.</li></ul></div>
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>증강의 공통 뿌리는 <strong>재습윤(rewetting) 촉진</strong>이다.</li><li>친수성($\theta\downarrow$)·wicking·다공성 = 증기막 형성 <strong>지연</strong>.</li><li>금속폼 대표값: 물 CHF <strong>+441%</strong>, HTC <strong>+532%</strong> / 두께 최적 <strong>$\leq 1\,\text{mm}$</strong>.</li></ul></div>
         <p class="readmeta">참고: RSER 금속폼 비등 리뷰(2025, 대표값) / Kandlikar(2001) <em>J. Heat Transfer</em> 123(6) 증강 상관식</p>
       </div>
     </div>
@@ -1825,10 +1825,10 @@
       <div class="col2 reading">
         <p>Early CHF enhancement simply <strong>roughened</strong> the surface — micro-cavities added nucleation sites and strengthened nucleate boiling. The next generation controlled <strong>wettability</strong>. A hydrophilic surface (small contact angle $\theta$) lets liquid penetrate more easily when vapor tries to cover it, aiding rewetting.</p>
         <p class="pullquote">The essence of CHF enhancement is not "blocking vapor" but "bringing liquid back."</p>
-        <p>Since the 2000s, focus shifted to <strong>wicking via micro/nano structures</strong> and <strong>porous media</strong>. Open-cell <strong>metal foam</strong> provides large surface area and strong capillary wicking at once; a representative review (RSER 2025) reports water CHF up to <strong>+441%</strong>, heat-transfer coefficient (HTC) <strong>+382%</strong>, and, for a nonpolar fluid, CHF <strong>+332%</strong> (all representative and condition-dependent). Foam thickness, however, has an <strong>optimum ($\leq 1\,\text{mm}$)</strong>, so making it thicker blindly backfires. <strong>Nanofluids</strong> raise CHF through <em>in-situ</em> modification — nanoparticles deposit on the surface during boiling and change its wettability.</p>
+        <p>Since the 2000s, focus shifted to <strong>wicking via micro/nano structures</strong> and <strong>porous media</strong>. Open-cell <strong>metal foam</strong> provides large surface area and strong capillary wicking at once; a representative review (RSER 2025) reports water CHF up to <strong>+441%</strong>, heat-transfer coefficient (HTC) <strong>+532%</strong>, and, for non-water fluids, CHF <strong>+332%</strong>, HTC <strong>+382%</strong> (all representative and condition-dependent). Foam thickness, however, has an <strong>optimum ($\leq 1\,\text{mm}$)</strong>, so making it thicker blindly backfires. <strong>Nanofluids</strong> raise CHF through <em>in-situ</em> modification — nanoparticles deposit on the surface during boiling and change its wettability.</p>
       </div>
       <div class="col2">
-        <div class="callout key"><div class="ct">Must know</div><ul><li>The common root of enhancement is <strong>promoted rewetting</strong>.</li><li>Hydrophilicity($\theta\downarrow$), wicking, porosity = <strong>delayed</strong> vapor film.</li><li>Metal-foam representative: water CHF <strong>+441%</strong>, HTC <strong>+382%</strong> / optimal thickness <strong>$\leq 1\,\text{mm}$</strong>.</li></ul></div>
+        <div class="callout key"><div class="ct">Must know</div><ul><li>The common root of enhancement is <strong>promoted rewetting</strong>.</li><li>Hydrophilicity($\theta\downarrow$), wicking, porosity = <strong>delayed</strong> vapor film.</li><li>Metal-foam representative: water CHF <strong>+441%</strong>, HTC <strong>+532%</strong> / optimal thickness <strong>$\leq 1\,\text{mm}$</strong>.</li></ul></div>
         <p class="readmeta">Refs: RSER metal-foam boiling review (2025, representative) / Kandlikar (2001) <em>J. Heat Transfer</em> 123(6) enhancement correlation</p>
       </div>
     </div>
@@ -1873,9 +1873,9 @@
           <tr><td>친수 코팅($\theta\downarrow$)</td><td class="k">~ +50~100%</td><td>재습윤 ↑</td></tr>
           <tr><td>나노유체 침착</td><td class="k">~ +100~200%</td><td>젖음성 개질</td></tr>
           <tr><td>금속폼 (물)</td><td class="k">최대 +441%</td><td>wicking + 면적</td></tr>
-          <tr><td>금속폼 (비극성)</td><td class="k">최대 +332%</td><td>wicking</td></tr>
+          <tr><td>금속폼 (비수계)</td><td class="k">최대 +332%</td><td>wicking</td></tr>
         </tbody></table>
-        <div class="keqnote">금속폼 HTC 대표 최대 <strong>+382%</strong>, 폼 두께 최적 <strong>$\leq 1\,\text{mm}$</strong>. 값은 유체·표면·압력 조건에 강하게 의존하는 <strong>대표값</strong>이며 단일 보편 상수 아님. (출처: RSER 금속폼 비등 리뷰 2025, 대표값)</div>
+        <div class="keqnote">금속폼 HTC 대표 최대(물) <strong>+532%</strong>, 비수계 <strong>+382%</strong>, 폼 두께 최적 <strong>$\leq 1\,\text{mm}$</strong>. 값은 유체·표면·압력 조건에 강하게 의존하는 <strong>대표값</strong>이며 단일 보편 상수 아님. (출처: RSER 금속폼 비등 리뷰 2025, 대표값)</div>
       </div>
     </div>
     <div class="vizgrid lang-en">
@@ -1911,9 +1911,9 @@
           <tr><td>Hydrophilic coat ($\theta\downarrow$)</td><td class="k">~ +50~100%</td><td>rewetting ↑</td></tr>
           <tr><td>Nanofluid deposition</td><td class="k">~ +100~200%</td><td>wettability mod.</td></tr>
           <tr><td>Metal foam (water)</td><td class="k">up to +441%</td><td>wicking + area</td></tr>
-          <tr><td>Metal foam (nonpolar)</td><td class="k">up to +332%</td><td>wicking</td></tr>
+          <tr><td>Metal foam (non-water)</td><td class="k">up to +332%</td><td>wicking</td></tr>
         </tbody></table>
-        <div class="keqnote">Metal-foam HTC representative max <strong>+382%</strong>, optimal foam thickness <strong>$\leq 1\,\text{mm}$</strong>. Values are <strong>representative</strong>, strongly dependent on fluid/surface/pressure — not universal constants. (Source: RSER metal-foam boiling review 2025, representative)</div>
+        <div class="keqnote">Metal-foam HTC representative max (water) <strong>+532%</strong>, non-water <strong>+382%</strong>, optimal foam thickness <strong>$\leq 1\,\text{mm}$</strong>. Values are <strong>representative</strong>, strongly dependent on fluid/surface/pressure — not universal constants. (Source: RSER metal-foam boiling review 2025, representative)</div>
       </div>
     </div>
   </section>
@@ -1958,7 +1958,7 @@
         <button class="opt">③ 표면 온도를 낮춰 초과온도 $\Delta T_e$를 0으로 만든다</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 거칠기·친수성·wicking·다공성은 모두 $P_{cap}=2\sigma\cos\theta/r$로 표현되는 <strong>모세관 재습윤</strong>을 촉진해 증기막 형성을 미루고 CHF를 올린다. <span class="dim">오답 ①·③: ①표면장력은 재습윤 구동력의 일부라 없애면 오히려 손해이고, ③증강은 $\Delta T_e$를 0으로 만드는 것이 아니라 더 높은 $q''$까지 핵비등을 유지하는 것이다.</span> <span class="agg">학급 n=41 · ① 6 · ② 30 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 거칠기·친수성·wicking·다공성은 모두 $P_{cap}=2\sigma\cos\theta/r$로 표현되는 <strong>모세관 재습윤</strong>을 촉진해 증기막 형성을 미루고 CHF를 올린다. <span class="dim">오답 ①·③: ①표면장력은 재습윤 구동력의 일부라 없애면 오히려 손해이고, ③증강은 $\Delta T_e$를 0으로 만드는 것이 아니라 더 높은 $q''$까지 핵비등을 유지하는 것이다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>What is the <strong>common physical mechanism</strong> by which surface modification raises CHF?</p>
@@ -1968,7 +1968,7 @@
         <button class="opt">③ lowering surface temperature so the excess temperature $\Delta T_e$ becomes 0</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — roughness, hydrophilicity, wicking, and porosity all promote <strong>capillary rewetting</strong> described by $P_{cap}=2\sigma\cos\theta/r$, delaying the vapor film and raising CHF. <span class="dim">Wrong ①·③: ① surface tension is part of the rewetting driving force, so removing it hurts; ③ enhancement does not zero $\Delta T_e$ — it sustains nucleate boiling to a higher $q''$.</span> <span class="agg">class n=41 · ① 6 · ② 30 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — roughness, hydrophilicity, wicking, and porosity all promote <strong>capillary rewetting</strong> described by $P_{cap}=2\sigma\cos\theta/r$, delaying the vapor film and raising CHF. <span class="dim">Wrong ①·③: ① surface tension is part of the rewetting driving force, so removing it hurts; ③ enhancement does not zero $\Delta T_e$ — it sustains nucleate boiling to a higher $q''$.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span>금속폼의 두께를 계속 늘리면 CHF 증강은 어떻게 됩니까?</p>
@@ -1978,7 +1978,7 @@
         <button class="opt">③ 두께와 무관하게 항상 일정하다</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 두꺼워질수록 wicking 면적은 늘지만 증기 배출 저항도 커져, CHF 증강은 최적 두께(대표값 $\leq 1\,\text{mm}$)에서 정점을 찍은 뒤 감소한다. <span class="dim">오답 ①·③: ①정비례로 무한 증가는 없고 최적점이 존재하며, ③두께에 강하게 의존해 일정하지 않다.</span> <span class="agg">학급 n=41 · ① 9 · ② 27 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 두꺼워질수록 wicking 면적은 늘지만 증기 배출 저항도 커져, CHF 증강은 최적 두께(대표값 $\leq 1\,\text{mm}$)에서 정점을 찍은 뒤 감소한다. <span class="dim">오답 ①·③: ①정비례로 무한 증가는 없고 최적점이 존재하며, ③두께에 강하게 의존해 일정하지 않다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>As metal-foam thickness keeps increasing, what happens to CHF enhancement?</p>
@@ -1988,7 +1988,7 @@
         <button class="opt">③ it stays constant regardless of thickness</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — thicker foam adds wicking area but also vapor-escape resistance, so CHF enhancement peaks at an optimal thickness (representative $\leq 1\,\text{mm}$) then declines. <span class="dim">Wrong ①·③: ① there is no unbounded proportional growth — an optimum exists; ③ it depends strongly on thickness and is not constant.</span> <span class="agg">class n=41 · ① 9 · ② 27 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — thicker foam adds wicking area but also vapor-escape resistance, so CHF enhancement peaks at an optimal thickness (representative $\leq 1\,\text{mm}$) then declines. <span class="dim">Wrong ①·③: ① there is no unbounded proportional growth — an optimum exists; ③ it depends strongly on thickness and is not constant.</span></div>
     </div>
   </section>
 
@@ -2060,7 +2060,7 @@
       <div class="sumcard key"><h4>핵심 정리</h4><ul>
         <li>CHF 증강의 공통 뿌리 = <strong>재습윤 촉진</strong>, 구동력 $P_{cap}=2\sigma\cos\theta/r$.</li>
         <li>네 손잡이: <strong>거칠기 · 젖음성($\theta\downarrow$) · wicking · 다공성(금속폼·나노유체)</strong>.</li>
-        <li>대표값(금속폼, 물): CHF 최대 <strong>+441%</strong>, HTC <strong>+382%</strong> / 비극성 CHF <strong>+332%</strong> / 두께 최적 <strong>$\leq 1\,\text{mm}$</strong>.</li>
+        <li>대표값(금속폼, 물): CHF 최대 <strong>+441%</strong>, HTC <strong>+532%</strong> / 비수계 CHF <strong>+332%</strong>, HTC <strong>+382%</strong> / 두께 최적 <strong>$\leq 1\,\text{mm}$</strong>.</li>
       </ul></div>
       <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
         <li>"두꺼운 폼 = 무조건 좋다"로 오해 → <strong>최적 두께</strong>가 존재.</li>
@@ -2077,7 +2077,7 @@
       <div class="sumcard key"><h4>Key points</h4><ul>
         <li>Common root of CHF enhancement = <strong>promoted rewetting</strong>, drive $P_{cap}=2\sigma\cos\theta/r$.</li>
         <li>Four levers: <strong>roughness · wettability($\theta\downarrow$) · wicking · porosity (metal foam, nanofluids)</strong>.</li>
-        <li>Representative (metal foam, water): CHF up to <strong>+441%</strong>, HTC <strong>+382%</strong> / nonpolar CHF <strong>+332%</strong> / optimal thickness <strong>$\leq 1\,\text{mm}$</strong>.</li>
+        <li>Representative (metal foam, water): CHF up to <strong>+441%</strong>, HTC <strong>+532%</strong> / non-water CHF <strong>+332%</strong>, HTC <strong>+382%</strong> / optimal thickness <strong>$\leq 1\,\text{mm}$</strong>.</li>
       </ul></div>
       <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
         <li>Reading "thicker foam = always better" → an <strong>optimal thickness</strong> exists.</li>
@@ -2182,7 +2182,7 @@
       <div class="col2 reading">
         <p>Bernardin과 Mudawar(1999)는 여러 표면·유체에서 <strong>최소 막비등 온도(Leidenfrost 점)</strong>를 측정하며, $T_{L}$이 유체의 열물성에 강하게 의존함을 보였습니다. 특히 <strong>비극성 유체(냉매·유기용매)</strong>는 표면장력·잠열이 작아, 물(대략 $250\text{–}300\,{}^{\circ}\text{C}$)보다 훨씬 낮은 $T_{L}$($100\,{}^{\circ}\text{C}$ 이하인 경우도)을 갖습니다.</p>
         <p class="pullquote">Leidenfrost 온도는 <em>유체와 표면의 성질</em>이 함께 정하는 값이지, 순수한 물질 상수가 아니다.</p>
-        <p>이 사실은 냉각·급냉(quenching) 공정에서 중요합니다. 뜨거운 금속을 물에 담그면(담금질) 처음엔 $T_s>T_{L}$이라 <strong>증기막이 표면을 덮어 냉각이 느리고</strong>, $T_s$가 $T_{min}$ 아래로 떨어지는 순간 <strong>재습윤 프론트</strong>가 급속히 번지며 냉각률이 폭증합니다. 표면·거칠기·젖음성으로 $T_{L}$을 낮추면 위험한 증기막 구간을 빨리 벗어날 수 있습니다. 반대로 원자로 노심 냉각에서 $T_{L}$이 높으면 재습윤이 지연되어 안전 여유가 줄어듭니다.</p>
+        <p>이 사실은 냉각·급냉(quenching) 공정에서 중요합니다. 뜨거운 금속을 물에 담그면(담금질) 처음엔 $T_s>T_{L}$이라 <strong>증기막이 표면을 덮어 냉각이 느리고</strong>, $T_s$가 $T_{min}$ 아래로 떨어지는 순간 <strong>재습윤 프론트</strong>가 급속히 번지며 냉각률이 폭증합니다. 표면·거칠기·젖음성으로 $T_{L}$을 높이면 증기막이 더 높은 $T_s$에서 붕괴해 위험한 증기막 구간을 빨리 벗어날 수 있습니다. 반대로 원자로 노심 냉각에서 $T_{min}$이 낮으면 재습윤이 지연되어 안전 여유가 줄어듭니다.</p>
       </div>
       <div class="col2">
         <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>$T_{L}$은 <strong>유체 + 표면</strong>이 함께 정한다 — 물질 상수 아님.</li><li>비극성 유체는 <strong>낮은 $T_{L}$</strong>(작은 $\sigma$·$h_{fg}$).</li><li>급냉의 급속 냉각은 <strong>$T_s<T_{min}$의 재습윤</strong>에서 시작된다.</li></ul></div>
@@ -2193,7 +2193,7 @@
       <div class="col2 reading">
         <p>Bernardin and Mudawar (1999) measured the <strong>minimum film-boiling (Leidenfrost) temperature</strong> across many surfaces and fluids, showing $T_{L}$ depends strongly on fluid thermophysical properties. In particular, <strong>nonpolar fluids (refrigerants, organic solvents)</strong> have small surface tension and latent heat, giving $T_{L}$ far below that of water ($\sim 250\text{–}300\,{}^{\circ}\text{C}$) — sometimes below $100\,{}^{\circ}\text{C}$.</p>
         <p class="pullquote">The Leidenfrost temperature is set jointly by <em>fluid and surface properties</em>, not a pure material constant.</p>
-        <p>This matters in cooling and quenching. Plunge a hot metal into water and at first $T_s>T_{L}$, so a <strong>vapor film blankets the surface and cooling is slow</strong>; the instant $T_s$ drops below $T_{min}$, a <strong>rewetting front</strong> sweeps rapidly and the cooling rate explodes. Lowering $T_{L}$ via surface texture, roughness or wettability lets one escape the dangerous vapor-film window sooner. Conversely, in reactor-core cooling a high $T_{L}$ delays rewetting and erodes the safety margin.</p>
+        <p>This matters in cooling and quenching. Plunge a hot metal into water and at first $T_s>T_{L}$, so a <strong>vapor film blankets the surface and cooling is slow</strong>; the instant $T_s$ drops below $T_{min}$, a <strong>rewetting front</strong> sweeps rapidly and the cooling rate explodes. Raising $T_{L}$ via surface texture, roughness or wettability lets the film collapse at a higher surface temperature, escaping the dangerous vapor-film window sooner. Conversely, in reactor-core cooling a low $T_{min}$ delays rewetting and erodes the safety margin.</p>
       </div>
       <div class="col2">
         <div class="callout key"><div class="ct">Must know</div><ul><li>$T_{L}$ is set by <strong>fluid + surface</strong> together — not a material constant.</li><li>Nonpolar fluids have a <strong>low $T_{L}$</strong> (small $\sigma$, $h_{fg}$).</li><li>Rapid quench cooling begins at <strong>rewetting when $T_s<T_{min}$</strong>.</li></ul></div>
@@ -2352,8 +2352,8 @@
     <div class="eyebrow lang-en">3-6 · Interactive</div>
     <h1 class="stage-h lang-ko">증기막 열유속 $q'' = k_v\,\Delta T/\delta$ — 직접 조절해보기</h1>
     <h1 class="stage-h lang-en">Vapor-Film Flux $q'' = k_v\,\Delta T/\delta$ — Try It</h1>
-    <p class="lede lang-ko">부상 액적으로 전달되는 열은 증기막을 <strong>가로지르는 전도</strong>가 지배합니다: $q''=k_v\,\Delta T/\delta$. 증기 열전도도 $k_v$(물 증기 대표값 $\approx 0.025\,\text{W/m·K}$), 초과온도 $\Delta T$, 증기막 두께 $\delta$를 슬라이더로 바꾸며, 왜 Leidenfrost 상태의 열유속이 <strong>작은 최소값</strong>에 머무는지 확인하세요.</p>
-    <p class="lede lang-en">Heat delivered to a levitating droplet is dominated by <strong>conduction across</strong> the vapor film: $q''=k_v\,\Delta T/\delta$. Vary the vapor conductivity $k_v$ (water vapor $\approx 0.025\,\text{W/m·K}$), excess temperature $\Delta T$, and film thickness $\delta$ with the sliders to see why the Leidenfrost flux stays at a <strong>small minimum</strong>.</p>
+    <p class="lede lang-ko">부상 액적으로 전달되는 열은 증기막을 <strong>가로지르는 전도</strong>가 지배합니다: $q''=k_v\,\Delta T/\delta$. 증기 열전도도 $k_v$(물 증기 대표값 $\approx 0.025\,\text{W/m·K}$, 막 평균온도 $100\text{–}150\,{}^{\circ}\text{C}$ 근방 — 3-4에서 쓴 $\approx0.05\,\text{W/m·K}$는 3-4의 더 높은 막온도(수백 $°C$) 조건 값으로, 둘 다 각자 조건에서는 옳다), 초과온도 $\Delta T$, 증기막 두께 $\delta$를 슬라이더로 바꾸며, 왜 Leidenfrost 상태의 열유속이 <strong>작은 최소값</strong>에 머무는지 확인하세요.</p>
+    <p class="lede lang-en">Heat delivered to a levitating droplet is dominated by <strong>conduction across</strong> the vapor film: $q''=k_v\,\Delta T/\delta$. Vary the vapor conductivity $k_v$ (water vapor $\approx 0.025\,\text{W/m·K}$ near a mean film temperature of $100\text{–}150\,{}^{\circ}\text{C}$ — the $\approx0.05\,\text{W/m·K}$ used in 3-4 is evaluated at 3-4's higher film temperature (several hundred $°C$); both are correct at their own conditions), excess temperature $\Delta T$, and film thickness $\delta$ with the sliders to see why the Leidenfrost flux stays at a <strong>small minimum</strong>.</p>
     <div class="calc lang-ko"
       data-title="증기막 전도 열유속 $q'' = k_v\,\Delta T/\delta$"
       data-desc="k_v = 증기 열전도도 [W/m·K], ΔT = 초과온도 [K], δ = 증기막 두께 [µm]. 기본값 k_v=0.025, ΔT=200 K, δ=50 µm → q''=0.025×200/50e-6 = 100,000 W/m² = 0.1 MW/m² (막비등 최소 근방)."
@@ -2386,7 +2386,7 @@
         <button class="opt">③ 표면 복사가 액적을 밀어내기 때문</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $T_s>T_{L}$이면 액적 바닥 증기가 빠져나가지 못하고 얇은 막을 이루어 액적을 부상시키고, 열은 저열전도 증기막을 가로질러 전도($q''=k_v\Delta T/\delta$)해야 하므로 크게 감소한다. <span class="dim">오답 ①·③: ①열용량이 아니라 증기막 단열이 원인이고, ③복사는 막비등에 가세하지만 부상의 주 원인은 증기 압력이다.</span> <span class="agg">학급 n=41 · ① 6 · ② 30 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $T_s>T_{L}$이면 액적 바닥 증기가 빠져나가지 못하고 얇은 막을 이루어 액적을 부상시키고, 열은 저열전도 증기막을 가로질러 전도($q''=k_v\Delta T/\delta$)해야 하므로 크게 감소한다. <span class="dim">오답 ①·③: ①열용량이 아니라 증기막 단열이 원인이고, ③복사는 막비등에 가세하지만 부상의 주 원인은 증기 압력이다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>Why does heat transfer get <strong>worse</strong> in the Leidenfrost state even though the surface is <strong>hotter</strong>?</p>
@@ -2396,7 +2396,7 @@
         <button class="opt">③ surface radiation pushes the droplet away</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — for $T_s>T_{L}$ the base vapor cannot escape and forms a thin film that levitates the droplet; heat must then conduct across the low-conductivity film ($q''=k_v\Delta T/\delta$), so it drops sharply. <span class="dim">Wrong ①·③: ① the cause is film insulation, not heat capacity; ③ radiation assists film boiling but the levitation is driven by vapor pressure.</span> <span class="agg">class n=41 · ① 6 · ② 30 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — for $T_s>T_{L}$ the base vapor cannot escape and forms a thin film that levitates the droplet; heat must then conduct across the low-conductivity film ($q''=k_v\Delta T/\delta$), so it drops sharply. <span class="dim">Wrong ①·③: ① the cause is film insulation, not heat capacity; ③ radiation assists film boiling but the levitation is driven by vapor pressure.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span>뜨거운 금속을 물에 담그는 급냉(quench)에서, 급속 냉각이 <strong>시작되는 순간</strong>은?</p>
@@ -2406,7 +2406,7 @@
         <button class="opt">③ 증기막이 가장 두꺼워질 때</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 급냉 초기에는 $T_s>T_{L}$이라 증기막이 표면을 덮어 냉각이 느리다. $T_s$가 $T_{min}$ 아래로 내려가 증기막이 붕괴하고 액체가 표면에 다시 닿는 <strong>재습윤</strong>이 시작되면 열유속이 급증하며 냉각률이 폭증한다. <span class="dim">오답 ①·③: ①CHF는 냉각 시 통과하는 후반 정점일 뿐 시작점이 아니고, ③증기막이 두꺼울수록 오히려 냉각이 느리다.</span> <span class="agg">학급 n=41 · ① 9 · ② 27 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 급냉 초기에는 $T_s>T_{L}$이라 증기막이 표면을 덮어 냉각이 느리다. $T_s$가 $T_{min}$ 아래로 내려가 증기막이 붕괴하고 액체가 표면에 다시 닿는 <strong>재습윤</strong>이 시작되면 열유속이 급증하며 냉각률이 폭증한다. <span class="dim">오답 ①·③: ①CHF는 냉각 시 통과하는 후반 정점일 뿐 시작점이 아니고, ③증기막이 두꺼울수록 오히려 냉각이 느리다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>In quenching a hot metal in water, <strong>when</strong> does rapid cooling begin?</p>
@@ -2416,7 +2416,7 @@
         <button class="opt">③ when the vapor film is thickest</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — early in the quench $T_s>T_{L}$, so a vapor film blankets the surface and cooling is slow. Once $T_s$ falls below $T_{min}$, the film collapses and liquid re-contacts the surface (<strong>rewetting</strong>), the flux jumps, and the cooling rate explodes. <span class="dim">Wrong ①·③: ① CHF is a later peak crossed during cooling, not the start; ③ a thicker film cools more slowly.</span> <span class="agg">class n=41 · ① 9 · ② 27 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — early in the quench $T_s>T_{L}$, so a vapor film blankets the surface and cooling is slow. Once $T_s$ falls below $T_{min}$, the film collapses and liquid re-contacts the surface (<strong>rewetting</strong>), the flux jumps, and the cooling rate explodes. <span class="dim">Wrong ①·③: ① CHF is a later peak crossed during cooling, not the start; ③ a thicker film cools more slowly.</span></div>
     </div>
   </section>
 
@@ -2452,7 +2452,7 @@
     </div>
     <div class="prob lang-ko">
       <div class="prob-num">연습 2 · 응용 · 막두께와 액적 수명</div>
-      <p class="prob-statement">위 액적에서 표면을 더 달궈 증기막이 두꺼워져 $\delta$가 $50\,\mu\text{m}$에서 $100\,\mu\text{m}$로 커졌다($k_v,\Delta T$ 불변). 새 <strong>열유속 $q''$</strong>은 몇 $\text{W/m}^2$인가? (액적 수명은 열유속에 반비례함을 확인)</p>
+      <p class="prob-statement">다른 액적(다른 유체·표면)에서는 같은 $k_v,\Delta T$ 조건에서도 막두께가 $\delta=100\,\mu\text{m}$로, 위 사례의 2배였다. 이 경우 <strong>열유속 $q''$</strong>은 몇 $\text{W/m}^2$인가? (액적 수명은 열유속에 반비례함을 확인)</p>
       <div class="given"><span class="chip">$q''_1=100{,}000\,\text{W/m}^2$</span><span class="chip">$\delta_1=50\,\mu\text{m}$</span><span class="chip">$\delta_2=100\,\mu\text{m}$</span></div>
       <div class="find"><b>구할 것:</b> $q''_2\ [\text{W/m}^2]$</div>
       <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="50000" data-tol="0.02"/><span class="ans-unit">$\text{W/m}^2$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
@@ -2465,7 +2465,7 @@
     </div>
     <div class="prob lang-en">
       <div class="prob-num">Practice 2 · Applied · film thickness &amp; lifetime</div>
-      <p class="prob-statement">Heating the surface further thickens the vapor film so $\delta$ grows from $50\,\mu\text{m}$ to $100\,\mu\text{m}$ ($k_v,\Delta T$ unchanged). What is the new <strong>flux $q''$</strong> in $\text{W/m}^2$? (Confirm droplet lifetime scales inversely with flux.)</p>
+      <p class="prob-statement">A different droplet (different fluid/surface) has the same $k_v,\Delta T$ but a film twice as thick, $\delta=100\,\mu\text{m}$. What is the <strong>flux $q''$</strong> in $\text{W/m}^2$? (Confirm droplet lifetime scales inversely with flux.)</p>
       <div class="given"><span class="chip">$q''_1=100{,}000\,\text{W/m}^2$</span><span class="chip">$\delta_1=50\,\mu\text{m}$</span><span class="chip">$\delta_2=100\,\mu\text{m}$</span></div>
       <div class="find"><b>Find:</b> $q''_2\ [\text{W/m}^2]$</div>
       <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="50000" data-tol="0.02"/><span class="ans-unit">$\text{W/m}^2$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>

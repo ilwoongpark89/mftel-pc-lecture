@@ -1,10 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <defs>
     <linearGradient id="g" x1="0%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" stop-color="#dc2626"/>
-      <stop offset="100%" stop-color="#f97316"/>
+      <stop offset="0%" stop-color="#991b1b"/>
+      <stop offset="100%" stop-color="#ef4444"/>
     </linearGradient>
   </defs>
-  <rect width="32" height="32" rx="6" fill="#0f172a"/>
-  <text x="16" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="url(#g)">Q</text>
+  <rect width="32" height="32" rx="6" fill="url(#g)"/>
+  <!-- 비등 기포 (nucleate boiling bubbles) -->
+  <circle cx="11" cy="21" r="3.4" fill="#fff" opacity="0.95"/>
+  <circle cx="20" cy="15" r="2.6" fill="#fff" opacity="0.8"/>
+  <circle cx="14" cy="9.5" r="1.8" fill="#fff" opacity="0.6"/>
+  <circle cx="23" cy="7.5" r="1.2" fill="#fff" opacity="0.45"/>
 </svg>

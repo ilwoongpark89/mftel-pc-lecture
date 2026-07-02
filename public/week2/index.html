@@ -213,7 +213,7 @@
     <div class="roadmap lang-ko" style="margin-top:14px">
       <div class="rm-item"><span class="rn">2-1</span><span><span class="rt">기포 성장과 이탈</span> <span class="rd">— 관성·확산 지배 성장과 이탈 직경 $D_d$의 힘 균형</span></span></div>
       <div class="rm-item"><span class="rn">2-2</span><span><span class="rt">Rohsenow 상관식</span> <span class="rd">— 표면–유체 상수 $C_{sf}$와 $q''\!\propto\!\Delta T_e^{3}$ 구조</span></span></div>
-      <div class="rm-item"><span class="rn">2-3</span><span><span class="rt">환산압력 상관식</span> <span class="rd">— Cooper·Gorenflo가 물성 대신 $p_r$로 $h$를 예측하는 방법</span></span></div>
+      <div class="rm-item"><span class="rn">2-3</span><span><span class="rt">환산압력 상관식</span> <span class="rd">— Cooper·Mostinski가 물성 대신 $p_r$로 $h$를 예측하는 방법</span></span></div>
       <div class="rm-item"><span class="rn">2-4</span><span><span class="rt">열유속 분배·미세층</span> <span class="rd">— 증발·급냉·자연대류 성분과 미세층 증발 모델</span></span></div>
       <div class="rm-item"><span class="rn">2-5</span><span><span class="rt">이탈 빈도·병합</span> <span class="rd">— 이탈 빈도 $f$, 대기·성장 시간과 기포 병합</span></span></div>
       <div class="rm-item"><span class="rn">2-6</span><span><span class="rt">상관식 비교·불확실성</span> <span class="rd">— 상관식 간 편차와 예측 불확실성 정량화</span></span></div>
@@ -221,7 +221,7 @@
     <div class="roadmap lang-en" style="margin-top:14px">
       <div class="rm-item"><span class="rn">2-1</span><span><span class="rt">Bubble Growth &amp; Departure</span> <span class="rd">— inertia- vs diffusion-controlled growth and the force balance for $D_d$</span></span></div>
       <div class="rm-item"><span class="rn">2-2</span><span><span class="rt">Rohsenow Correlation</span> <span class="rd">— surface–fluid constant $C_{sf}$ and the $q''\!\propto\!\Delta T_e^{3}$ structure</span></span></div>
-      <div class="rm-item"><span class="rn">2-3</span><span><span class="rt">Reduced-Pressure Correlations</span> <span class="rd">— how Cooper &amp; Gorenflo predict $h$ from $p_r$ instead of properties</span></span></div>
+      <div class="rm-item"><span class="rn">2-3</span><span><span class="rt">Reduced-Pressure Correlations</span> <span class="rd">— how Cooper &amp; Mostinski predict $h$ from $p_r$ instead of properties</span></span></div>
       <div class="rm-item"><span class="rn">2-4</span><span><span class="rt">Heat-Flux Partitioning</span> <span class="rd">— evaporation, quenching, single-phase terms and microlayer evaporation</span></span></div>
       <div class="rm-item"><span class="rn">2-5</span><span><span class="rt">Departure Frequency &amp; Coalescence</span> <span class="rd">— departure frequency $f$, wait/growth times, and bubble merging</span></span></div>
       <div class="rm-item"><span class="rn">2-6</span><span><span class="rt">Correlation Comparison</span> <span class="rd">— spread between correlations and quantifying prediction uncertainty</span></span></div>
@@ -230,13 +230,15 @@
     <div class="outcomes lang-ko" style="margin-top:18px"><h4>이번 파트가 끝나면 할 수 있게 된다</h4><ul>
       <li>기포의 <strong>관성·확산 지배 성장</strong>을 힘 균형으로 설명하고 이탈 직경 $D_d$와 빈도 $f$를 추정한다.</li>
       <li><strong>Rohsenow 상관식</strong>에서 $C_{sf}$를 골라 핵비등 열유속 $q''$와 $\Delta T_e$의 관계를 계산한다.</li>
-      <li>물성 자료 없이 <strong>환산압력 $p_r$</strong>만으로 Cooper·Gorenflo 상관식을 적용하고 열유속을 성분으로 분배한다.</li>
+      <li>물성 자료 없이 <strong>환산압력 $p_r$</strong>만으로 Cooper·Mostinski 상관식을 적용한다.</li>
+      <li>핵비등 열유속을 <strong>증발·급랭·단상 대류 성분</strong>으로 분배한다(RPI 모델).</li>
       <li>여러 상관식의 예측을 <strong>비교하고 불확실성</strong>을 정량적으로 판단한다.</li>
     </ul></div>
     <div class="outcomes lang-en" style="margin-top:18px"><h4>By the end of this part you will be able to</h4><ul>
       <li>Explain <strong>inertia- and diffusion-controlled</strong> bubble growth via a force balance and estimate departure diameter $D_d$ and frequency $f$.</li>
       <li>Select $C_{sf}$ in the <strong>Rohsenow correlation</strong> to compute the nucleate flux $q''$–$\Delta T_e$ relation.</li>
-      <li>Apply the Cooper &amp; Gorenflo correlations from <strong>reduced pressure $p_r$</strong> alone and partition the flux into components.</li>
+      <li>Apply the Cooper &amp; Mostinski correlations from <strong>reduced pressure $p_r$</strong> alone.</li>
+      <li>Partition the nucleate heat flux into <strong>evaporation, quench, and single-phase components</strong> (RPI model).</li>
       <li><strong>Compare</strong> predictions across correlations and judge their <strong>uncertainty</strong> quantitatively.</li>
     </ul></div>
   </div>
@@ -512,7 +514,7 @@
         <button class="opt">③ $R\propto t^{2}$ (제곱)</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 후기에는 계면으로의 열확산이 율속이 되어 Plesset–Zwick 해 $R=(12/\pi)^{1/2}Ja\,\alpha_l^{1/2}t^{1/2}$, 곧 $R\propto\sqrt{t}$이다. <span class="dim">오답 ①·③: ①선형 $R\propto t$는 초기 관성(Rayleigh) 단계이고, ③$t^2$ 거동은 나타나지 않는다.</span> <span class="agg">학급 n=38 · ① 9 · ② 25 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 후기에는 계면으로의 열확산이 율속이 되어 Plesset–Zwick 해 $R=(12/\pi)^{1/2}Ja\,\alpha_l^{1/2}t^{1/2}$, 곧 $R\propto\sqrt{t}$이다. <span class="dim">오답 ①·③: ①선형 $R\propto t$는 초기 관성(Rayleigh) 단계이고, ③$t^2$ 거동은 나타나지 않는다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>In the <strong>late (heat-controlled)</strong> stage of bubble growth, how does the radius $R$ vary with time $t$?</p>
@@ -522,7 +524,7 @@
         <button class="opt">③ $R\propto t^{2}$ (quadratic)</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — late growth is limited by heat diffusion to the interface, giving the Plesset–Zwick solution $R=(12/\pi)^{1/2}Ja\,\alpha_l^{1/2}t^{1/2}$, i.e. $R\propto\sqrt{t}$. <span class="dim">Wrong ①·③: ① the linear $R\propto t$ is the early inertial (Rayleigh) stage; ③ a $t^2$ behavior does not occur.</span> <span class="agg">class n=38 · ① 9 · ② 25 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — late growth is limited by heat diffusion to the interface, giving the Plesset–Zwick solution $R=(12/\pi)^{1/2}Ja\,\alpha_l^{1/2}t^{1/2}$, i.e. $R\propto\sqrt{t}$. <span class="dim">Wrong ①·③: ① the linear $R\propto t$ is the early inertial (Rayleigh) stage; ③ a $t^2$ behavior does not occur.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span>Fritz 이탈 직경 식 $D_d=0.0208\,\theta\sqrt{\sigma/[g(\rho_l-\rho_v)]}$에서 <strong>접촉각 $\theta$를 절반</strong>으로 줄이면(다른 물성 고정) $D_d$는?</p>
@@ -532,7 +534,7 @@
         <button class="opt">③ 변하지 않는다</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $D_d$는 $\theta$에 <strong>정비례</strong>하므로 $\theta$를 절반으로 줄이면 $D_d$도 절반이 된다. 잘 젖는(친수) 표면일수록 작은 기포가 자주 떨어진다. <span class="dim">오답 ①·③: ①제곱근 의존은 $\sigma$이지 $\theta$가 아니며, ③선형항이라 반드시 변한다.</span> <span class="agg">학급 n=38 · ① 6 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $D_d$는 $\theta$에 <strong>정비례</strong>하므로 $\theta$를 절반으로 줄이면 $D_d$도 절반이 된다. 잘 젖는(친수) 표면일수록 작은 기포가 자주 떨어진다. <span class="dim">오답 ①·③: ①제곱근 의존은 $\sigma$이지 $\theta$가 아니며, ③선형항이라 반드시 변한다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>In the Fritz equation $D_d=0.0208\,\theta\sqrt{\sigma/[g(\rho_l-\rho_v)]}$, if the <strong>contact angle $\theta$ is halved</strong> (other properties fixed), $D_d$ becomes?</p>
@@ -542,7 +544,7 @@
         <button class="opt">③ unchanged</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — $D_d$ is <strong>linear in $\theta$</strong>, so halving $\theta$ halves $D_d$. A more wetting (hydrophilic) surface releases smaller bubbles more often. <span class="dim">Wrong ①·③: ① the square-root dependence is on $\sigma$, not $\theta$; ③ it is a linear term, so it must change.</span> <span class="agg">class n=38 · ① 6 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — $D_d$ is <strong>linear in $\theta$</strong>, so halving $\theta$ halves $D_d$. A more wetting (hydrophilic) surface releases smaller bubbles more often. <span class="dim">Wrong ①·③: ① the square-root dependence is on $\sigma$, not $\theta$; ③ it is a linear term, so it must change.</span></div>
     </div>
   </section>
 
@@ -788,7 +790,7 @@
           <tr><td>물–스테인리스 (연마)</td><td class="k">0.0130</td><td style="text-align:right">1</td></tr>
           <tr><td>물–황동 (brass)</td><td class="k">0.0060</td><td style="text-align:right">1</td></tr>
         </tbody></table>
-        <div class="keqnote">기타 유체는 $n=1.7$. 값은 <strong>대표값</strong>이며 표면 마감·산화 이력에 크게 좌우됨. 대기압 물 물성($\mu_l,h_{fg},\sigma,c_{p,l},Pr_l$)은 포화표에서 취함. (출처: Incropera Table 10.1)</div>
+        <div class="keqnote">기타 유체는 $n=1.7$. 값은 <strong>반올림 대표값</strong>이며 표면 마감·산화 이력에 크게 좌우됨 — 연마 구리·스테인리스의 0.0130은 원표 값 0.0128·0.0132(기계 연마)를 $\approx0.013$으로 표기한 것. 대기압 물 물성($\mu_l,h_{fg},\sigma,c_{p,l},Pr_l$)은 포화표에서 취함. (출처: Incropera Table 10.1)</div>
       </div>
     </div>
     <div class="vizgrid lang-en">
@@ -821,7 +823,7 @@
           <tr><td>Water–stainless (polished)</td><td class="k">0.0130</td><td style="text-align:right">1</td></tr>
           <tr><td>Water–brass</td><td class="k">0.0060</td><td style="text-align:right">1</td></tr>
         </tbody></table>
-        <div class="keqnote">Other fluids use $n=1.7$. Values are <strong>representative</strong> and depend strongly on surface finish and oxidation history. Water properties at 1 atm ($\mu_l,h_{fg},\sigma,c_{p,l},Pr_l$) are taken from saturation tables. (Source: Incropera Table 10.1)</div>
+        <div class="keqnote">Other fluids use $n=1.7$. Values are <strong>rounded representative</strong> and depend strongly on surface finish and oxidation history — the 0.0130 shown for polished copper and stainless rounds the source values 0.0128 and 0.0132 (mechanically polished) to $\approx0.013$. Water properties at 1 atm ($\mu_l,h_{fg},\sigma,c_{p,l},Pr_l$) are taken from saturation tables. (Source: Incropera Table 10.1)</div>
       </div>
     </div>
   </section>
@@ -866,7 +868,7 @@
         <button class="opt">③ 항상 $C_{sf}=1$인 무차원 정규화 상수</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $C_{sf}$는 표면–유체 짝마다 실험으로 정해지는 상수로 계면 젖음성·거칠기·핵생성 site를 흡수한다. 물–구리(연마) 0.0130, 물–황동 0.0060처럼 짝마다 다르다. <span class="dim">오답 ①·③: ①유체만의 값이 아니라 표면이 함께 결정하고, ③표준값이 1인 것도 아니며 표에서 읽어야 한다.</span> <span class="agg">학급 n=41 · ① 9 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $C_{sf}$는 표면–유체 짝마다 실험으로 정해지는 상수로 계면 젖음성·거칠기·핵생성 site를 흡수한다. 물–구리(연마) 0.0130, 물–황동 0.0060처럼 짝마다 다르다. <span class="dim">오답 ①·③: ①유체만의 값이 아니라 표면이 함께 결정하고, ③표준값이 1인 것도 아니며 표에서 읽어야 한다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>In the Rohsenow correlation, what does <strong>$C_{sf}$</strong> represent?</p>
@@ -876,7 +878,7 @@
         <button class="opt">③ a normalization constant that is always $C_{sf}=1$</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — $C_{sf}$ is fit empirically for each surface–fluid pair and absorbs interfacial wettability, roughness, and nucleation sites. It differs by pair: water–copper (polished) 0.0130, water–brass 0.0060. <span class="dim">Wrong ①·③: ① the surface co-determines it, not fluid alone; ③ it is not fixed at 1 — read it from a table.</span> <span class="agg">class n=41 · ① 9 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — $C_{sf}$ is fit empirically for each surface–fluid pair and absorbs interfacial wettability, roughness, and nucleation sites. It differs by pair: water–copper (polished) 0.0130, water–brass 0.0060. <span class="dim">Wrong ①·③: ① the surface co-determines it, not fluid alone; ③ it is not fixed at 1 — read it from a table.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span>같은 $\Delta T_e$에서 $C_{sf}$를 <strong>절반</strong>으로 줄이면 $q''_{nb}$은 대략 어떻게 됩니까? ($q''_{nb}\propto C_{sf}^{-3}$)</p>
@@ -886,7 +888,7 @@
         <button class="opt" data-correct="1">③ 약 8배가 된다</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ③</b> — $q''_{nb}$은 $C_{sf}$의 $-3$제곱에 비례하므로 $C_{sf}$가 $1/2$이면 $q''$은 $(1/2)^{-3}=2^{3}=8$배가 된다. 표면을 거칠게 해 젖음을 낮추는 것이 열유속을 크게 끌어올리는 이유. <span class="dim">오답 ①·②: 선형 반비례(①)나 단순 2배(②)가 아니라 세제곱 반비례다.</span> <span class="agg">학급 n=41 · ① 5 · ② 11 · ③ 25</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ③</b> — $q''_{nb}$은 $C_{sf}$의 $-3$제곱에 비례하므로 $C_{sf}$가 $1/2$이면 $q''$은 $(1/2)^{-3}=2^{3}=8$배가 된다. 표면을 거칠게 해 젖음을 낮추는 것이 열유속을 크게 끌어올리는 이유. <span class="dim">오답 ①·②: 선형 반비례(①)나 단순 2배(②)가 아니라 세제곱 반비례다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>At the same $\Delta T_e$, halving $C_{sf}$ changes $q''_{nb}$ roughly how? ($q''_{nb}\propto C_{sf}^{-3}$)</p>
@@ -896,7 +898,7 @@
         <button class="opt" data-correct="1">③ it becomes about 8×</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ③</b> — $q''_{nb}$ scales as $C_{sf}^{-3}$, so $C_{sf}\to 1/2$ gives $(1/2)^{-3}=2^{3}=8×$. This is why roughening a surface to lower its wetting sharply raises the flux. <span class="dim">Wrong ①·②: it is a cubic inverse, not linear (①) or a simple double (②).</span> <span class="agg">class n=41 · ① 5 · ② 11 · ③ 25</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ③</b> — $q''_{nb}$ scales as $C_{sf}^{-3}$, so $C_{sf}\to 1/2$ gives $(1/2)^{-3}=2^{3}=8×$. This is why roughening a surface to lower its wetting sharply raises the flux. <span class="dim">Wrong ①·②: it is a cubic inverse, not linear (①) or a simple double (②).</span></div>
     </div>
   </section>
 
@@ -968,7 +970,7 @@
       <div class="sumcard key"><h4>핵심 정리</h4><ul>
         <li>Rohsenow: $q''_{nb}=\mu_l h_{fg}\!\left[\tfrac{g(\rho_l-\rho_v)}{\sigma}\right]^{1/2}\!\!\left[\tfrac{c_{p,l}\Delta T_e}{C_{sf}h_{fg}Pr_l^{n}}\right]^{3}$.</li>
         <li>스케일: $q''_{nb}\propto\Delta T_e^{3}$ 이고 $q''_{nb}\propto C_{sf}^{-3}$.</li>
-        <li>$C_{sf}$ = 표면–유체 짝 상수(대표값): 물–구리(연마) 0.0130 · 스코어 0.0068 · 황동 0.0060. 물 $n=1$, 기타 $n=1.7$.</li>
+        <li>$C_{sf}$ = 표면–유체 짝 상수(반올림 대표값): 물–구리(연마) $\approx$0.0130 · 스코어 0.0068 · 황동 0.0060. 물 $n=1$, 기타 $n=1.7$.</li>
       </ul></div>
       <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
         <li>$C_{sf}$를 분자로 오해 → 실제 <strong>분모</strong>($q''\propto C_{sf}^{-3}$).</li>
@@ -985,7 +987,7 @@
       <div class="sumcard key"><h4>Key points</h4><ul>
         <li>Rohsenow: $q''_{nb}=\mu_l h_{fg}\!\left[\tfrac{g(\rho_l-\rho_v)}{\sigma}\right]^{1/2}\!\!\left[\tfrac{c_{p,l}\Delta T_e}{C_{sf}h_{fg}Pr_l^{n}}\right]^{3}$.</li>
         <li>Scaling: $q''_{nb}\propto\Delta T_e^{3}$ and $q''_{nb}\propto C_{sf}^{-3}$.</li>
-        <li>$C_{sf}$ = surface–fluid pairing constant (representative): water–copper (polished) 0.0130 · scored 0.0068 · brass 0.0060. Water $n=1$, others $n=1.7$.</li>
+        <li>$C_{sf}$ = surface–fluid pairing constant (rounded representative): water–copper (polished) $\approx$0.0130 · scored 0.0068 · brass 0.0060. Water $n=1$, others $n=1.7$.</li>
       </ul></div>
       <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
         <li>Treating $C_{sf}$ as a numerator → it is in the <strong>denominator</strong> ($q''\propto C_{sf}^{-3}$).</li>
@@ -1126,7 +1128,7 @@
 <text x="452" y="262" font-size="9.5" fill="#71717a" text-anchor="middle">1.0</text>
 <path d="M52 231 Q152 222 252 205 Q332 188 392 158 Q428 132 448 40" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
 <circle cx="52" cy="231" r="3.5" fill="#c2410c"/>
-<text x="70" y="226" font-size="10" fill="#71717a">$F_p\approx 0.5$ (저압)</text>
+<text x="70" y="226" font-size="10" fill="#71717a">저압에서 완만</text>
 <circle cx="252" cy="205" r="3.5" fill="#c2410c"/>
 <text x="262" y="200" font-size="10" fill="#71717a">$p_r=0.5$</text>
 <circle cx="448" cy="40" r="4" fill="#fff" stroke="#c2410c" stroke-width="2.5"/>
@@ -1161,7 +1163,7 @@
 <text x="452" y="262" font-size="9.5" fill="#71717a" text-anchor="middle">1.0</text>
 <path d="M52 231 Q152 222 252 205 Q332 188 392 158 Q428 132 448 40" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
 <circle cx="52" cy="231" r="3.5" fill="#c2410c"/>
-<text x="70" y="226" font-size="10" fill="#71717a">$F_p\approx 0.5$ (low $p$)</text>
+<text x="70" y="226" font-size="10" fill="#71717a">gentle at low $p$</text>
 <circle cx="252" cy="205" r="3.5" fill="#c2410c"/>
 <text x="262" y="200" font-size="10" fill="#71717a">$p_r=0.5$</text>
 <circle cx="448" cy="40" r="4" fill="#fff" stroke="#c2410c" stroke-width="2.5"/>
@@ -1222,7 +1224,7 @@
         <button class="opt">③ 열유속 의존성이 없기 때문</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 냉매·비극성 유체는 상세 물성($\rho,\mu,k,\sigma$ 등)을 구하기 어려운데, 환산상태원리는 임계점 대비 상태($p_r=p/p_{crit}$)와 몰질량 $M$만으로 $h$를 준다. <span class="dim">오답 ①·③: ①정확도는 유체·범위에 따라 다르고, ③두 식 모두 $q''^{0.67\sim0.7}$의 강한 열유속 의존을 가진다.</span> <span class="agg">학급 n=41 · ① 6 · ② 31 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 냉매·비극성 유체는 상세 물성($\rho,\mu,k,\sigma$ 등)을 구하기 어려운데, 환산상태원리는 임계점 대비 상태($p_r=p/p_{crit}$)와 몰질량 $M$만으로 $h$를 준다. <span class="dim">오답 ①·③: ①정확도는 유체·범위에 따라 다르고, ③두 식 모두 $q''^{0.67\sim0.7}$의 강한 열유속 의존을 가진다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>Why are reduced-pressure correlations (Cooper·Mostinski) fundamentally <strong>advantageous for refrigerants</strong> vs. Rohsenow?</p>
@@ -1232,7 +1234,7 @@
         <button class="opt">③ They have no heat-flux dependence</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — refrigerants and non-polar fluids have hard-to-find properties ($\rho,\mu,k,\sigma,\dots$); corresponding states delivers $h$ from state relative to the critical point ($p_r=p/p_{crit}$) plus molar mass $M$. <span class="dim">Wrong ①·③: ① accuracy varies with fluid/range; ③ both carry a strong $q''^{0.67\sim0.7}$ flux dependence.</span> <span class="agg">class n=41 · ① 6 · ② 31 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — refrigerants and non-polar fluids have hard-to-find properties ($\rho,\mu,k,\sigma,\dots$); corresponding states delivers $h$ from state relative to the critical point ($p_r=p/p_{crit}$) plus molar mass $M$. <span class="dim">Wrong ①·③: ① accuracy varies with fluid/range; ③ both carry a strong $q''^{0.67\sim0.7}$ flux dependence.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span>Cooper식에서 표면거칠기 $R_p$가 미상일 때 관례적으로 $R_p=1\,\mu\text{m}$을 쓰면 압력 지수 $0.12-0.2\log_{10}R_p$는?</p>
@@ -1242,7 +1244,7 @@
         <button class="opt">③ $0.32$</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ①</b> — $R_p=1$이면 $\log_{10}1=0$이므로 지수$=0.12-0.2(0)=0.12$로 단순해진다. <span class="dim">오답 ②·③: $\log_{10}1=0$을 놓치고 $\pm0.2$를 잘못 더하거나 뺀 결과.</span> <span class="agg">학급 n=41 · ① 33 · ② 3 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ①</b> — $R_p=1$이면 $\log_{10}1=0$이므로 지수$=0.12-0.2(0)=0.12$로 단순해진다. <span class="dim">오답 ②·③: $\log_{10}1=0$을 놓치고 $\pm0.2$를 잘못 더하거나 뺀 결과.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>In Cooper's correlation, if roughness $R_p$ is unknown and $R_p=1\,\mu\text{m}$ is used, the pressure exponent $0.12-0.2\log_{10}R_p$ equals?</p>
@@ -1252,7 +1254,7 @@
         <button class="opt">③ $0.32$</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ①</b> — with $R_p=1$, $\log_{10}1=0$, so the exponent $=0.12-0.2(0)=0.12$. <span class="dim">Wrong ②·③: results of missing $\log_{10}1=0$ and wrongly subtracting/adding $\pm0.2$.</span> <span class="agg">class n=41 · ① 33 · ② 3 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ①</b> — with $R_p=1$, $\log_{10}1=0$, so the exponent $=0.12-0.2(0)=0.12$. <span class="dim">Wrong ②·③: results of missing $\log_{10}1=0$ and wrongly subtracting/adding $\pm0.2$.</span></div>
     </div>
   </section>
 
@@ -1564,7 +1566,7 @@
     <p class="lede lang-en">Using a simplified model we watch the <strong>sum $q''$</strong> of the three terms: single-phase linear in $\Delta T_e$, evaporation as $\Delta T_e^{3}$ (nucleate cube), and quench as $\Delta T_e^{1.5}$ (with $f\!\propto\!\Delta T_e$ approximation). Vary the coefficients to see which term dominates when. (Illustrative model — coefficients are example values.)</p>
     <div class="calc lang-ko"
       data-title="간단 3항 분배 $q'' = a\,\Delta T_e + b\,\Delta T_e^{3} + c\,\Delta T_e^{1.5}$"
-      data-desc="a = 단상 계수, b = 증발(세제곱) 계수, c = 급랭 계수. 기본값 a=1200, b=20, c=800, ΔT_e=15°C → q''≈0.156 MW/m²(활발한 핵비등). ΔT_e를 키우면 b항(증발)이 급격히 지배."
+      data-desc="a = 단상 계수, b = 증발(세제곱) 계수, c = 급랭 계수. 기본값 a=1200, b=20, c=800, ΔT_e=15°C → q''≈0.132 MW/m²(활발한 핵비등). ΔT_e를 키우면 b항(증발)이 급격히 지배."
       data-vars='[{"sym":"dT","label":"$\\Delta T_e$ · 초과온도","min":5,"max":30,"val":15,"step":1,"unit":"°C"},{"sym":"a","label":"$a$ · 단상 계수","min":0,"max":4000,"val":1200,"step":100,"unit":""},{"sym":"b","label":"$b$ · 증발 계수","min":0,"max":60,"val":20,"step":1,"unit":""},{"sym":"c","label":"$c$ · 급랭 계수","min":0,"max":3000,"val":800,"step":100,"unit":""}]'
       data-expr="a*dT + b*dT**3 + c*dT**1.5"
       data-out="$q''$" data-out-unit="$\text{W/m}^2$"
@@ -1572,14 +1574,14 @@
       data-note="ΔT_e를 15→30°C로 올리면 증발항(b·ΔT_e³)이 약 8배가 되어 세 항 중 압도적으로 커집니다 — 핵비등 고효율의 근원."></div>
     <div class="calc lang-en"
       data-title="Simplified 3-term partition $q'' = a\,\Delta T_e + b\,\Delta T_e^{3} + c\,\Delta T_e^{1.5}$"
-      data-desc="a = single-phase coeff, b = evaporation (cubic) coeff, c = quench coeff. Default a=1200, b=20, c=800, ΔT_e=15°C → q''≈0.156 MW/m² (active nucleate). Raising ΔT_e makes the b-term (evaporation) dominate steeply."
+      data-desc="a = single-phase coeff, b = evaporation (cubic) coeff, c = quench coeff. Default a=1200, b=20, c=800, ΔT_e=15°C → q''≈0.132 MW/m² (active nucleate). Raising ΔT_e makes the b-term (evaporation) dominate steeply."
       data-vars='[{"sym":"dT","label":"$\\Delta T_e$ · excess temp.","min":5,"max":30,"val":15,"step":1,"unit":"°C"},{"sym":"a","label":"$a$ · single-phase coeff","min":0,"max":4000,"val":1200,"step":100,"unit":""},{"sym":"b","label":"$b$ · evaporation coeff","min":0,"max":60,"val":20,"step":1,"unit":""},{"sym":"c","label":"$c$ · quench coeff","min":0,"max":3000,"val":800,"step":100,"unit":""}]'
       data-expr="a*dT + b*dT**3 + c*dT**1.5"
       data-out="$q''$" data-out-unit="$\text{W/m}^2$"
       data-barmax="1000000"
       data-note="Raising ΔT_e from 15→30°C multiplies the evaporation term (b·ΔT_e³) by ~8×, so it overwhelmingly dominates the three — the root of nucleate efficiency."></div>
-    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 기본값($\Delta T_e=15\,{}^{\circ}\text{C}$)에서 세 항은 단상 $\approx 1.8\times10^{4}$, 증발 $\approx 6.75\times10^{4}$, 급랭 $\approx 4.6\times10^{4}\,\text{W/m}^2$로, 합 $\approx 1.56\times10^{5}\,\text{W/m}^2$입니다. 과열도가 오를수록 <strong>증발항($\propto\Delta T_e^3$)</strong>이 다른 두 항을 압도합니다. 이것이 핵비등이 적은 $\Delta T_e$로 큰 $q''$을 내는 이유이며, 세 계수 $a,b,c$의 실제 값은 결국 $d_d,f,N''$ 상관식으로 정해집니다(그래서 $\pm50\%$ 불확실성). <span class="src">(출처: RPI 세 항 구조 = Kurul–Podowski 1990; 계수는 교육용 예시값)</span></div>
-    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — at the default ($\Delta T_e=15\,{}^{\circ}\text{C}$) the three terms are single-phase $\approx 1.8\times10^{4}$, evaporation $\approx 6.75\times10^{4}$, quench $\approx 4.6\times10^{4}\,\text{W/m}^2$, summing to $\approx 1.56\times10^{5}\,\text{W/m}^2$. As superheat rises the <strong>evaporation term ($\propto\Delta T_e^3$)</strong> overwhelms the other two. This is why nucleate boiling delivers large $q''$ from small $\Delta T_e$; the true values of $a,b,c$ ultimately come from the $d_d,f,N''$ correlations (hence the $\pm50\%$ uncertainty). <span class="src">(Source: RPI three-term structure = Kurul–Podowski 1990; coefficients are illustrative)</span></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 기본값($\Delta T_e=15\,{}^{\circ}\text{C}$)에서 세 항은 단상 $\approx 1.8\times10^{4}$, 증발 $\approx 6.75\times10^{4}$, 급랭 $\approx 4.6\times10^{4}\,\text{W/m}^2$로, 합 $\approx 1.32\times10^{5}\,\text{W/m}^2$입니다. 과열도가 오를수록 <strong>증발항($\propto\Delta T_e^3$)</strong>이 다른 두 항을 압도합니다. 이것이 핵비등이 적은 $\Delta T_e$로 큰 $q''$을 내는 이유이며, 세 계수 $a,b,c$의 실제 값은 결국 $d_d,f,N''$ 상관식으로 정해집니다(그래서 $\pm50\%$ 불확실성). <span class="src">(출처: RPI 세 항 구조 = Kurul–Podowski 1990; 계수는 교육용 예시값)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — at the default ($\Delta T_e=15\,{}^{\circ}\text{C}$) the three terms are single-phase $\approx 1.8\times10^{4}$, evaporation $\approx 6.75\times10^{4}$, quench $\approx 4.6\times10^{4}\,\text{W/m}^2$, summing to $\approx 1.32\times10^{5}\,\text{W/m}^2$. As superheat rises the <strong>evaporation term ($\propto\Delta T_e^3$)</strong> overwhelms the other two. This is why nucleate boiling delivers large $q''$ from small $\Delta T_e$; the true values of $a,b,c$ ultimately come from the $d_d,f,N''$ correlations (hence the $\pm50\%$ uncertainty). <span class="src">(Source: RPI three-term structure = Kurul–Podowski 1990; coefficients are illustrative)</span></div>
   </section>
 
   <!-- ══════════ 2-4 / 점검 ══════════ -->
@@ -1594,7 +1596,7 @@
         <button class="opt">③ 재습윤 급랭 항 $q''_{quench}$</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 기포 하부의 $\mu\text{m}$급 미세층이 순간 증발하며 큰 잠열 $h_{fg}$을 빼내는 것이 핵비등 고효율의 근원이다. <span class="dim">오답 ①·③: ①단상은 거품 없는 면적에서만, ③급랭은 기포 이탈 후 과도 전도로 보조 역할이며 지배 항이 아니다.</span> <span class="agg">학급 n=41 · ① 8 · ② 29 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 기포 하부의 $\mu\text{m}$급 미세층이 순간 증발하며 큰 잠열 $h_{fg}$을 빼내는 것이 핵비등 고효율의 근원이다. <span class="dim">오답 ①·③: ①단상은 거품 없는 면적에서만, ③급랭은 기포 이탈 후 과도 전도로 보조 역할이며 지배 항이 아니다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>In the RPI model, which term is identified as the <strong>source of nucleate boiling's high efficiency (large $q''$)</strong>?</p>
@@ -1604,7 +1606,7 @@
         <button class="opt">③ rewetting quench term $q''_{quench}$</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — the $\mu\text{m}$-scale microlayer beneath a bubble flashes to vapor and removes the large latent heat $h_{fg}$, which is the root of nucleate efficiency. <span class="dim">Wrong ①·③: ① single-phase acts only on bubble-free area; ③ quench is a supporting transient-conduction contribution after departure, not the dominant term.</span> <span class="agg">class n=41 · ① 8 · ② 29 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — the $\mu\text{m}$-scale microlayer beneath a bubble flashes to vapor and removes the large latent heat $h_{fg}$, which is the root of nucleate efficiency. <span class="dim">Wrong ①·③: ① single-phase acts only on bubble-free area; ③ quench is a supporting transient-conduction contribution after departure, not the dominant term.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span>벽 비등 CFD에서 <strong>기포 이탈직경 $d_d$ 예측</strong>에 대한 옳은 설명은? <span class="dim">(출처: Bucci et al. 2021)</span></p>
@@ -1614,7 +1616,7 @@
         <button class="opt">③ $d_d$는 열유속에 영향이 없어 무시해도 된다</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 이탈직경 예측오차는 대략 ±50% 수준(대표값, 조건 의존)으로 세 항 모두에 불확실성을 전파하는 벽 비등의 미해결 난제다. <span class="dim">오답 ①·③: ①1% 확립은 사실이 아니고, ③$q''_{evap}\propto d_d^3$이라 $d_d$는 결정적으로 중요하다.</span> <span class="agg">학급 n=41 · ① 5 · ② 31 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 이탈직경 예측오차는 대략 ±50% 수준(대표값, 조건 의존)으로 세 항 모두에 불확실성을 전파하는 벽 비등의 미해결 난제다. <span class="dim">오답 ①·③: ①1% 확립은 사실이 아니고, ③$q''_{evap}\propto d_d^3$이라 $d_d$는 결정적으로 중요하다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>Which statement about <strong>bubble departure diameter $d_d$ prediction</strong> in wall-boiling CFD is correct? <span class="dim">(Source: Bucci et al. 2021)</span></p>
@@ -1624,7 +1626,7 @@
         <button class="opt">③ $d_d$ has no effect on heat flux and can be ignored</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — departure-diameter prediction is off by roughly ±50% (representative, condition-dependent), propagating uncertainty into all three terms; it is a signature unsolved problem of wall boiling. <span class="dim">Wrong ①·③: ① 1% establishment is untrue; ③ since $q''_{evap}\propto d_d^3$, $d_d$ is decisively important.</span> <span class="agg">class n=41 · ① 5 · ② 31 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — departure-diameter prediction is off by roughly ±50% (representative, condition-dependent), propagating uncertainty into all three terms; it is a signature unsolved problem of wall boiling. <span class="dim">Wrong ①·③: ① 1% establishment is untrue; ③ since $q''_{evap}\propto d_d^3$, $d_d$ is decisively important.</span></div>
     </div>
   </section>
 
@@ -1659,29 +1661,29 @@
       </div>
     </div>
     <div class="prob lang-ko">
-      <div class="prob-num">연습 2 · 응용 · Fritz 이탈직경</div>
-      <p class="prob-statement">대기압 포화수에서 Fritz 식 $d_d=0.0208\,\beta\sqrt{\sigma/[g(\rho_l-\rho_v)]}$로 이탈직경을 구하시오. $\beta=45\,\deg$, $\sigma=0.0589\,\text{N/m}$, $\rho_l=958\,\text{kg/m}^3$, $\rho_v=0.60\,\text{kg/m}^3$, $g=9.81\,\text{m/s}^2$. <strong>$d_d$</strong>를 $\text{mm}$로 답하시오.</p>
-      <div class="given"><span class="chip">$\beta=45\,\deg$</span><span class="chip">$\sigma=0.0589\,\text{N/m}$</span><span class="chip">$\rho_l-\rho_v\approx957.4\,\text{kg/m}^3$</span><span class="chip">$g=9.81\,\text{m/s}^2$</span></div>
-      <div class="find"><b>구할 것:</b> $d_d\ [\text{mm}]$</div>
-      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="2.32" data-tol="0.04"/><span class="ans-unit">$\text{mm}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <div class="prob-num">연습 2 · 응용 · 재습윤 급랭 열유속</div>
+      <p class="prob-statement">대기압 포화수 핵비등에서 기포 영향 면적 비율 $A_b=0.30$, 이탈 빈도 $f=40\,\text{Hz}$이다. 급랭 항 $q''_{quench}=A_b\,\dfrac{2}{\sqrt{\pi}}\sqrt{f\,\lambda_l\rho_l c_{p,l}}\,\Delta T_e$를 구하시오. $\lambda_l=0.68\,\text{W/(m·K)}$, $\rho_l=958\,\text{kg/m}^3$, $c_{p,l}=4217\,\text{J/(kg·K)}$, $\Delta T_e=10\,{}^{\circ}\text{C}$.</p>
+      <div class="given"><span class="chip">$A_b=0.30$</span><span class="chip">$f=40\,\text{Hz}$</span><span class="chip">$\lambda_l=0.68\,\text{W/(m·K)}$</span><span class="chip">$\rho_l=958\,\text{kg/m}^3$</span><span class="chip">$c_{p,l}=4217\,\text{J/(kg·K)}$</span><span class="chip">$\Delta T_e=10\,{}^{\circ}\text{C}$</span></div>
+      <div class="find"><b>구할 것:</b> $q''_{quench}\ [\text{W/m}^2]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="35500" data-tol="0.03"/><span class="ans-unit">$\text{W/m}^2$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
       <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
       <div class="revealable solution">
-        <div class="dstep2"><div class="step-label">Step 1 · 모세관 길이</div>$$ \sqrt{\dfrac{\sigma}{g(\rho_l-\rho_v)}}=\sqrt{\dfrac{0.0589}{9.81\times957.4}}\approx 2.503\times10^{-3}\ \text{m} $$</div>
-        <div class="dstep2"><div class="step-label">Step 2 · Fritz 식 대입</div>$$ d_d = 0.0208\times 45 \times 2.503\times10^{-3}\approx 2.34\times10^{-3}\ \text{m} $$</div>
-        <div class="ans-final"><div class="ans-eq">$$ d_d \approx 2.3\ \text{mm} $$</div><b>정답:</b> 밀리미터급 이탈직경. 단, 이 예측은 실제 대비 $\pm50\%$까지 벗어날 수 있음을 유념(Bucci 2021).</div>
+        <div class="dstep2"><div class="step-label">Step 1 · 열침투 인자</div>$$ \sqrt{f\,\lambda_l\rho_l c_{p,l}}=\sqrt{40\times0.68\times958\times4217}\approx 1.048\times10^{4}\ \text{W/(m}^2\text{K)} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 대입</div>$$ q''_{quench} = 0.30\times\frac{2}{\sqrt{\pi}}\times1.048\times10^{4}\times10 \approx 3.55\times10^{4}\ \text{W/m}^2 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ q''_{quench} \approx 3.55\times10^{4}\ \text{W/m}^2 $$</div><b>정답:</b> 기포가 떠난 자리로 밀려드는 액체의 과도 전도 기여 — 빈도 $f$가 커질수록 $\sqrt{f}$로 커진다.</div>
       </div>
     </div>
     <div class="prob lang-en">
-      <div class="prob-num">Practice 2 · Applied · Fritz departure diameter</div>
-      <p class="prob-statement">For saturated water at 1 atm, use the Fritz formula $d_d=0.0208\,\beta\sqrt{\sigma/[g(\rho_l-\rho_v)]}$. Take $\beta=45\,\deg$, $\sigma=0.0589\,\text{N/m}$, $\rho_l=958\,\text{kg/m}^3$, $\rho_v=0.60\,\text{kg/m}^3$, $g=9.81\,\text{m/s}^2$. Report <strong>$d_d$</strong> in $\text{mm}$.</p>
-      <div class="given"><span class="chip">$\beta=45\,\deg$</span><span class="chip">$\sigma=0.0589\,\text{N/m}$</span><span class="chip">$\rho_l-\rho_v\approx957.4\,\text{kg/m}^3$</span><span class="chip">$g=9.81\,\text{m/s}^2$</span></div>
-      <div class="find"><b>Find:</b> $d_d\ [\text{mm}]$</div>
-      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="2.32" data-tol="0.04"/><span class="ans-unit">$\text{mm}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <div class="prob-num">Practice 2 · Applied · rewetting quench flux</div>
+      <p class="prob-statement">In nucleate boiling of saturated water at 1 atm, the bubble influence area fraction is $A_b=0.30$ and the departure frequency is $f=40\,\text{Hz}$. Evaluate the quench term $q''_{quench}=A_b\,\dfrac{2}{\sqrt{\pi}}\sqrt{f\,\lambda_l\rho_l c_{p,l}}\,\Delta T_e$. Take $\lambda_l=0.68\,\text{W/(m·K)}$, $\rho_l=958\,\text{kg/m}^3$, $c_{p,l}=4217\,\text{J/(kg·K)}$, $\Delta T_e=10\,{}^{\circ}\text{C}$.</p>
+      <div class="given"><span class="chip">$A_b=0.30$</span><span class="chip">$f=40\,\text{Hz}$</span><span class="chip">$\lambda_l=0.68\,\text{W/(m·K)}$</span><span class="chip">$\rho_l=958\,\text{kg/m}^3$</span><span class="chip">$c_{p,l}=4217\,\text{J/(kg·K)}$</span><span class="chip">$\Delta T_e=10\,{}^{\circ}\text{C}$</span></div>
+      <div class="find"><b>Find:</b> $q''_{quench}\ [\text{W/m}^2]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="35500" data-tol="0.03"/><span class="ans-unit">$\text{W/m}^2$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
       <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
       <div class="revealable solution">
-        <div class="dstep2"><div class="step-label">Step 1 · capillary length</div>$$ \sqrt{\dfrac{\sigma}{g(\rho_l-\rho_v)}}=\sqrt{\dfrac{0.0589}{9.81\times957.4}}\approx 2.503\times10^{-3}\ \text{m} $$</div>
-        <div class="dstep2"><div class="step-label">Step 2 · substitute into Fritz</div>$$ d_d = 0.0208\times 45 \times 2.503\times10^{-3}\approx 2.34\times10^{-3}\ \text{m} $$</div>
-        <div class="ans-final"><div class="ans-eq">$$ d_d \approx 2.3\ \text{mm} $$</div><b>Answer:</b> a millimeter-scale departure diameter. Note this prediction can be off by up to $\pm50\%$ vs reality (Bucci 2021).</div>
+        <div class="dstep2"><div class="step-label">Step 1 · thermal-penetration factor</div>$$ \sqrt{f\,\lambda_l\rho_l c_{p,l}}=\sqrt{40\times0.68\times958\times4217}\approx 1.048\times10^{4}\ \text{W/(m}^2\text{K)} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · substitute</div>$$ q''_{quench} = 0.30\times\frac{2}{\sqrt{\pi}}\times1.048\times10^{4}\times10 \approx 3.55\times10^{4}\ \text{W/m}^2 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ q''_{quench} \approx 3.55\times10^{4}\ \text{W/m}^2 $$</div><b>Answer:</b> the transient-conduction contribution of liquid rushing into the vacated spot — it grows as $\sqrt{f}$ with departure frequency.</div>
       </div>
     </div>
   </section>
@@ -1875,7 +1877,7 @@
           <tr><td>기둥·jet</td><td class="k">중간</td><td>세로 병합, 증기 기둥</td></tr>
           <tr><td>mushroom</td><td class="k">CHF 근접</td><td>가로 병합, 액체 공급 제한</td></tr>
         </tbody></table>
-        <div class="keqnote">대기압 물 물성(포화 100 ${}^{\circ}\text{C}$): $\sigma\approx0.0589\,\text{N/m}$, $\rho_l\approx958\,\text{kg/m}^3$, $\rho_v\approx0.598\,\text{kg/m}^3$, $g=9.81\,\text{m/s}^2$ → $f\,D_d\approx0.59\times(0.0589\cdot9.81\cdot957/958^2)^{1/4}\approx0.083\,\text{m/s}$. $D_d\approx2.5\,\text{mm}$면 $f\approx33\,\text{Hz}$(대표값). (출처: 물성 Carey Ch.6; 상관 Zuber 1963)</div>
+        <div class="keqnote">대기압 물 물성(포화 100 ${}^{\circ}\text{C}$): $\sigma\approx0.0589\,\text{N/m}$, $\rho_l\approx958\,\text{kg/m}^3$, $\rho_v\approx0.598\,\text{kg/m}^3$, $g=9.81\,\text{m/s}^2$ → $f\,D_d\approx0.59\times(0.0589\cdot9.81\cdot957/958^2)^{1/4}\approx0.092\,\text{m/s}$. $D_d\approx2.5\,\text{mm}$면 $f\approx37\,\text{Hz}$(대표값). (출처: 물성 Carey Ch.6; 상관 Zuber 1963)</div>
       </div>
     </div>
     <div class="vizgrid lang-en">
@@ -1911,7 +1913,7 @@
           <tr><td>Columns / jets</td><td class="k">mid</td><td>vertical coalescence, vapor columns</td></tr>
           <tr><td>Mushroom</td><td class="k">near CHF</td><td>lateral merge, liquid supply limited</td></tr>
         </tbody></table>
-        <div class="keqnote">Water at 1 atm (sat. 100 ${}^{\circ}\text{C}$): $\sigma\approx0.0589\,\text{N/m}$, $\rho_l\approx958\,\text{kg/m}^3$, $\rho_v\approx0.598\,\text{kg/m}^3$, $g=9.81\,\text{m/s}^2$ → $f\,D_d\approx0.59\times(0.0589\cdot9.81\cdot957/958^2)^{1/4}\approx0.083\,\text{m/s}$. With $D_d\approx2.5\,\text{mm}$, $f\approx33\,\text{Hz}$ (representative). (Source: properties Carey Ch.6; correlation Zuber 1963)</div>
+        <div class="keqnote">Water at 1 atm (sat. 100 ${}^{\circ}\text{C}$): $\sigma\approx0.0589\,\text{N/m}$, $\rho_l\approx958\,\text{kg/m}^3$, $\rho_v\approx0.598\,\text{kg/m}^3$, $g=9.81\,\text{m/s}^2$ → $f\,D_d\approx0.59\times(0.0589\cdot9.81\cdot957/958^2)^{1/4}\approx0.092\,\text{m/s}$. With $D_d\approx2.5\,\text{mm}$, $f\approx37\,\text{Hz}$ (representative). (Source: properties Carey Ch.6; correlation Zuber 1963)</div>
       </div>
     </div>
   </section>
@@ -1926,7 +1928,7 @@
     <p class="lede lang-en">Explore the Zuber (1963) correlation $f\,D_d\approx0.59[\sigma g(\rho_l-\rho_v)/\rho_l^2]^{1/4}$. Move <strong>surface tension $\sigma$</strong> and <strong>liquid density $\rho_l$</strong> to see how $f\,D_d$ (units m/s) responds, and to feel why the <strong>fourth root</strong> makes it insensitive to property changes. (Since $\rho_v\ll\rho_l$, we approximate $\rho_l-\rho_v\approx\rho_l$.)</p>
     <div class="calc lang-ko"
       data-title="이탈 빈도·지름 곱 $f\,D_d = 0.59\,[\sigma g\,\rho_l/\rho_l^2]^{1/4}$"
-      data-desc="대기압 물 기본값: σ=0.0589 N/m, ρ_l=958 kg/m³, g=9.81. ρ_v≪ρ_l 근사(ρ_l−ρ_v≈ρ_l). 결과 f·D_d≈0.083 m/s. D_d≈2.5 mm면 f≈33 Hz."
+      data-desc="대기압 물 기본값: σ=0.0589 N/m, ρ_l=958 kg/m³, g=9.81. ρ_v≪ρ_l 근사(ρ_l−ρ_v≈ρ_l). 결과 f·D_d≈0.092 m/s. D_d≈2.5 mm면 f≈37 Hz."
       data-vars='[{"sym":"sig","label":"$\\sigma$ · 표면장력","min":0.02,"max":0.075,"val":0.0589,"step":0.001,"unit":"N/m"},{"sym":"rho","label":"$\\rho_l$ · 액체 밀도","min":600,"max":1000,"val":958,"step":1,"unit":"kg/m³"}]'
       data-expr="0.59*(sig*9.81*rho/(rho*rho))**0.25"
       data-out="$f\,D_d$" data-out-unit="$\text{m/s}$"
@@ -1934,14 +1936,14 @@
       data-note="σ를 2배로 올려도 f·D_d는 4제곱근이라 약 1.19배만 커집니다 — 물성에 둔감한 강건한 상관."></div>
     <div class="calc lang-en"
       data-title="Departure freq.×dia. product $f\,D_d = 0.59\,[\sigma g\,\rho_l/\rho_l^2]^{1/4}$"
-      data-desc="Water 1 atm defaults: σ=0.0589 N/m, ρ_l=958 kg/m³, g=9.81. ρ_v≪ρ_l approx (ρ_l−ρ_v≈ρ_l). Result f·D_d≈0.083 m/s. With D_d≈2.5 mm, f≈33 Hz."
+      data-desc="Water 1 atm defaults: σ=0.0589 N/m, ρ_l=958 kg/m³, g=9.81. ρ_v≪ρ_l approx (ρ_l−ρ_v≈ρ_l). Result f·D_d≈0.092 m/s. With D_d≈2.5 mm, f≈37 Hz."
       data-vars='[{"sym":"sig","label":"$\\sigma$ · surface tension","min":0.02,"max":0.075,"val":0.0589,"step":0.001,"unit":"N/m"},{"sym":"rho","label":"$\\rho_l$ · liquid density","min":600,"max":1000,"val":958,"step":1,"unit":"kg/m³"}]'
       data-expr="0.59*(sig*9.81*rho/(rho*rho))**0.25"
       data-out="$f\,D_d$" data-out-unit="$\text{m/s}$"
       data-barmax="0.15"
       data-note="Doubling σ raises f·D_d only ~1.19× (fourth root) — a robust correlation insensitive to properties."></div>
-    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — $f\,D_d$의 감 $[\text{m/s}]$: 대기압 물 $\approx0.08\!\sim\!0.09$. 이 값을 $D_d\approx2.5\,\text{mm}$로 나누면 $f\approx33\,\text{Hz}$ — 초당 33번, 심장 박동보다 조금 빠른 리듬이다. 4제곱근 때문에 물성이 크게 변해도 $f\,D_d$는 거의 안 변해 <strong>강건</strong>하다. 압력을 높이면 $\rho_v$가 커지고 $\sigma$가 작아져 거품이 작고 잦아진다. <span class="src">(출처: 상관 Zuber 1963; 물성 Carey Ch.6 대기압 물)</span></div>
-    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — feel for $f\,D_d\,[\text{m/s}]$: water at 1 atm $\approx0.08\!\sim\!0.09$. Dividing by $D_d\approx2.5\,\text{mm}$ gives $f\approx33\,\text{Hz}$ — 33 times per second, a bit faster than a heartbeat. The fourth root makes $f\,D_d$ nearly invariant to large property swings, hence <strong>robust</strong>. Raising pressure increases $\rho_v$ and lowers $\sigma$, so bubbles become smaller and more frequent. <span class="src">(Source: correlation Zuber 1963; properties Carey Ch.6, water at 1 atm)</span></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — $f\,D_d$의 감 $[\text{m/s}]$: 대기압 물 $\approx0.08\!\sim\!0.09$. 이 값을 $D_d\approx2.5\,\text{mm}$로 나누면 $f\approx37\,\text{Hz}$ — 초당 37번, 심장 박동보다 조금 빠른 리듬이다. 4제곱근 때문에 물성이 크게 변해도 $f\,D_d$는 거의 안 변해 <strong>강건</strong>하다. 압력을 높이면 $\rho_v$가 커지고 $\sigma$가 작아져 거품이 작고 잦아진다. <span class="src">(출처: 상관 Zuber 1963; 물성 Carey Ch.6 대기압 물)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — feel for $f\,D_d\,[\text{m/s}]$: water at 1 atm $\approx0.08\!\sim\!0.09$. Dividing by $D_d\approx2.5\,\text{mm}$ gives $f\approx37\,\text{Hz}$ — 37 times per second, a bit faster than a heartbeat. The fourth root makes $f\,D_d$ nearly invariant to large property swings, hence <strong>robust</strong>. Raising pressure increases $\rho_v$ and lowers $\sigma$, so bubbles become smaller and more frequent. <span class="src">(Source: correlation Zuber 1963; properties Carey Ch.6, water at 1 atm)</span></div>
   </section>
 
   <!-- ══════════ 2-5 / 점검 ══════════ -->
@@ -1956,7 +1958,7 @@
         <button class="opt">③ $f = t_w - t_g$ (두 시간의 차)</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 한 site의 이탈 주기는 대기시간 $t_w$와 성장시간 $t_g$의 합이므로, 빈도는 그 합의 역수 $f=1/(t_w+t_g)$이다. <span class="dim">오답 ①·③: 빈도는 주기의 역수이지 시간의 곱이나 차가 아니다.</span> <span class="agg">학급 n=38 · ① 5 · ② 29 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 한 site의 이탈 주기는 대기시간 $t_w$와 성장시간 $t_g$의 합이므로, 빈도는 그 합의 역수 $f=1/(t_w+t_g)$이다. <span class="dim">오답 ①·③: 빈도는 주기의 역수이지 시간의 곱이나 차가 아니다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>Which is the correct definition of the departure frequency $f$?</p>
@@ -1966,7 +1968,7 @@
         <button class="opt">③ $f = t_w - t_g$ (difference of the two times)</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — the cycle at one site is the sum of the waiting time $t_w$ and the growth time $t_g$, so the frequency is the reciprocal of that sum, $f=1/(t_w+t_g)$. <span class="dim">Wrong ①·③: frequency is the reciprocal of the period, not a product or difference of times.</span> <span class="agg">class n=38 · ① 5 · ② 29 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — the cycle at one site is the sum of the waiting time $t_w$ and the growth time $t_g$, so the frequency is the reciprocal of that sum, $f=1/(t_w+t_g)$. <span class="dim">Wrong ①·③: frequency is the reciprocal of the period, not a product or difference of times.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span>열유속이 높아져 거품이 <strong>병합(coalescence)</strong>하면 어떤 일이 일어납니까?</p>
@@ -1976,7 +1978,7 @@
         <button class="opt">③ 표면장력이 사라져 거품이 완전히 멈춘다</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 고열유속에서 이웃 거품이 세로·가로로 합쳐져 증기 기둥과 버섯 구름을 이루고, 증기 배출이 액체 공급을 막는 수력학적 불안정에서 CHF에 다다른다(Zuber). <span class="dim">오답 ①·③: ①병합은 오히려 독립 거품 가정을 깨뜨려 $f\,D_d$ 상관을 부정확하게 하고, ③표면장력은 물성으로 사라지지 않는다.</span> <span class="agg">학급 n=38 · ① 6 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 고열유속에서 이웃 거품이 세로·가로로 합쳐져 증기 기둥과 버섯 구름을 이루고, 증기 배출이 액체 공급을 막는 수력학적 불안정에서 CHF에 다다른다(Zuber). <span class="dim">오답 ①·③: ①병합은 오히려 독립 거품 가정을 깨뜨려 $f\,D_d$ 상관을 부정확하게 하고, ③표면장력은 물성으로 사라지지 않는다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>When high flux drives bubble <strong>coalescence</strong>, what happens?</p>
@@ -1986,7 +1988,7 @@
         <button class="opt">③ surface tension vanishes and bubbles stop entirely</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — at high flux, neighboring bubbles merge vertically and laterally into vapor columns and mushrooms, and CHF is reached at the hydrodynamic instability where vapor escape blocks the liquid supply (Zuber). <span class="dim">Wrong ①·③: ① coalescence breaks the isolated-bubble assumption and makes $f\,D_d$ less accurate; ③ surface tension does not vanish as a property.</span> <span class="agg">class n=38 · ① 6 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — at high flux, neighboring bubbles merge vertically and laterally into vapor columns and mushrooms, and CHF is reached at the hydrodynamic instability where vapor escape blocks the liquid supply (Zuber). <span class="dim">Wrong ①·③: ① coalescence breaks the isolated-bubble assumption and makes $f\,D_d$ less accurate; ③ surface tension does not vanish as a property.</span></div>
     </div>
   </section>
 
@@ -2022,28 +2024,28 @@
     </div>
     <div class="prob lang-ko">
       <div class="prob-num">연습 2 · 응용 · $f\,D_d$ 상관에서 $f$ 산출</div>
-      <p class="prob-statement">대기압 물에서 $f\,D_d$ 상관값이 $f\,D_d=0.083\,\text{m/s}$로 주어졌다. 이탈 지름이 <strong>$D_d=2.5\,\text{mm}$</strong>일 때 <strong>이탈 빈도 $f$</strong>를 $\text{Hz}$로 구하시오. (반올림하여 정수로.)</p>
-      <div class="given"><span class="chip">$f\,D_d=0.083\,\text{m/s}$</span><span class="chip">$D_d=2.5\,\text{mm}=0.0025\,\text{m}$</span></div>
+      <p class="prob-statement">대기압 물에서 $f\,D_d$ 상관값이 $f\,D_d=0.092\,\text{m/s}$로 주어졌다. 이탈 지름이 <strong>$D_d=2.5\,\text{mm}$</strong>일 때 <strong>이탈 빈도 $f$</strong>를 $\text{Hz}$로 구하시오. (반올림하여 정수로.)</p>
+      <div class="given"><span class="chip">$f\,D_d=0.092\,\text{m/s}$</span><span class="chip">$D_d=2.5\,\text{mm}=0.0025\,\text{m}$</span></div>
       <div class="find"><b>구할 것:</b> $f\ [\text{Hz}]$</div>
-      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="33" data-tol="0.03"/><span class="ans-unit">$\text{Hz}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="37" data-tol="0.03"/><span class="ans-unit">$\text{Hz}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
       <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
       <div class="revealable solution">
-        <div class="dstep2"><div class="step-label">Step 1 · 곱을 분리</div>$$ f = \frac{(f\,D_d)}{D_d} = \frac{0.083}{0.0025} $$</div>
-        <div class="dstep2"><div class="step-label">Step 2 · 계산</div>$$ f = 33.2 \approx 33\ \text{Hz} $$</div>
-        <div class="ans-final"><div class="ans-eq">$$ f \approx 33\ \text{Hz} $$</div><b>정답:</b> $f\,D_d$가 물성으로 거의 일정하므로, 지름만 알면 빈도를 즉시 얻는다(Zuber 1963).</div>
+        <div class="dstep2"><div class="step-label">Step 1 · 곱을 분리</div>$$ f = \frac{(f\,D_d)}{D_d} = \frac{0.092}{0.0025} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 계산</div>$$ f = 36.8 \approx 37\ \text{Hz} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ f \approx 37\ \text{Hz} $$</div><b>정답:</b> $f\,D_d$가 물성으로 거의 일정하므로, 지름만 알면 빈도를 즉시 얻는다(Zuber 1963).</div>
       </div>
     </div>
     <div class="prob lang-en">
       <div class="prob-num">Practice 2 · Applied · getting $f$ from the $f\,D_d$ correlation</div>
-      <p class="prob-statement">For water at 1 atm the correlation gives $f\,D_d=0.083\,\text{m/s}$. With a departure diameter <strong>$D_d=2.5\,\text{mm}$</strong>, find the <strong>departure frequency $f$</strong> in $\text{Hz}$ (rounded to an integer).</p>
-      <div class="given"><span class="chip">$f\,D_d=0.083\,\text{m/s}$</span><span class="chip">$D_d=2.5\,\text{mm}=0.0025\,\text{m}$</span></div>
+      <p class="prob-statement">For water at 1 atm the correlation gives $f\,D_d=0.092\,\text{m/s}$. With a departure diameter <strong>$D_d=2.5\,\text{mm}$</strong>, find the <strong>departure frequency $f$</strong> in $\text{Hz}$ (rounded to an integer).</p>
+      <div class="given"><span class="chip">$f\,D_d=0.092\,\text{m/s}$</span><span class="chip">$D_d=2.5\,\text{mm}=0.0025\,\text{m}$</span></div>
       <div class="find"><b>Find:</b> $f\ [\text{Hz}]$</div>
-      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="33" data-tol="0.03"/><span class="ans-unit">$\text{Hz}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="37" data-tol="0.03"/><span class="ans-unit">$\text{Hz}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
       <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
       <div class="revealable solution">
-        <div class="dstep2"><div class="step-label">Step 1 · split the product</div>$$ f = \frac{(f\,D_d)}{D_d} = \frac{0.083}{0.0025} $$</div>
-        <div class="dstep2"><div class="step-label">Step 2 · compute</div>$$ f = 33.2 \approx 33\ \text{Hz} $$</div>
-        <div class="ans-final"><div class="ans-eq">$$ f \approx 33\ \text{Hz} $$</div><b>Answer:</b> since $f\,D_d$ is nearly constant from properties, knowing only the diameter gives the frequency at once (Zuber 1963).</div>
+        <div class="dstep2"><div class="step-label">Step 1 · split the product</div>$$ f = \frac{(f\,D_d)}{D_d} = \frac{0.092}{0.0025} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · compute</div>$$ f = 36.8 \approx 37\ \text{Hz} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ f \approx 37\ \text{Hz} $$</div><b>Answer:</b> since $f\,D_d$ is nearly constant from properties, knowing only the diameter gives the frequency at once (Zuber 1963).</div>
       </div>
     </div>
   </section>
@@ -2237,12 +2239,12 @@
       <div>
         <div class="vcap">세 상관식 비교 (대표값)</div>
         <table class="ktab"><thead><tr><th>항목</th><th>입력</th><th style="text-align:right">적용/정확도</th></tr></thead><tbody>
-          <tr><td>Rohsenow</td><td class="k">물성 + $C_{sf},\,s$</td><td>물·표면쌍 알 때, $\pm 25\%$*</td></tr>
+          <tr><td>Rohsenow</td><td class="k">물성 + $C_{sf},\,s$</td><td>물·표면쌍 알 때, $\Delta T_e$ 기준 $\pm 25\%$*</td></tr>
           <tr><td>Cooper</td><td class="k">$p_r,\,R_p,\,M$</td><td>냉매·비극성, $\pm 30\%$*</td></tr>
           <tr><td>Gorenflo</td><td class="k">$h_0,\,p_r,\,q'',\,R_p$</td><td>기준유체 있을 때, $\pm 20\%$*</td></tr>
           <tr><td>공통 한계</td><td class="k">표면 민감</td><td>산포 물리 고유</td></tr>
         </tbody></table>
-        <div class="keqnote">*정확도는 데이터·표면 상태에 따라 크게 변하는 <strong>대표(representative) 값</strong>이며 조건에 따라 $\pm 20\!\sim\!50\%$ 범위입니다. 물–백금 $C_{sf}\approx 0.013$, Cooper 기준 $R_p=1\,\mu\text{m}$, Gorenflo 기준 $p_r=0.1,\ q_0''=20{,}000\,\text{W/m}^2$. (출처: Rohsenow 1952 / Cooper 1984 / Gorenflo 1993, VDI Heat Atlas)</div>
+        <div class="keqnote">*정확도는 데이터·표면 상태에 따라 크게 변하는 <strong>대표(representative) 값</strong>이며 조건에 따라 $\pm 20\!\sim\!50\%$ 범위입니다. Rohsenow의 $\pm 25\%$는 $\Delta T_e$ 예측 기준이며, $q''\propto\Delta T_e^{3}$ 세제곱 관계상 $q''$ 기준 오차는 최대 $\pm 100\%$까지 증폭될 수 있습니다(Incropera). 물–백금 $C_{sf}\approx 0.013$, Cooper 기준 $R_p=1\,\mu\text{m}$, Gorenflo 기준 $p_r=0.1,\ q_0''=20{,}000\,\text{W/m}^2$. (출처: Rohsenow 1952 / Cooper 1984 / Gorenflo 1993, VDI Heat Atlas)</div>
       </div>
     </div>
     <div class="vizgrid lang-en">
@@ -2278,12 +2280,12 @@
       <div>
         <div class="vcap">Comparison of the three (representative)</div>
         <table class="ktab"><thead><tr><th>Item</th><th>Inputs</th><th style="text-align:right">Use / accuracy</th></tr></thead><tbody>
-          <tr><td>Rohsenow</td><td class="k">properties + $C_{sf},\,s$</td><td>water/surface pair known, $\pm 25\%$*</td></tr>
+          <tr><td>Rohsenow</td><td class="k">properties + $C_{sf},\,s$</td><td>water/surface pair known, $\pm 25\%$* on $\Delta T_e$</td></tr>
           <tr><td>Cooper</td><td class="k">$p_r,\,R_p,\,M$</td><td>refrigerant/nonpolar, $\pm 30\%$*</td></tr>
           <tr><td>Gorenflo</td><td class="k">$h_0,\,p_r,\,q'',\,R_p$</td><td>reference fluid available, $\pm 20\%$*</td></tr>
           <tr><td>Common limit</td><td class="k">surface-sensitive</td><td>scatter is intrinsic</td></tr>
         </tbody></table>
-        <div class="keqnote">*Accuracy is a <strong>representative</strong> value that varies strongly with data and surface state, spanning $\pm 20\!\sim\!50\%$. Water–Pt $C_{sf}\approx 0.013$; Cooper reference $R_p=1\,\mu\text{m}$; Gorenflo reference $p_r=0.1,\ q_0''=20{,}000\,\text{W/m}^2$. (Source: Rohsenow 1952 / Cooper 1984 / Gorenflo 1993, VDI Heat Atlas)</div>
+        <div class="keqnote">*Accuracy is a <strong>representative</strong> value that varies strongly with data and surface state, spanning $\pm 20\!\sim\!50\%$. Rohsenow's $\pm 25\%$ is stated on $\Delta T_e$; because $q''\propto\Delta T_e^{3}$, the corresponding error on $q''$ can amplify up to $\pm 100\%$ (Incropera). Water–Pt $C_{sf}\approx 0.013$; Cooper reference $R_p=1\,\mu\text{m}$; Gorenflo reference $p_r=0.1,\ q_0''=20{,}000\,\text{W/m}^2$. (Source: Rohsenow 1952 / Cooper 1984 / Gorenflo 1993, VDI Heat Atlas)</div>
       </div>
     </div>
   </section>
@@ -2300,18 +2302,18 @@
       data-title="상관식 비교 $h \approx k\,(-\log_{10}p_r)^{-0.55}\,q''^{\,0.67}$"
       data-desc="method: 1=Rohsenow · 2=Cooper · 3=Gorenflo 의 기본 스케일 k. 환산압력 p_r과 열유속 q''의 pressure·flux 민감도를 축약해 보여주는 교육용 모델. 기본값 method=2, p_r=0.1, q''=20000 → h≈3.2 kW/(m²·K)."
       data-vars='[{"sym":"method","label":"method (1=Roh·2=Coop·3=Goren)","min":1,"max":3,"val":2,"step":1,"unit":""},{"sym":"pr","label":"$p_r$ · 환산압력","min":0.01,"max":0.5,"val":0.1,"step":0.01,"unit":""},{"sym":"qpp","label":"$q_w$ · 열유속","min":5000,"max":200000,"val":20000,"step":1000,"unit":"W/m²"}]'
-      data-expr="(method*30)*Math.pow(-Math.log10(pr),-0.55)*Math.pow(qpp,0.67)"
+      data-expr="(method*2.1)*Math.pow(-Math.log10(pr),-0.55)*Math.pow(qpp,0.67)"
       data-out="$h$" data-out-unit="$\text{W/(m}^2\text{K)}$"
       data-barmax="30000"
-      data-note="method를 바꾸면 기본 스케일 k가 30·60·90으로 커집니다. p_r을 0.01→0.5로 올리면 (−log p_r) 항이 작아져 h가 커집니다(고압 = 핵비등 강화)."></div>
+      data-note="method를 바꾸면 기본 스케일 k가 2.1·4.2·6.3으로 커집니다. p_r을 0.01→0.5로 올리면 (−log p_r) 항이 작아져 h가 커집니다(고압 = 핵비등 강화)."></div>
     <div class="calc lang-en"
       data-title="Correlation comparison $h \approx k\,(-\log_{10}p_r)^{-0.55}\,q''^{\,0.67}$"
       data-desc="method: 1=Rohsenow · 2=Cooper · 3=Gorenflo baseline scale k. A teaching model that condenses the pressure and flux sensitivity of reduced-pressure correlations. Default method=2, p_r=0.1, q''=20000 → h≈3.2 kW/(m²·K)."
       data-vars='[{"sym":"method","label":"method (1=Roh·2=Coop·3=Goren)","min":1,"max":3,"val":2,"step":1,"unit":""},{"sym":"pr","label":"$p_r$ · reduced pressure","min":0.01,"max":0.5,"val":0.1,"step":0.01,"unit":""},{"sym":"qpp","label":"$q_w$ · heat flux","min":5000,"max":200000,"val":20000,"step":1000,"unit":"W/m²"}]'
-      data-expr="(method*30)*Math.pow(-Math.log10(pr),-0.55)*Math.pow(qpp,0.67)"
+      data-expr="(method*2.1)*Math.pow(-Math.log10(pr),-0.55)*Math.pow(qpp,0.67)"
       data-out="$h$" data-out-unit="$\text{W/(m}^2\text{K)}$"
       data-barmax="30000"
-      data-note="Changing method scales the baseline k to 30·60·90. Raising p_r from 0.01→0.5 shrinks the (−log p_r) term, so h rises (higher pressure → stronger nucleate boiling)."></div>
+      data-note="Changing method scales the baseline k to 2.1·4.2·6.3. Raising p_r from 0.01→0.5 shrinks the (−log p_r) term, so h rises (higher pressure → stronger nucleate boiling)."></div>
     <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 핵비등 계수 $h\,[\text{kW/(m}^2\text{K)}]$ 감: 저압 물 $\approx 3\!\sim\!10$ · 냉매 중압 $\approx 2\!\sim\!8$ · 고압·고열유속 $\gtrsim 20$. 세 식이 <strong>같은 조건에서도 값이 다르게</strong> 나오는 것이 정상이며, 그 차이가 곧 <strong>±20~50% 불확실성</strong>입니다. 압력을 올릴수록($p_r\uparrow$) 핵생성이 쉬워져 $h$가 커집니다 — 환산압력이 핵심 변수인 이유. <span class="src">(출처: 상관식 골격 = Cooper 1984 / Gorenflo 1993, VDI Heat Atlas; 축약 교육 모델)</span></div>
     <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — feel for nucleate $h\,[\text{kW/(m}^2\text{K)}]$: low-pressure water $\approx 3\!\sim\!10$ · mid-pressure refrigerant $\approx 2\!\sim\!8$ · high-pressure/high-flux $\gtrsim 20$. It is normal for the three formulas to give <strong>different values at the same condition</strong> — that spread <em>is</em> the <strong>±20–50% uncertainty</strong>. Higher pressure ($p_r\uparrow$) eases nucleation and raises $h$ — why reduced pressure is the key variable. <span class="src">(Source: skeleton = Cooper 1984 / Gorenflo 1993, VDI Heat Atlas; reduced teaching model)</span></div>
   </section>
@@ -2328,7 +2330,7 @@
         <button class="opt">③ 어느 식도 불가능하므로 실험만 해야 한다</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 냉매·비극성 유체는 환산압력 기반 상관식(Cooper·Gorenflo)이 실용적이다. 물성 전체 표나 표면쌍 $C_{sf}$ 없이 $p_r,\,R_p,\,M$(또는 기준 $h_0$)만으로 예측한다. <span class="dim">오답 ①·③: ①Rohsenow는 표면쌍 $C_{sf}$가 필요하고 물성도 다 알아야 한다; ③상관식으로 ±20~50% 예측이 가능하다.</span> <span class="agg">학급 n=41 · ① 9 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 냉매·비극성 유체는 환산압력 기반 상관식(Cooper·Gorenflo)이 실용적이다. 물성 전체 표나 표면쌍 $C_{sf}$ 없이 $p_r,\,R_p,\,M$(또는 기준 $h_0$)만으로 예측한다. <span class="dim">오답 ①·③: ①Rohsenow는 표면쌍 $C_{sf}$가 필요하고 물성도 다 알아야 한다; ③상관식으로 ±20~50% 예측이 가능하다.</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q1.</span>You must predict nucleate $h$ for an <strong>unfamiliar refrigerant</strong> but have no surface-pair constant $C_{sf}$. The best approach?</p>
@@ -2338,7 +2340,7 @@
         <button class="opt">③ No correlation works; only experiments</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — for refrigerants / nonpolar fluids, reduced-pressure correlations (Cooper, Gorenflo) are practical, predicting from $p_r,\,R_p,\,M$ (or a reference $h_0$) without a full property table or surface-pair $C_{sf}$. <span class="dim">Wrong ①·③: ① Rohsenow needs $C_{sf}$ and full properties; ③ ±20–50% prediction is possible via correlations.</span> <span class="agg">class n=41 · ① 9 · ② 28 · ③ 4</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — for refrigerants / nonpolar fluids, reduced-pressure correlations (Cooper, Gorenflo) are practical, predicting from $p_r,\,R_p,\,M$ (or a reference $h_0$) without a full property table or surface-pair $C_{sf}$. <span class="dim">Wrong ①·③: ① Rohsenow needs $C_{sf}$ and full properties; ③ ±20–50% prediction is possible via correlations.</span></div>
     </div>
     <div class="cq lang-ko">
       <p class="qtext"><span class="qn">Q2.</span>세 핵비등 상관식의 예측이 <strong>서로 20~50% 다르게</strong> 나온다. 가장 옳은 해석은?</p>
@@ -2348,7 +2350,7 @@
         <button class="opt">③ 항상 값이 가장 큰 식을 채택하면 된다</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 핵비등은 표면 cavity 분포·젖음성에 극도로 민감해 어떤 상관식도 ±20~50% 산포를 가진다. 식 간 차이는 오류가 아니라 물리 고유의 불확실성이며, 예측은 이 범위와 함께 보고해야 한다. <span class="dim">오답 ①·③: ①모두 근사식이라 '하나만 정답'이 아니고, ③큰 값 채택은 안전여유 없이 위험(설계 목적에 따라 다름).</span> <span class="agg">학급 n=41 · ① 6 · ② 30 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 핵비등은 표면 cavity 분포·젖음성에 극도로 민감해 어떤 상관식도 ±20~50% 산포를 가진다. 식 간 차이는 오류가 아니라 물리 고유의 불확실성이며, 예측은 이 범위와 함께 보고해야 한다. <span class="dim">오답 ①·③: ①모두 근사식이라 '하나만 정답'이 아니고, ③큰 값 채택은 안전여유 없이 위험(설계 목적에 따라 다름).</span></div>
     </div>
     <div class="cq lang-en">
       <p class="qtext"><span class="qn">Q2.</span>The three correlations disagree by <strong>20–50%</strong> at the same condition. Best interpretation?</p>
@@ -2358,7 +2360,7 @@
         <button class="opt">③ Always pick the correlation giving the largest value</button>
       </div>
       <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
-      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — nucleate boiling is extremely sensitive to cavity distribution and wettability, so every correlation carries ±20–50% scatter. The disagreement is not error but intrinsic physical uncertainty; report predictions with this band. <span class="dim">Wrong ①·③: ① all are approximations, so no single "right" one; ③ blindly taking the largest is unsafe and depends on design intent.</span> <span class="agg">class n=41 · ① 6 · ② 30 · ③ 5</span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — nucleate boiling is extremely sensitive to cavity distribution and wettability, so every correlation carries ±20–50% scatter. The disagreement is not error but intrinsic physical uncertainty; report predictions with this band. <span class="dim">Wrong ①·③: ① all are approximations, so no single "right" one; ③ blindly taking the largest is unsafe and depends on design intent.</span></div>
     </div>
   </section>
 
@@ -2367,29 +2369,31 @@
     <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
     <div class="panel-head lang-en"><span class="tag">Practice</span><span class="panel-title">Engineering calc · auto-graded</span></div>
     <div class="prob lang-ko">
-      <div class="prob-num">연습 1 · 기본 · 환산압력 계산</div>
-      <p class="prob-statement">냉매 R-134a의 임계압력이 $p_{crit}=4.06\,\text{MPa}$이다. 작동압력이 $p=1.016\,\text{MPa}$일 때 <strong>환산압력 $p_r$</strong>을 구하시오.</p>
-      <div class="given"><span class="chip">$p=1.016\,\text{MPa}$</span><span class="chip">$p_{crit}=4.06\,\text{MPa}$</span></div>
-      <div class="find"><b>구할 것:</b> $p_r$ (무차원)</div>
-      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="0.25" data-tol="0.03"/><span class="ans-unit">(–)</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <div class="prob-num">연습 1 · 기본 · Cooper 상관식으로 $h$ 계산</div>
+      <p class="prob-statement">Cooper 식 $h=55\,p_r^{0.12-0.2\log_{10}R_p}(-\log_{10}p_r)^{-0.55}M^{-0.5}q''^{0.67}$을 R-134a($M=102\,\text{g/mol}$)에 적용한다. $R_p$를 몰라 관례값 $R_p=1\,\mu\text{m}$(지수 $0.12$)를 쓰고, $p_r=0.1$, $q''=20{,}000\,\text{W/m}^2$일 때 <strong>핵비등 계수 $h$</strong>를 $\text{W/(m}^2\text{K)}$로 구하시오.</p>
+      <div class="given"><span class="chip">$p_r=0.1$</span><span class="chip">$R_p=1\,\mu\text{m}$</span><span class="chip">$M=102\,\text{g/mol}$</span><span class="chip">$q''=20{,}000\,\text{W/m}^2$</span></div>
+      <div class="find"><b>구할 것:</b> $h\ [\text{W/(m}^2\text{K)}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="3150" data-tol="0.03"/><span class="ans-unit">$\text{W/(m}^2\text{K)}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
       <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
       <div class="revealable solution">
-        <div class="dstep2"><div class="step-label">Step 1 · 정의</div>$$ p_r = \frac{p}{p_{crit}} $$</div>
-        <div class="dstep2"><div class="step-label">Step 2 · 대입</div>$$ p_r = \frac{1.016}{4.06} \approx 0.25 $$</div>
-        <div class="ans-final"><div class="ans-eq">$$ p_r \approx 0.25 $$</div><b>정답:</b> Cooper·Gorenflo 식은 이 $p_r$ 하나로 압력 효과를 통합한다. $p_r$이 클수록 핵비등 계수 $h$가 커진다.</div>
+        <div class="dstep2"><div class="step-label">Step 1 · 압력 인자</div>$$ p_r^{0.12}(-\log_{10}p_r)^{-0.55} = 0.1^{0.12}\times1^{-0.55} \approx 0.759 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 몰질량·열유속 인자</div>$$ M^{-0.5}q''^{0.67} = 102^{-0.5}\times20{,}000^{0.67} \approx 0.0990\times761.5 \approx 75.4 $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · 조합</div>$$ h = 55\times0.759\times75.4 \approx 3{,}150\ \text{W/(m}^2\text{K)} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ h \approx 3{,}150\ \text{W/(m}^2\text{K)} $$</div><b>정답:</b> 앞의 실습 위젯이 method=2(Cooper)·기본값에서 보여주는 $h\approx3.2\,\text{kW/(m}^2\text{K)}$와 같은 조건 — 물성표 없이 $p_r,\,R_p,\,M$만으로 계산된다.</div>
       </div>
     </div>
     <div class="prob lang-en">
-      <div class="prob-num">Practice 1 · Basic · reduced pressure</div>
-      <p class="prob-statement">Refrigerant R-134a has critical pressure $p_{crit}=4.06\,\text{MPa}$. At operating pressure $p=1.016\,\text{MPa}$, find the <strong>reduced pressure $p_r$</strong>.</p>
-      <div class="given"><span class="chip">$p=1.016\,\text{MPa}$</span><span class="chip">$p_{crit}=4.06\,\text{MPa}$</span></div>
-      <div class="find"><b>Find:</b> $p_r$ (dimensionless)</div>
-      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="0.25" data-tol="0.03"/><span class="ans-unit">(–)</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <div class="prob-num">Practice 1 · Basic · $h$ from the Cooper correlation</div>
+      <p class="prob-statement">Apply Cooper's equation $h=55\,p_r^{0.12-0.2\log_{10}R_p}(-\log_{10}p_r)^{-0.55}M^{-0.5}q''^{0.67}$ to R-134a ($M=102\,\text{g/mol}$). With roughness unknown, use the conventional $R_p=1\,\mu\text{m}$ (exponent $0.12$), and take $p_r=0.1$, $q''=20{,}000\,\text{W/m}^2$. Find the <strong>nucleate coefficient $h$</strong> in $\text{W/(m}^2\text{K)}$.</p>
+      <div class="given"><span class="chip">$p_r=0.1$</span><span class="chip">$R_p=1\,\mu\text{m}$</span><span class="chip">$M=102\,\text{g/mol}$</span><span class="chip">$q''=20{,}000\,\text{W/m}^2$</span></div>
+      <div class="find"><b>Find:</b> $h\ [\text{W/(m}^2\text{K)}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="3150" data-tol="0.03"/><span class="ans-unit">$\text{W/(m}^2\text{K)}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
       <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
       <div class="revealable solution">
-        <div class="dstep2"><div class="step-label">Step 1 · definition</div>$$ p_r = \frac{p}{p_{crit}} $$</div>
-        <div class="dstep2"><div class="step-label">Step 2 · substitute</div>$$ p_r = \frac{1.016}{4.06} \approx 0.25 $$</div>
-        <div class="ans-final"><div class="ans-eq">$$ p_r \approx 0.25 $$</div><b>Answer:</b> Cooper and Gorenflo fold the pressure effect into this single $p_r$. A larger $p_r$ raises the nucleate coefficient $h$.</div>
+        <div class="dstep2"><div class="step-label">Step 1 · pressure factor</div>$$ p_r^{0.12}(-\log_{10}p_r)^{-0.55} = 0.1^{0.12}\times1^{-0.55} \approx 0.759 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · molar-mass & flux factor</div>$$ M^{-0.5}q''^{0.67} = 102^{-0.5}\times20{,}000^{0.67} \approx 0.0990\times761.5 \approx 75.4 $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · combine</div>$$ h = 55\times0.759\times75.4 \approx 3{,}150\ \text{W/(m}^2\text{K)} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ h \approx 3{,}150\ \text{W/(m}^2\text{K)} $$</div><b>Answer:</b> the same condition as the earlier interactive's method=2 (Cooper) default, which shows $h\approx3.2\,\text{kW/(m}^2\text{K)}$ — computed from $p_r,\,R_p,\,M$ alone, no property table.</div>
       </div>
     </div>
     <div class="prob lang-ko">
