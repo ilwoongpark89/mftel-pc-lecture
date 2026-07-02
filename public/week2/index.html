@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.4" />
-<title>상변화열전달 · Week 2</title>
+<title>상변화열전달 · Part 2</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -140,7 +140,7 @@
   .sumcard h4{ font-size:12.5px; font-weight:800; letter-spacing:.03em; margin-bottom:9px; display:flex; align-items:center; gap:6px; } .sumcard.key h4{ color:var(--accent); }
   .sumcard ul{ margin:0; padding-left:17px; } .sumcard li{ font-size:13px; line-height:1.6; color:var(--gray); margin-bottom:4px; } .sumcard li strong{ color:var(--ink); }
 
-  /* week intro */
+  /* part intro */
   .intro{ max-width:940px; }
   .intro-eyebrow{ font-size:12.5px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
   .intro-h{ font-size:38px; font-weight:800; line-height:1.18; letter-spacing:-.015em; margin-bottom:14px; } .intro-h .hl{ color:var(--accent); }
@@ -184,31 +184,31 @@
 </style>
 </head>
 <body>
-<header><span class="brand">MFTEL-PC<span class="sep">·</span>상변화열전달<span class="sep">·</span>Week 2</span>상변화열전달<span class="sep">·</span>Week N</span><div class="chrail" id="chrail"></div><button id="langToggle" class="langtog" type="button" aria-label="Language">EN</button></header>
+<header><span class="brand">MFTEL-PC<span class="sep">·</span>상변화열전달<span class="sep">·</span>Part 2</span>상변화열전달<span class="sep">·</span>Part N</span><div class="chrail" id="chrail"></div><button id="langToggle" class="langtog" type="button" aria-label="Language">EN</button></header>
 <div class="stepbar" id="stepbar"></div>
 <main><div class="stage" id="stage">
 <!-- ════════ 시작1 / 환영 ════════ -->
-<section class="screen" data-ch="시작1" data-chtitle="2주차 개요" data-stage="환영">
+<section class="screen" data-ch="시작1" data-chtitle="파트 2 개요" data-stage="환영">
   <div class="intro">
-    <div class="intro-eyebrow lang-ko">상변화 열전달 · 2주차 · 시작</div>
-    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Week 2 · Intro</div>
+    <div class="intro-eyebrow lang-ko">상변화 열전달 · 파트 2 · 시작</div>
+    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Part 2 · Intro</div>
 
     <h1 class="intro-h lang-ko">핵비등은 왜 그렇게 효율적인가 —<br><span class="hl">기포 하나하나의 물리와 상관식</span></h1>
     <h1 class="intro-h lang-en">Why is nucleate boiling so efficient —<br><span class="hl">the physics of a single bubble and its correlations</span></h1>
 
-    <p class="lede lang-ko">핵비등의 위력은 하나의 통계가 말해 준다. 과열도가 겨우 수 K 오르는 사이 열유속 $q''$는 자릿수를 바꾸며 치솟아, 잘 설계된 표면에서 $q''$가 $10^{6}\ \text{W/m}^{2}$를 넘는다. 그런데 이 거대한 열은 <strong>수백만 개의 미세한 기포</strong>가 각자 태어나고 자라 이탈하는 과정의 합일 뿐이다. 기포 하나가 벽에서 떼어 가는 잠열, 그 자리에 밀려드는 차가운 액체(미세대류), 벽과 기포 사이에 남는 얇은 <strong>미세층(microlayer)</strong>의 증발 — 이 세 조각이 겹쳐 놀라운 $h$를 만든다. 2주차는 이 <strong>기포 규모의 물리를 벽 규모의 상관식</strong>으로 잇는 다리를 놓는다. <span class="src">[Rohsenow, <i>Trans. ASME</i> 74 (1952) 969]</span></p>
-    <p class="lede lang-en">One statistic captures the power of nucleate boiling: over a superheat that rises by only a few kelvin, the heat flux $q''$ climbs across orders of magnitude, exceeding $10^{6}\ \text{W/m}^{2}$ on a well-designed surface. Yet this enormous flux is nothing but the sum of <strong>millions of tiny bubbles</strong>, each nucleating, growing, and departing. The latent heat one bubble carries off the wall, the cold liquid rushing in behind it (microconvection), and the evaporation of the thin <strong>microlayer</strong> trapped between wall and bubble — these three pieces superpose into the remarkable $h$. Week 2 builds the bridge from this <strong>bubble-scale physics to wall-scale correlations</strong>. <span class="src">[Rohsenow, <i>Trans. ASME</i> 74 (1952) 969]</span></p>
+    <p class="lede lang-ko">핵비등의 위력은 하나의 통계가 말해 준다. 과열도가 겨우 수 K 오르는 사이 열유속 $q''$는 자릿수를 바꾸며 치솟아, 잘 설계된 표면에서 $q''$가 $10^{6}\ \text{W/m}^{2}$를 넘는다. 그런데 이 거대한 열은 <strong>수백만 개의 미세한 기포</strong>가 각자 태어나고 자라 이탈하는 과정의 합일 뿐이다. 기포 하나가 벽에서 떼어 가는 잠열, 그 자리에 밀려드는 차가운 액체(미세대류), 벽과 기포 사이에 남는 얇은 <strong>미세층(microlayer)</strong>의 증발 — 이 세 조각이 겹쳐 놀라운 $h$를 만든다. 파트 2는 이 <strong>기포 규모의 물리를 벽 규모의 상관식</strong>으로 잇는 다리를 놓는다. <span class="src">[Rohsenow, <i>Trans. ASME</i> 74 (1952) 969]</span></p>
+    <p class="lede lang-en">One statistic captures the power of nucleate boiling: over a superheat that rises by only a few kelvin, the heat flux $q''$ climbs across orders of magnitude, exceeding $10^{6}\ \text{W/m}^{2}$ on a well-designed surface. Yet this enormous flux is nothing but the sum of <strong>millions of tiny bubbles</strong>, each nucleating, growing, and departing. The latent heat one bubble carries off the wall, the cold liquid rushing in behind it (microconvection), and the evaporation of the thin <strong>microlayer</strong> trapped between wall and bubble — these three pieces superpose into the remarkable $h$. Part 2 builds the bridge from this <strong>bubble-scale physics to wall-scale correlations</strong>. <span class="src">[Rohsenow, <i>Trans. ASME</i> 74 (1952) 969]</span></p>
   </div>
 </section>
 
 <!-- ════════ 시작2 / 여정 ════════ -->
-<section class="screen" data-ch="시작2" data-chtitle="2주차 지도" data-stage="여정">
+<section class="screen" data-ch="시작2" data-chtitle="파트 2 지도" data-stage="여정">
   <div class="intro">
-    <div class="intro-eyebrow lang-ko">상변화 열전달 · 2주차 지도</div>
-    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Week 2 Roadmap</div>
+    <div class="intro-eyebrow lang-ko">상변화 열전달 · 파트 2 지도</div>
+    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Part 2 Roadmap</div>
 
-    <h1 class="intro-h lang-ko">이번 주, <span class="hl">네 개의 챕터</span>로 기포에서 상관식까지 잇는다</h1>
-    <h1 class="intro-h lang-en">This week: <span class="hl">four chapters</span> from the bubble to the correlation</h1>
+    <h1 class="intro-h lang-ko">이번 파트, <span class="hl">네 개의 챕터</span>로 기포에서 상관식까지 잇는다</h1>
+    <h1 class="intro-h lang-en">This part: <span class="hl">four chapters</span> from the bubble to the correlation</h1>
 
     <div class="roadmap lang-ko" style="margin-top:14px">
       <div class="rm-item"><span class="rn">2-1</span><span><span class="rt">기포 성장과 이탈</span> <span class="rd">— 관성·확산 지배 성장, 이탈 직경 $D_d$와 이탈 빈도 $f$</span></span></div>
@@ -223,13 +223,13 @@
       <div class="rm-item"><span class="rn">2-4</span><span><span class="rt">Heat-Flux Partitioning &amp; Microlayer</span> <span class="rd">— evaporation, quenching, natural-convection terms and microlayer evaporation</span></span></div>
     </div>
 
-    <div class="outcomes lang-ko" style="margin-top:18px"><h4>이번 주가 끝나면 할 수 있게 된다</h4><ul>
+    <div class="outcomes lang-ko" style="margin-top:18px"><h4>이번 파트가 끝나면 할 수 있게 된다</h4><ul>
       <li>기포의 <strong>관성 지배·확산 지배 성장</strong>을 구분하고 이탈 직경 $D_d$·빈도 $f$를 추정한다.</li>
       <li><strong>Rohsenow 상관식</strong>으로 $q''$–$\Delta T_e$ 관계를 계산하고 $C_{sf}$의 물리적 의미를 설명한다.</li>
       <li>물성 자료 없이 <strong>환산압력 $p_r$</strong>만으로 Cooper·Gorenflo 상관식을 적용한다.</li>
       <li>벽 열유속을 <strong>증발·급냉·자연대류</strong> 성분으로 분배하고 미세층 증발의 기여를 논한다.</li>
     </ul></div>
-    <div class="outcomes lang-en" style="margin-top:18px"><h4>By the end of this week you will be able to</h4><ul>
+    <div class="outcomes lang-en" style="margin-top:18px"><h4>By the end of this part you will be able to</h4><ul>
       <li>Distinguish <strong>inertia- and diffusion-controlled</strong> bubble growth and estimate departure diameter $D_d$ and frequency $f$.</li>
       <li>Compute the $q''$–$\Delta T_e$ relation with the <strong>Rohsenow correlation</strong> and explain the meaning of $C_{sf}$.</li>
       <li>Apply the Cooper &amp; Gorenflo correlations from <strong>reduced pressure $p_r$</strong> alone, without property tables.</li>

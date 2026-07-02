@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.4" />
-<title>상변화열전달 · Week 3</title>
+<title>상변화열전달 · Part 3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -140,7 +140,7 @@
   .sumcard h4{ font-size:12.5px; font-weight:800; letter-spacing:.03em; margin-bottom:9px; display:flex; align-items:center; gap:6px; } .sumcard.key h4{ color:var(--accent); }
   .sumcard ul{ margin:0; padding-left:17px; } .sumcard li{ font-size:13px; line-height:1.6; color:var(--gray); margin-bottom:4px; } .sumcard li strong{ color:var(--ink); }
 
-  /* week intro */
+  /* part intro */
   .intro{ max-width:940px; }
   .intro-eyebrow{ font-size:12.5px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
   .intro-h{ font-size:38px; font-weight:800; line-height:1.18; letter-spacing:-.015em; margin-bottom:14px; } .intro-h .hl{ color:var(--accent); }
@@ -184,14 +184,14 @@
 </style>
 </head>
 <body>
-<header><span class="brand">MFTEL-PC<span class="sep">·</span>상변화열전달<span class="sep">·</span>Week 3</span>상변화열전달<span class="sep">·</span>Week N</span><div class="chrail" id="chrail"></div><button id="langToggle" class="langtog" type="button" aria-label="Language">EN</button></header>
+<header><span class="brand">MFTEL-PC<span class="sep">·</span>상변화열전달<span class="sep">·</span>Part 3</span>상변화열전달<span class="sep">·</span>Part N</span><div class="chrail" id="chrail"></div><button id="langToggle" class="langtog" type="button" aria-label="Language">EN</button></header>
 <div class="stepbar" id="stepbar"></div>
 <main><div class="stage" id="stage">
 <!-- ════════ 시작1 / 환영 ════════ -->
-<section class="screen" data-ch="시작1" data-chtitle="3주차 개요" data-stage="환영">
+<section class="screen" data-ch="시작1" data-chtitle="파트 3 개요" data-stage="환영">
   <div class="intro">
-    <div class="intro-eyebrow lang-ko">상변화 열전달 · 3주차 · 시작</div>
-    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Week 3 · Intro</div>
+    <div class="intro-eyebrow lang-ko">상변화 열전달 · 파트 3 · 시작</div>
+    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Part 3 · Intro</div>
 
     <h1 class="intro-h lang-ko">핵비등이 아무리 좋아도<br><span class="hl">넘어서는 안 되는 벽, 임계열유속(CHF)이 있다</span></h1>
     <h1 class="intro-h lang-en">However good nucleate boiling is,<br><span class="hl">there is a wall you must not cross — the critical heat flux</span></h1>
@@ -202,13 +202,13 @@
 </section>
 
 <!-- ════════ 시작2 / 여정 ════════ -->
-<section class="screen" data-ch="시작2" data-chtitle="3주차 지도" data-stage="여정">
+<section class="screen" data-ch="시작2" data-chtitle="파트 3 지도" data-stage="여정">
   <div class="intro">
-    <div class="intro-eyebrow lang-ko">상변화 열전달 · 3주차 지도</div>
-    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Week 3 Roadmap</div>
+    <div class="intro-eyebrow lang-ko">상변화 열전달 · 파트 3 지도</div>
+    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Part 3 Roadmap</div>
 
-    <h1 class="intro-h lang-ko">이번 주, <span class="hl">네 개의 챕터</span>로 CHF의 벽과 그 너머를 파고든다</h1>
-    <h1 class="intro-h lang-en">This week: <span class="hl">four chapters</span> into the CHF wall and beyond</h1>
+    <h1 class="intro-h lang-ko">이번 파트, <span class="hl">네 개의 챕터</span>로 CHF의 벽과 그 너머를 파고든다</h1>
+    <h1 class="intro-h lang-en">This part: <span class="hl">four chapters</span> into the CHF wall and beyond</h1>
 
     <div class="roadmap lang-ko" style="margin-top:14px">
       <div class="rm-item"><span class="rn">3-1</span><span><span class="rt">유체역학적 불안정성</span> <span class="rd">— Kelvin–Helmholtz·Rayleigh–Taylor 불안정성과 증기 제트 붕괴</span></span></div>
@@ -223,13 +223,13 @@
       <div class="rm-item"><span class="rn">3-4</span><span><span class="rt">Film Boiling &amp; Leidenfrost</span> <span class="rd">— convection + radiation across a stable vapor film and the Bromley correlation</span></span></div>
     </div>
 
-    <div class="outcomes lang-ko" style="margin-top:18px"><h4>이번 주가 끝나면 할 수 있게 된다</h4><ul>
+    <div class="outcomes lang-ko" style="margin-top:18px"><h4>이번 파트가 끝나면 할 수 있게 된다</h4><ul>
       <li><strong>Kelvin–Helmholtz·Rayleigh–Taylor 불안정성</strong>이 어떻게 CHF를 지배하는지 설명한다.</li>
       <li>Zuber 상관식으로 주어진 유체·압력에서 <strong>임계열유속 $q''_{max}$</strong>를 추정한다.</li>
       <li>표면·형상·압력이 CHF에 주는 보정을 적용하고 <strong>최소열유속 $q''_{min}$</strong>을 구한다.</li>
       <li>Bromley 상관식으로 <strong>막비등 열전달</strong>과 Leidenfrost 현상을 정량화한다.</li>
     </ul></div>
-    <div class="outcomes lang-en" style="margin-top:18px"><h4>By the end of this week you will be able to</h4><ul>
+    <div class="outcomes lang-en" style="margin-top:18px"><h4>By the end of this part you will be able to</h4><ul>
       <li>Explain how the <strong>Kelvin–Helmholtz and Rayleigh–Taylor instabilities</strong> govern CHF.</li>
       <li>Estimate the <strong>critical heat flux $q''_{max}$</strong> for a given fluid and pressure using Zuber's correlation.</li>
       <li>Apply surface, geometry, and pressure corrections to CHF and evaluate the <strong>minimum flux $q''_{min}$</strong>.</li>

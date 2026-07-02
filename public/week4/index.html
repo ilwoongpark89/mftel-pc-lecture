@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.4" />
-<title>상변화열전달 · Week 4</title>
+<title>상변화열전달 · Part 4</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -140,7 +140,7 @@
   .sumcard h4{ font-size:12.5px; font-weight:800; letter-spacing:.03em; margin-bottom:9px; display:flex; align-items:center; gap:6px; } .sumcard.key h4{ color:var(--accent); }
   .sumcard ul{ margin:0; padding-left:17px; } .sumcard li{ font-size:13px; line-height:1.6; color:var(--gray); margin-bottom:4px; } .sumcard li strong{ color:var(--ink); }
 
-  /* week intro */
+  /* part intro */
   .intro{ max-width:940px; }
   .intro-eyebrow{ font-size:12.5px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
   .intro-h{ font-size:38px; font-weight:800; line-height:1.18; letter-spacing:-.015em; margin-bottom:14px; } .intro-h .hl{ color:var(--accent); }
@@ -184,14 +184,14 @@
 </style>
 </head>
 <body>
-<header><span class="brand">MFTEL-PC<span class="sep">·</span>상변화열전달<span class="sep">·</span>Week 4</span>상변화열전달<span class="sep">·</span>Week N</span><div class="chrail" id="chrail"></div><button id="langToggle" class="langtog" type="button" aria-label="Language">EN</button></header>
+<header><span class="brand">MFTEL-PC<span class="sep">·</span>상변화열전달<span class="sep">·</span>Part 4</span>상변화열전달<span class="sep">·</span>Part N</span><div class="chrail" id="chrail"></div><button id="langToggle" class="langtog" type="button" aria-label="Language">EN</button></header>
 <div class="stepbar" id="stepbar"></div>
 <main><div class="stage" id="stage">
 <!-- ════════ 시작1 / 환영 ════════ -->
-<section class="screen" data-ch="시작1" data-chtitle="4주차 개요" data-stage="환영">
+<section class="screen" data-ch="시작1" data-chtitle="파트 4 개요" data-stage="환영">
   <div class="intro">
-    <div class="intro-eyebrow lang-ko">상변화 열전달 · 4주차 · 시작</div>
-    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Week 4 · Intro</div>
+    <div class="intro-eyebrow lang-ko">상변화 열전달 · 파트 4 · 시작</div>
+    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Part 4 · Intro</div>
 
     <h1 class="intro-h lang-ko">유체가 흐르기 시작하면,<br><span class="hl">비등은 전혀 다른 규칙을 따른다</span></h1>
     <h1 class="intro-h lang-en">Once the fluid starts to flow,<br><span class="hl">boiling obeys an entirely different set of rules</span></h1>
@@ -202,13 +202,13 @@
 </section>
 
 <!-- ════════ 시작2 / 여정 ════════ -->
-<section class="screen" data-ch="시작2" data-chtitle="4주차 지도" data-stage="여정">
+<section class="screen" data-ch="시작2" data-chtitle="파트 4 지도" data-stage="여정">
   <div class="intro">
-    <div class="intro-eyebrow lang-ko">상변화 열전달 · 4주차 지도</div>
-    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Week 4 Roadmap</div>
+    <div class="intro-eyebrow lang-ko">상변화 열전달 · 파트 4 지도</div>
+    <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Part 4 Roadmap</div>
 
-    <h1 class="intro-h lang-ko">이번 주, <span class="hl">네 개의 챕터</span>로 유동비등의 지형을 훑는다</h1>
-    <h1 class="intro-h lang-en">This week: <span class="hl">four chapters</span> across the landscape of flow boiling</h1>
+    <h1 class="intro-h lang-ko">이번 파트, <span class="hl">네 개의 챕터</span>로 유동비등의 지형을 훑는다</h1>
+    <h1 class="intro-h lang-en">This part: <span class="hl">four chapters</span> across the landscape of flow boiling</h1>
 
     <div class="roadmap lang-ko" style="margin-top:14px">
       <div class="rm-item"><span class="rn">4-1</span><span><span class="rt">풀 vs 유동비등·유동양식</span> <span class="rd">— 질량유속 $G$·건도 $x$의 도입과 기포류·슬러그류·환상류 전이</span></span></div>
@@ -223,13 +223,13 @@
       <div class="rm-item"><span class="rn">4-4</span><span><span class="rt">Marangoni, Mixtures &amp; Instability</span> <span class="rd">— thermo/soluto-capillary flow, mixture boiling, Ledinegg &amp; density-wave oscillations</span></span></div>
     </div>
 
-    <div class="outcomes lang-ko" style="margin-top:18px"><h4>이번 주가 끝나면 할 수 있게 된다</h4><ul>
+    <div class="outcomes lang-ko" style="margin-top:18px"><h4>이번 파트가 끝나면 할 수 있게 된다</h4><ul>
       <li>질량유속 $G$와 건도 $x$로 <strong>풀 비등과 유동비등</strong>을 구분하고 유동양식을 판별한다.</li>
       <li>Chen 상관식의 <strong>억제 인자 $S$와 강화 인자 $F$</strong>로 국소 열전달 계수 $h$를 예측한다.</li>
       <li><strong>유동 CHF와 드라이아웃</strong>을 구별하고 미세유로 비등의 지배 물리를 설명한다.</li>
       <li>Marangoni 효과·혼합물 물질전달·<strong>유동 불안정성</strong>이 성능에 주는 영향을 평가한다.</li>
     </ul></div>
-    <div class="outcomes lang-en" style="margin-top:18px"><h4>By the end of this week you will be able to</h4><ul>
+    <div class="outcomes lang-en" style="margin-top:18px"><h4>By the end of this part you will be able to</h4><ul>
       <li>Distinguish <strong>pool from flow boiling</strong> using mass flux $G$ and quality $x$, and identify the flow regime.</li>
       <li>Predict the local coefficient $h$ with the Chen correlation's <strong>suppression $S$ and enhancement $F$</strong> factors.</li>
       <li>Differentiate <strong>flow CHF from dryout</strong> and explain the governing physics of microchannel boiling.</li>
