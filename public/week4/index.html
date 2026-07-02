@@ -184,7 +184,7 @@
 </style>
 </head>
 <body>
-<header><span class="brand">MFTEL-PC<span class="sep">·</span>상변화열전달<span class="sep">·</span>Part 4</span>상변화열전달<span class="sep">·</span>Part N</span><div class="chrail" id="chrail"></div><button id="langToggle" class="langtog" type="button" aria-label="Language">EN</button></header>
+<header><span class="brand">MFTEL-PC<span class="sep">·</span>상변화열전달<span class="sep">·</span>Part 4</span>상변화열전달<span class="sep">·</span>Part 1</span>상변화열전달<span class="sep">·</span>Part N</span><div class="chrail" id="chrail"></div><button id="langToggle" class="langtog" type="button" aria-label="Language">EN</button></header>
 <div class="stepbar" id="stepbar"></div>
 <main><div class="stage" id="stage">
 <!-- ════════ 시작1 / 환영 ════════ -->
@@ -193,11 +193,11 @@
     <div class="intro-eyebrow lang-ko">상변화 열전달 · 파트 4 · 시작</div>
     <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Part 4 · Intro</div>
 
-    <h1 class="intro-h lang-ko">유체가 흐르기 시작하면,<br><span class="hl">비등은 전혀 다른 규칙을 따른다</span></h1>
-    <h1 class="intro-h lang-en">Once the fluid starts to flow,<br><span class="hl">boiling obeys an entirely different set of rules</span></h1>
+    <h1 class="intro-h lang-ko">유체가 흐르기 시작하면 비등이 달라지고,<br><span class="hl">그 반대편에서는 응축이 기다린다</span></h1>
+    <h1 class="intro-h lang-en">Once the fluid flows, boiling changes —<br><span class="hl">and condensation waits on the other side</span></h1>
 
-    <p class="lede lang-ko">고요한 풀(pool) 속 비등은 부력이 만든 기포 하나하나의 이야기였다. 그러나 관 안에서 유체가 <strong>속도 $G$로 흐르기 시작하면</strong> 강제 대류와 핵비등이 겹쳐지고, 축을 따라 건도 $x$가 올라가면서 유동양식이 <strong>기포류 → 슬러그류 → 환상류</strong>로 급변한다. 국소 열전달 계수는 위치마다 다르고, 어느 지점에서는 벽면이 갑자기 마르는 <strong>임계 열유속(CHF)</strong>과 <strong>드라이아웃(dryout)</strong>이 찾아온다. 특히 <strong>미세유로(microchannel)</strong>에서는 표면장력이 부력을 압도해 유동양식 지도 자체가 다시 그려진다. <span class="src">[Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2nd ed., Ch.11–12]</span></p>
-    <p class="lede lang-en">In a quiescent pool, boiling was the story of individual buoyancy-driven bubbles. But once the fluid moves through a channel <strong>at mass flux $G$</strong>, forced convection and nucleate boiling superimpose, and as quality $x$ rises along the axis the flow pattern switches abruptly through <strong>bubbly → slug → annular</strong> flow. The local heat-transfer coefficient varies point by point, and somewhere the wall suddenly dries out — the onset of <strong>critical heat flux (CHF)</strong> and <strong>dryout</strong>. In <strong>microchannels</strong> especially, surface tension overwhelms buoyancy and the flow-regime map is redrawn from scratch. <span class="src">[Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2nd ed., Ch.11–12]</span></p>
+    <p class="lede lang-ko">고요한 풀(pool) 속 비등은 부력이 만든 기포 하나하나의 이야기였다. 그러나 관 안에서 유체가 <strong>질량유속 $G$로 흐르기 시작하면</strong> 강제 대류와 핵비등이 겹쳐지고, 축을 따라 건도 $x$가 올라가면서 유동양식이 <strong>기포류 → 슬러그류 → 환상류</strong>로 급변한다. 국소 열전달 계수는 위치마다 다르고, 어느 지점에서는 벽면이 갑자기 마르는 <strong>임계 열유속(CHF)</strong>과 <strong>드라이아웃(dryout)</strong>이 찾아오며, <strong>미세유로</strong>에서는 표면장력이 부력을 압도한다. 여기에 <strong>Marangoni 대류·혼합물 비등·유동 불안정성</strong>이 겹치고, 마침내 비등의 반대편에서 증기가 다시 액체로 돌아가는 <strong>응축</strong>을 만나 그 모든 물리가 산업 현장으로 이어진다. <span class="src">[Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2nd ed., Ch.11–14]</span></p>
+    <p class="lede lang-en">In a quiescent pool, boiling was the story of individual buoyancy-driven bubbles. But once the fluid moves through a channel <strong>at mass flux $G$</strong>, forced convection and nucleate boiling superimpose, and as quality $x$ rises along the axis the flow pattern switches abruptly through <strong>bubbly → slug → annular</strong> flow. The local heat-transfer coefficient varies point by point, somewhere the wall suddenly dries out — the onset of <strong>critical heat flux (CHF)</strong> and <strong>dryout</strong> — and in <strong>microchannels</strong> surface tension overwhelms buoyancy. Layer on <strong>Marangoni convection, mixture boiling, and flow instabilities</strong>, and finally, on the far side of boiling, vapor returns to liquid in <strong>condensation</strong> — carrying all of this physics into industry. <span class="src">[Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, 2nd ed., Ch.11–14]</span></p>
   </div>
 </section>
 
@@ -207,33 +207,37 @@
     <div class="intro-eyebrow lang-ko">상변화 열전달 · 파트 4 지도</div>
     <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Part 4 Roadmap</div>
 
-    <h1 class="intro-h lang-ko">이번 파트, <span class="hl">네 개의 챕터</span>로 유동비등의 지형을 훑는다</h1>
-    <h1 class="intro-h lang-en">This part: <span class="hl">four chapters</span> across the landscape of flow boiling</h1>
+    <h1 class="intro-h lang-ko">이번 파트, <span class="hl">여섯 개의 챕터</span>로 유동비등에서 응축·산업까지 잇는다</h1>
+    <h1 class="intro-h lang-en">This part: <span class="hl">six chapters</span> from flow boiling through condensation to industry</h1>
 
     <div class="roadmap lang-ko" style="margin-top:14px">
       <div class="rm-item"><span class="rn">4-1</span><span><span class="rt">풀 vs 유동비등·유동양식</span> <span class="rd">— 질량유속 $G$·건도 $x$의 도입과 기포류·슬러그류·환상류 전이</span></span></div>
       <div class="rm-item"><span class="rn">4-2</span><span><span class="rt">과냉·포화 유동비등(Chen)</span> <span class="rd">— 핵비등 억제 $S$와 대류 강화 $F$의 중첩 상관식</span></span></div>
       <div class="rm-item"><span class="rn">4-3</span><span><span class="rt">유동 CHF·드라이아웃·미세유로</span> <span class="rd">— DNB 대 dryout, 미세유로에서 표면장력 지배 양식</span></span></div>
       <div class="rm-item"><span class="rn">4-4</span><span><span class="rt">Marangoni·혼합·불안정성</span> <span class="rd">— 온도·농도 구배 유동, 혼합물 비등, Ledinegg·밀도파 진동</span></span></div>
+      <div class="rm-item"><span class="rn">4-5</span><span><span class="rt">응축 열전달 개요</span> <span class="rd">— 막상·적상 응축과 Nusselt 막응축 이론의 기초</span></span></div>
+      <div class="rm-item"><span class="rn">4-6</span><span><span class="rt">상변화 산업 응용</span> <span class="rd">— 열교환기·전자냉각·발전·2상 열관리 응용</span></span></div>
     </div>
     <div class="roadmap lang-en" style="margin-top:14px">
       <div class="rm-item"><span class="rn">4-1</span><span><span class="rt">Pool vs Flow Boiling &amp; Flow Regimes</span> <span class="rd">— introducing mass flux $G$, quality $x$, and bubbly / slug / annular transitions</span></span></div>
       <div class="rm-item"><span class="rn">4-2</span><span><span class="rt">Subcooled / Saturated Flow Boiling (Chen)</span> <span class="rd">— superposition of nucleate suppression $S$ and convective enhancement $F$</span></span></div>
       <div class="rm-item"><span class="rn">4-3</span><span><span class="rt">Flow CHF, Dryout &amp; Microchannels</span> <span class="rd">— DNB vs dryout and surface-tension-dominated regimes in microchannels</span></span></div>
       <div class="rm-item"><span class="rn">4-4</span><span><span class="rt">Marangoni, Mixtures &amp; Instability</span> <span class="rd">— thermo/soluto-capillary flow, mixture boiling, Ledinegg &amp; density-wave oscillations</span></span></div>
+      <div class="rm-item"><span class="rn">4-5</span><span><span class="rt">Condensation Heat Transfer Overview</span> <span class="rd">— film vs dropwise condensation and the basics of Nusselt film theory</span></span></div>
+      <div class="rm-item"><span class="rn">4-6</span><span><span class="rt">Industrial Phase-Change Applications</span> <span class="rd">— heat exchangers, electronics cooling, power generation, two-phase thermal management</span></span></div>
     </div>
 
     <div class="outcomes lang-ko" style="margin-top:18px"><h4>이번 파트가 끝나면 할 수 있게 된다</h4><ul>
       <li>질량유속 $G$와 건도 $x$로 <strong>풀 비등과 유동비등</strong>을 구분하고 유동양식을 판별한다.</li>
       <li>Chen 상관식의 <strong>억제 인자 $S$와 강화 인자 $F$</strong>로 국소 열전달 계수 $h$를 예측한다.</li>
       <li><strong>유동 CHF와 드라이아웃</strong>을 구별하고 미세유로 비등의 지배 물리를 설명한다.</li>
-      <li>Marangoni 효과·혼합물 물질전달·<strong>유동 불안정성</strong>이 성능에 주는 영향을 평가한다.</li>
+      <li>Marangoni·혼합·불안정성을 인식하고, <strong>응축 열전달</strong>과 상변화 산업 응용을 개관한다.</li>
     </ul></div>
     <div class="outcomes lang-en" style="margin-top:18px"><h4>By the end of this part you will be able to</h4><ul>
       <li>Distinguish <strong>pool from flow boiling</strong> using mass flux $G$ and quality $x$, and identify the flow regime.</li>
       <li>Predict the local coefficient $h$ with the Chen correlation's <strong>suppression $S$ and enhancement $F$</strong> factors.</li>
       <li>Differentiate <strong>flow CHF from dryout</strong> and explain the governing physics of microchannel boiling.</li>
-      <li>Assess how the Marangoni effect, mixture mass transfer, and <strong>flow instabilities</strong> affect performance.</li>
+      <li>Recognize Marangoni, mixture, and instability effects, and survey <strong>condensation heat transfer</strong> and industrial phase-change applications.</li>
     </ul></div>
   </div>
 </section>
@@ -1764,6 +1768,730 @@
         <li>Substitution calc of $Ma$ and comparison with $Ma_c$.</li>
         <li>CHF-enhancement mechanism of self-rewetting fluids.</li>
         <li>DWO stability map ($N_{sub}$–$N_{pch}$) and orifice stabilization (SMR helical SG case).</li>
+      </ul></div>
+    </div>
+  </section>
+
+<!-- ══════════ 4-5 / 개념 ══════════ -->
+  <section class="screen" data-ch="4-5" data-chtitle="응축 열전달 개요" data-stage="개념">
+    <div class="eyebrow lang-ko">4-5 · 개념 · Concept</div>
+    <div class="eyebrow lang-en">4-5 · Concept</div>
+    <h1 class="stage-h lang-ko">응축 — 비등의 거울상, 증기가 액체로</h1>
+    <h1 class="stage-h lang-en">Condensation — the Mirror of Boiling, Vapor to Liquid</h1>
+    <div class="analogy lang-ko"><span class="ic">🪟</span><div class="tx"><b>직관</b> — 겨울 창문에 김이 서리듯, 포화증기가 <b>차가운 벽($T_s<T_{sat}$)</b>에 닿으면 잠열 $h_{fg}$를 벽에 내주며 액체로 변합니다. 이 액체가 벽을 <b>연속 막(film)</b>으로 덮으면 그 막 자체가 <b>열저항</b>이 되어 이후 응축을 방해합니다. 비등이 $\Delta T_e=T_s-T_{sat}>0$이라면, 응축은 $\Delta T=T_{sat}-T_s>0$인 <b>반대편 상변화</b>입니다. <span class="src">(출처: Nusselt 1916 막응축 이론 / Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10.7)</span></div></div>
+    <div class="analogy lang-en"><span class="ic">🪟</span><div class="tx"><b>Intuition</b> — Like fog on a winter window, when saturated vapor meets a <b>cold wall ($T_s<T_{sat}$)</b> it releases its latent heat $h_{fg}$ to the wall and turns to liquid. If that liquid coats the wall as a <b>continuous film</b>, the film itself becomes a <b>thermal resistance</b> that impedes further condensation. Where boiling has $\Delta T_e=T_s-T_{sat}>0$, condensation is the <b>opposite phase change</b> with $\Delta T=T_{sat}-T_s>0$. <span class="src">(Source: Nusselt 1916 film-condensation theory / Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10.7)</span></div></div>
+    <div class="two lang-ko">
+      <div class="col2">
+        <p class="lede"><strong>응축(condensation)</strong>은 포화온도 이하로 냉각된 표면에서 증기가 액체로 바뀌는 상변화입니다. 응축률은 <strong>$q''=h\,\Delta T$</strong>로 정의되며, 여기서 구동력은 <strong>과냉도 $\Delta T=T_{sat}-T_s$</strong>입니다. 응축은 액막의 형태에 따라 두 방식으로 나뉩니다 — 벽을 젖어 덮는 <strong>막응축(filmwise)</strong>과 물방울로 맺히는 <strong>적상응축(dropwise)</strong>. 적상응축이 벽을 노출시켜 훨씬 큰 $h$를 주지만, 실제 장기 운전에서는 표면이 젖어 대부분 막응축으로 귀착됩니다.</p>
+        <div class="keqbox">
+          <div class="keq-label">응축 구동력과 두 방식</div>
+          <div class="keqrow"><span class="keqcap">구동 과냉도</span><span class="keqline">$ \Delta T = T_{sat} - T_s > 0 $</span></div>
+          <div class="keqrow"><span class="keqcap">응축 열유속</span><span class="keqline">$ q'' = h\,\Delta T $</span></div>
+          <div class="keqrow"><span class="keqcap">막응축 (filmwise)</span><span class="keqline">$ h \sim 4\!\sim\!11\ \text{kW/m}^2\text{K} $</span></div>
+          <div class="keqrow"><span class="keqcap">적상응축 (dropwise)</span><span class="keqline">$ h \sim 30\!\sim\!100\ \text{kW/m}^2\text{K} $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">핵심 용어</div>
+        <div class="terms">
+          <div class="term"><b>과냉도 $\Delta T$</b> $=T_{sat}-T_s$ — 응축의 구동 온도차 $[{}^{\circ}\text{C}]$</div>
+          <div class="term"><b>잠열 $h_{fg}$</b> 증기 → 액체 응축 시 방출 $[\text{J/kg}]$ (물 1 atm $\approx 2257\,\text{kJ/kg}$)</div>
+          <div class="term"><b>보정잠열 $h_{fg}'$</b> $=h_{fg}+0.68\,c_{p,l}\Delta T$ — 액막 과냉 보정</div>
+          <div class="term"><b>막응축</b> 벽을 젖어 덮는 연속 액막 (막이 열저항)</div>
+          <div class="term"><b>적상응축</b> 물방울로 맺힘 — $h$ 훨씬 큼(벽 노출)</div>
+          <div class="term"><b>$\bar h$</b> 판 길이 $L$에 대한 평균 응축 열전달계수 $[\text{W/m}^2\text{K}]$</div>
+        </div>
+        <div class="callout key"><div class="ct">핵심</div>응축의 병목은 <strong>액막의 두께</strong>입니다. 막이 두꺼울수록 열저항이 커져 $h$가 작아집니다. 그래서 벽을 노출시키는 <strong>적상응축이 막응축보다 훨씬 큰 $h$</strong>를 줍니다.</div>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2">
+        <p class="lede"><strong>Condensation</strong> is the phase change from vapor to liquid at a surface cooled below saturation. The condensation rate is <strong>$q''=h\,\Delta T$</strong>, driven by the <strong>subcooling $\Delta T=T_{sat}-T_s$</strong>. It occurs in two modes depending on the liquid form — <strong>filmwise</strong>, where liquid wets and coats the wall, and <strong>dropwise</strong>, where it beads into droplets. Dropwise exposes bare wall and yields a much larger $h$, yet over long operation surfaces tend to wet and revert to filmwise.</p>
+        <div class="keqbox">
+          <div class="keq-label">Driving force and the two modes</div>
+          <div class="keqrow"><span class="keqcap">Driving subcooling</span><span class="keqline">$ \Delta T = T_{sat} - T_s > 0 $</span></div>
+          <div class="keqrow"><span class="keqcap">Condensation flux</span><span class="keqline">$ q'' = h\,\Delta T $</span></div>
+          <div class="keqrow"><span class="keqcap">Filmwise</span><span class="keqline">$ h \sim 4\!\sim\!11\ \text{kW/m}^2\text{K} $</span></div>
+          <div class="keqrow"><span class="keqcap">Dropwise</span><span class="keqline">$ h \sim 30\!\sim\!100\ \text{kW/m}^2\text{K} $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">Key terms</div>
+        <div class="terms">
+          <div class="term"><b>Subcooling $\Delta T$</b> $=T_{sat}-T_s$ — driving temperature difference $[{}^{\circ}\text{C}]$</div>
+          <div class="term"><b>Latent heat $h_{fg}$</b> released on vapor → liquid $[\text{J/kg}]$ (water 1 atm $\approx 2257\,\text{kJ/kg}$)</div>
+          <div class="term"><b>Corrected latent heat $h_{fg}'$</b> $=h_{fg}+0.68\,c_{p,l}\Delta T$ — film-subcooling correction</div>
+          <div class="term"><b>Filmwise</b> continuous liquid film wetting the wall (film = resistance)</div>
+          <div class="term"><b>Dropwise</b> beads into droplets — much larger $h$ (bare wall)</div>
+          <div class="term"><b>$\bar h$</b> length-averaged condensation coefficient over $L$ $[\text{W/m}^2\text{K}]$</div>
+        </div>
+        <div class="callout key"><div class="ct">Key</div>The bottleneck in condensation is the <strong>liquid-film thickness</strong>. A thicker film means higher resistance and lower $h$. That is why <strong>dropwise, which exposes bare wall, gives a much larger $h$ than filmwise</strong>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-5 / 유도 ══════════ -->
+  <section class="screen" data-ch="4-5" data-chtitle="응축 열전달 개요" data-stage="유도">
+    <div class="eyebrow lang-ko">4-5 · 수식 유도 · Derivation</div>
+    <div class="eyebrow lang-en">4-5 · Derivation</div>
+    <h1 class="stage-h lang-ko">Nusselt 막응축 이론 — 수직판 $\bar h$ 유도</h1>
+    <h1 class="stage-h lang-en">Nusselt Film Condensation — Deriving $\bar h$ for a Vertical Plate</h1>
+    <p class="lede lang-ko"><b>가정:</b> ① 액막은 층류이며 관성 무시(점성-중력 균형), ② 액막 내 순수 전도, ③ 증기-액 계면은 $T_{sat}$, 벽은 $T_s$, ④ 증기 전단 무시. 이 네 가정으로 Nusselt(1916)는 국소 액막 두께 $\delta(x)$와 $\bar h$를 닫힌 형태로 유도했습니다.</p>
+    <p class="lede lang-en"><b>Assumptions:</b> ① laminar film, inertia negligible (viscous–gravity balance), ② pure conduction across the film, ③ vapor–liquid interface at $T_{sat}$, wall at $T_s$, ④ negligible vapor shear. From these four, Nusselt (1916) derived the local film thickness $\delta(x)$ and $\bar h$ in closed form.</p>
+    <div class="deriv lang-ko">
+      <div class="dcard"><h4>운동량 균형 (점성 = 중력)</h4><div class="sub">액막 두께 $\delta(x)$</div><div class="ana">🫗 흘러내리는 액막 — 중력이 점성 저항과 균형</div><div class="eq">$ \delta(x)=\left[\dfrac{4\,k_l\,\mu_l\,(T_{sat}-T_s)\,x}{g\,\rho_l(\rho_l-\rho_v)\,h_{fg}'}\right]^{1/4} $</div><p>단위 폭당 유량과 계면 응축을 결합하면 액막이 <strong>$\delta\propto x^{1/4}$</strong>로 두꺼워집니다.</p></div>
+      <div class="dcard"><h4>국소 열전달계수</h4><div class="sub">막을 가로지르는 전도</div><div class="ana">📏 얇은 막일수록 저항 작음</div><div class="eq">$ h_x=\dfrac{k_l}{\delta(x)} \;\Rightarrow\; h_x\propto x^{-1/4} $</div><p>액막이 순수 전도층이므로 $h_x=k_l/\delta$. 막이 두꺼워질수록 $h_x$가 감소합니다.</p></div>
+      <div class="dcard"><h4>평균 $\bar h$ (Nusselt 1916)</h4><div class="sub">$0\!\to\!L$ 적분, $\bar h=\tfrac{4}{3}h_L$</div><div class="ana">🎯 최종 닫힌 형태 — 수직판 평균</div><div class="eq">$ \bar h = 0.943\left[\dfrac{k_l^3\,\rho_l(\rho_l-\rho_v)\,g\,h_{fg}'}{\mu_l\,(T_{sat}-T_s)\,L}\right]^{1/4} $</div><p>보정잠열 $h_{fg}'=h_{fg}+0.68\,c_{p,l}\Delta T$ (Rohsenow 액막 과냉 보정).</p></div>
+    </div>
+    <div class="deriv lang-en">
+      <div class="dcard"><h4>Momentum balance (viscous = gravity)</h4><div class="sub">film thickness $\delta(x)$</div><div class="ana">🫗 Draining film — gravity balanced by viscous drag</div><div class="eq">$ \delta(x)=\left[\dfrac{4\,k_l\,\mu_l\,(T_{sat}-T_s)\,x}{g\,\rho_l(\rho_l-\rho_v)\,h_{fg}'}\right]^{1/4} $</div><p>Combining mass flow per unit width with interfacial condensation, the film grows as <strong>$\delta\propto x^{1/4}$</strong>.</p></div>
+      <div class="dcard"><h4>Local coefficient</h4><div class="sub">conduction across the film</div><div class="ana">📏 Thinner film → smaller resistance</div><div class="eq">$ h_x=\dfrac{k_l}{\delta(x)} \;\Rightarrow\; h_x\propto x^{-1/4} $</div><p>The film is a pure conduction layer, so $h_x=k_l/\delta$. As the film thickens, $h_x$ decreases.</p></div>
+      <div class="dcard"><h4>Average $\bar h$ (Nusselt 1916)</h4><div class="sub">integrate $0\!\to\!L$, $\bar h=\tfrac{4}{3}h_L$</div><div class="ana">🎯 Final closed form — vertical-plate average</div><div class="eq">$ \bar h = 0.943\left[\dfrac{k_l^3\,\rho_l(\rho_l-\rho_v)\,g\,h_{fg}'}{\mu_l\,(T_{sat}-T_s)\,L}\right]^{1/4} $</div><p>Corrected latent heat $h_{fg}'=h_{fg}+0.68\,c_{p,l}\Delta T$ (Rohsenow film-subcooling correction).</p></div>
+    </div>
+    <div class="callout warn lang-ko"><div class="ct">주의 · $-1/4$ 지수의 함정</div>$\bar h\propto(\Delta T\cdot L)^{-1/4}$이므로, 과냉도 $\Delta T$를 <strong>키우면 $\bar h$는 오히려 감소</strong>합니다(액막이 두꺼워짐). 단 <strong>총 열유속 $q''=\bar h\,\Delta T\propto\Delta T^{3/4}$</strong>는 여전히 증가합니다 — $\bar h$와 $q''$의 경향을 혼동하지 마세요. 또한 층류 가정은 $Re_\delta\lesssim 30$에서만 유효합니다.</div>
+    <div class="callout warn lang-en"><div class="ct">Caution · the $-1/4$ exponent trap</div>Since $\bar h\propto(\Delta T\cdot L)^{-1/4}$, raising the subcooling $\Delta T$ actually <strong>lowers $\bar h$</strong> (thicker film). Yet the <strong>total flux $q''=\bar h\,\Delta T\propto\Delta T^{3/4}$</strong> still increases — do not confuse the trends of $\bar h$ and $q''$. Also, the laminar assumption holds only for $Re_\delta\lesssim 30$.</div>
+  </section>
+
+  <!-- ══════════ 4-5 / 읽을거리 ══════════ -->
+  <section class="screen" data-ch="4-5" data-chtitle="응축 열전달 개요" data-stage="읽을거리">
+    <div class="eyebrow lang-ko">4-5 · 읽을거리 · Reading</div>
+    <div class="eyebrow lang-en">4-5 · Reading</div>
+    <h1 class="stage-h lang-ko">Nusselt의 1916년과 적상응축의 유혹</h1>
+    <h1 class="stage-h lang-en">Nusselt's 1916 and the Lure of Dropwise</h1>
+    <div class="two lang-ko">
+      <div class="col2 reading">
+        <p>1916년 독일의 <strong>Wilhelm Nusselt</strong>는 수직 냉각판 위 층류 액막을 <strong>점성-중력 균형</strong>과 <strong>막 내 순수 전도</strong>만으로 풀어, 응축 열전달을 처음 이론화했습니다. 놀랍게도 그의 100년 넘은 결과 $\bar h=0.943[\cdots]^{1/4}$는 오늘날에도 층류 막응축의 표준 기준식으로 쓰입니다.</p>
+        <p class="pullquote">응축의 적은 <em>자기 자신이 만든 액막</em>이다.</p>
+        <p>한편 <strong>적상응축(dropwise)</strong>은 벽을 젖게 하지 않는 발수 표면에서 물방울이 맺혔다가 굴러떨어지며 벽을 노출시켜, 막응축보다 <strong>$h$가 5~10배</strong> 큽니다. 그러나 발수 코팅은 시간이 지나며 오염·산화로 젖음성을 회복해 결국 막응축으로 되돌아갑니다. 그래서 설계는 <strong>보수적으로 막응축을 기준</strong>으로 삼습니다.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>응축 구동력은 <strong>$\Delta T=T_{sat}-T_s$</strong>(과냉도)이지 $T_s$가 아니다.</li><li>Nusselt식의 병목은 <strong>액막 두께 $\delta$</strong> — $h_x=k_l/\delta$.</li><li>적상응축 $h$가 크지만, 설계는 <strong>막응축을 보수 기준</strong>으로.</li></ul></div>
+        <p class="readmeta">참고: Nusselt(1916) <em>Z. Ver. Dtsch. Ing.</em> 60 / Incropera et al., Ch.10.7~10.8</p>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2 reading">
+        <p>In 1916, Germany's <strong>Wilhelm Nusselt</strong> solved the laminar liquid film on a vertical cold plate using only a <strong>viscous–gravity balance</strong> and <strong>pure conduction across the film</strong>, giving the first theory of condensation heat transfer. Remarkably, his century-old result $\bar h=0.943[\cdots]^{1/4}$ is still the standard benchmark for laminar filmwise condensation.</p>
+        <p class="pullquote">The enemy of condensation is <em>the liquid film it makes itself</em>.</p>
+        <p>By contrast, <strong>dropwise condensation</strong> occurs on non-wetting surfaces where droplets bead and roll off, exposing bare wall and giving <strong>$h$ that is 5–10× larger</strong> than filmwise. But hydrophobic coatings degrade over time through fouling and oxidation, restoring wettability and reverting to filmwise. Hence designs take <strong>filmwise as the conservative basis</strong>.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">Must know</div><ul><li>The driving force is <strong>$\Delta T=T_{sat}-T_s$</strong> (subcooling), not $T_s$.</li><li>The bottleneck in Nusselt's result is the <strong>film thickness $\delta$</strong> — $h_x=k_l/\delta$.</li><li>Dropwise $h$ is larger, but designs use <strong>filmwise as the conservative basis</strong>.</li></ul></div>
+        <p class="readmeta">Refs: Nusselt (1916) <em>Z. Ver. Dtsch. Ing.</em> 60 / Incropera et al., Ch.10.7–10.8</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-5 / 그림·표 ══════════ -->
+  <section class="screen" data-ch="4-5" data-chtitle="응축 열전달 개요" data-stage="그림·표">
+    <div class="eyebrow lang-ko">4-5 · 그림 · 그래프 · 표</div>
+    <div class="eyebrow lang-en">4-5 · Figure · Graph · Table</div>
+    <h1 class="stage-h lang-ko">한눈에 — 수직판 막응축과 액막 성장</h1>
+    <h1 class="stage-h lang-en">At a Glance — Vertical-Plate Film Condensation</h1>
+    <div class="vizgrid lang-ko">
+      <div>
+        <div class="vcap">수직판 위 액막 성장 ($\delta\propto x^{1/4}$)</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar45ko" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<rect x="60" y="30" width="26" height="210" fill="#cbd5e1" stroke="#64748b" stroke-width="1.5"/>
+<text x="73" y="256" font-size="10.5" fill="#52525b" text-anchor="middle">벽 $T_s$</text>
+<path d="M86 30 Q100 130 128 240 L86 240 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="1.75"/>
+<text x="150" y="150" font-size="10.5" fill="#0284c7" text-anchor="middle">액막 $\delta(x)$</text>
+<text x="150" y="166" font-size="10" fill="#0284c7" text-anchor="middle">$\propto x^{1/4}$</text>
+<text x="300" y="70" font-size="11" fill="#71717a" text-anchor="middle">증기 $T_{sat}$</text>
+<line x1="240" y1="90" x2="140" y2="100" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ar45ko)"/>
+<line x1="240" y1="140" x2="160" y2="150" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ar45ko)"/>
+<text x="300" y="130" font-size="10" fill="#71717a" text-anchor="middle">응축</text>
+<line x1="73" y1="30" x2="73" y2="240" stroke="#c2410c" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="60" y1="248" x2="200" y2="248" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar45ko)"/>
+<text x="130" y="272" font-size="11" fill="#52525b" text-anchor="middle">중력 $g$ 방향 $x\downarrow$</text>
+<text x="118" y="238" font-size="10" fill="#0284c7" text-anchor="middle">두꺼워짐</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">물 1 atm 액체 물성 & 응축 방식 비교</div>
+        <table class="ktab"><thead><tr><th>물성 (물, 1 atm)</th><th>기호</th><th style="text-align:right">대표값</th></tr></thead><tbody>
+          <tr><td>액체 밀도</td><td>$\rho_l$</td><td class="k">958 kg/m³</td></tr>
+          <tr><td>액체 점성</td><td>$\mu_l$</td><td class="k">$2.79\times10^{-4}$ Pa·s</td></tr>
+          <tr><td>액체 열전도도</td><td>$k_l$</td><td class="k">0.680 W/mK</td></tr>
+          <tr><td>비열</td><td>$c_{p,l}$</td><td class="k">4217 J/kgK</td></tr>
+          <tr><td>잠열</td><td>$h_{fg}$</td><td class="k">2257 kJ/kg</td></tr>
+        </tbody></table>
+        <div class="keqnote">막응축 $\bar h\approx 4\!\sim\!11\,\text{kW/m}^2\text{K}$ vs 적상응축 $\approx 30\!\sim\!100\,\text{kW/m}^2\text{K}$ (물 1 atm, 대표값). 물성은 액막 평균온도 $T_f=(T_s+T_{sat})/2$에서 평가. (출처: Incropera Ch.10.7 & Table A.6)</div>
+      </div>
+    </div>
+    <div class="vizgrid lang-en">
+      <div>
+        <div class="vcap">Film growth on a vertical plate ($\delta\propto x^{1/4}$)</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar45en" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<rect x="60" y="30" width="26" height="210" fill="#cbd5e1" stroke="#64748b" stroke-width="1.5"/>
+<text x="73" y="256" font-size="10.5" fill="#52525b" text-anchor="middle">wall $T_s$</text>
+<path d="M86 30 Q100 130 128 240 L86 240 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="1.75"/>
+<text x="150" y="150" font-size="10.5" fill="#0284c7" text-anchor="middle">film $\delta(x)$</text>
+<text x="150" y="166" font-size="10" fill="#0284c7" text-anchor="middle">$\propto x^{1/4}$</text>
+<text x="300" y="70" font-size="11" fill="#71717a" text-anchor="middle">vapor $T_{sat}$</text>
+<line x1="240" y1="90" x2="140" y2="100" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ar45en)"/>
+<line x1="240" y1="140" x2="160" y2="150" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ar45en)"/>
+<text x="300" y="130" font-size="10" fill="#71717a" text-anchor="middle">condense</text>
+<line x1="73" y1="30" x2="73" y2="240" stroke="#c2410c" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="60" y1="248" x2="200" y2="248" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar45en)"/>
+<text x="130" y="272" font-size="11" fill="#52525b" text-anchor="middle">gravity $g$, $x\downarrow$</text>
+<text x="118" y="238" font-size="10" fill="#0284c7" text-anchor="middle">thickens</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">Water at 1 atm — liquid props & mode comparison</div>
+        <table class="ktab"><thead><tr><th>Property (water, 1 atm)</th><th>Symbol</th><th style="text-align:right">Rep. value</th></tr></thead><tbody>
+          <tr><td>Liquid density</td><td>$\rho_l$</td><td class="k">958 kg/m³</td></tr>
+          <tr><td>Liquid viscosity</td><td>$\mu_l$</td><td class="k">$2.79\times10^{-4}$ Pa·s</td></tr>
+          <tr><td>Liquid conductivity</td><td>$k_l$</td><td class="k">0.680 W/mK</td></tr>
+          <tr><td>Specific heat</td><td>$c_{p,l}$</td><td class="k">4217 J/kgK</td></tr>
+          <tr><td>Latent heat</td><td>$h_{fg}$</td><td class="k">2257 kJ/kg</td></tr>
+        </tbody></table>
+        <div class="keqnote">Filmwise $\bar h\approx 4\!\sim\!11\,\text{kW/m}^2\text{K}$ vs dropwise $\approx 30\!\sim\!100\,\text{kW/m}^2\text{K}$ (water 1 atm, representative). Evaluate properties at film mean temperature $T_f=(T_s+T_{sat})/2$. (Source: Incropera Ch.10.7 & Table A.6)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-5 / 실습 ══════════ -->
+  <section class="screen" data-ch="4-5" data-chtitle="응축 열전달 개요" data-stage="실습">
+    <div class="eyebrow lang-ko">4-5 · 실습 · Interactive</div>
+    <div class="eyebrow lang-en">4-5 · Interactive</div>
+    <h1 class="stage-h lang-ko">Nusselt $\bar h$ — 길이와 과냉도로 조절해보기</h1>
+    <h1 class="stage-h lang-en">Nusselt $\bar h$ — Tune Length and Subcooling</h1>
+    <p class="lede lang-ko">물 1 atm의 액체 물성($\rho_l=958$, $\mu_l=2.79\times10^{-4}$, $k_l=0.680$, $h_{fg}'\approx 2.31\times10^{6}\,\text{J/kg}$, $\rho_v=0.596$)을 Nusselt식에 넣었습니다. 판 길이 <strong>$L$</strong>과 과냉도 <strong>$\Delta T$</strong>를 바꾸며 $\bar h$가 어떻게 변하는지 확인하세요. 둘 다 커질수록 $\bar h$는 $-1/4$ 지수로 <strong>감소</strong>합니다.</p>
+    <p class="lede lang-en">Water at 1 atm liquid properties ($\rho_l=958$, $\mu_l=2.79\times10^{-4}$, $k_l=0.680$, $h_{fg}'\approx 2.31\times10^{6}\,\text{J/kg}$, $\rho_v=0.596$) are plugged into the Nusselt formula. Vary the plate length <strong>$L$</strong> and subcooling <strong>$\Delta T$</strong> to see how $\bar h$ changes. Both larger → $\bar h$ <strong>decreases</strong> with the $-1/4$ exponent.</p>
+    <div class="calc lang-ko"
+      data-title="Nusselt 평균 $\bar h = 0.943\,[\,k_l^3\rho_l(\rho_l-\rho_v)g\,h_{fg}'/(\mu_l\Delta T L)\,]^{1/4}$"
+      data-desc="물 1 atm, 수직판. 기본값 L=0.3 m, ΔT=15°C → h̄≈5450 W/m²K(막응축 전형). L 또는 ΔT를 키우면 액막이 두꺼워져 h̄가 감소한다."
+      data-vars='[{"sym":"L","label":"$L$ · 판 길이","min":0.05,"max":2,"val":0.3,"step":0.05,"unit":"m"},{"sym":"dT","label":"$\\Delta T$ · 과냉도","min":3,"max":40,"val":15,"step":1,"unit":"°C"}]'
+      data-expr="0.943*((0.680**3*958*(958-0.596)*9.81*2.31e6)/(2.79e-4*dT*L))**0.25"
+      data-out="$\bar h$" data-out-unit="$\text{W/m}^2\text{K}$"
+      data-barmax="12000"
+      data-note="L을 4배(0.3→1.2 m)로 늘리면 h̄는 √2배 감소 — L^(−1/4). 그래도 판 전체 열전달률 Q=h̄·A·ΔT는 면적 증가로 커진다."></div>
+    <div class="calc lang-en"
+      data-title="Nusselt average $\bar h = 0.943\,[\,k_l^3\rho_l(\rho_l-\rho_v)g\,h_{fg}'/(\mu_l\Delta T L)\,]^{1/4}$"
+      data-desc="Water 1 atm, vertical plate. Default L=0.3 m, ΔT=15°C → h̄≈5450 W/m²K (typical filmwise). Raising L or ΔT thickens the film and lowers h̄."
+      data-vars='[{"sym":"L","label":"$L$ · plate length","min":0.05,"max":2,"val":0.3,"step":0.05,"unit":"m"},{"sym":"dT","label":"$\\Delta T$ · subcooling","min":3,"max":40,"val":15,"step":1,"unit":"°C"}]'
+      data-expr="0.943*((0.680**3*958*(958-0.596)*9.81*2.31e6)/(2.79e-4*dT*L))**0.25"
+      data-out="$\bar h$" data-out-unit="$\text{W/m}^2\text{K}$"
+      data-barmax="12000"
+      data-note="Quadrupling L (0.3→1.2 m) lowers h̄ by √2 — the L^(−1/4) scaling. Yet total rate Q=h̄·A·ΔT still grows because area increases."></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 응축 $\bar h\,[\text{kW/m}^2\text{K}]$ 감: 막응축(수직판) $\approx 4\!\sim\!11$ · 수평관 다발 $\approx 5\!\sim\!15$ · 적상응축 $\approx 30\!\sim\!100$. 기본값($L=0.3\,\text{m}$, $\Delta T=15\,{}^{\circ}\text{C}$)의 $\bar h\approx 5.5\,\text{kW/m}^2\text{K}$은 막응축 전형이다. 응축 $h$가 자연대류($\sim 10\,\text{W/m}^2\text{K}$)보다 <strong>수백 배</strong> 큰 이유는 잠열 $h_{fg}$가 실려 있기 때문이다. <span class="src">(출처: 방식별 $\bar h$ 범위 = Incropera Ch.10.7)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — feel for condensation $\bar h\,[\text{kW/m}^2\text{K}]$: filmwise (vertical plate) $\approx 4\!\sim\!11$ · horizontal tube banks $\approx 5\!\sim\!15$ · dropwise $\approx 30\!\sim\!100$. The default ($L=0.3\,\text{m}$, $\Delta T=15\,{}^{\circ}\text{C}$) gives $\bar h\approx 5.5\,\text{kW/m}^2\text{K}$, a typical filmwise value. Condensation $h$ is <strong>hundreds of times</strong> larger than natural convection ($\sim 10\,\text{W/m}^2\text{K}$) because the latent heat $h_{fg}$ is carried along. <span class="src">(Source: mode-wise $\bar h$ ranges = Incropera Ch.10.7)</span></div>
+  </section>
+
+  <!-- ══════════ 4-5 / 점검 ══════════ -->
+  <section class="screen" data-ch="4-5" data-chtitle="응축 열전달 개요" data-stage="점검">
+    <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+    <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · instructor view</span></div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q1.</span>Nusselt 막응축에서 <strong>과냉도 $\Delta T=T_{sat}-T_s$를 키우면</strong> 평균 열전달계수 $\bar h$는?</p>
+      <div class="opts">
+        <button class="opt">① $\Delta T$에 비례해 증가한다</button>
+        <button class="opt" data-correct="1">② $\Delta T^{-1/4}$로 오히려 감소한다 (액막이 두꺼워짐)</button>
+        <button class="opt">③ $\Delta T$와 무관하게 일정하다</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — $\bar h\propto(\Delta T\,L)^{-1/4}$이므로 과냉도가 커지면 응축량이 늘어 액막이 두꺼워지고 열저항이 커져 $\bar h$가 감소한다. <span class="dim">오답 ①·③: ①총 열유속 $q''=\bar h\Delta T\propto\Delta T^{3/4}$는 늘지만 $\bar h$ 자체는 아니다; ③$\Delta T$의 $-1/4$ 의존이 명시적으로 존재한다.</span> <span class="agg">학급 n=41 · ① 15 · ② 22 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q1.</span>In Nusselt film condensation, when the <strong>subcooling $\Delta T=T_{sat}-T_s$ is increased</strong>, the average coefficient $\bar h$ ...?</p>
+      <div class="opts">
+        <button class="opt">① increases in proportion to $\Delta T$</button>
+        <button class="opt" data-correct="1">② decreases as $\Delta T^{-1/4}$ (the film thickens)</button>
+        <button class="opt">③ stays constant, independent of $\Delta T$</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — since $\bar h\propto(\Delta T\,L)^{-1/4}$, more subcooling means more condensate, a thicker film, higher resistance, and thus a lower $\bar h$. <span class="dim">Wrong ①·③: ① the total flux $q''=\bar h\Delta T\propto\Delta T^{3/4}$ rises, but not $\bar h$ itself; ③ the explicit $\Delta T^{-1/4}$ dependence exists.</span> <span class="agg">class n=41 · ① 15 · ② 22 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q2.</span>동일한 표면·조건에서 <strong>적상응축</strong>이 <strong>막응축</strong>보다 $h$가 훨씬 큰 근본 이유는?</p>
+      <div class="opts">
+        <button class="opt">① 적상응축은 잠열 $h_{fg}$가 더 크기 때문</button>
+        <button class="opt" data-correct="1">② 물방울이 굴러떨어지며 벽을 노출시켜 두꺼운 액막 열저항이 없기 때문</button>
+        <button class="opt">③ 적상응축은 과냉도 $\Delta T$가 자동으로 커지기 때문</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 응축의 병목은 액막 두께이다($h_x=k_l/\delta$). 적상응축은 물방울이 맺혔다 떨어지며 벽을 노출시켜 연속 액막의 큰 열저항을 제거하므로 $h$가 5~10배 커진다. <span class="dim">오답 ①·③: ①잠열은 물질 고유값으로 방식과 무관하고, ③$\Delta T$는 외부 조건이지 방식이 바꾸지 않는다.</span> <span class="agg">학급 n=41 · ① 6 · ② 30 · ③ 5</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q2.</span>Under the same surface and conditions, why is $h$ for <strong>dropwise</strong> condensation far larger than for <strong>filmwise</strong>?</p>
+      <div class="opts">
+        <button class="opt">① dropwise has a larger latent heat $h_{fg}$</button>
+        <button class="opt" data-correct="1">② droplets roll off and expose bare wall, removing the thick-film resistance</button>
+        <button class="opt">③ dropwise automatically has a larger subcooling $\Delta T$</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — the bottleneck is the film thickness ($h_x=k_l/\delta$). Dropwise beads then sheds droplets, exposing bare wall and removing the large resistance of a continuous film, so $h$ becomes 5–10× larger. <span class="dim">Wrong ①·③: ① latent heat is a fluid property, independent of mode; ③ $\Delta T$ is an external condition, not set by the mode.</span> <span class="agg">class n=41 · ① 6 · ② 30 · ③ 5</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-5 / 연습 ══════════ -->
+  <section class="screen" data-ch="4-5" data-chtitle="응축 열전달 개요" data-stage="연습">
+    <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+    <div class="panel-head lang-en"><span class="tag">Practice</span><span class="panel-title">Engineering calc · auto-graded</span></div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 1 · 기본 · 보정잠열 $h_{fg}'$</div>
+      <p class="prob-statement">대기압 물의 잠열 $h_{fg}=2257\ \text{kJ/kg}$, 액체 비열 $c_{p,l}=4217\ \text{J/kgK}$이다. 과냉도 $\Delta T=15\,{}^{\circ}\text{C}$일 때 <strong>보정잠열 $h_{fg}'=h_{fg}+0.68\,c_{p,l}\Delta T$</strong>를 $\text{kJ/kg}$로 구하시오.</p>
+      <div class="given"><span class="chip">$h_{fg}=2257\ \text{kJ/kg}$</span><span class="chip">$c_{p,l}=4217\ \text{J/kgK}$</span><span class="chip">$\Delta T=15\,{}^{\circ}\text{C}$</span></div>
+      <div class="find"><b>구할 것:</b> $h_{fg}'\ [\text{kJ/kg}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="2300" data-tol="0.01"/><span class="ans-unit">$\text{kJ/kg}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 보정항 계산</div>$$ 0.68\,c_{p,l}\Delta T = 0.68\times 4217\times 15 = 43{,}013\ \text{J/kg} \approx 43\ \text{kJ/kg} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 합산</div>$$ h_{fg}' = 2257 + 43 = 2300\ \text{kJ/kg} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ h_{fg}' \approx 2300\ \text{kJ/kg} $$</div><b>정답:</b> 보정항은 잠열의 약 2%로 작지만, 액막 과냉을 반영해 $\bar h$ 정확도를 높인다.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 1 · Basic · corrected latent heat $h_{fg}'$</div>
+      <p class="prob-statement">For water at 1 atm, $h_{fg}=2257\ \text{kJ/kg}$ and $c_{p,l}=4217\ \text{J/kgK}$. For a subcooling $\Delta T=15\,{}^{\circ}\text{C}$, find the <strong>corrected latent heat $h_{fg}'=h_{fg}+0.68\,c_{p,l}\Delta T$</strong> in $\text{kJ/kg}$.</p>
+      <div class="given"><span class="chip">$h_{fg}=2257\ \text{kJ/kg}$</span><span class="chip">$c_{p,l}=4217\ \text{J/kgK}$</span><span class="chip">$\Delta T=15\,{}^{\circ}\text{C}$</span></div>
+      <div class="find"><b>Find:</b> $h_{fg}'\ [\text{kJ/kg}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="2300" data-tol="0.01"/><span class="ans-unit">$\text{kJ/kg}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · correction term</div>$$ 0.68\,c_{p,l}\Delta T = 0.68\times 4217\times 15 = 43{,}013\ \text{J/kg} \approx 43\ \text{kJ/kg} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · sum</div>$$ h_{fg}' = 2257 + 43 = 2300\ \text{kJ/kg} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ h_{fg}' \approx 2300\ \text{kJ/kg} $$</div><b>Answer:</b> the correction is only ~2% of $h_{fg}$, but it reflects film subcooling and improves $\bar h$ accuracy.</div>
+      </div>
+    </div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 2 · 응용 · Nusselt $\bar h$의 길이 의존</div>
+      <p class="prob-statement">수직판 막응축에서 $\bar h\propto L^{-1/4}$이다. 길이 $L_1=0.2\ \text{m}$일 때 $\bar h_1=6000\ \text{W/m}^2\text{K}$이라면, 판을 <strong>$L_2=3.2\ \text{m}$</strong>로 16배 늘렸을 때 <strong>$\bar h_2$</strong>는 몇 $\text{W/m}^2\text{K}$인가?</p>
+      <div class="given"><span class="chip">$\bar h_1=6000\ \text{W/m}^2\text{K}$</span><span class="chip">$L_1=0.2\ \text{m}$</span><span class="chip">$L_2=3.2\ \text{m}$</span></div>
+      <div class="find"><b>구할 것:</b> $\bar h_2\ [\text{W/m}^2\text{K}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="3000" data-tol="0.02"/><span class="ans-unit">$\text{W/m}^2\text{K}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 비례식</div>$$ \frac{\bar h_2}{\bar h_1}=\left(\frac{L_2}{L_1}\right)^{-1/4}=\left(\frac{3.2}{0.2}\right)^{-1/4}=16^{-1/4}=\frac{1}{2} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 대입</div>$$ \bar h_2 = \tfrac{1}{2}\times 6000 = 3000\ \text{W/m}^2\text{K} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \bar h_2 = 3000\ \text{W/m}^2\text{K} $$</div><b>정답:</b> 길이 16배 → $\bar h$ 절반. 액막이 아래로 갈수록 두꺼워져 평균 $\bar h$가 떨어진다($L^{-1/4}$).</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 2 · Applied · length dependence of Nusselt $\bar h$</div>
+      <p class="prob-statement">In vertical-plate film condensation $\bar h\propto L^{-1/4}$. If $\bar h_1=6000\ \text{W/m}^2\text{K}$ at $L_1=0.2\ \text{m}$, what is <strong>$\bar h_2$</strong> when the plate is lengthened 16× to <strong>$L_2=3.2\ \text{m}$</strong>, in $\text{W/m}^2\text{K}$?</p>
+      <div class="given"><span class="chip">$\bar h_1=6000\ \text{W/m}^2\text{K}$</span><span class="chip">$L_1=0.2\ \text{m}$</span><span class="chip">$L_2=3.2\ \text{m}$</span></div>
+      <div class="find"><b>Find:</b> $\bar h_2\ [\text{W/m}^2\text{K}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="3000" data-tol="0.02"/><span class="ans-unit">$\text{W/m}^2\text{K}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · ratio</div>$$ \frac{\bar h_2}{\bar h_1}=\left(\frac{L_2}{L_1}\right)^{-1/4}=\left(\frac{3.2}{0.2}\right)^{-1/4}=16^{-1/4}=\frac{1}{2} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · substitute</div>$$ \bar h_2 = \tfrac{1}{2}\times 6000 = 3000\ \text{W/m}^2\text{K} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \bar h_2 = 3000\ \text{W/m}^2\text{K} $$</div><b>Answer:</b> 16× length → half the $\bar h$. The film thickens downward, lowering the average $\bar h$ ($L^{-1/4}$).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-5 / 정리 ══════════ -->
+  <section class="screen" data-ch="4-5" data-chtitle="응축 열전달 개요" data-stage="정리">
+    <div class="eyebrow lang-ko">4-5 · 정리 · Summary</div>
+    <div class="eyebrow lang-en">4-5 · Summary</div>
+    <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 시험 포인트</h1>
+    <h1 class="stage-h lang-en">Key Points · Common Mistakes · Exam Focus</h1>
+    <div class="sumgrid lang-ko">
+      <div class="sumcard key"><h4>핵심 정리</h4><ul>
+        <li>응축 구동력 = <strong>과냉도 $\Delta T=T_{sat}-T_s$</strong>, $q''=h\,\Delta T$.</li>
+        <li>Nusselt 수직판: <strong>$\bar h=0.943[\,k_l^3\rho_l(\rho_l-\rho_v)g\,h_{fg}'/(\mu_l\Delta T L)\,]^{1/4}$</strong>, 보정잠열 $h_{fg}'=h_{fg}+0.68\,c_{p,l}\Delta T$.</li>
+        <li>병목 = <strong>액막 두께 $\delta$</strong> ($h_x=k_l/\delta$, $\delta\propto x^{1/4}$). 적상 $\gg$ 막응축.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+        <li>구동력을 $T_s$로 착각 → 반드시 <strong>$\Delta T=T_{sat}-T_s$</strong>.</li>
+        <li>$\Delta T$ 증가 시 $\bar h$가 커진다고 오해 → <strong>$\bar h\propto\Delta T^{-1/4}$ 감소</strong>.</li>
+        <li>$h_{fg}$ 대신 보정 $h_{fg}'$ 사용을 잊음 → 액막 과냉 보정 필수.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>시험 포인트</h4><ul>
+        <li>Nusselt식 대입 계산 & $\bar h\propto(\Delta T\,L)^{-1/4}$ 스케일링.</li>
+        <li>막응축 vs 적상응축 $h$ 차이와 근본 이유(액막 열저항).</li>
+        <li>보정잠열 $h_{fg}'$ 계산 & 물성 평가온도 $T_f=(T_s+T_{sat})/2$.</li>
+      </ul></div>
+    </div>
+    <div class="sumgrid lang-en">
+      <div class="sumcard key"><h4>Key points</h4><ul>
+        <li>Driving force = <strong>subcooling $\Delta T=T_{sat}-T_s$</strong>, with $q''=h\,\Delta T$.</li>
+        <li>Nusselt vertical plate: <strong>$\bar h=0.943[\,k_l^3\rho_l(\rho_l-\rho_v)g\,h_{fg}'/(\mu_l\Delta T L)\,]^{1/4}$</strong>, with $h_{fg}'=h_{fg}+0.68\,c_{p,l}\Delta T$.</li>
+        <li>Bottleneck = <strong>film thickness $\delta$</strong> ($h_x=k_l/\delta$, $\delta\propto x^{1/4}$). Dropwise $\gg$ filmwise.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+        <li>Mistaking the driving force for $T_s$ → it must be <strong>$\Delta T=T_{sat}-T_s$</strong>.</li>
+        <li>Assuming $\bar h$ rises with $\Delta T$ → it <strong>decreases as $\bar h\propto\Delta T^{-1/4}$</strong>.</li>
+        <li>Forgetting $h_{fg}'$ in place of $h_{fg}$ → the film-subcooling correction is required.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>Exam focus</h4><ul>
+        <li>Plugging into the Nusselt formula & the $\bar h\propto(\Delta T\,L)^{-1/4}$ scaling.</li>
+        <li>The $h$ gap between filmwise and dropwise and its root cause (film resistance).</li>
+        <li>Computing $h_{fg}'$ & the property-evaluation temperature $T_f=(T_s+T_{sat})/2$.</li>
+      </ul></div>
+    </div>
+  </section>
+
+<!-- ══════════ 4-6 / 개념 ══════════ -->
+  <section class="screen" data-ch="4-6" data-chtitle="상변화 열전달의 산업 응용" data-stage="개념">
+    <div class="eyebrow lang-ko">4-6 · 개념 · Concept</div>
+    <div class="eyebrow lang-en">4-6 · Concept</div>
+    <h1 class="stage-h lang-ko">상변화의 다섯 무대 — 원리가 산업이 되다</h1>
+    <h1 class="stage-h lang-en">Five Stages of Phase Change — Principle Becomes Industry</h1>
+    <div class="analogy lang-ko"><span class="ic">🔧</span><div class="tx"><b>직관</b> — 지금까지 배운 <b>핵비등·CHF·응축</b>은 실험실 곡선이 아니라 <b>돈이 걸린 설계 여유</b>다. 노트북을 식히는 <b>열관</b>은 물이 끓고 다시 응축하는 순환을 손톱만 한 관 안에 가두었고, 원자로는 <b>CHF에 닿지 않을 안전여유(DNBR)</b>로 사람 목숨을 지킨다. 같은 $q''=h\,\Delta T_e$가 다섯 산업에서 전혀 다른 얼굴로 나타난다. <span class="src">(출처: MFTEL 상변화 열전달 강의노트 / Faghri, <i>Heat Pipe Science and Technology</i>, 2016)</span></div></div>
+    <div class="analogy lang-en"><span class="ic">🔧</span><div class="tx"><b>Intuition</b> — The <b>nucleate boiling, CHF, and condensation</b> you have studied are not lab curves but <b>design margins with money on the line</b>. A <b>heat pipe</b> cooling a laptop traps a boil-and-condense cycle inside a tube the size of a fingernail, and a reactor protects human lives through a <b>margin to CHF (DNBR)</b>. The same $q''=h\,\Delta T_e$ wears five very different faces across five industries. <span class="src">(Source: MFTEL Phase-Change Heat Transfer lecture notes / Faghri, <i>Heat Pipe Science and Technology</i>, 2016)</span></div></div>
+    <div class="two lang-ko">
+      <div class="col2">
+        <p class="lede">상변화 응용의 힘은 <strong>잠열</strong>에 있습니다 — 단상 대류가 $\rho c_p \Delta T$로 열을 나르는 데 비해, 비등·응축은 <strong>$h_{fg}$(증발잠열)</strong>로 훨씬 큰 에너지를 작은 온도차로 옮깁니다. 물의 $h_{fg}\approx 2257\,\text{kJ/kg}$는 물을 $1\,{}^{\circ}\text{C}$ 데우는 $c_p\approx 4.18\,\text{kJ/(kg·K)}$의 <strong>약 540배</strong>입니다. 이 잠열 지렛대가 <strong>열관·냉각·저장</strong>을 가능케 합니다.</p>
+        <div class="keqbox">
+          <div class="keq-label">잠열 지렛대 (대기압 물)</div>
+          <div class="keqrow"><span class="keqcap">증발잠열</span><span class="keqline">$ h_{fg}\approx 2257\ \text{kJ/kg} $</span></div>
+          <div class="keqrow"><span class="keqcap">현열 (1 °C)</span><span class="keqline">$ c_p\approx 4.18\ \text{kJ/(kg·K)} $</span></div>
+          <div class="keqrow"><span class="keqcap">비 (잠열/현열)</span><span class="keqline">$ h_{fg}/c_p\approx 540\ {}^{\circ}\text{C} $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">다섯 산업 응용</div>
+        <div class="terms">
+          <div class="term"><b>열관 heat pipe</b> 모세관 순환 + 증발/응축 — 유효 열전도 $k_{eff}\gg$ 구리</div>
+          <div class="term"><b>침지냉각 immersion</b> 전자부품을 <strong>비극성·유전 유체</strong>에 담가 핵비등으로 냉각</div>
+          <div class="term"><b>원자로 열수력</b> 비등위기 안전여유 <strong>DNBR $=q''_{CHF}/q''_{op}$</strong></div>
+          <div class="term"><b>잠열 저장 PCM</b> 상변화 물질로 $h_{fg}$·$h_{sf}$에 에너지 저장</div>
+          <div class="term"><b>SMR 증기발생기</b> 나선형 관에서 비등·건도 상승으로 증기 생산</div>
+        </div>
+        <div class="callout key"><div class="ct">핵심</div>모든 응용의 설계 논리는 하나입니다 — <strong>큰 $q''$을 CHF 아래에서 안전하게, 그리고 잠열 $h_{fg}$을 최대한 활용</strong>. 열관은 CHF·모세관 한계로, 원자로는 DNBR로 여유를 관리합니다.</div>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2">
+        <p class="lede">The power of phase-change applications lies in <strong>latent heat</strong> — while single-phase convection carries heat as $\rho c_p \Delta T$, boiling and condensation move far more energy at small temperature difference via <strong>$h_{fg}$ (latent heat of vaporization)</strong>. Water's $h_{fg}\approx 2257\,\text{kJ/kg}$ is about <strong>540×</strong> the $c_p\approx 4.18\,\text{kJ/(kg·K)}$ needed to warm it by $1\,{}^{\circ}\text{C}$. This latent lever enables <strong>heat pipes, cooling, and storage</strong>.</p>
+        <div class="keqbox">
+          <div class="keq-label">Latent lever (water at 1 atm)</div>
+          <div class="keqrow"><span class="keqcap">Latent heat</span><span class="keqline">$ h_{fg}\approx 2257\ \text{kJ/kg} $</span></div>
+          <div class="keqrow"><span class="keqcap">Sensible (1 °C)</span><span class="keqline">$ c_p\approx 4.18\ \text{kJ/(kg·K)} $</span></div>
+          <div class="keqrow"><span class="keqcap">Ratio (latent/sensible)</span><span class="keqline">$ h_{fg}/c_p\approx 540\ {}^{\circ}\text{C} $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">Five industrial applications</div>
+        <div class="terms">
+          <div class="term"><b>Heat pipe</b> capillary circulation + evaporation/condensation — effective conductivity $k_{eff}\gg$ copper</div>
+          <div class="term"><b>Immersion cooling</b> electronics submerged in a <strong>nonpolar, dielectric fluid</strong>, cooled by nucleate boiling</div>
+          <div class="term"><b>Reactor thermal-hydraulics</b> boiling-crisis safety margin <strong>DNBR $=q''_{CHF}/q''_{op}$</strong></div>
+          <div class="term"><b>Latent storage PCM</b> phase-change materials store energy in $h_{fg}$·$h_{sf}$</div>
+          <div class="term"><b>SMR steam generator</b> helical tubes make steam via boiling with rising quality</div>
+        </div>
+        <div class="callout key"><div class="ct">Key</div>Every application shares one design logic — <strong>deliver large $q''$ safely below CHF while exploiting latent heat $h_{fg}$</strong>. Heat pipes manage margin through CHF/capillary limits; reactors manage it through DNBR.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-6 / 유도 ══════════ -->
+  <section class="screen" data-ch="4-6" data-chtitle="상변화 열전달의 산업 응용" data-stage="유도">
+    <div class="eyebrow lang-ko">4-6 · 수식 유도 · Derivation</div>
+    <div class="eyebrow lang-en">4-6 · Derivation</div>
+    <h1 class="stage-h lang-ko">열관의 유효 열전도 — 잠열 순환의 위력</h1>
+    <h1 class="stage-h lang-en">Effective Conductivity of a Heat Pipe — Power of the Latent Loop</h1>
+    <p class="lede lang-ko"><b>공통 관점:</b> 열관은 증발부에서 액체가 끓고($h_{fg}$ 흡수), 증기가 응축부로 이동해 응축($h_{fg}$ 방출), 모세관력이 응축액을 다시 증발부로 되돌립니다. 이 순환은 축방향으로 <b>거의 등온</b>이라, 같은 열을 나르는 <b>고체 막대의 유효 열전도</b>로 환산하면 구리의 수백~수천 배가 됩니다.</p>
+    <p class="lede lang-en"><b>Unifying view:</b> in a heat pipe, liquid boils at the evaporator (absorbing $h_{fg}$), vapor travels to the condenser and condenses (releasing $h_{fg}$), and capillary force returns the condensate to the evaporator. This loop is <b>nearly isothermal</b> axially, so the <b>effective conductivity of an equivalent solid rod</b> carrying the same heat reaches hundreds to thousands of times that of copper.</p>
+    <div class="deriv lang-ko">
+      <div class="dcard"><h4>Fourier 등가 정의</h4><div class="sub">고체 막대 환산</div><div class="ana">🪵 같은 열 $Q$를 나르는 고체라면 $k$가 얼마여야?</div><div class="eq">$ Q = k_{eff}\,A\,\dfrac{\Delta T}{L} $</div><p>열관을 길이 $L$, 단면적 $A$, 양단 온도차 $\Delta T$의 <strong>가상 고체</strong>로 보고 $k_{eff}$를 정의합니다.</p></div>
+      <div class="dcard"><h4>$k_{eff}$ 풀이</h4><div class="sub">등가 열전도</div><div class="ana">🔁 열관은 $\Delta T$가 아주 작다 → $k_{eff}$가 폭증</div><div class="eq">$ k_{eff} = \dfrac{Q\,L}{A\,\Delta T} $</div><p>열관은 잠열 순환으로 <strong>$\Delta T$가 수 $^{\circ}\text{C}$</strong>에 불과 → 분모가 작아 $k_{eff}$가 구리($\sim400$)의 수백 배로 커집니다.</p></div>
+      <div class="dcard"><h4>모세관 한계</h4><div class="sub">작동 상한</div><div class="ana">💧 심지 펌프의 힘이 마찰을 못 이기면 dry-out</div><div class="eq">$ \Delta P_{cap}\ge \Delta P_{liq}+\Delta P_{vap}+\Delta P_{grav} $</div><p>모세관 압력 $\Delta P_{cap}=2\sigma/r_{c}$가 순환 압력손실을 이겨야 작동. 못 이기면 <strong>증발부 dry-out</strong>(열관판 CHF).</p></div>
+    </div>
+    <div class="deriv lang-en">
+      <div class="dcard"><h4>Fourier-equivalent definition</h4><div class="sub">equivalent solid rod</div><div class="ana">🪵 If a solid carried the same $Q$, what $k$?</div><div class="eq">$ Q = k_{eff}\,A\,\dfrac{\Delta T}{L} $</div><p>Treat the heat pipe as a <strong>virtual solid</strong> of length $L$, area $A$, end-to-end $\Delta T$ and define $k_{eff}$.</p></div>
+      <div class="dcard"><h4>Solve for $k_{eff}$</h4><div class="sub">effective conductivity</div><div class="ana">🔁 Heat pipe $\Delta T$ is tiny → $k_{eff}$ explodes</div><div class="eq">$ k_{eff} = \dfrac{Q\,L}{A\,\Delta T} $</div><p>The latent loop keeps <strong>$\Delta T$ a few $^{\circ}\text{C}$</strong> → the small denominator makes $k_{eff}$ hundreds of times that of copper ($\sim400$).</p></div>
+      <div class="dcard"><h4>Capillary limit</h4><div class="sub">operating ceiling</div><div class="ana">💧 If wick pumping loses to friction → dry-out</div><div class="eq">$ \Delta P_{cap}\ge \Delta P_{liq}+\Delta P_{vap}+\Delta P_{grav} $</div><p>The capillary head $\Delta P_{cap}=2\sigma/r_{c}$ must beat the loop pressure losses. If not, the <strong>evaporator dries out</strong> (heat-pipe CHF analog).</p></div>
+    </div>
+    <div class="callout warn lang-ko"><div class="ct">주의 · $k_{eff}$는 "재료 상수"가 아니다</div>열관의 $k_{eff}$는 물질 고유값이 아니라 <strong>작동 조건($Q$, $\Delta T$, 기울기, 심지)에 따라 변하는 유효값</strong>입니다. 모세관·비등(CHF)·음속·점성 등 <strong>작동 한계</strong>를 넘으면 $\Delta T$가 급증하며 $k_{eff}$가 무너집니다 — 열관은 만능이 아니라 <strong>한계 안에서만</strong> 초전도체처럼 보입니다.</div>
+    <div class="callout warn lang-en"><div class="ct">Caution · $k_{eff}$ is not a "material constant"</div>A heat pipe's $k_{eff}$ is not an intrinsic property but an <strong>effective value that changes with operating conditions ($Q$, $\Delta T$, tilt, wick)</strong>. Exceed an <strong>operating limit</strong> (capillary, boiling/CHF, sonic, viscous) and $\Delta T$ spikes while $k_{eff}$ collapses — a heat pipe looks superconducting <strong>only within its limits</strong>.</div>
+  </section>
+
+  <!-- ══════════ 4-6 / 읽을거리 ══════════ -->
+  <section class="screen" data-ch="4-6" data-chtitle="상변화 열전달의 산업 응용" data-stage="읽을거리">
+    <div class="eyebrow lang-ko">4-6 · 읽을거리 · Reading</div>
+    <div class="eyebrow lang-en">4-6 · Reading</div>
+    <h1 class="stage-h lang-ko">데이터센터 침지냉각과 원자로 DNBR</h1>
+    <h1 class="stage-h lang-en">Datacenter Immersion Cooling and Reactor DNBR</h1>
+    <div class="two lang-ko">
+      <div class="col2 reading">
+        <p>AI 서버의 발열이 공랭 한계를 넘자, 산업은 전자부품을 <strong>비극성·유전(dielectric) 유체</strong>에 통째로 담그는 <strong>침지냉각</strong>으로 이동했습니다. 2상(two-phase) 침지에서는 칩 표면에서 유체가 <strong>핵비등</strong>하며 잠열로 열을 빼내고, 상부 응축기에서 다시 액체로 돌아옵니다 — 열관과 같은 <strong>비등·응축 순환</strong>입니다. 유체는 절연이어야 하므로 물이 아닌 <strong>불소계(fluorocarbon) 유체</strong>를 쓰는데, 이들은 $T_{sat}$이 낮아($\sim50\,{}^{\circ}\text{C}$) 칩을 낮은 온도로 유지합니다.</p>
+        <p class="pullquote">칩은 CHF에 닿기 전까지만 안전하다 — 냉각도 <em>여유</em> 설계다.</p>
+        <p>원자로는 이 <strong>여유</strong>를 숫자로 관리합니다. <strong>DNBR(Departure from Nucleate Boiling Ratio)</strong> $=q''_{CHF}/q''_{op}$는 실제 열유속이 CHF에서 얼마나 떨어져 있는지를 나타내며, 규제상 최소 여유(예: $\text{DNBR}\gtrsim1.3$, 대표값)를 반드시 지켜야 합니다. DNBR이 1에 가까워지면 <strong>비등위기(boiling crisis)</strong> — 핵연료 피복이 증기막에 덮여 온도가 폭주할 위험이 커집니다.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>침지냉각 유체는 <strong>전기 절연 + 낮은 $T_{sat}$</strong>이 핵심 — 물은 부적합.</li><li>2상 침지 = 칩 표면 <strong>핵비등 + 상부 응축</strong>(열관 논리).</li><li>DNBR $=q''_{CHF}/q''_{op}$, 반드시 <strong>$>1$ 여유</strong>를 규제로 강제.</li></ul></div>
+        <p class="readmeta">참고: MFTEL 산업 사례 노트 / Todreas &amp; Kazimi, <em>Nuclear Systems I</em>, Ch.13 (DNBR) / OCP 침지냉각 백서(대표)</p>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2 reading">
+        <p>When AI-server heat outran air cooling, industry moved to <strong>immersion cooling</strong>, submerging electronics wholesale in a <strong>nonpolar, dielectric fluid</strong>. In two-phase immersion the fluid <strong>nucleate-boils</strong> at the chip surface, removing heat via latent heat, then re-condenses to liquid in an overhead condenser — the same <strong>boil-and-condense loop</strong> as a heat pipe. Because the fluid must be electrically insulating, <strong>fluorocarbon fluids</strong> (not water) are used; their low $T_{sat}$ ($\sim50\,{}^{\circ}\text{C}$) keeps chips cool.</p>
+        <p class="pullquote">A chip is safe only until it reaches CHF — cooling too is <em>margin</em> design.</p>
+        <p>Reactors manage this <strong>margin</strong> with a number. The <strong>DNBR (Departure from Nucleate Boiling Ratio)</strong> $=q''_{CHF}/q''_{op}$ measures how far the actual flux sits below CHF, and regulation mandates a minimum margin (e.g. $\text{DNBR}\gtrsim1.3$, representative). As DNBR approaches 1, the <strong>boiling crisis</strong> looms — the fuel cladding risks being blanketed by vapor and running away in temperature.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">Must know</div><ul><li>Immersion fluids need <strong>electrical insulation + low $T_{sat}$</strong> — water fails.</li><li>Two-phase immersion = <strong>nucleate boiling + overhead condensation</strong> (heat-pipe logic).</li><li>DNBR $=q''_{CHF}/q''_{op}$, must keep a <strong>margin $>1$</strong> by regulation.</li></ul></div>
+        <p class="readmeta">Refs: MFTEL industry-case notes / Todreas &amp; Kazimi, <em>Nuclear Systems I</em>, Ch.13 (DNBR) / OCP immersion-cooling white paper (representative)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-6 / 그림·표 ══════════ -->
+  <section class="screen" data-ch="4-6" data-chtitle="상변화 열전달의 산업 응용" data-stage="그림·표">
+    <div class="eyebrow lang-ko">4-6 · 그림 · 그래프 · 표</div>
+    <div class="eyebrow lang-en">4-6 · Figure · Graph · Table</div>
+    <h1 class="stage-h lang-ko">한눈에 — 열관 구조와 응용 물성 비교</h1>
+    <h1 class="stage-h lang-en">At a Glance — Heat-Pipe Structure and Application Comparison</h1>
+    <div class="vizgrid lang-ko">
+      <div>
+        <div class="vcap">열관 순환 (증발 → 증기 → 응축 → 심지 귀환)</div>
+        <svg viewBox="0 0 480 250" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar46ko" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#c2410c"/></marker>
+<marker id="ar46ko2" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#2563eb"/></marker>
+</defs>
+<rect x="40" y="80" width="400" height="90" rx="14" fill="none" stroke="#71717a" stroke-width="2"/>
+<rect x="46" y="86" width="388" height="14" fill="#fde68a" opacity="0.7"/>
+<rect x="46" y="150" width="388" height="14" fill="#fde68a" opacity="0.7"/>
+<text x="240" y="60" font-size="10.5" fill="#71717a" text-anchor="middle">심지(wick) — 노란층 · 관벽 — 회색</text>
+<rect x="46" y="100" width="120" height="50" fill="#fed7aa" opacity="0.5"/>
+<rect x="314" y="100" width="120" height="50" fill="#bfdbfe" opacity="0.5"/>
+<text x="106" y="200" font-size="11" fill="#c2410c" text-anchor="middle" font-weight="700">증발부</text>
+<text x="106" y="214" font-size="9.5" fill="#c2410c" text-anchor="middle">$q''_{in}$ 흡수 · 비등</text>
+<text x="374" y="200" font-size="11" fill="#2563eb" text-anchor="middle" font-weight="700">응축부</text>
+<text x="374" y="214" font-size="9.5" fill="#2563eb" text-anchor="middle">$q''_{out}$ 방출 · 응축</text>
+<line x1="150" y1="120" x2="330" y2="120" stroke="#c2410c" stroke-width="2.5" marker-end="url(#ar46ko)"/>
+<text x="240" y="114" font-size="9.5" fill="#c2410c" text-anchor="middle">증기 흐름 (잠열 운반)</text>
+<line x1="330" y1="157" x2="150" y2="157" stroke="#2563eb" stroke-width="2.5" marker-end="url(#ar46ko2)"/>
+<text x="240" y="147" font-size="9.5" fill="#2563eb" text-anchor="middle">액체 귀환 (모세관력)</text>
+<path d="M20 90 L34 90 M20 105 L34 105 M20 120 L34 120" stroke="#dc2626" stroke-width="2"/>
+<path d="M446 90 L460 90 M446 105 L460 105 M446 120 L460 120" stroke="#2563eb" stroke-width="2"/>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">응용별 대표 물성·지표 (대표값)</div>
+        <table class="ktab"><thead><tr><th>응용</th><th>핵심 상변화</th><th style="text-align:right">대표 지표</th></tr></thead><tbody>
+          <tr><td>열관</td><td>비등+응축 순환</td><td class="k">$k_{eff}\sim10^{3}\!\times$구리</td></tr>
+          <tr><td>침지냉각</td><td>핵비등(유전유체)</td><td class="k">$T_{sat}\sim50\,{}^{\circ}\text{C}$</td></tr>
+          <tr><td>원자로</td><td>미포화·핵비등</td><td class="k">$\text{DNBR}\gtrsim1.3$</td></tr>
+          <tr><td>PCM 저장</td><td>융해(잠열)</td><td class="k">$h_{sf}\sim200\ \text{kJ/kg}$</td></tr>
+          <tr><td>SMR 증기</td><td>비등(건도↑)</td><td class="k">$x:0\to1$</td></tr>
+        </tbody></table>
+        <div class="keqnote">구리 $k\approx400\,\text{W/(m·K)}$ 대비 열관 $k_{eff}$는 수백~수천 배(대표). PCM 융해잠열 $h_{sf}$: 파라핀 $\sim200$, 소금수화물 $\sim150\!\sim\!300\,\text{kJ/kg}$(대표). (출처: Faghri 2016 / MFTEL 노트)</div>
+      </div>
+    </div>
+    <div class="vizgrid lang-en">
+      <div>
+        <div class="vcap">Heat-pipe loop (evaporate → vapor → condense → wick return)</div>
+        <svg viewBox="0 0 480 250" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar46en" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#c2410c"/></marker>
+<marker id="ar46en2" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#2563eb"/></marker>
+</defs>
+<rect x="40" y="80" width="400" height="90" rx="14" fill="none" stroke="#71717a" stroke-width="2"/>
+<rect x="46" y="86" width="388" height="14" fill="#fde68a" opacity="0.7"/>
+<rect x="46" y="150" width="388" height="14" fill="#fde68a" opacity="0.7"/>
+<text x="240" y="60" font-size="10.5" fill="#71717a" text-anchor="middle">wick — yellow layer · wall — gray</text>
+<rect x="46" y="100" width="120" height="50" fill="#fed7aa" opacity="0.5"/>
+<rect x="314" y="100" width="120" height="50" fill="#bfdbfe" opacity="0.5"/>
+<text x="106" y="200" font-size="11" fill="#c2410c" text-anchor="middle" font-weight="700">evaporator</text>
+<text x="106" y="214" font-size="9.5" fill="#c2410c" text-anchor="middle">absorb $q''_{in}$ · boil</text>
+<text x="374" y="200" font-size="11" fill="#2563eb" text-anchor="middle" font-weight="700">condenser</text>
+<text x="374" y="214" font-size="9.5" fill="#2563eb" text-anchor="middle">reject $q''_{out}$ · condense</text>
+<line x1="150" y1="120" x2="330" y2="120" stroke="#c2410c" stroke-width="2.5" marker-end="url(#ar46en)"/>
+<text x="240" y="114" font-size="9.5" fill="#c2410c" text-anchor="middle">vapor flow (carries latent heat)</text>
+<line x1="330" y1="157" x2="150" y2="157" stroke="#2563eb" stroke-width="2.5" marker-end="url(#ar46en2)"/>
+<text x="240" y="147" font-size="9.5" fill="#2563eb" text-anchor="middle">liquid return (capillary force)</text>
+<path d="M20 90 L34 90 M20 105 L34 105 M20 120 L34 120" stroke="#dc2626" stroke-width="2"/>
+<path d="M446 90 L460 90 M446 105 L460 105 M446 120 L460 120" stroke="#2563eb" stroke-width="2"/>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">Representative properties/metrics by application</div>
+        <table class="ktab"><thead><tr><th>Application</th><th>Key phase change</th><th style="text-align:right">Rep. metric</th></tr></thead><tbody>
+          <tr><td>Heat pipe</td><td>boil+condense loop</td><td class="k">$k_{eff}\sim10^{3}\!\times$Cu</td></tr>
+          <tr><td>Immersion</td><td>nucleate boil (dielectric)</td><td class="k">$T_{sat}\sim50\,{}^{\circ}\text{C}$</td></tr>
+          <tr><td>Reactor</td><td>subcooled/nucleate boil</td><td class="k">$\text{DNBR}\gtrsim1.3$</td></tr>
+          <tr><td>PCM storage</td><td>melting (latent)</td><td class="k">$h_{sf}\sim200\ \text{kJ/kg}$</td></tr>
+          <tr><td>SMR steam</td><td>boiling (quality↑)</td><td class="k">$x:0\to1$</td></tr>
+        </tbody></table>
+        <div class="keqnote">Vs copper $k\approx400\,\text{W/(m·K)}$, heat-pipe $k_{eff}$ is hundreds–thousands× (representative). PCM fusion latent $h_{sf}$: paraffin $\sim200$, salt hydrate $\sim150\!\sim\!300\,\text{kJ/kg}$ (representative). (Source: Faghri 2016 / MFTEL notes)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-6 / 실습 ══════════ -->
+  <section class="screen" data-ch="4-6" data-chtitle="상변화 열전달의 산업 응용" data-stage="실습">
+    <div class="eyebrow lang-ko">4-6 · 실습 · Interactive</div>
+    <div class="eyebrow lang-en">4-6 · Interactive</div>
+    <h1 class="stage-h lang-ko">DNBR 안전여유 — CHF까지 얼마나 남았나</h1>
+    <h1 class="stage-h lang-en">DNBR Safety Margin — How Far to CHF</h1>
+    <p class="lede lang-ko">원자로 안전은 <strong>DNBR $=q''_{CHF}/q''_{op}$</strong>로 관리됩니다. 임계열유속 $q''_{CHF}$가 클수록, 운전 열유속 $q''_{op}$이 작을수록 여유가 큽니다. 슬라이더로 두 값을 바꾸며 규제 최소 여유(대표 $\gtrsim1.3$)를 지키는지 확인하세요.</p>
+    <p class="lede lang-en">Reactor safety is managed by <strong>DNBR $=q''_{CHF}/q''_{op}$</strong>. Margin grows with larger critical flux $q''_{CHF}$ and smaller operating flux $q''_{op}$. Move the sliders and check whether the regulatory minimum (representative $\gtrsim1.3$) is respected.</p>
+    <div class="calc lang-ko"
+      data-title="DNBR 안전여유 $= q''_{CHF}/q''_{op}$"
+      data-desc="qCHF = 임계열유속, qop = 운전 열유속 [MW/m²]. 기본값 qCHF=3.5, qop=2.0 → DNBR=1.75 (여유 확보). DNBR<1.3이면 규제 위반, DNBR≈1이면 비등위기."
+      data-vars='[{"sym":"qCHF","label":"$q_{CHF}$ · 임계열유속","min":2,"max":6,"val":3.5,"step":0.1,"unit":"MW/m²"},{"sym":"qop","label":"$q_{op}$ · 운전 열유속","min":1,"max":4,"val":2.0,"step":0.1,"unit":"MW/m²"}]'
+      data-expr="qCHF/qop"
+      data-out="$\text{DNBR}$" data-out-unit=""
+      data-barmax="3"
+      data-note="DNBR이 1.3(대표 규제 하한) 밑으로 내려가지 않도록 qop를 낮추거나 qCHF를 높이는(유량↑, 압력↑) 것이 설계 여유 관리다."></div>
+    <div class="calc lang-en"
+      data-title="DNBR safety margin $= q''_{CHF}/q''_{op}$"
+      data-desc="qCHF = critical heat flux, qop = operating flux [MW/m²]. Default qCHF=3.5, qop=2.0 → DNBR=1.75 (margin met). DNBR<1.3 violates regulation; DNBR≈1 is the boiling crisis."
+      data-vars='[{"sym":"qCHF","label":"$q_{CHF}$ · critical flux","min":2,"max":6,"val":3.5,"step":0.1,"unit":"MW/m²"},{"sym":"qop","label":"$q_{op}$ · operating flux","min":1,"max":4,"val":2.0,"step":0.1,"unit":"MW/m²"}]'
+      data-expr="qCHF/qop"
+      data-out="$\text{DNBR}$" data-out-unit=""
+      data-barmax="3"
+      data-note="Keeping DNBR above 1.3 (representative regulatory floor) by lowering qop or raising qCHF (higher flow, higher pressure) is exactly design-margin management."></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — DNBR 감: $\text{DNBR}=1$은 <strong>비등위기 임박</strong>(피복 소손 위험), 규제 하한은 대표적으로 $\approx1.3$, 정상 운전은 $\gtrsim1.5\!\sim\!2$의 여유를 둔다. 기본값(DNBR $=1.75$)은 안전한 운전점이다. 유량을 늘리거나 출력을 낮추면 $q''_{op}$이 작아져 DNBR이 커진다 — 사고 시 스크램(제어봉 삽입)이 바로 이 원리다. <span class="src">(출처: DNBR 개념 = Todreas &amp; Kazimi, <i>Nuclear Systems I</i> / MFTEL 노트, 값은 대표값)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — feel for DNBR: $\text{DNBR}=1$ means the <strong>boiling crisis is imminent</strong> (cladding failure risk); the regulatory floor is representatively $\approx1.3$, and normal operation keeps $\gtrsim1.5\!\sim\!2$ of margin. The default (DNBR $=1.75$) is a safe operating point. Raising flow or lowering power shrinks $q''_{op}$, growing DNBR — a scram (control-rod insertion) exploits exactly this. <span class="src">(Source: DNBR concept = Todreas &amp; Kazimi, <i>Nuclear Systems I</i> / MFTEL notes; values representative)</span></div>
+  </section>
+
+  <!-- ══════════ 4-6 / 점검 ══════════ -->
+  <section class="screen" data-ch="4-6" data-chtitle="상변화 열전달의 산업 응용" data-stage="점검">
+    <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+    <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · instructor view</span></div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q1.</span>열관(heat pipe)의 <strong>유효 열전도 $k_{eff}$</strong>가 구리보다 수백 배 큰 근본 이유는?</p>
+      <div class="opts">
+        <button class="opt">① 관 재료가 구리보다 전도율이 높기 때문</button>
+        <button class="opt" data-correct="1">② 잠열 순환으로 축방향 $\Delta T$가 매우 작아 $k_{eff}=QL/(A\Delta T)$의 분모가 작기 때문</button>
+        <button class="opt">③ 관 내부가 진공이라 복사가 강해지기 때문</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 열관은 증발·응축의 잠열 순환으로 축방향이 거의 등온이라 $\Delta T$가 수 $^{\circ}\text{C}$에 불과하다. $k_{eff}=QL/(A\Delta T)$에서 분모가 작아 $k_{eff}$가 폭증한다(재료 상수가 아님). <span class="dim">오답 ①·③: ①관벽 재료 전도가 아니라 상변화 순환이 핵심이고, ③주요 메커니즘은 복사가 아니라 잠열 운반이다.</span> <span class="agg">학급 n=41 · ① 6 · ② 30 · ③ 5</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q1.</span>Why is a heat pipe's <strong>effective conductivity $k_{eff}$</strong> hundreds of times that of copper?</p>
+      <div class="opts">
+        <button class="opt">① its wall material conducts better than copper</button>
+        <button class="opt" data-correct="1">② the latent loop keeps axial $\Delta T$ tiny, so the denominator of $k_{eff}=QL/(A\Delta T)$ is small</button>
+        <button class="opt">③ the vacuum inside strengthens radiation</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — the evaporation/condensation latent loop keeps the pipe nearly isothermal axially, so $\Delta T$ is only a few $^{\circ}\text{C}$. In $k_{eff}=QL/(A\Delta T)$ the small denominator makes $k_{eff}$ explode (it is not a material constant). <span class="dim">Wrong ①·③: ① it is the phase-change loop, not wall conduction; ③ the dominant mechanism is latent transport, not radiation.</span> <span class="agg">class n=41 · ① 6 · ② 30 · ③ 5</span></div>
+    </div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q2.</span>원자로 안전지표 <strong>DNBR $=q''_{CHF}/q''_{op}$</strong>에 대해 옳은 것은?</p>
+      <div class="opts">
+        <button class="opt">① DNBR이 클수록 비등위기에 가깝다</button>
+        <button class="opt" data-correct="1">② DNBR이 1에 가까워질수록 위험하며, 규제상 1보다 큰 여유를 유지해야 한다</button>
+        <button class="opt">③ DNBR은 응축 성능을 나타내는 지표다</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — DNBR은 임계열유속 대비 운전 열유속의 비로, 1에 가까울수록 CHF에 근접해 비등위기(핵비등 이탈) 위험이 커진다. 규제는 대표적으로 $\gtrsim1.3$의 여유를 강제한다. <span class="dim">오답 ①·③: ①DNBR이 클수록 안전하고, ③DNBR은 비등위기 여유 지표이지 응축 지표가 아니다.</span> <span class="agg">학급 n=41 · ① 5 · ② 32 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q2.</span>Which statement about the reactor safety metric <strong>DNBR $=q''_{CHF}/q''_{op}$</strong> is correct?</p>
+      <div class="opts">
+        <button class="opt">① a larger DNBR means closer to the boiling crisis</button>
+        <button class="opt" data-correct="1">② the closer DNBR is to 1 the more dangerous; regulation requires a margin above 1</button>
+        <button class="opt">③ DNBR measures condensation performance</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — DNBR is the ratio of critical to operating flux; as it approaches 1 the flux nears CHF and the boiling-crisis (departure from nucleate boiling) risk rises. Regulation representatively enforces a margin $\gtrsim1.3$. <span class="dim">Wrong ①·③: ① larger DNBR is safer; ③ DNBR is a boiling-crisis margin, not a condensation metric.</span> <span class="agg">class n=41 · ① 5 · ② 32 · ③ 4</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-6 / 연습 ══════════ -->
+  <section class="screen" data-ch="4-6" data-chtitle="상변화 열전달의 산업 응용" data-stage="연습">
+    <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+    <div class="panel-head lang-en"><span class="tag">Practice</span><span class="panel-title">Engineering calc · auto-graded</span></div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 1 · 기본 · DNBR 계산</div>
+      <p class="prob-statement">어느 원자로 채널에서 임계열유속 $q''_{CHF}=3.2\ \text{MW/m}^2$, 운전 열유속 $q''_{op}=2.0\ \text{MW/m}^2$이다. <strong>DNBR</strong>을 구하고 규제 하한($\gtrsim1.3$) 충족 여부를 판별하시오.</p>
+      <div class="given"><span class="chip">$q''_{CHF}=3.2\ \text{MW/m}^2$</span><span class="chip">$q''_{op}=2.0\ \text{MW/m}^2$</span></div>
+      <div class="find"><b>구할 것:</b> $\text{DNBR}$ (무차원)</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="1.6" data-tol="0.02"/><span class="ans-unit">(무차원)</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 정의 대입</div>$$ \text{DNBR} = \frac{q''_{CHF}}{q''_{op}} = \frac{3.2}{2.0} = 1.6 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 규제 판별</div>$$ 1.6 > 1.3 \ \Rightarrow\ \text{여유 충족} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \text{DNBR} = 1.6\ (\ge 1.3,\ \text{안전}) $$</div><b>정답:</b> 운전 열유속이 CHF의 약 $62.5\%$ — 규제 여유를 확보한 안전한 운전점.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 1 · Basic · DNBR</div>
+      <p class="prob-statement">In a reactor channel, the critical heat flux is $q''_{CHF}=3.2\ \text{MW/m}^2$ and the operating flux is $q''_{op}=2.0\ \text{MW/m}^2$. Find the <strong>DNBR</strong> and decide whether the regulatory floor ($\gtrsim1.3$) is met.</p>
+      <div class="given"><span class="chip">$q''_{CHF}=3.2\ \text{MW/m}^2$</span><span class="chip">$q''_{op}=2.0\ \text{MW/m}^2$</span></div>
+      <div class="find"><b>Find:</b> $\text{DNBR}$ (dimensionless)</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="1.6" data-tol="0.02"/><span class="ans-unit">(dimensionless)</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · apply definition</div>$$ \text{DNBR} = \frac{q''_{CHF}}{q''_{op}} = \frac{3.2}{2.0} = 1.6 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · check regulation</div>$$ 1.6 > 1.3 \ \Rightarrow\ \text{margin met} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \text{DNBR} = 1.6\ (\ge 1.3,\ \text{safe}) $$</div><b>Answer:</b> the operating flux is about $62.5\%$ of CHF — a safe point with regulatory margin.</div>
+      </div>
+    </div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 2 · 응용 · 열관 유효 열전도</div>
+      <p class="prob-statement">길이 $L=0.20\ \text{m}$, 단면적 $A=1.0\times10^{-4}\ \text{m}^2$인 열관이 $Q=50\ \text{W}$를 나르며 양단 온도차가 $\Delta T=2.0\ \text{K}$이다. <strong>유효 열전도 $k_{eff}$</strong>를 구하시오. (구리 $k\approx400\,\text{W/(m·K)}$)</p>
+      <div class="given"><span class="chip">$Q=50\ \text{W}$</span><span class="chip">$L=0.20\ \text{m}$</span><span class="chip">$A=1.0\times10^{-4}\ \text{m}^2$</span><span class="chip">$\Delta T=2.0\ \text{K}$</span></div>
+      <div class="find"><b>구할 것:</b> $k_{eff}\ [\text{W/(m·K)}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="50000" data-tol="0.02"/><span class="ans-unit">$\text{W/(m·K)}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · Fourier 등가</div>$$ k_{eff} = \frac{Q\,L}{A\,\Delta T} = \frac{50 \times 0.20}{(1.0\times10^{-4})\times 2.0} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 계산</div>$$ k_{eff} = \frac{10}{2.0\times10^{-4}} = 5.0\times10^{4}\ \text{W/(m·K)} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ k_{eff} = 50{,}000\ \text{W/(m·K)} $$</div><b>정답:</b> 구리($\approx400$)의 약 <strong>125배</strong> — 잠열 순환으로 $\Delta T$가 작아 얻는 초전도체급 유효값.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 2 · Applied · heat-pipe effective conductivity</div>
+      <p class="prob-statement">A heat pipe of length $L=0.20\ \text{m}$ and cross-section $A=1.0\times10^{-4}\ \text{m}^2$ carries $Q=50\ \text{W}$ with an end-to-end $\Delta T=2.0\ \text{K}$. Find the <strong>effective conductivity $k_{eff}$</strong>. (Copper $k\approx400\,\text{W/(m·K)}$)</p>
+      <div class="given"><span class="chip">$Q=50\ \text{W}$</span><span class="chip">$L=0.20\ \text{m}$</span><span class="chip">$A=1.0\times10^{-4}\ \text{m}^2$</span><span class="chip">$\Delta T=2.0\ \text{K}$</span></div>
+      <div class="find"><b>Find:</b> $k_{eff}\ [\text{W/(m·K)}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="50000" data-tol="0.02"/><span class="ans-unit">$\text{W/(m·K)}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · Fourier-equivalent</div>$$ k_{eff} = \frac{Q\,L}{A\,\Delta T} = \frac{50 \times 0.20}{(1.0\times10^{-4})\times 2.0} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · evaluate</div>$$ k_{eff} = \frac{10}{2.0\times10^{-4}} = 5.0\times10^{4}\ \text{W/(m·K)} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ k_{eff} = 50{,}000\ \text{W/(m·K)} $$</div><b>Answer:</b> about <strong>125×</strong> copper ($\approx400$) — a superconductor-class effective value from the small $\Delta T$ of the latent loop.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 4-6 / 정리 ══════════ -->
+  <section class="screen" data-ch="4-6" data-chtitle="상변화 열전달의 산업 응용" data-stage="정리">
+    <div class="eyebrow lang-ko">4-6 · 정리 · Summary</div>
+    <div class="eyebrow lang-en">4-6 · Summary</div>
+    <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 시험 포인트</h1>
+    <h1 class="stage-h lang-en">Key Points · Common Mistakes · Exam Focus</h1>
+    <div class="sumgrid lang-ko">
+      <div class="sumcard key"><h4>핵심 정리</h4><ul>
+        <li>상변화 응용의 근본 = <strong>잠열 $h_{fg}$ 지렛대</strong>($h_{fg}/c_p\approx540\,{}^{\circ}\text{C}$, 물).</li>
+        <li>열관 $k_{eff}=QL/(A\Delta T)$ — 잠열 순환으로 <strong>$\Delta T$ 작아</strong> 구리의 수백 배.</li>
+        <li>침지냉각 = <strong>유전유체 핵비등</strong>, 원자로 안전 = <strong>DNBR$=q''_{CHF}/q''_{op}\gtrsim1.3$</strong>.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+        <li>$k_{eff}$를 재료 상수로 착각 → <strong>작동 조건 의존 유효값</strong>.</li>
+        <li>DNBR이 크면 위험으로 오해 → <strong>1에 가까울수록 위험</strong>.</li>
+        <li>침지냉각에 물 사용 착각 → <strong>절연·낮은 $T_{sat}$ 유전유체</strong>.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>시험 포인트</h4><ul>
+        <li>$k_{eff}=QL/(A\Delta T)$ 계산 + 구리 대비 배수.</li>
+        <li>DNBR$=q''_{CHF}/q''_{op}$ 계산 + 규제 하한 판별.</li>
+        <li>다섯 응용을 각각 핵비등·CHF·응축·잠열 원리와 연결.</li>
+      </ul></div>
+    </div>
+    <div class="sumgrid lang-en">
+      <div class="sumcard key"><h4>Key points</h4><ul>
+        <li>Root of phase-change applications = the <strong>latent lever $h_{fg}$</strong> ($h_{fg}/c_p\approx540\,{}^{\circ}\text{C}$, water).</li>
+        <li>Heat pipe $k_{eff}=QL/(A\Delta T)$ — the latent loop keeps <strong>$\Delta T$ small</strong>, giving hundreds× copper.</li>
+        <li>Immersion = <strong>dielectric-fluid nucleate boiling</strong>; reactor safety = <strong>DNBR$=q''_{CHF}/q''_{op}\gtrsim1.3$</strong>.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+        <li>Treating $k_{eff}$ as a material constant → it is an <strong>operating-condition-dependent effective value</strong>.</li>
+        <li>Reading large DNBR as dangerous → <strong>closer to 1 is dangerous</strong>.</li>
+        <li>Using water for immersion → it must be an <strong>insulating, low-$T_{sat}$ dielectric fluid</strong>.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>Exam focus</h4><ul>
+        <li>Compute $k_{eff}=QL/(A\Delta T)$ and the multiple over copper.</li>
+        <li>Compute DNBR$=q''_{CHF}/q''_{op}$ and check the regulatory floor.</li>
+        <li>Link each of the five applications to nucleate boiling, CHF, condensation, and latent-heat principles.</li>
       </ul></div>
     </div>
   </section>

@@ -184,20 +184,20 @@
 </style>
 </head>
 <body>
-<header><span class="brand">MFTEL-PC<span class="sep">·</span>상변화열전달<span class="sep">·</span>Part 1</span>상변화열전달<span class="sep">·</span>Part N</span><div class="chrail" id="chrail"></div><button id="langToggle" class="langtog" type="button" aria-label="Language">EN</button></header>
+<header><span class="brand">MFTEL-PC<span class="sep">·</span>상변화열전달<span class="sep">·</span>Part 1</span>상변화열전달<span class="sep">·</span>Part 1</span>상변화열전달<span class="sep">·</span>Part N</span><div class="chrail" id="chrail"></div><button id="langToggle" class="langtog" type="button" aria-label="Language">EN</button></header>
 <div class="stepbar" id="stepbar"></div>
 <main><div class="stage" id="stage">
 <!-- ════════ 시작1 / 환영 ════════ -->
-<section class="screen" data-ch="시작1" data-chtitle="상변화 열전달이란" data-stage="환영">
+<section class="screen" data-ch="시작1" data-chtitle="파트 1 개요" data-stage="환영">
   <div class="intro">
     <div class="intro-eyebrow lang-ko">상변화 열전달 · 파트 1 · 시작</div>
     <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Part 1 · Intro</div>
 
-    <h1 class="intro-h lang-ko">왜 끓는 물은 단상 대류보다<br><span class="hl">열을 수백 배 빨리 빼낼까?</span></h1>
-    <h1 class="intro-h lang-en">Why does boiling water remove heat<br><span class="hl">hundreds of times faster than single-phase convection?</span></h1>
+    <h1 class="intro-h lang-ko">끓는 물의 <span class="hl">첫 거품</span>은<br>어떻게 태어나는가?</h1>
+    <h1 class="intro-h lang-en">How is the <span class="hl">very first bubble</span><br>in boiling water born?</h1>
 
-    <p class="lede lang-ko">똑같은 온도차, 똑같은 면적인데도 <strong>상(相)이 바뀌면</strong> 대류 열전달 계수 $h$가 차원을 달리한다. 단상 강제·자연 대류는 겨우 $h \sim 10\text{–}10^{3}\ \text{W/m}^{2}\!\cdot\!\text{K}$ 수준이지만, 비등과 응축에서는 $h \sim 2{,}500\text{–}100{,}000\ \text{W/m}^{2}\!\cdot\!\text{K}$에 이른다. 비밀은 <strong>증발 잠열 $h_{fg}$</strong> — 상이 바뀌는 순간 막대한 에너지가 온도를 거의 바꾸지 않고 오간다. 그래서 작은 질량유량으로도 어마어마한 열을 실어 나른다. <span class="src">[Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10]</span></p>
-    <p class="lede lang-en">For the very same temperature difference and area, a <strong>change of phase</strong> lifts the convection coefficient $h$ into another regime. Single-phase forced and natural convection reach only $h \sim 10\text{–}10^{3}\ \text{W/m}^{2}\!\cdot\!\text{K}$, whereas boiling and condensation attain $h \sim 2{,}500\text{–}100{,}000\ \text{W/m}^{2}\!\cdot\!\text{K}$. The secret is the <strong>latent heat of vaporization $h_{fg}$</strong> — as the phase flips, an enormous amount of energy is carried across almost without changing temperature, so even a tiny mass flow transports a huge heat load. <span class="src">[Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10]</span></p>
+    <p class="lede lang-ko">주전자를 불에 올리면 바닥에서 작은 거품이 <strong>어느 순간 갑자기</strong> 솟아오른다. 그런데 왜 물 전체가 아니라 <strong>특정한 자리</strong>에서, 그것도 $100^{\circ}\text{C}$가 아니라 벽이 몇 도 더 뜨거워져야 시작될까? 답은 <strong>곡률·계면·핵생성</strong>이라는 세 실마리에 있다. 아주 작은 거품일수록 곡률이 커서 내부 압력이 치솟고 $\Delta p = 2\sigma/r$, 그만큼 더 높은 과열 $\Delta T_e = T_s - T_{sat}$이 있어야 살아남는다. 첫 거품의 탄생은 우연이 아니라 <strong>표면 장력 $\sigma$와 임계 반경 $r^{*}$가 지배하는 정밀한 문턱 사건</strong>이다. <span class="src">[Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, Ch.5]</span></p>
+    <p class="lede lang-en">Put a kettle on the flame and, at the bottom, tiny bubbles <strong>suddenly</strong> spring to life. Yet why do they appear at <strong>specific spots</strong> rather than throughout the water, and only after the wall climbs a few degrees past $100^{\circ}\text{C}$? The answer lives in three threads — <strong>curvature, interface, and nucleation</strong>. The smaller the embryo bubble, the sharper its curvature and the higher its internal pressure $\Delta p = 2\sigma/r$, so a larger superheat $\Delta T_e = T_s - T_{sat}$ is needed for it to survive. The birth of that first bubble is no accident but a <strong>precise threshold event governed by surface tension $\sigma$ and the critical radius $r^{*}$</strong>. <span class="src">[Carey, <i>Liquid–Vapor Phase-Change Phenomena</i>, Ch.5]</span></p>
   </div>
 </section>
 
@@ -207,33 +207,37 @@
     <div class="intro-eyebrow lang-ko">상변화 열전달 · 파트 1 지도</div>
     <div class="intro-eyebrow lang-en">Phase-Change Heat Transfer · Part 1 Roadmap</div>
 
-    <h1 class="intro-h lang-ko">이번 파트, <span class="hl">네 개의 챕터</span>로 비등의 뿌리를 파고든다</h1>
-    <h1 class="intro-h lang-en">This part: <span class="hl">four chapters</span> down to the roots of boiling</h1>
+    <h1 class="intro-h lang-ko">이번 파트, <span class="hl">여섯 개의 챕터</span>로 비등의 뿌리를 파고든다</h1>
+    <h1 class="intro-h lang-en">This part: <span class="hl">six chapters</span> down to the roots of boiling</h1>
 
     <div class="roadmap lang-ko" style="margin-top:14px">
       <div class="rm-item"><span class="rn">1-1</span><span><span class="rt">비등 곡선과 영역</span> <span class="rd">— 자유대류·핵비등·천이·막비등의 네 영역과 과열도 $\Delta T_e$</span></span></div>
       <div class="rm-item"><span class="rn">1-2</span><span><span class="rt">계면 열역학</span> <span class="rd">— Young–Laplace 곡률 압력과 Clausius–Clapeyron 관계</span></span></div>
       <div class="rm-item"><span class="rn">1-3</span><span><span class="rt">핵생성 이론</span> <span class="rd">— 임계 반경 $r^{*}$, 균질·불균질 핵생성</span></span></div>
-      <div class="rm-item"><span class="rn">1-4</span><span><span class="rt">비극성·유전 유체 물성 대비</span> <span class="rd">— 물 대 냉매·FC 유체의 $h_{fg}$·$\sigma$ 차이</span></span></div>
+      <div class="rm-item"><span class="rn">1-4</span><span><span class="rt">비극성 유체 물성 대비</span> <span class="rd">— 물 대 냉매·FC 유체의 $h_{fg}$·$\sigma$ 차이</span></span></div>
+      <div class="rm-item"><span class="rn">1-5</span><span><span class="rt">핵생성 사이트 밀도·ONB</span> <span class="rd">— 활성 사이트 밀도 $N_a$와 핵비등 개시 $\text{ONB}$</span></span></div>
+      <div class="rm-item"><span class="rn">1-6</span><span><span class="rt">표면 조절·핵비등 증강</span> <span class="rd">— 거칠기·젖음성·구조 표면으로 $h$와 CHF 끌어올리기</span></span></div>
     </div>
     <div class="roadmap lang-en" style="margin-top:14px">
       <div class="rm-item"><span class="rn">1-1</span><span><span class="rt">Pool Boiling Curve &amp; Regimes</span> <span class="rd">— free convection, nucleate, transition, film; the superheat $\Delta T_e$</span></span></div>
       <div class="rm-item"><span class="rn">1-2</span><span><span class="rt">Interfacial Thermodynamics</span> <span class="rd">— Young–Laplace curvature pressure and the Clausius–Clapeyron relation</span></span></div>
       <div class="rm-item"><span class="rn">1-3</span><span><span class="rt">Nucleation Theory</span> <span class="rd">— critical radius $r^{*}$, homogeneous vs heterogeneous nucleation</span></span></div>
-      <div class="rm-item"><span class="rn">1-4</span><span><span class="rt">Non-polar / Dielectric Fluid Contrasts</span> <span class="rd">— water vs refrigerants &amp; FC fluids in $h_{fg}$ and $\sigma$</span></span></div>
+      <div class="rm-item"><span class="rn">1-4</span><span><span class="rt">Non-polar Fluid Contrasts</span> <span class="rd">— water vs refrigerants &amp; FC fluids in $h_{fg}$ and $\sigma$</span></span></div>
+      <div class="rm-item"><span class="rn">1-5</span><span><span class="rt">Site Density &amp; ONB</span> <span class="rd">— active site density $N_a$ and the onset of nucleate boiling $\text{ONB}$</span></span></div>
+      <div class="rm-item"><span class="rn">1-6</span><span><span class="rt">Surface Tuning &amp; Enhancement</span> <span class="rd">— roughness, wettability &amp; structured surfaces to raise $h$ and CHF</span></span></div>
     </div>
 
     <div class="outcomes lang-ko" style="margin-top:18px"><h4>이번 파트가 끝나면 할 수 있게 된다</h4><ul>
       <li>비등 곡선의 <strong>네 영역</strong>을 구분하고 주어진 과열도 $\Delta T_e$가 어느 영역인지 판별한다.</li>
       <li>Young–Laplace와 Clausius–Clapeyron로 <strong>계면의 압력·온도 결합</strong>을 설명한다.</li>
       <li>고전 핵생성 이론으로 <strong>임계 반경 $r^{*}$</strong>와 활성 핵생성점을 추정한다.</li>
-      <li>물과 <strong>비극성·유전 유체</strong>의 물성 차이가 비등 성능에 주는 영향을 비교한다.</li>
+      <li>물과 비극성 유체의 물성 차이를 근거로 <strong>사이트 밀도·ONB·표면 증강</strong>이 비등 성능을 어떻게 바꾸는지 설계 관점에서 판단한다.</li>
     </ul></div>
     <div class="outcomes lang-en" style="margin-top:18px"><h4>By the end of this part you will be able to</h4><ul>
       <li>Distinguish the <strong>four regimes</strong> of the boiling curve and classify a given superheat $\Delta T_e$.</li>
       <li>Explain <strong>interfacial pressure–temperature coupling</strong> via Young–Laplace and Clausius–Clapeyron.</li>
       <li>Estimate the <strong>critical radius $r^{*}$</strong> and active nucleation sites from classical nucleation theory.</li>
-      <li>Compare how property contrasts between water and <strong>non-polar / dielectric fluids</strong> affect boiling performance.</li>
+      <li>Judge, from property contrasts between water and non-polar fluids, how <strong>site density, ONB, and surface enhancement</strong> reshape boiling performance from a design standpoint.</li>
     </ul></div>
   </div>
 </section>
@@ -1800,6 +1804,784 @@
         <li><strong>1-2 interface &amp; surface tension</strong>: bubble birth and departure are a balance of interfacial forces set by $\sigma$.</li>
         <li><strong>1-3 nucleation</strong>: micro-cavities and wettability ($\theta$) decide where and when bubbles form.</li>
         <li><strong>1-4 fluid contrast</strong>: with the same curve, interface, and nucleation physics, <strong>different $h_{fg}$, $\sigma$, $\theta$</strong> shift the whole curve and CHF — which is why water and dielectrics boil differently.</li>
+      </ul></div>
+    </div>
+  </section>
+
+<!-- ══════════ 1-5 / 개념 ══════════ -->
+  <section class="screen" data-ch="1-5" data-chtitle="핵생성 사이트 밀도와 ONB" data-stage="개념">
+    <div class="eyebrow lang-ko">1-5 · 개념 · Concept</div>
+    <div class="eyebrow lang-en">1-5 · Concept</div>
+    <h1 class="stage-h lang-ko">핵생성 사이트 밀도와 ONB — 거품은 어디서, 언제 태어나는가</h1>
+    <h1 class="stage-h lang-en">Nucleation Site Density and ONB — Where and When Bubbles Are Born</h1>
+    <div class="analogy lang-ko"><span class="ic">🕳️</span><div class="tx"><b>직관</b> — 매끈해 보이는 가열면도 현미경으로 보면 <b>미세한 흠집·구덩이(cavity)</b>로 가득합니다. 이 구덩이 속에 갇힌 잔류 기체·증기가 거품의 <b>씨앗</b>이 됩니다. 그런데 아무 구덩이나 씨앗이 되지 않고, 표면 과열도 $\Delta T_e$가 특정 문턱을 넘어야 <b>어떤 크기 범위의 구덩이</b>만 활성화됩니다. 과열도를 올릴수록 활성 구덩이가 늘고, 거품이 처음 나오기 시작하는 순간이 <b>비등 개시(ONB)</b>입니다. <span class="src">(출처: Hsu 1962, <i>J. Heat Transfer</i> 84:207 / Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10)</span></div></div>
+    <div class="analogy lang-en"><span class="ic">🕳️</span><div class="tx"><b>Intuition</b> — Even a surface that looks smooth is, under a microscope, riddled with <b>tiny scratches and pits (cavities)</b>. Residual gas or vapor trapped in these pits becomes the <b>seed</b> of a bubble. But not every pit seeds a bubble: only when surface superheat $\Delta T_e$ exceeds a threshold does a <b>specific size window</b> of cavities activate. Raising superheat activates more cavities, and the instant bubbles first appear is the <b>onset of nucleate boiling (ONB)</b>. <span class="src">(Source: Hsu 1962, <i>J. Heat Transfer</i> 84:207 / Incropera, <i>Fundamentals of Heat and Mass Transfer</i>, Ch.10)</span></div></div>
+    <div class="two lang-ko">
+      <div class="col2">
+        <p class="lede">핵비등의 열유속은 <strong>단위면적당 활성 핵생성 사이트 수 $N_a/A$</strong>에 강하게 의존합니다. 각 활성 사이트는 거품을 반복 생성·이탈시키며 액체를 교반해 열전달을 키우므로, 대부분의 핵비등 상관식에서 $q''$은 $N_a/A$에 거의 비례하게 다뤄집니다. 실험적으로 활성 사이트 밀도는 과열도(또는 공동 반경 $r_c$)에 대해 <strong>멱함수</strong>로 잘 정리됩니다: <strong>$N_a/A \propto (1/r_c)^{m}$</strong>.</p>
+        <div class="keqbox">
+          <div class="keq-label">활성 사이트 밀도 — 멱함수 골격</div>
+          <div class="keqrow"><span class="keqcap">공동 반경 기준</span><span class="keqline">$ \dfrac{N_a}{A} \propto \left(\dfrac{1}{r_c}\right)^{m} $</span></div>
+          <div class="keqrow"><span class="keqcap">과열도 기준(핵비등)</span><span class="keqline">$ \dfrac{N_a}{A} \propto \Delta T_e^{\,m} $</span></div>
+          <div class="keqrow"><span class="keqcap">지수 범위(대표값)</span><span class="keqline">$ m \approx 4 \sim 6 $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">핵심 용어</div>
+        <div class="terms">
+          <div class="term"><b>핵생성 사이트 밀도 $N_a/A$</b> 단위면적당 활성 구덩이 수 $[\text{sites/m}^2 \text{ or } /\text{cm}^2]$</div>
+          <div class="term"><b>공동 반경 $r_c$</b> 활성화되는 표면 구덩이(cavity)의 입구 반경 $[\mu\text{m}]$</div>
+          <div class="term"><b>활성 반경 window</b> 주어진 $\Delta T_e$에서 활성화되는 $r_c$의 하한~상한 (Hsu 1962)</div>
+          <div class="term"><b>ONB</b> Onset of Nucleate Boiling — 첫 거품이 나오는 개시점</div>
+          <div class="term"><b>온도 오버슈트</b> ONB 직전 $\Delta T_e$가 정상 핵비등 값보다 <em>높이 튀는</em> 현상</div>
+          <div class="term"><b>지수 $m$</b> $N_a/A$–$r_c$ 멱함수 기울기 (표면·유체 의존)</div>
+        </div>
+        <div class="callout key"><div class="ct">핵심</div>핵비등의 세기는 <strong>표면 미세구조($N_a/A$)</strong>가 좌우합니다. 같은 $\Delta T_e$라도 구덩이가 많은 거친 표면은 활성 사이트가 많아 $q''$이 커집니다. ONB는 이 활성화가 <strong>시작되는 문턱</strong>입니다.</div>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2">
+        <p class="lede">Nucleate boiling flux depends strongly on the <strong>active nucleation site density per unit area $N_a/A$</strong>. Each active site repeatedly grows and departs bubbles that stir the liquid and enhance transfer, so most nucleate correlations treat $q''$ as roughly proportional to $N_a/A$. Empirically the active site density collapses onto a <strong>power law</strong> in superheat (or cavity radius $r_c$): <strong>$N_a/A \propto (1/r_c)^{m}$</strong>.</p>
+        <div class="keqbox">
+          <div class="keq-label">Active site density — power-law skeleton</div>
+          <div class="keqrow"><span class="keqcap">By cavity radius</span><span class="keqline">$ \dfrac{N_a}{A} \propto \left(\dfrac{1}{r_c}\right)^{m} $</span></div>
+          <div class="keqrow"><span class="keqcap">By superheat (nucleate)</span><span class="keqline">$ \dfrac{N_a}{A} \propto \Delta T_e^{\,m} $</span></div>
+          <div class="keqrow"><span class="keqcap">Exponent (representative)</span><span class="keqline">$ m \approx 4 \sim 6 $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">Key terms</div>
+        <div class="terms">
+          <div class="term"><b>Site density $N_a/A$</b> active cavities per unit area $[\text{sites/m}^2 \text{ or } /\text{cm}^2]$</div>
+          <div class="term"><b>Cavity radius $r_c$</b> mouth radius of an activating surface pit $[\mu\text{m}]$</div>
+          <div class="term"><b>Active-radius window</b> lower–upper bound of $r_c$ activated at a given $\Delta T_e$ (Hsu 1962)</div>
+          <div class="term"><b>ONB</b> Onset of Nucleate Boiling — where the first bubbles appear</div>
+          <div class="term"><b>Temperature overshoot</b> $\Delta T_e$ spikes <em>above</em> the steady nucleate value just before ONB</div>
+          <div class="term"><b>Exponent $m$</b> slope of the $N_a/A$–$r_c$ power law (surface/fluid dependent)</div>
+        </div>
+        <div class="callout key"><div class="ct">Key</div>Nucleate boiling intensity is governed by <strong>surface microstructure ($N_a/A$)</strong>. At the same $\Delta T_e$, a rougher surface with more cavities has more active sites and larger $q''$. ONB is the <strong>threshold where this activation begins</strong>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-5 / 유도 ══════════ -->
+  <section class="screen" data-ch="1-5" data-chtitle="핵생성 사이트 밀도와 ONB" data-stage="유도">
+    <div class="eyebrow lang-ko">1-5 · 수식 유도 · Derivation</div>
+    <div class="eyebrow lang-en">1-5 · Derivation</div>
+    <h1 class="stage-h lang-ko">활성 공동 크기 문턱 — Hsu와 Bergles–Rohsenow</h1>
+    <h1 class="stage-h lang-en">The Active-Cavity Size Threshold — Hsu and Bergles–Rohsenow</h1>
+    <p class="lede lang-ko"><b>출발점:</b> 구덩이 입구에 반경 $r$의 반구형 증기 씨앗이 있으면, 곡률로 인한 압력차(Young–Laplace)와 Clausius–Clapeyron에서 씨앗이 성장하려면 그 위치의 <b>액체 과열도</b>가 임계값을 넘어야 합니다.</p>
+    <p class="lede lang-en"><b>Starting point:</b> for a hemispherical vapor seed of radius $r$ at a cavity mouth, the curvature pressure jump (Young–Laplace) with Clausius–Clapeyron requires the local <b>liquid superheat</b> to exceed a critical value for the seed to grow.</p>
+    <div class="deriv lang-ko">
+      <div class="dcard"><h4>1 · 곡률 과열 조건</h4><div class="sub">Young–Laplace + Clausius–Clapeyron</div><div class="ana">🫧 작은 씨앗일수록 더 큰 과열이 필요</div><div class="eq">$ \Delta T_{sat}(r) = \dfrac{2\,\sigma\,T_{sat}}{\rho_v\,h_{fg}\,r} $</div><p>반경 $r$인 씨앗이 평형을 이루려면 그 위치 액체가 이만큼 과열되어야 합니다. $r$이 작을수록($1/r$ 발산) 요구 과열이 커집니다.</p></div>
+      <div class="dcard"><h4>2 · Hsu 활성화 기준</h4><div class="sub">Hsu 1962 — 열경계층 온도장</div><div class="ana">📏 온도가 씨앗 꼭대기까지 데워야 활성</div><div class="eq">$ T_{liq}(y{=}b\,r_c) \ge T_{sat}+\Delta T_{sat}(r_c) $</div><p>과도 열경계층의 온도가 씨앗 꼭대기($y\!\approx\! b\,r_c$)에서 곡률 과열 조건을 만족하는 <strong>$r_c$의 하한·상한</strong>이 존재 → <strong>활성 반경 window</strong>.</p></div>
+      <div class="dcard"><h4>3 · ONB 상관식</h4><div class="sub">Bergles–Rohsenow 1964</div><div class="ana">🔥 최소 과열 = window 하나만 겨우 활성</div><div class="eq">$ q''_{ONB} \propto \Delta T_{e,ONB}^{\,n} $</div><p>window가 처음 열리는(사이트 하나가 겨우 활성) 조건이 ONB. Bergles–Rohsenow는 압력·유체 물성으로 $q''_{ONB}$–$\Delta T_{e,ONB}$ 관계를 상관화했습니다.</p></div>
+    </div>
+    <div class="deriv lang-en">
+      <div class="dcard"><h4>1 · Curvature superheat</h4><div class="sub">Young–Laplace + Clausius–Clapeyron</div><div class="ana">🫧 A smaller seed needs a larger superheat</div><div class="eq">$ \Delta T_{sat}(r) = \dfrac{2\,\sigma\,T_{sat}}{\rho_v\,h_{fg}\,r} $</div><p>For a seed of radius $r$ to be in equilibrium, the local liquid must be superheated by this much. As $r$ shrinks ($1/r$ diverges), the required superheat grows.</p></div>
+      <div class="dcard"><h4>2 · Hsu activation</h4><div class="sub">Hsu 1962 — thermal-layer field</div><div class="ana">📏 The field must heat the seed top to activate</div><div class="eq">$ T_{liq}(y{=}b\,r_c) \ge T_{sat}+\Delta T_{sat}(r_c) $</div><p>There exist a <strong>lower and upper $r_c$</strong> for which the transient thermal-layer temperature at the seed top ($y\!\approx\! b\,r_c$) meets the curvature condition → the <strong>active-radius window</strong>.</p></div>
+      <div class="dcard"><h4>3 · ONB correlation</h4><div class="sub">Bergles–Rohsenow 1964</div><div class="ana">🔥 Minimum superheat = window just barely open</div><div class="eq">$ q''_{ONB} \propto \Delta T_{e,ONB}^{\,n} $</div><p>ONB is where the window first opens (one site barely active). Bergles–Rohsenow correlated $q''_{ONB}$–$\Delta T_{e,ONB}$ with pressure and fluid properties.</p></div>
+    </div>
+    <div class="callout warn lang-ko"><div class="ct">주의 · 활성은 window이지 문턱 하나가 아니다</div>$\Delta T_{sat}(r)\propto 1/r$이므로 <strong>너무 작은 구덩이</strong>는 요구 과열이 너무 커 활성화되지 않고, <strong>너무 큰 구덩이</strong>는 열경계층 밖이라 데워지지 않습니다. 그래서 활성 사이트는 항상 <strong>$r_{c,\min}\!\le\! r_c \!\le\! r_{c,\max}$의 밴드</strong>입니다. $\Delta T_e$가 커지면 이 밴드가 넓어져 $N_a/A$가 증가합니다.</div>
+    <div class="callout warn lang-en"><div class="ct">Caution · activation is a window, not a single threshold</div>Since $\Delta T_{sat}(r)\propto 1/r$, a cavity that is <strong>too small</strong> demands too much superheat and stays inactive, while one <strong>too large</strong> lies outside the thermal layer and never warms up. Hence active sites always form a <strong>band $r_{c,\min}\!\le\! r_c \!\le\! r_{c,\max}$</strong>. As $\Delta T_e$ rises, the band widens and $N_a/A$ increases.</div>
+  </section>
+
+  <!-- ══════════ 1-5 / 읽을거리 ══════════ -->
+  <section class="screen" data-ch="1-5" data-chtitle="핵생성 사이트 밀도와 ONB" data-stage="읽을거리">
+    <div class="eyebrow lang-ko">1-5 · 읽을거리 · Reading</div>
+    <div class="eyebrow lang-en">1-5 · Reading</div>
+    <h1 class="stage-h lang-ko">온도 오버슈트 — 젖음성 좋은 표면의 늦은 개시</h1>
+    <h1 class="stage-h lang-en">Temperature Overshoot — Delayed Onset on Wetting Surfaces</h1>
+    <div class="two lang-ko">
+      <div class="col2 reading">
+        <p>새 표면이나 <strong>젖음성이 매우 좋은 표면</strong>(예: 냉매·비극성 유체 위의 매끈한 표면)에서는 액체가 작은 구덩이 속까지 파고들어가 <strong>갇힌 기체 씨앗을 없애버립니다</strong>. 씨앗이 없으니 비등이 시작하려면 훨씬 큰 과열이 필요하고, $\Delta T_e$를 계속 올리다 어느 순간 <strong>갑자기</strong> 다수 사이트가 한꺼번에 터집니다.</p>
+        <p class="pullquote">거품 씨앗이 없으면, 개시는 <em>늦고 갑작스럽다</em>.</p>
+        <p>이때 표면온도는 정상 핵비등 곡선보다 <strong>수 ~ 수십 ${}^{\circ}\text{C}$ 더 높이 튀었다가</strong>, 비등이 시작되면 $q''$이 급증하며 온도가 뚝 떨어져 정상 곡선으로 되돌아옵니다 — 이것이 <strong>온도 오버슈트(temperature overshoot)</strong>이자 이력(hysteresis)입니다. 물처럼 접촉각이 큰 유체보다, <strong>비극성·저표면장력 유체(FC-72, 냉매 등)</strong>와 매끈·친수 표면에서 오버슈트가 특히 큽니다.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>활성 사이트는 <strong>구덩이에 갇힌 기체 씨앗</strong>에서 나온다.</li><li>젖음성이 좋을수록 씨앗이 지워져 <strong>ONB가 늦고 오버슈트가 크다</strong>.</li><li>오버슈트는 개시(증가)와 소멸(감소)이 다른 <strong>이력 현상</strong>.</li></ul></div>
+        <p class="readmeta">참고: Bergles &amp; Rohsenow(1964) <em>J. Heat Transfer</em> 86:365 / Incropera et al., Ch.10.4 / Carey, <i>Liquid–Vapor Phase-Change Phenomena</i></p>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2 reading">
+        <p>On a fresh surface or a <strong>very well-wetting surface</strong> (e.g. a smooth surface under a refrigerant or non-polar fluid), the liquid penetrates deep into small cavities and <strong>floods out the trapped gas seeds</strong>. With no seeds, boiling needs far more superheat to start, and as $\Delta T_e$ is raised further, many sites suddenly erupt <strong>all at once</strong>.</p>
+        <p class="pullquote">Without bubble seeds, onset is <em>late and abrupt</em>.</p>
+        <p>The surface temperature <strong>spikes several to tens of ${}^{\circ}\text{C}$ above</strong> the steady nucleate curve, then, once boiling starts, $q''$ surges and the temperature drops sharply back onto the normal curve — this is <strong>temperature overshoot</strong> and hysteresis. Compared with high-contact-angle fluids like water, overshoot is especially large for <strong>non-polar, low-surface-tension fluids (FC-72, refrigerants)</strong> on smooth, highly-wetting surfaces.</p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">Must know</div><ul><li>Active sites come from <strong>gas seeds trapped in cavities</strong>.</li><li>The better the wetting, the more seeds are erased → <strong>later ONB and larger overshoot</strong>.</li><li>Overshoot is a <strong>hysteresis</strong>: onset (increasing) differs from extinction (decreasing).</li></ul></div>
+        <p class="readmeta">Refs: Bergles &amp; Rohsenow (1964) <em>J. Heat Transfer</em> 86:365 / Incropera et al., Ch.10.4 / Carey, <i>Liquid–Vapor Phase-Change Phenomena</i></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-5 / 그림·표 ══════════ -->
+  <section class="screen" data-ch="1-5" data-chtitle="핵생성 사이트 밀도와 ONB" data-stage="그림·표">
+    <div class="eyebrow lang-ko">1-5 · 그림 · 그래프 · 표</div>
+    <div class="eyebrow lang-en">1-5 · Figure · Graph · Table</div>
+    <h1 class="stage-h lang-ko">한눈에 — 활성 공동 window와 온도 오버슈트</h1>
+    <h1 class="stage-h lang-en">At a Glance — the Active-Cavity Window and Overshoot</h1>
+    <div class="vizgrid lang-ko">
+      <div>
+        <div class="vcap">구덩이 활성 조건: 열경계층 온도 vs 곡률 과열 $\Delta T_{sat}\propto 1/r_c$</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar15ko" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<line x1="52" y1="248" x2="452" y2="248" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar15ko)"/>
+<line x1="52" y1="248" x2="52" y2="24" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar15ko)"/>
+<text x="252" y="272" font-size="11.5" fill="#52525b" text-anchor="middle">공동 반경 $r_c$ (로그)</text>
+<text x="20" y="135" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 20 135)">필요 과열 · 가용 과열</text>
+<path d="M70 40 Q150 150 300 218 Q380 240 444 244" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<text x="108" y="70" font-size="10.5" fill="#c2410c" font-weight="700">곡률 과열 $\propto 1/r_c$</text>
+<line x1="60" y1="150" x2="452" y2="150" stroke="#2563eb" stroke-width="2.25" stroke-dasharray="6 4"/>
+<text x="410" y="142" font-size="10.5" fill="#2563eb" font-weight="700">가용 과열($\Delta T_e$)</text>
+<circle cx="151" cy="150" r="4.5" fill="#fff" stroke="#16a34a" stroke-width="2.25"/>
+<circle cx="300" cy="150" r="4.5" fill="#fff" stroke="#16a34a" stroke-width="2.25"/>
+<line x1="151" y1="150" x2="151" y2="248" stroke="#16a34a" stroke-width="1.2" stroke-dasharray="3 3"/>
+<line x1="300" y1="150" x2="300" y2="248" stroke="#16a34a" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="151" y="262" font-size="10" fill="#16a34a" text-anchor="middle" font-weight="700">$r_{c,\min}$</text>
+<text x="300" y="262" font-size="10" fill="#16a34a" text-anchor="middle" font-weight="700">$r_{c,\max}$</text>
+<rect x="151" y="150" width="149" height="98" fill="#16a34a" opacity="0.10"/>
+<text x="225" y="200" font-size="10.5" fill="#166534" text-anchor="middle" font-weight="700">활성 window</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">온도 오버슈트 (젖음성 좋은 표면) — $q''$ vs $\Delta T_e$</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar15ko2" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<line x1="52" y1="248" x2="452" y2="248" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar15ko2)"/>
+<line x1="52" y1="248" x2="52" y2="24" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar15ko2)"/>
+<text x="252" y="272" font-size="11.5" fill="#52525b" text-anchor="middle">초과온도 $\Delta T_e$ (로그)</text>
+<text x="20" y="135" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 20 135)">열유속 $q''$ (로그)</text>
+<path d="M62 238 Q120 226 175 210" fill="none" stroke="#71717a" stroke-width="1.6" stroke-dasharray="4 3"/>
+<path d="M175 210 L280 90" fill="none" stroke="#71717a" stroke-width="1.6" stroke-dasharray="4 3"/>
+<text x="150" y="228" font-size="9.5" fill="#71717a">단상 대류</text>
+<path d="M62 238 Q140 230 235 220" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M235 220 L235 118" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M235 118 Q210 108 200 118" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M200 118 L300 44" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<circle cx="235" cy="220" r="4.5" fill="#fff" stroke="#c2410c" stroke-width="2.25"/>
+<text x="278" y="212" font-size="10" fill="#c2410c" text-anchor="middle" font-weight="700">오버슈트 ONB</text>
+<line x1="235" y1="220" x2="235" y2="248" stroke="#71717a" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="200" y1="118" x2="200" y2="248" stroke="#16a34a" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="235" y="262" font-size="9.5" fill="#c2410c" text-anchor="middle">$\Delta T_{ONB}$</text>
+<text x="196" y="262" font-size="9.5" fill="#16a34a" text-anchor="middle">정상값</text>
+<text x="345" y="66" font-size="9.5" fill="#c2410c" font-weight="700">정상 핵비등</text>
+</svg>
+      </div>
+    </div>
+    <div class="vcap lang-ko">활성 사이트 밀도 대표 데이터 (거친 금속면, 물, 대기압 — 정성적 경향)</div>
+    <table class="ktab lang-ko"><thead><tr><th>$\Delta T_e\ [{}^{\circ}\text{C}]$</th><th>$r_c$ 활성 상한 $[\mu\text{m}]$ (대표)</th><th style="text-align:right">$N_a/A$ 상대 경향</th></tr></thead><tbody>
+      <tr><td>5 (ONB 부근)</td><td class="k">~ 5 ~ 10</td><td>낮음 (사이트 소수)</td></tr>
+      <tr><td>10</td><td class="k">~ 3 ~ 5</td><td>중간 ($\propto \Delta T_e^{\,m}$)</td></tr>
+      <tr><td>20</td><td class="k">~ 1 ~ 2</td><td>높음</td></tr>
+      <tr><td>30 (CHF 부근)</td><td class="k">~ 0.5 ~ 1</td><td>매우 높음</td></tr>
+    </tbody></table>
+    <div class="keqnote lang-ko">위 $r_c$·$N_a/A$ 값은 <strong>정성적 대표 경향</strong>(교재 서술 기반의 예시)이며 실제 표면·유체마다 크게 다릅니다. 곡률 관계 $r_c\!\sim\! 2\sigma T_{sat}/(\rho_v h_{fg}\Delta T_e)$로 상한이 $\Delta T_e$에 반비례함을 반영. $N_a/A\propto(1/r_c)^m,\ m\approx4\!\sim\!6$. <span class="src">(출처: Hsu 1962 / Bergles–Rohsenow 1964 / Incropera Ch.10.4 — 수치는 대표/불확실 표기)</span></div>
+    <div class="vizgrid lang-en">
+      <div>
+        <div class="vcap">Cavity activation: thermal-layer temp vs curvature superheat $\Delta T_{sat}\propto 1/r_c$</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar15en" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<line x1="52" y1="248" x2="452" y2="248" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar15en)"/>
+<line x1="52" y1="248" x2="52" y2="24" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar15en)"/>
+<text x="252" y="272" font-size="11.5" fill="#52525b" text-anchor="middle">cavity radius $r_c$ (log)</text>
+<text x="20" y="135" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 20 135)">required · available superheat</text>
+<path d="M70 40 Q150 150 300 218 Q380 240 444 244" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<text x="112" y="70" font-size="10.5" fill="#c2410c" font-weight="700">curvature $\propto 1/r_c$</text>
+<line x1="60" y1="150" x2="452" y2="150" stroke="#2563eb" stroke-width="2.25" stroke-dasharray="6 4"/>
+<text x="404" y="142" font-size="10.5" fill="#2563eb" font-weight="700">available ($\Delta T_e$)</text>
+<circle cx="151" cy="150" r="4.5" fill="#fff" stroke="#16a34a" stroke-width="2.25"/>
+<circle cx="300" cy="150" r="4.5" fill="#fff" stroke="#16a34a" stroke-width="2.25"/>
+<line x1="151" y1="150" x2="151" y2="248" stroke="#16a34a" stroke-width="1.2" stroke-dasharray="3 3"/>
+<line x1="300" y1="150" x2="300" y2="248" stroke="#16a34a" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="151" y="262" font-size="10" fill="#16a34a" text-anchor="middle" font-weight="700">$r_{c,\min}$</text>
+<text x="300" y="262" font-size="10" fill="#16a34a" text-anchor="middle" font-weight="700">$r_{c,\max}$</text>
+<rect x="151" y="150" width="149" height="98" fill="#16a34a" opacity="0.10"/>
+<text x="225" y="200" font-size="10.5" fill="#166534" text-anchor="middle" font-weight="700">active window</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">Temperature overshoot (wetting surface) — $q''$ vs $\Delta T_e$</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar15en2" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<line x1="52" y1="248" x2="452" y2="248" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar15en2)"/>
+<line x1="52" y1="248" x2="52" y2="24" stroke="#71717a" stroke-width="1.5" marker-end="url(#ar15en2)"/>
+<text x="252" y="272" font-size="11.5" fill="#52525b" text-anchor="middle">excess temp. $\Delta T_e$ (log)</text>
+<text x="20" y="135" font-size="11.5" fill="#52525b" text-anchor="middle" transform="rotate(-90 20 135)">heat flux $q''$ (log)</text>
+<path d="M62 238 Q120 226 175 210" fill="none" stroke="#71717a" stroke-width="1.6" stroke-dasharray="4 3"/>
+<path d="M175 210 L280 90" fill="none" stroke="#71717a" stroke-width="1.6" stroke-dasharray="4 3"/>
+<text x="146" y="228" font-size="9.5" fill="#71717a">single-phase</text>
+<path d="M62 238 Q140 230 235 220" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M235 220 L235 118" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M235 118 Q210 108 200 118" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<path d="M200 118 L300 44" fill="none" stroke="#c2410c" stroke-width="2.75" stroke-linecap="round"/>
+<circle cx="235" cy="220" r="4.5" fill="#fff" stroke="#c2410c" stroke-width="2.25"/>
+<text x="278" y="212" font-size="10" fill="#c2410c" text-anchor="middle" font-weight="700">overshoot ONB</text>
+<line x1="235" y1="220" x2="235" y2="248" stroke="#71717a" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="200" y1="118" x2="200" y2="248" stroke="#16a34a" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="235" y="262" font-size="9.5" fill="#c2410c" text-anchor="middle">$\Delta T_{ONB}$</text>
+<text x="196" y="262" font-size="9.5" fill="#16a34a" text-anchor="middle">steady</text>
+<text x="348" y="66" font-size="9.5" fill="#c2410c" font-weight="700">steady nucleate</text>
+</svg>
+      </div>
+    </div>
+    <div class="vcap lang-en">Representative active-site-density trend (rough metal, water, 1 atm — qualitative)</div>
+    <table class="ktab lang-en"><thead><tr><th>$\Delta T_e\ [{}^{\circ}\text{C}]$</th><th>upper active $r_c\ [\mu\text{m}]$ (repr.)</th><th style="text-align:right">$N_a/A$ relative trend</th></tr></thead><tbody>
+      <tr><td>5 (near ONB)</td><td class="k">~ 5 ~ 10</td><td>low (few sites)</td></tr>
+      <tr><td>10</td><td class="k">~ 3 ~ 5</td><td>moderate ($\propto \Delta T_e^{\,m}$)</td></tr>
+      <tr><td>20</td><td class="k">~ 1 ~ 2</td><td>high</td></tr>
+      <tr><td>30 (near CHF)</td><td class="k">~ 0.5 ~ 1</td><td>very high</td></tr>
+    </tbody></table>
+    <div class="keqnote lang-en">The $r_c$ and $N_a/A$ values above are <strong>qualitative representative trends</strong> (illustrative, textbook-based) and vary greatly with surface and fluid. They reflect the curvature relation $r_c\!\sim\! 2\sigma T_{sat}/(\rho_v h_{fg}\Delta T_e)$, so the upper radius scales inversely with $\Delta T_e$. $N_a/A\propto(1/r_c)^m,\ m\approx4\!\sim\!6$. <span class="src">(Source: Hsu 1962 / Bergles–Rohsenow 1964 / Incropera Ch.10.4 — numbers marked representative/uncertain)</span></div>
+  </section>
+
+  <!-- ══════════ 1-5 / 실습 ══════════ -->
+  <section class="screen" data-ch="1-5" data-chtitle="핵생성 사이트 밀도와 ONB" data-stage="실습">
+    <div class="eyebrow lang-ko">1-5 · 실습 · Interactive</div>
+    <div class="eyebrow lang-en">1-5 · Interactive</div>
+    <h1 class="stage-h lang-ko">활성 사이트 밀도의 멱함수 거동 — 직접 조절해보기</h1>
+    <h1 class="stage-h lang-en">Power-Law Behavior of Site Density — Try It</h1>
+    <p class="lede lang-ko">활성 사이트 밀도는 초과온도에 대해 멱함수로 증가합니다: $N_a/A = C\,\Delta T_e^{\,m}$. 여기서 $C$는 표면·유체에 따른 기준 밀도, $m$은 멱지수(대표 $4\!\sim\!6$)입니다. 슬라이더로 <strong>$\Delta T_e$</strong>, <strong>$m$</strong>, 기준 밀도 <strong>$C$</strong>를 바꾸며 과열도의 작은 변화가 사이트 수를 얼마나 크게 바꾸는지 확인하세요.</p>
+    <p class="lede lang-en">Active-site density grows as a power law in superheat: $N_a/A = C\,\Delta T_e^{\,m}$, where $C$ is a surface/fluid reference density and $m$ is the exponent (representative $4\!\sim\!6$). Move the sliders for <strong>$\Delta T_e$</strong>, <strong>$m$</strong>, and reference $C$ to see how a small superheat change swings the site count.</p>
+    <div class="calc lang-ko"
+      data-title="활성 사이트 밀도 $N_a/A = C\,\Delta T_e^{\,m}$"
+      data-desc="C = 기준 밀도 [sites/cm² at ΔT_e=1°C], m = 멱지수(대표 4~6). 기본값 C=0.5, m=5, ΔT_e=10°C → 약 5×10⁴ sites/cm² 수준(대표 경향)."
+      data-vars='[{"sym":"dT","label":"$\\Delta T_e$ · 초과온도","min":5,"max":30,"val":10,"step":1,"unit":"°C"},{"sym":"m","label":"$m$ · 멱지수","min":4,"max":6,"val":5,"step":0.5,"unit":""},{"sym":"C","label":"$C$ · 기준 밀도","min":0.1,"max":2,"val":0.5,"step":0.1,"unit":"/cm²"}]'
+      data-expr="C*dT**m"
+      data-out="$N_a/A$" data-out-unit="$\text{sites/cm}^2$"
+      data-barmax="2000000"
+      data-note="ΔT_e를 10→20°C로 2배 올리면 m=5일 때 사이트 수는 2⁵=32배가 됩니다 — 왜 핵비등 q''이 과열도에 매우 민감한지 보여줍니다."></div>
+    <div class="calc lang-en"
+      data-title="Active site density $N_a/A = C\,\Delta T_e^{\,m}$"
+      data-desc="C = reference density [sites/cm² at ΔT_e=1°C], m = exponent (repr. 4~6). Default C=0.5, m=5, ΔT_e=10°C → order 5×10⁴ sites/cm² (representative trend)."
+      data-vars='[{"sym":"dT","label":"$\\Delta T_e$ · excess temp.","min":5,"max":30,"val":10,"step":1,"unit":"°C"},{"sym":"m","label":"$m$ · exponent","min":4,"max":6,"val":5,"step":0.5,"unit":""},{"sym":"C","label":"$C$ · reference density","min":0.1,"max":2,"val":0.5,"step":0.1,"unit":"/cm²"}]'
+      data-expr="C*dT**m"
+      data-out="$N_a/A$" data-out-unit="$\text{sites/cm}^2$"
+      data-barmax="2000000"
+      data-note="Doubling ΔT_e (10→20°C) with m=5 multiplies the site count by 2⁵=32 — showing why nucleate q'' is so sensitive to superheat."></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 활성 사이트 밀도 감: ONB 부근에서는 $\text{cm}^2$당 수십~수백 개, 활발한 핵비등에서는 $10^4\!\sim\!10^6\,\text{sites/cm}^2$에 이릅니다(표면·유체·압력 의존, 대표값). 지수 $m$이 클수록($\propto\Delta T_e^{m}$) 과열도에 더 민감합니다. 같은 $\Delta T_e$라도 표면을 <strong>거칠게</strong> 하거나 $C$를 키우면 사이트가 늘어 $q''$이 커집니다 — 이것이 표면 개질(다공성 코팅 등)로 비등을 강화하는 원리입니다. <span class="src">(출처: Hsu 1962 / Incropera Ch.10.4 — 수치는 대표/불확실)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — feel for site density: near ONB it is tens–hundreds per $\text{cm}^2$, while in active nucleate boiling it reaches $10^4\!\sim\!10^6\,\text{sites/cm}^2$ (surface/fluid/pressure dependent, representative). A larger exponent $m$ ($\propto\Delta T_e^{m}$) means greater superheat sensitivity. At the same $\Delta T_e$, making the surface <strong>rougher</strong> or raising $C$ adds sites and raises $q''$ — the principle behind boiling enhancement via surface modification (porous coatings, etc.). <span class="src">(Source: Hsu 1962 / Incropera Ch.10.4 — numbers representative/uncertain)</span></div>
+  </section>
+
+  <!-- ══════════ 1-5 / 점검 ══════════ -->
+  <section class="screen" data-ch="1-5" data-chtitle="핵생성 사이트 밀도와 ONB" data-stage="점검">
+    <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+    <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · instructor view</span></div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q1.</span>주어진 $\Delta T_e$에서 표면 구덩이가 활성화되는 조건을 가장 잘 설명한 것은?</p>
+      <div class="opts">
+        <button class="opt">① 반경이 가장 작은 구덩이만 항상 활성화된다</button>
+        <button class="opt" data-correct="1">② $r_{c,\min}\le r_c\le r_{c,\max}$의 밴드(window) 안 구덩이만 활성화된다</button>
+        <button class="opt">③ 표면의 모든 구덩이가 동시에 활성화된다</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 곡률 과열 $\Delta T_{sat}\propto 1/r_c$ 때문에 너무 작은 구덩이는 요구 과열이 커 활성 안 되고, 너무 큰 구덩이는 열경계층 밖이라 데워지지 않으므로 <strong>활성은 반경 window(밴드)</strong> 안에서만 일어난다(Hsu 1962). <span class="dim">오답 ①·③: ①작은 구덩이는 오히려 더 큰 과열을 요구하고, ③모두 동시가 아니라 window 안만.</span> <span class="agg">학급 n=41 · ① 9 · ② 28 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q1.</span>Which best describes cavity activation at a given $\Delta T_e$?</p>
+      <div class="opts">
+        <button class="opt">① only the smallest-radius cavities are always active</button>
+        <button class="opt" data-correct="1">② only cavities within the band $r_{c,\min}\le r_c\le r_{c,\max}$ (a window) activate</button>
+        <button class="opt">③ every cavity on the surface activates at once</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — because curvature superheat $\Delta T_{sat}\propto 1/r_c$, cavities too small demand too much superheat and cavities too large sit outside the thermal layer, so <strong>activation occurs only within a radius window (band)</strong> (Hsu 1962). <span class="dim">Wrong ①·③: ① small cavities actually need more superheat; ③ not all at once, only within the window.</span> <span class="agg">class n=41 · ① 9 · ② 28 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q2.</span>젖음성이 매우 좋은 매끈한 표면(예: 냉매)에서 흔히 나타나는 온도 오버슈트의 원인은?</p>
+      <div class="opts">
+        <button class="opt" data-correct="1">① 액체가 구덩이를 채워 기체 씨앗을 없애 개시가 늦어지기 때문</button>
+        <button class="opt">② 표면 열전도도가 너무 높아 과열이 안 되기 때문</button>
+        <button class="opt">③ 포화온도가 낮아져 $\Delta T_e$가 저절로 작아지기 때문</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ①</b> — 젖음성이 좋으면 액체가 작은 구덩이까지 파고들어 <strong>갇힌 기체 씨앗을 지워</strong> 활성 사이트가 사라진다. 씨앗이 없으니 비등 개시에 훨씬 큰 과열이 필요해 $\Delta T_e$가 정상값보다 높이 튀었다가(오버슈트) 개시 후 급락하는 이력을 보인다(비극성·저표면장력 유체에서 특히 큼). <span class="dim">오답 ②·③: 열전도도나 포화온도 변화가 아니라 씨앗 소멸이 원인.</span> <span class="agg">학급 n=41 · ① 30 · ② 7 · ③ 4</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q2.</span>What causes the temperature overshoot common on very well-wetting smooth surfaces (e.g. refrigerants)?</p>
+      <div class="opts">
+        <button class="opt" data-correct="1">① liquid floods the cavities and erases gas seeds, delaying onset</button>
+        <button class="opt">② the surface conductivity is so high that no superheat forms</button>
+        <button class="opt">③ the saturation temperature drops so $\Delta T_e$ shrinks by itself</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ①</b> — good wetting lets liquid penetrate small cavities and <strong>erase trapped gas seeds</strong>, so active sites vanish. Without seeds, onset needs far more superheat, so $\Delta T_e$ spikes above the steady value (overshoot) then drops sharply after onset — a hysteresis (especially large for non-polar, low-surface-tension fluids). <span class="dim">Wrong ②·③: the cause is seed erasure, not conductivity or a saturation-temperature change.</span> <span class="agg">class n=41 · ① 30 · ② 7 · ③ 4</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-5 / 연습 ══════════ -->
+  <section class="screen" data-ch="1-5" data-chtitle="핵생성 사이트 밀도와 ONB" data-stage="연습">
+    <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+    <div class="panel-head lang-en"><span class="tag">Practice</span><span class="panel-title">Engineering calc · auto-graded</span></div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 1 · 기본 · 곡률 과열과 활성 반경</div>
+      <p class="prob-statement">대기압 물($\sigma=0.0589\ \text{N/m}$, $T_{sat}=373\ \text{K}$, $\rho_v=0.60\ \text{kg/m}^3$, $h_{fg}=2257\times10^{3}\ \text{J/kg}$)에서, 반경 $r_c=1\ \mu\text{m}$인 구덩이를 활성화하는 데 필요한 <strong>곡률 과열 $\Delta T_{sat}$</strong>을 구하시오. 관계식은 $\Delta T_{sat}=\dfrac{2\sigma T_{sat}}{\rho_v h_{fg}\, r_c}$.</p>
+      <div class="given"><span class="chip">$\sigma=0.0589\ \text{N/m}$</span><span class="chip">$T_{sat}=373\ \text{K}$</span><span class="chip">$\rho_v=0.60\ \text{kg/m}^3$</span><span class="chip">$h_{fg}=2257\ \text{kJ/kg}$</span><span class="chip">$r_c=1\times10^{-6}\ \text{m}$</span></div>
+      <div class="find"><b>구할 것:</b> $\Delta T_{sat}\ [{}^{\circ}\text{C}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="32.4" data-tol="0.03"/><span class="ans-unit">${}^{\circ}\text{C}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 분자</div>$$ 2\sigma T_{sat} = 2(0.0589)(373) = 43.9\ \text{N·K/m} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 분모</div>$$ \rho_v h_{fg} r_c = (0.60)(2.257\times10^{6})(1\times10^{-6}) = 1.354\ \text{N/m} $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · 대입</div>$$ \Delta T_{sat} = \frac{43.9}{1.354} \approx 32.4\ \text{K} = 32.4\ {}^{\circ}\text{C} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \Delta T_{sat} \approx 32.4\ {}^{\circ}\text{C} $$</div><b>정답:</b> $1\ \mu\text{m}$ 구덩이는 큰 과열을 요구($\propto 1/r_c$). 더 작은 구덩이일수록 더 큰 과열이 필요하다.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 1 · Basic · curvature superheat &amp; active radius</div>
+      <p class="prob-statement">For water at 1 atm ($\sigma=0.0589\ \text{N/m}$, $T_{sat}=373\ \text{K}$, $\rho_v=0.60\ \text{kg/m}^3$, $h_{fg}=2257\times10^{3}\ \text{J/kg}$), find the <strong>curvature superheat $\Delta T_{sat}$</strong> needed to activate a cavity of radius $r_c=1\ \mu\text{m}$. Use $\Delta T_{sat}=\dfrac{2\sigma T_{sat}}{\rho_v h_{fg}\, r_c}$.</p>
+      <div class="given"><span class="chip">$\sigma=0.0589\ \text{N/m}$</span><span class="chip">$T_{sat}=373\ \text{K}$</span><span class="chip">$\rho_v=0.60\ \text{kg/m}^3$</span><span class="chip">$h_{fg}=2257\ \text{kJ/kg}$</span><span class="chip">$r_c=1\times10^{-6}\ \text{m}$</span></div>
+      <div class="find"><b>Find:</b> $\Delta T_{sat}\ [{}^{\circ}\text{C}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="32.4" data-tol="0.03"/><span class="ans-unit">${}^{\circ}\text{C}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · numerator</div>$$ 2\sigma T_{sat} = 2(0.0589)(373) = 43.9\ \text{N·K/m} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · denominator</div>$$ \rho_v h_{fg} r_c = (0.60)(2.257\times10^{6})(1\times10^{-6}) = 1.354\ \text{N/m} $$</div>
+        <div class="dstep2"><div class="step-label">Step 3 · substitute</div>$$ \Delta T_{sat} = \frac{43.9}{1.354} \approx 32.4\ \text{K} = 32.4\ {}^{\circ}\text{C} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \Delta T_{sat} \approx 32.4\ {}^{\circ}\text{C} $$</div><b>Answer:</b> a $1\ \mu\text{m}$ cavity demands a large superheat ($\propto 1/r_c$); smaller cavities need still more.</div>
+      </div>
+    </div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 2 · 응용 · 사이트 밀도 멱함수 비</div>
+      <p class="prob-statement">활성 사이트 밀도가 $N_a/A = C\,\Delta T_e^{\,m}$($m=5$)를 따른다. $\Delta T_e=8\,{}^{\circ}\text{C}$에서 $N_a/A = 100\ \text{sites/cm}^2$일 때, $\Delta T_e=16\,{}^{\circ}\text{C}$에서 <strong>$N_a/A$</strong>는 몇 $\text{sites/cm}^2$인가?</p>
+      <div class="given"><span class="chip">$m=5$</span><span class="chip">$(N_a/A)_1=100\ \text{sites/cm}^2$</span><span class="chip">$\Delta T_{e,1}=8\,{}^{\circ}\text{C}$</span><span class="chip">$\Delta T_{e,2}=16\,{}^{\circ}\text{C}$</span></div>
+      <div class="find"><b>구할 것:</b> $(N_a/A)_2\ [\text{sites/cm}^2]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="3200" data-tol="0.02"/><span class="ans-unit">$\text{sites/cm}^2$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 비례식</div>$$ \frac{(N_a/A)_2}{(N_a/A)_1}=\left(\frac{\Delta T_{e,2}}{\Delta T_{e,1}}\right)^{m}=\left(\frac{16}{8}\right)^{5}=2^{5}=32 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 대입</div>$$ (N_a/A)_2 = 32\times 100 = 3{,}200\ \text{sites/cm}^2 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ (N_a/A)_2 = 3{,}200\ \text{sites/cm}^2 $$</div><b>정답:</b> 과열도 2배 → 사이트 수 $2^5=32$배. 큰 $m$이 핵비등의 급격한 $q''$ 상승을 만든다.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 2 · Applied · site-density power-law ratio</div>
+      <p class="prob-statement">Active-site density follows $N_a/A = C\,\Delta T_e^{\,m}$ with $m=5$. If $N_a/A = 100\ \text{sites/cm}^2$ at $\Delta T_e=8\,{}^{\circ}\text{C}$, what is <strong>$N_a/A$</strong> at $\Delta T_e=16\,{}^{\circ}\text{C}$, in $\text{sites/cm}^2$?</p>
+      <div class="given"><span class="chip">$m=5$</span><span class="chip">$(N_a/A)_1=100\ \text{sites/cm}^2$</span><span class="chip">$\Delta T_{e,1}=8\,{}^{\circ}\text{C}$</span><span class="chip">$\Delta T_{e,2}=16\,{}^{\circ}\text{C}$</span></div>
+      <div class="find"><b>Find:</b> $(N_a/A)_2\ [\text{sites/cm}^2]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="3200" data-tol="0.02"/><span class="ans-unit">$\text{sites/cm}^2$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · ratio</div>$$ \frac{(N_a/A)_2}{(N_a/A)_1}=\left(\frac{\Delta T_{e,2}}{\Delta T_{e,1}}\right)^{m}=\left(\frac{16}{8}\right)^{5}=2^{5}=32 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · substitute</div>$$ (N_a/A)_2 = 32\times 100 = 3{,}200\ \text{sites/cm}^2 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ (N_a/A)_2 = 3{,}200\ \text{sites/cm}^2 $$</div><b>Answer:</b> double the superheat → $2^5=32\times$ the sites. A large $m$ drives the steep $q''$ rise of nucleate boiling.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-5 / 정리 ══════════ -->
+  <section class="screen" data-ch="1-5" data-chtitle="핵생성 사이트 밀도와 ONB" data-stage="정리">
+    <div class="eyebrow lang-ko">1-5 · 정리 · Summary</div>
+    <div class="eyebrow lang-en">1-5 · Summary</div>
+    <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 시험 포인트</h1>
+    <h1 class="stage-h lang-en">Key Points · Common Mistakes · Exam Focus</h1>
+    <div class="sumgrid lang-ko">
+      <div class="sumcard key"><h4>핵심 정리</h4><ul>
+        <li>핵비등 $q''$은 <strong>활성 사이트 밀도 $N_a/A$</strong>에 강하게 의존하며 $N_a/A\propto(1/r_c)^m\propto\Delta T_e^{\,m}$ ($m\approx4\!\sim\!6$).</li>
+        <li>곡률 과열 $\Delta T_{sat}=\dfrac{2\sigma T_{sat}}{\rho_v h_{fg} r_c}\propto 1/r_c$ → 활성은 <strong>반경 window $r_{c,\min}\!\sim\!r_{c,\max}$</strong>(Hsu 1962).</li>
+        <li>ONB = 첫 사이트 활성; Bergles–Rohsenow(1964)가 $q''_{ONB}$–$\Delta T_{e,ONB}$ 상관.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+        <li>가장 작은 구덩이가 먼저 활성으로 오해 → <strong>작을수록 더 큰 과열 요구</strong>.</li>
+        <li>활성을 단일 문턱으로 착각 → 실제는 <strong>반경 window(밴드)</strong>.</li>
+        <li>젖음성 좋을수록 비등 쉬움으로 오해 → 씨앗 소멸로 <strong>ONB 지연·오버슈트</strong>.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>시험 포인트</h4><ul>
+        <li>$\Delta T_{sat}=2\sigma T_{sat}/(\rho_v h_{fg} r_c)$ 대입 계산(활성 반경 ↔ 과열).</li>
+        <li>$N_a/A\propto\Delta T_e^{\,m}$ 멱함수 비 계산 ($2^m$배).</li>
+        <li>온도 오버슈트·이력의 물리적 원인(씨앗 소멸)과 젖음성/유체 의존.</li>
+      </ul></div>
+    </div>
+    <div class="sumgrid lang-en">
+      <div class="sumcard key"><h4>Key points</h4><ul>
+        <li>Nucleate $q''$ depends strongly on <strong>site density $N_a/A$</strong>, with $N_a/A\propto(1/r_c)^m\propto\Delta T_e^{\,m}$ ($m\approx4\!\sim\!6$).</li>
+        <li>Curvature superheat $\Delta T_{sat}=\dfrac{2\sigma T_{sat}}{\rho_v h_{fg} r_c}\propto 1/r_c$ → activation is a <strong>radius window $r_{c,\min}\!\sim\!r_{c,\max}$</strong> (Hsu 1962).</li>
+        <li>ONB = first site active; Bergles–Rohsenow (1964) correlates $q''_{ONB}$–$\Delta T_{e,ONB}$.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+        <li>Assuming the smallest cavity activates first → <strong>smaller needs more superheat</strong>.</li>
+        <li>Treating activation as one threshold → it is a <strong>radius window (band)</strong>.</li>
+        <li>Thinking better wetting eases boiling → seed erasure causes <strong>delayed ONB &amp; overshoot</strong>.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>Exam focus</h4><ul>
+        <li>Plug into $\Delta T_{sat}=2\sigma T_{sat}/(\rho_v h_{fg} r_c)$ (active radius ↔ superheat).</li>
+        <li>$N_a/A\propto\Delta T_e^{\,m}$ power-law ratio ($2^m\times$).</li>
+        <li>Physical cause of overshoot/hysteresis (seed erasure) and wetting/fluid dependence.</li>
+      </ul></div>
+    </div>
+  </section>
+
+<!-- ══════════ 1-6 / 개념 ══════════ -->
+  <section class="screen" data-ch="1-6" data-chtitle="표면 거칠기·젖음 조절과 핵비등 증강" data-stage="개념">
+    <div class="eyebrow lang-ko">1-6 · 개념 · Concept</div>
+    <div class="eyebrow lang-en">1-6 · Concept</div>
+    <h1 class="stage-h lang-ko">표면이 곧 비등이다 — 거칠기·공동·젖음</h1>
+    <h1 class="stage-h lang-en">The Surface Is the Boiling — Roughness, Cavities, Wettability</h1>
+    <div class="analogy lang-ko"><span class="ic">🧽</span><div class="tx"><b>직관</b> — 같은 물, 같은 과열도라도 <b>냄비 바닥의 상태</b>가 다르면 끓는 격렬함이 다르다. 반질반질한 유리 비커는 조용히 과열되다 갑자기 툭 끓지만, 스크래치 난 금속은 잔거품이 촘촘히 올라온다. 거품은 표면의 <b>미세한 흠집(공동, cavity)</b>에 갇힌 증기에서 태어나기 때문이다. 표면 마감·미세구조·젖음성을 바꾸는 것은 <b>핵생성 site 밀도</b>를 직접 조절하는 것이다. <span class="src">(출처: Rohsenow 1952 상관식의 $C_{sf}$ 표면계수 / Kandlikar, <i>Heat Transfer Eng.</i> 표면증강 리뷰)</span></div></div>
+    <div class="analogy lang-en"><span class="ic">🧽</span><div class="tx"><b>Intuition</b> — With the same water and the same superheat, a different <b>pot-bottom condition</b> boils with different vigor. A smooth glass beaker superheats quietly and then bursts, while a scratched metal surface sends up dense fine bubbles. Bubbles are born from vapor trapped in the surface's <b>tiny flaws (cavities)</b>. Changing surface finish, microstructure, and wettability directly tunes the <b>nucleation-site density</b>. <span class="src">(Source: the $C_{sf}$ surface coefficient in Rohsenow's 1952 correlation / Kandlikar, <i>Heat Transfer Eng.</i>, surface-enhancement review)</span></div></div>
+    <div class="two lang-ko">
+      <div class="col2">
+        <p class="lede">핵비등 성능은 세 표면 인자로 요약됩니다: <strong>거칠기($R_p$, 산-골 높이)</strong>는 잠재적 <strong>공동 크기 분포</strong>를 결정하고, <strong>미세/나노 구조</strong>는 재진입 공동으로 <strong>안정적 증기 포집</strong>을 만들며, <strong>젖음성(접촉각 $\theta$)</strong>은 공동이 액체로 잠기는지(flooding) 증기를 붙잡는지를 좌우합니다. Rohsenow 상관식에서 표면-유체 조합은 <strong>$C_{sf}$ 한 계수</strong>에 응축되며, $C_{sf}$가 작을수록 같은 $q''$을 <strong>더 낮은 $\Delta T_e$</strong>로 얻습니다.</p>
+        <div class="keqbox">
+          <div class="keq-label">Rohsenow 상관식 (핵비등 골격)</div>
+          <div class="keqrow"><span class="keqcap">기본형</span><span class="keqline">$ \dfrac{c_{p,l}\,\Delta T_e}{h_{fg}} = C_{sf}\!\left[\dfrac{q''}{\mu_l h_{fg}}\sqrt{\dfrac{\sigma}{g(\rho_l-\rho_v)}}\right]^{r}\! Pr_l^{\,s} $</span></div>
+          <div class="keqrow"><span class="keqcap">$q''$ 형태</span><span class="keqline">$ q'' \propto C_{sf}^{-1/r}\,\Delta T_e^{\,1/r} $</span></div>
+          <div class="keqrow"><span class="keqcap">지수 (대표)</span><span class="keqline">$ r=0.33,\ s=1.0\ (\text{물, } s=1.7\ \text{기타}) $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">핵심 용어</div>
+        <div class="terms">
+          <div class="term"><b>$C_{sf}$</b> 표면-유체 계수 — 작을수록 우수 (물-백금 $\approx 0.013$)</div>
+          <div class="term"><b>거칠기 $R_p$</b> 표면 산 높이 $[\mu\text{m}]$ — 공동 크기 척도</div>
+          <div class="term"><b>사이트밀도 $N/A$</b> 단위면적당 활성 핵생성 site 수 $[\text{site/m}^2]$</div>
+          <div class="term"><b>재진입 공동</b> 입구가 좁은 공동 — 증기를 안정적으로 포집</div>
+          <div class="term"><b>접촉각 $\theta$</b> 젖음성 지표 ($\theta$ 클수록 소수성 = 증기 유지)</div>
+          <div class="term"><b>flooding</b> 완전젖음 유체가 공동을 액체로 채워 site 불활성화</div>
+        </div>
+        <div class="callout key"><div class="ct">핵심</div>표면 마감·구조·젖음은 서로 얽혀 <strong>사이트밀도와 $C_{sf}$</strong>를 함께 바꿉니다. 같은 과열도에서 <strong>site가 많고 증기가 안정적으로 포집</strong>될수록 핵비등 $h$가 커지고 곡선이 <strong>왼쪽(낮은 $\Delta T_e$)</strong>으로 이동합니다.</div>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2">
+        <p class="lede">Nucleate-boiling performance reduces to three surface factors: <strong>roughness ($R_p$, peak height)</strong> sets the potential <strong>cavity-size distribution</strong>; <strong>micro/nano structures</strong> form re-entrant cavities that give <strong>stable vapor entrapment</strong>; and <strong>wettability (contact angle $\theta$)</strong> governs whether a cavity floods with liquid or holds vapor. In the Rohsenow correlation, the surface–fluid pair condenses into <strong>a single coefficient $C_{sf}$</strong>; a smaller $C_{sf}$ delivers the same $q''$ at a <strong>lower $\Delta T_e$</strong>.</p>
+        <div class="keqbox">
+          <div class="keq-label">Rohsenow correlation (nucleate skeleton)</div>
+          <div class="keqrow"><span class="keqcap">base form</span><span class="keqline">$ \dfrac{c_{p,l}\,\Delta T_e}{h_{fg}} = C_{sf}\!\left[\dfrac{q''}{\mu_l h_{fg}}\sqrt{\dfrac{\sigma}{g(\rho_l-\rho_v)}}\right]^{r}\! Pr_l^{\,s} $</span></div>
+          <div class="keqrow"><span class="keqcap">$q''$ form</span><span class="keqline">$ q'' \propto C_{sf}^{-1/r}\,\Delta T_e^{\,1/r} $</span></div>
+          <div class="keqrow"><span class="keqcap">exponents (rep.)</span><span class="keqline">$ r=0.33,\ s=1.0\ (\text{water},\ s=1.7\ \text{else}) $</span></div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="keq-label">Key terms</div>
+        <div class="terms">
+          <div class="term"><b>$C_{sf}$</b> surface–fluid coefficient — smaller is better (water–Pt $\approx 0.013$)</div>
+          <div class="term"><b>Roughness $R_p$</b> peak height $[\mu\text{m}]$ — cavity-size scale</div>
+          <div class="term"><b>Site density $N/A$</b> active nucleation sites per area $[\text{site/m}^2]$</div>
+          <div class="term"><b>Re-entrant cavity</b> narrow-mouth cavity — stably entraps vapor</div>
+          <div class="term"><b>Contact angle $\theta$</b> wettability index (larger $\theta$ = hydrophobic = retains vapor)</div>
+          <div class="term"><b>flooding</b> a fully wetting fluid fills cavities with liquid, deactivating sites</div>
+        </div>
+        <div class="callout key"><div class="ct">Key</div>Finish, structure, and wettability are intertwined and jointly change <strong>site density and $C_{sf}$</strong>. At a fixed superheat, more sites with stable vapor entrapment raise nucleate $h$ and shift the curve <strong>leftward (lower $\Delta T_e$)</strong>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-6 / 유도 ══════════ -->
+  <section class="screen" data-ch="1-6" data-chtitle="표면 거칠기·젖음 조절과 핵비등 증강" data-stage="유도">
+    <div class="eyebrow lang-ko">1-6 · 수식 유도 · Derivation</div>
+    <div class="eyebrow lang-en">1-6 · Derivation</div>
+    <h1 class="stage-h lang-ko">공동 활성화 반경과 $C_{sf}$의 역할</h1>
+    <h1 class="stage-h lang-en">Cavity Activation Radius and the Role of $C_{sf}$</h1>
+    <p class="lede lang-ko"><b>공통 관점:</b> 표면 인자는 두 경로로 핵비등을 바꿉니다 — (1) 어떤 크기의 공동이 <b>활성화</b>되는가(Young–Laplace 과열 조건), (2) 활성 site 밀도와 표면 특성이 <b>$C_{sf}$</b>에 어떻게 응축되는가.</p>
+    <p class="lede lang-en"><b>Unifying view:</b> surface factors alter nucleate boiling by two routes — (1) which cavity sizes become <b>active</b> (the Young–Laplace superheat criterion), and (2) how active-site density and surface character condense into <b>$C_{sf}$</b>.</p>
+    <div class="deriv lang-ko">
+      <div class="dcard"><h4>공동 활성화 조건</h4><div class="sub">Young–Laplace + Clausius–Clapeyron</div><div class="ana">🫧 큰 공동일수록 낮은 과열도로 켜진다</div><div class="eq">$ r_c = \dfrac{2\sigma\,T_{sat}}{\rho_v h_{fg}\,\Delta T_e} $</div><p>반경 $r_c$ 이상인 공동만 활성화. $\Delta T_e$가 크면 임계 반경이 작아져 <strong>더 작은 공동까지</strong> 켜집니다. 거친 표면 = 다양한 큰 $r$ 보유.</p></div>
+      <div class="dcard"><h4>거칠기 → 사이트밀도</h4><div class="sub">$R_p\uparrow \Rightarrow N/A \uparrow$</div><div class="ana">🔬 흠집이 많을수록 거품 출발점이 늘어난다</div><div class="eq">$ q''_{nb} \propto (N/A)^{m}\,\Delta T_e^{\,n} $</div><p>활성 site가 늘면 같은 $\Delta T_e$에서 $q''$ 증가. 실측 상관은 $N/A \propto R_p^{\,a}$ 형태로 근사되나 <strong>계수는 표면 의존</strong>(대표값, 불확실).</p></div>
+      <div class="dcard"><h4>$C_{sf}$로의 응축</h4><div class="sub">Rohsenow 형태</div><div class="ana">📉 좋은 표면 = 작은 $C_{sf}$ = 곡선 왼쪽 이동</div><div class="eq">$ \Delta T_e \propto C_{sf}\,q''^{\,r} \ (r\approx0.33) $</div><p>표면-유체 상호작용 전체가 <strong>$C_{sf}$ 한 계수</strong>로 흡수됩니다. $C_{sf}$가 2배면 같은 $q''$에 <strong>$\Delta T_e$도 2배</strong> 필요.</p></div>
+    </div>
+    <div class="deriv lang-en">
+      <div class="dcard"><h4>Cavity activation criterion</h4><div class="sub">Young–Laplace + Clausius–Clapeyron</div><div class="ana">🫧 larger cavities switch on at lower superheat</div><div class="eq">$ r_c = \dfrac{2\sigma\,T_{sat}}{\rho_v h_{fg}\,\Delta T_e} $</div><p>Only cavities of radius $\geq r_c$ activate. A larger $\Delta T_e$ shrinks the critical radius, switching on <strong>ever smaller cavities</strong>. A rough surface holds a spread of large $r$.</p></div>
+      <div class="dcard"><h4>Roughness → site density</h4><div class="sub">$R_p\uparrow \Rightarrow N/A \uparrow$</div><div class="ana">🔬 more flaws mean more bubble launch points</div><div class="eq">$ q''_{nb} \propto (N/A)^{m}\,\Delta T_e^{\,n} $</div><p>More active sites raise $q''$ at the same $\Delta T_e$. Empirical fits approximate $N/A \propto R_p^{\,a}$, but the <strong>coefficients are surface-specific</strong> (representative, uncertain).</p></div>
+      <div class="dcard"><h4>Condensing into $C_{sf}$</h4><div class="sub">Rohsenow form</div><div class="ana">📉 a good surface = small $C_{sf}$ = curve shifts left</div><div class="eq">$ \Delta T_e \propto C_{sf}\,q''^{\,r} \ (r\approx0.33) $</div><p>The full surface–fluid interaction is absorbed into <strong>the single coefficient $C_{sf}$</strong>. Doubling $C_{sf}$ requires <strong>double the $\Delta T_e$</strong> for the same $q''$.</p></div>
+    </div>
+    <div class="callout warn lang-ko"><div class="ct">주의 · $r=0.33$의 민감성</div>Rohsenow 지수가 $r\approx0.33$이라서 $q''\propto C_{sf}^{-1/r}=C_{sf}^{-3}$ — <strong>$C_{sf}$의 세제곱</strong>으로 $q''$이 바뀝니다. 표면 계수 작은 오차가 열유속에 <strong>증폭</strong>되어 나타나므로, $C_{sf}$는 반드시 <strong>동일 표면-유체 조합 실측표</strong>에서 취해야 합니다. <span class="src">(출처: Rohsenow 상관식 지수 = Incropera Ch.10.4)</span></div>
+    <div class="callout warn lang-en"><div class="ct">Caution · sensitivity of $r=0.33$</div>Because the Rohsenow exponent is $r\approx0.33$, $q''\propto C_{sf}^{-1/r}=C_{sf}^{-3}$ — $q''$ varies with the <strong>cube of $C_{sf}$</strong>. Small errors in the surface coefficient are <strong>amplified</strong> into the heat flux, so $C_{sf}$ must be taken from a <strong>measured table for the same surface–fluid pair</strong>. <span class="src">(Source: Rohsenow exponent = Incropera Ch.10.4)</span></div>
+  </section>
+
+  <!-- ══════════ 1-6 / 읽을거리 ══════════ -->
+  <section class="screen" data-ch="1-6" data-chtitle="표면 거칠기·젖음 조절과 핵비등 증강" data-stage="읽을거리">
+    <div class="eyebrow lang-ko">1-6 · 읽을거리 · Reading</div>
+    <div class="eyebrow lang-en">1-6 · Reading</div>
+    <h1 class="stage-h lang-ko">재진입 공동과 나노구조 표면 증강</h1>
+    <h1 class="stage-h lang-en">Re-entrant Cavities and Nanostructured Enhancement</h1>
+    <div class="two lang-ko">
+      <div class="col2 reading">
+        <p>매끈한 원뿔형 공동은 액체가 서서히 스며들어 결국 증기가 사라지고 <strong>불활성</strong>이 됩니다. 반면 <strong>재진입 공동(reentrant cavity)</strong>은 입구가 좁고 안이 넓어, 젖음선이 목에서 멈추며 <strong>증기를 안정적으로 포집</strong>합니다. 거품이 이탈해도 잔여 증기가 씨앗으로 남아 다음 거품이 곧바로 태어납니다.</p>
+        <p class="pullquote">좋은 비등 표면은 거품을 <em>만드는</em> 것이 아니라 증기 씨앗을 <em>지키는</em> 것이다.</p>
+        <p>마이크로/나노 구조(다공성 코팅, 나노와이어, micro-pillar)는 재진입 형상을 인공적으로 대량 생성해 <strong>사이트밀도와 CHF를 동시에</strong> 끌어올립니다. 특히 <strong>완전젖음 비극성 유체</strong>(냉매·유전액체, $\theta\approx0$)에서는 매끈한 공동이 전부 액체로 <strong>flooding</strong>되어 site가 죽으므로, 구조 표면이 액체 침투를 막는 <strong>기하학적 목</strong>을 제공하는 것이 핵심입니다. <span class="src">(출처: Kandlikar, 표면증강 리뷰 / Chu·Wang, 나노구조 CHF 연구)</span></p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">꼭 알아야 할 점</div><ul><li>공동이 켜지려면 <strong>증기가 목에 남아 있어야</strong> 한다(재진입 형상 유리).</li><li>완전젖음 유체는 매끈 공동을 <strong>flooding</strong> → 구조 표면 필수.</li><li>구조 표면은 <strong>사이트밀도 + CHF</strong>를 함께 개선한다.</li></ul></div>
+        <p class="readmeta">참고: Kandlikar, <em>Heat Transfer Eng.</em> 표면증강 / Carey, <em>Liquid–Vapor Phase-Change Phenomena</em>, Ch.7</p>
+      </div>
+    </div>
+    <div class="two lang-en">
+      <div class="col2 reading">
+        <p>A smooth conical cavity lets liquid gradually seep in until the vapor disappears and the cavity goes <strong>inactive</strong>. A <strong>re-entrant cavity</strong>, by contrast, has a narrow mouth and a wide interior, so the wetting line stops at the neck and <strong>stably entraps vapor</strong>. Even after a bubble departs, residual vapor remains as a seed and the next bubble is born immediately.</p>
+        <p class="pullquote">A good boiling surface does not <em>make</em> bubbles — it <em>protects</em> the vapor seed.</p>
+        <p>Micro/nano structures (porous coatings, nanowires, micro-pillars) artificially create re-entrant geometries in large numbers, raising <strong>site density and CHF together</strong>. This matters most for <strong>fully wetting non-polar fluids</strong> (refrigerants, dielectric liquids, $\theta\approx0$): smooth cavities <strong>flood</strong> entirely with liquid and die, so a structured surface providing a <strong>geometric neck</strong> against liquid intrusion is essential. <span class="src">(Source: Kandlikar, surface-enhancement review / Chu & Wang, nanostructured-CHF studies)</span></p>
+      </div>
+      <div class="col2">
+        <div class="callout key"><div class="ct">Must know</div><ul><li>A cavity activates only if <strong>vapor persists at the neck</strong> (re-entrant shapes help).</li><li>Fully wetting fluids <strong>flood</strong> smooth cavities → structured surfaces are essential.</li><li>Structured surfaces improve <strong>site density + CHF</strong> together.</li></ul></div>
+        <p class="readmeta">Refs: Kandlikar, <em>Heat Transfer Eng.</em>, enhancement / Carey, <em>Liquid–Vapor Phase-Change Phenomena</em>, Ch.7</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-6 / 그림·표 ══════════ -->
+  <section class="screen" data-ch="1-6" data-chtitle="표면 거칠기·젖음 조절과 핵비등 증강" data-stage="그림·표">
+    <div class="eyebrow lang-ko">1-6 · 그림 · 그래프 · 표</div>
+    <div class="eyebrow lang-en">1-6 · Figure · Graph · Table</div>
+    <h1 class="stage-h lang-ko">한눈에 — 공동 형상과 $C_{sf}$ 값</h1>
+    <h1 class="stage-h lang-en">At a Glance — Cavity Shapes and $C_{sf}$ Values</h1>
+    <div class="vizgrid lang-ko">
+      <div>
+        <div class="vcap">공동 형상 — 원뿔(flooding) vs 재진입(증기 포집)</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar16ko" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<rect x="30" y="120" width="180" height="120" fill="#e4e4e7"/>
+<rect x="270" y="120" width="180" height="120" fill="#e4e4e7"/>
+<path d="M90 120 L120 240 L150 120 Z" fill="#fff" stroke="#71717a" stroke-width="1.5"/>
+<path d="M108 120 Q120 210 132 120 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="1.2"/>
+<text x="120" y="112" font-size="11" fill="#52525b" text-anchor="middle" font-weight="700">원뿔 공동</text>
+<text x="120" y="262" font-size="10" fill="#0369a1" text-anchor="middle">액체 침투 → flooding</text>
+<path d="M320 120 L308 150 L308 235 L392 235 L392 150 L380 120 Z" fill="#fff" stroke="#71717a" stroke-width="1.5"/>
+<path d="M340 120 L332 150 L332 225 L368 225 L368 150 L360 120 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="1.2"/>
+<line x1="332" y1="132" x2="368" y2="132" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="3 2"/>
+<text x="360" y="112" font-size="11" fill="#52525b" text-anchor="middle" font-weight="700">재진입 공동</text>
+<text x="360" y="262" font-size="10" fill="#0369a1" text-anchor="middle">목에서 정지 → 증기 포집</text>
+<circle cx="120" cy="70" r="14" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<line x1="120" y1="84" x2="120" y2="108" stroke="#d97706" stroke-width="1.3" marker-end="url(#ar16ko)"/>
+<text x="120" y="40" font-size="10" fill="#b45309" text-anchor="middle">거품 이탈 후 site 사멸</text>
+<circle cx="360" cy="70" r="14" fill="#fecaca" stroke="#dc2626" stroke-width="1.3"/>
+<line x1="360" y1="84" x2="360" y2="108" stroke="#dc2626" stroke-width="1.3" marker-end="url(#ar16ko)"/>
+<text x="360" y="40" font-size="10" fill="#b91c1c" text-anchor="middle">잔여 증기 = 씨앗 유지</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">Rohsenow $C_{sf}$ (대표 표면-유체 조합)</div>
+        <table class="ktab"><thead><tr><th>표면 · 유체</th><th>$C_{sf}$</th><th style="text-align:right">비고</th></tr></thead><tbody>
+          <tr><td>물 · 백금(연마)</td><td class="k">0.013</td><td>기준값</td></tr>
+          <tr><td>물 · 구리(연마)</td><td class="k">0.013</td><td>매끈</td></tr>
+          <tr><td>물 · 구리(스크래치)</td><td class="k">0.0068</td><td>거칠수록 ↓</td></tr>
+          <tr><td>물 · 스테인리스(기계연마)</td><td class="k">0.013</td><td>—</td></tr>
+          <tr><td>물 · 황동</td><td class="k">0.006</td><td>—</td></tr>
+        </tbody></table>
+        <div class="keqnote">$C_{sf}$가 작을수록(거친/증강 표면) 같은 $q''$을 <strong>낮은 $\Delta T_e$</strong>로 달성. 물은 $s=1$, 그 외 유체는 $s=1.7$. 값은 대표값이며 표면 상태에 크게 의존(불확실). (출처: Rohsenow 1952 / Incropera Table 10.1)</div>
+      </div>
+    </div>
+    <div class="vizgrid lang-en">
+      <div>
+        <div class="vcap">Cavity shape — cone (floods) vs re-entrant (entraps vapor)</div>
+        <svg viewBox="0 0 480 285" width="100%" style="max-width:440px">
+<defs>
+<marker id="ar16en" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#71717a"/></marker>
+</defs>
+<rect x="30" y="120" width="180" height="120" fill="#e4e4e7"/>
+<rect x="270" y="120" width="180" height="120" fill="#e4e4e7"/>
+<path d="M90 120 L120 240 L150 120 Z" fill="#fff" stroke="#71717a" stroke-width="1.5"/>
+<path d="M108 120 Q120 210 132 120 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="1.2"/>
+<text x="120" y="112" font-size="11" fill="#52525b" text-anchor="middle" font-weight="700">conical cavity</text>
+<text x="120" y="262" font-size="10" fill="#0369a1" text-anchor="middle">liquid intrudes → floods</text>
+<path d="M320 120 L308 150 L308 235 L392 235 L392 150 L380 120 Z" fill="#fff" stroke="#71717a" stroke-width="1.5"/>
+<path d="M340 120 L332 150 L332 225 L368 225 L368 150 L360 120 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="1.2"/>
+<line x1="332" y1="132" x2="368" y2="132" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="3 2"/>
+<text x="360" y="112" font-size="11" fill="#52525b" text-anchor="middle" font-weight="700">re-entrant cavity</text>
+<text x="360" y="262" font-size="10" fill="#0369a1" text-anchor="middle">pins at neck → entraps vapor</text>
+<circle cx="120" cy="70" r="14" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<line x1="120" y1="84" x2="120" y2="108" stroke="#d97706" stroke-width="1.3" marker-end="url(#ar16en)"/>
+<text x="120" y="40" font-size="10" fill="#b45309" text-anchor="middle">site dies after departure</text>
+<circle cx="360" cy="70" r="14" fill="#fecaca" stroke="#dc2626" stroke-width="1.3"/>
+<line x1="360" y1="84" x2="360" y2="108" stroke="#dc2626" stroke-width="1.3" marker-end="url(#ar16en)"/>
+<text x="360" y="40" font-size="10" fill="#b91c1c" text-anchor="middle">residual vapor = seed kept</text>
+</svg>
+      </div>
+      <div>
+        <div class="vcap">Rohsenow $C_{sf}$ (representative surface–fluid pairs)</div>
+        <table class="ktab"><thead><tr><th>Surface · fluid</th><th>$C_{sf}$</th><th style="text-align:right">Note</th></tr></thead><tbody>
+          <tr><td>Water · Pt (polished)</td><td class="k">0.013</td><td>reference</td></tr>
+          <tr><td>Water · Cu (polished)</td><td class="k">0.013</td><td>smooth</td></tr>
+          <tr><td>Water · Cu (scored)</td><td class="k">0.0068</td><td>rougher → ↓</td></tr>
+          <tr><td>Water · SS (mech. polished)</td><td class="k">0.013</td><td>—</td></tr>
+          <tr><td>Water · brass</td><td class="k">0.006</td><td>—</td></tr>
+        </tbody></table>
+        <div class="keqnote">A smaller $C_{sf}$ (rougher/enhanced surface) reaches the same $q''$ at a <strong>lower $\Delta T_e$</strong>. Use $s=1$ for water, $s=1.7$ otherwise. Values are representative and depend strongly on surface state (uncertain). (Source: Rohsenow 1952 / Incropera Table 10.1)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-6 / 실습 ══════════ -->
+  <section class="screen" data-ch="1-6" data-chtitle="표면 거칠기·젖음 조절과 핵비등 증강" data-stage="실습">
+    <div class="eyebrow lang-ko">1-6 · 실습 · Interactive</div>
+    <div class="eyebrow lang-en">1-6 · Interactive</div>
+    <h1 class="stage-h lang-ko">$C_{sf}$가 과열도를 어떻게 바꾸는가 — 직접 조절</h1>
+    <h1 class="stage-h lang-en">How $C_{sf}$ Changes the Superheat — Try It</h1>
+    <p class="lede lang-ko">Rohsenow 상관식을 $\Delta T_e$에 대해 풀면 $\Delta T_e = C_{sf}\dfrac{h_{fg}}{c_{p,l}}\left(\dfrac{q''}{\mu_l h_{fg}}\sqrt{\dfrac{\sigma}{g\Delta\rho}}\right)^{r}Pr_l^{s}$입니다. 대기압 물 물성을 고정하면 $\Delta T_e$는 <strong>$C_{sf}$에 선형</strong>, $q''$에 <strong>$r=0.33$ 지수</strong>로 의존합니다. 슬라이더로 표면 계수 $C_{sf}$와 목표 열유속 $q''$을 바꿔 필요한 과열도를 확인하세요.</p>
+    <p class="lede lang-en">Solving the Rohsenow correlation for $\Delta T_e$ gives $\Delta T_e = C_{sf}\dfrac{h_{fg}}{c_{p,l}}\left(\dfrac{q''}{\mu_l h_{fg}}\sqrt{\dfrac{\sigma}{g\Delta\rho}}\right)^{r}Pr_l^{s}$. Fixing atmospheric-water properties, $\Delta T_e$ is <strong>linear in $C_{sf}$</strong> and scales with $q''$ to the power <strong>$r=0.33$</strong>. Use the sliders for the surface coefficient $C_{sf}$ and target heat flux $q''$ to see the required superheat.</p>
+    <div class="calc lang-ko"
+      data-title="필요 과열도 $\Delta T_e = K\,C_{sf}\,(q'')^{0.33}$"
+      data-desc="대기압 물 물성 묶음 상수 K≈16.2 (c_p, h_fg, μ, σ, Pr, ρ 대입, q'' 단위 W/m²). C_sf=0.013(연마 구리), q''=0.5 MW/m² → ΔT_e≈16°C. 거친 표면 C_sf=0.0068이면 같은 q''에 ΔT_e≈8.4°C."
+      data-vars='[{"sym":"Csf","label":"$C_{sf}$ · 표면-유체 계수","min":0.005,"max":0.02,"val":0.013,"step":0.0005,"unit":""},{"sym":"qpp","label":"$q_w$ · 열유속 (MW/m²)","min":0.1,"max":1.2,"val":0.5,"step":0.05,"unit":"MW/m²"}]'
+      data-expr="16.2*Csf*(qpp*1e6)**0.33"
+      data-out="$\Delta T_e$" data-out-unit="${}^{\circ}\text{C}$"
+      data-barmax="30"
+      data-note="C_sf를 절반(0.013→0.0068)으로 줄이면 같은 q''에 필요한 ΔT_e도 절반 — 거칠기·구조 증강의 직접 효과."></div>
+    <div class="calc lang-en"
+      data-title="Required superheat $\Delta T_e = K\,C_{sf}\,(q'')^{0.33}$"
+      data-desc="Atmospheric-water property-bundle constant K≈16.2 (from c_p, h_fg, μ, σ, Pr, ρ, with q'' in W/m²). C_sf=0.013 (polished Cu), q''=0.5 MW/m² → ΔT_e≈16°C. A rough surface C_sf=0.0068 needs only ΔT_e≈8.4°C for the same q''."
+      data-vars='[{"sym":"Csf","label":"$C_{sf}$ · surface-fluid coeff.","min":0.005,"max":0.02,"val":0.013,"step":0.0005,"unit":""},{"sym":"qpp","label":"$q_w$ · heat flux (MW/m²)","min":0.1,"max":1.2,"val":0.5,"step":0.05,"unit":"MW/m²"}]'
+      data-expr="16.2*Csf*(qpp*1e6)**0.33"
+      data-out="$\Delta T_e$" data-out-unit="${}^{\circ}\text{C}$"
+      data-barmax="30"
+      data-note="Halving C_sf (0.013→0.0068) halves the ΔT_e needed for the same q'' — the direct payoff of roughness/structure enhancement."></div>
+    <div class="calc-sense lang-ko"><b class="cs-h">공학적 감각</b> — 대기압 물 핵비등 과열도 $\Delta T_e$ 감: 핵비등 시작 $\approx 5\,{}^{\circ}\text{C}$ · 효율 영역 $\approx 10\!\sim\!25\,{}^{\circ}\text{C}$ · CHF 근처 $\approx 30\,{}^{\circ}\text{C}$. 기본값($C_{sf}=0.013$, $q''=0.5\,\text{MW/m}^2$)은 $\Delta T_e\approx 16\,{}^{\circ}\text{C}$ — 활발한 핵비등 중간. 표면을 거칠게·구조화해 $C_{sf}$를 낮추면 <strong>같은 냉각량을 더 낮은 벽온도</strong>로 처리해 소자 온도 여유가 커진다. $\Delta T_e$는 $C_{sf}$에 선형이라 표면 개선 효과가 직관적으로 읽힌다. <span class="src">(출처: Rohsenow 상관식 = Incropera Ch.10.4, $C_{sf}$ = Table 10.1)</span></div>
+    <div class="calc-sense lang-en"><b class="cs-h">Engineering sense</b> — feel for atmospheric-water nucleate superheat $\Delta T_e$: onset $\approx 5\,{}^{\circ}\text{C}$ · efficient region $\approx 10\!\sim\!25\,{}^{\circ}\text{C}$ · near CHF $\approx 30\,{}^{\circ}\text{C}$. The default ($C_{sf}=0.013$, $q''=0.5\,\text{MW/m}^2$) gives $\Delta T_e\approx 16\,{}^{\circ}\text{C}$ — mid nucleate boiling. Roughening/structuring the surface to lower $C_{sf}$ handles the <strong>same cooling at a lower wall temperature</strong>, buying device thermal margin. Since $\Delta T_e$ is linear in $C_{sf}$, surface gains read off intuitively. <span class="src">(Source: Rohsenow correlation = Incropera Ch.10.4; $C_{sf}$ = Table 10.1)</span></div>
+  </section>
+
+  <!-- ══════════ 1-6 / 점검 ══════════ -->
+  <section class="screen" data-ch="1-6" data-chtitle="표면 거칠기·젖음 조절과 핵비등 증강" data-stage="점검">
+    <div class="panel-head lang-ko"><span class="tag">개념 점검</span><span class="panel-title">학급 제출 · 교수 열람</span></div>
+    <div class="panel-head lang-en"><span class="tag">Concept Check</span><span class="panel-title">Class submission · instructor view</span></div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q1.</span>Rohsenow 상관식에서 표면을 거칠게 하여 <strong>$C_{sf}$가 작아지면</strong> 같은 $q''$에 필요한 과열도 $\Delta T_e$는 어떻게 됩니까?</p>
+      <div class="opts">
+        <button class="opt" data-correct="1">① 감소한다 — 곡선이 낮은 $\Delta T_e$ 쪽(왼쪽)으로 이동</button>
+        <button class="opt">② 증가한다 — 더 큰 과열도가 필요</button>
+        <button class="opt">③ 변하지 않는다 — $C_{sf}$는 $\Delta T_e$와 무관</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ①</b> — $\Delta T_e \propto C_{sf}\,q''^{r}$이므로 $C_{sf}$가 작아지면 같은 $q''$에 필요한 $\Delta T_e$가 줄고, 비등 곡선이 왼쪽으로 이동해 성능이 좋아진다. <span class="dim">오답 ②·③: ②는 방향 반대, ③은 $C_{sf}$가 $\Delta T_e$에 선형으로 직접 들어가므로 무관하지 않다.</span> <span class="agg">학급 n=41 · ① 30 · ② 8 · ③ 3</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q1.</span>In the Rohsenow correlation, if roughening the surface <strong>lowers $C_{sf}$</strong>, what happens to the superheat $\Delta T_e$ needed at the same $q''$?</p>
+      <div class="opts">
+        <button class="opt" data-correct="1">① it decreases — the curve shifts to lower $\Delta T_e$ (leftward)</button>
+        <button class="opt">② it increases — a larger superheat is required</button>
+        <button class="opt">③ it is unchanged — $C_{sf}$ is independent of $\Delta T_e$</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ①</b> — since $\Delta T_e \propto C_{sf}\,q''^{r}$, a smaller $C_{sf}$ lowers the $\Delta T_e$ needed at the same $q''$; the boiling curve shifts left and performance improves. <span class="dim">Wrong ②·③: ② has the direction reversed; ③ $C_{sf}$ enters $\Delta T_e$ linearly, so it is not independent.</span> <span class="agg">class n=41 · ① 30 · ② 8 · ③ 3</span></div>
+    </div>
+    <div class="cq lang-ko">
+      <p class="qtext"><span class="qn">Q2.</span><strong>완전젖음 비극성 유체</strong>(접촉각 $\theta\approx0$, 예: 냉매)에서 미세/나노 <strong>구조 표면</strong>이 중요한 이유는?</p>
+      <div class="opts">
+        <button class="opt">① 표면적을 넓혀 단상 대류만 강화하기 때문</button>
+        <button class="opt" data-correct="1">② 재진입 형상의 목이 액체 침투(flooding)를 막아 증기 씨앗을 지키기 때문</button>
+        <button class="opt">③ 유체의 표면장력 $\sigma$를 직접 낮추기 때문</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">제출</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">해설</b> <b class="ok">정답 ②</b> — 완전젖음 유체는 매끈한 원뿔 공동을 액체로 flooding시켜 site를 죽인다. 재진입 공동의 좁은 목이 젖음선을 정지시켜 증기를 포집하므로 site가 유지되고 핵비등이 살아난다. <span class="dim">오답 ①·③: ①구조 효과의 본질은 site 유지이지 단상 대류가 아니고, ③구조는 $\sigma$(유체 물성)를 바꾸지 않는다.</span> <span class="agg">학급 n=41 · ① 9 · ② 27 · ③ 5</span></div>
+    </div>
+    <div class="cq lang-en">
+      <p class="qtext"><span class="qn">Q2.</span>For a <strong>fully wetting non-polar fluid</strong> ($\theta\approx0$, e.g. a refrigerant), why do micro/nano <strong>structured surfaces</strong> matter?</p>
+      <div class="opts">
+        <button class="opt">① they merely enlarge area, strengthening single-phase convection</button>
+        <button class="opt" data-correct="1">② the re-entrant neck blocks liquid intrusion (flooding) and protects the vapor seed</button>
+        <button class="opt">③ they directly lower the fluid's surface tension $\sigma$</button>
+      </div>
+      <div class="submit-row"><button class="btn primary cp-submit">Submit</button><span class="submit-fb cp-fb"></span></div>
+      <div class="cp-exp"><b class="exp-h">Explanation</b> <b class="ok">Answer ②</b> — a fully wetting fluid floods smooth conical cavities with liquid and kills the sites. The narrow re-entrant neck pins the wetting line and entraps vapor, keeping sites alive and restoring nucleate boiling. <span class="dim">Wrong ①·③: ① the essence is seed retention, not single-phase convection; ③ structure does not change $\sigma$ (a fluid property).</span> <span class="agg">class n=41 · ① 9 · ② 27 · ③ 5</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-6 / 연습 ══════════ -->
+  <section class="screen" data-ch="1-6" data-chtitle="표면 거칠기·젖음 조절과 핵비등 증강" data-stage="연습">
+    <div class="panel-head lang-ko"><span class="tag">연습문제</span><span class="panel-title">공학 계산 · 자동 채점</span></div>
+    <div class="panel-head lang-en"><span class="tag">Practice</span><span class="panel-title">Engineering calc · auto-graded</span></div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 1 · 기본 · $C_{sf}$ 선형 효과</div>
+      <p class="prob-statement">같은 $q''$과 물성에서 연마 구리($C_{sf}=0.013$)는 $\Delta T_e=16\,{}^{\circ}\text{C}$가 필요하다. Rohsenow 상관식에서 $\Delta T_e \propto C_{sf}$일 때, 스크래치 구리($C_{sf}=0.0068$)로 바꾸면 필요한 <strong>$\Delta T_e$</strong>는 몇 ${}^{\circ}\text{C}$인가?</p>
+      <div class="given"><span class="chip">$\Delta T_{e,1}=16\,{}^{\circ}\text{C}$</span><span class="chip">$C_{sf,1}=0.013$</span><span class="chip">$C_{sf,2}=0.0068$</span></div>
+      <div class="find"><b>구할 것:</b> $\Delta T_{e,2}\ [{}^{\circ}\text{C}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="8.37" data-tol="0.03"/><span class="ans-unit">${}^{\circ}\text{C}$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 선형 비례</div>$$ \frac{\Delta T_{e,2}}{\Delta T_{e,1}} = \frac{C_{sf,2}}{C_{sf,1}} = \frac{0.0068}{0.013} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 대입</div>$$ \Delta T_{e,2} = 16 \times \frac{0.0068}{0.013} = 8.37\ {}^{\circ}\text{C} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \Delta T_{e,2} \approx 8.4\ {}^{\circ}\text{C} $$</div><b>정답:</b> 표면을 거칠게 하니 같은 냉각량을 <strong>절반 가까운 과열도</strong>로 처리 — 벽온도 여유 증가.</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 1 · Basic · linear $C_{sf}$ effect</div>
+      <p class="prob-statement">At the same $q''$ and properties, polished copper ($C_{sf}=0.013$) needs $\Delta T_e=16\,{}^{\circ}\text{C}$. With $\Delta T_e \propto C_{sf}$ in the Rohsenow correlation, what <strong>$\Delta T_e$</strong> (in ${}^{\circ}\text{C}$) is needed after switching to scored copper ($C_{sf}=0.0068$)?</p>
+      <div class="given"><span class="chip">$\Delta T_{e,1}=16\,{}^{\circ}\text{C}$</span><span class="chip">$C_{sf,1}=0.013$</span><span class="chip">$C_{sf,2}=0.0068$</span></div>
+      <div class="find"><b>Find:</b> $\Delta T_{e,2}\ [{}^{\circ}\text{C}]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="8.37" data-tol="0.03"/><span class="ans-unit">${}^{\circ}\text{C}$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · linear ratio</div>$$ \frac{\Delta T_{e,2}}{\Delta T_{e,1}} = \frac{C_{sf,2}}{C_{sf,1}} = \frac{0.0068}{0.013} $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · substitute</div>$$ \Delta T_{e,2} = 16 \times \frac{0.0068}{0.013} = 8.37\ {}^{\circ}\text{C} $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ \Delta T_{e,2} \approx 8.4\ {}^{\circ}\text{C} $$</div><b>Answer:</b> roughening the surface handles the same cooling at <strong>nearly half the superheat</strong> — more wall-temperature margin.</div>
+      </div>
+    </div>
+    <div class="prob lang-ko">
+      <div class="prob-num">연습 2 · 응용 · $C_{sf}$ 세제곱 열유속 이득</div>
+      <p class="prob-statement">고정된 $\Delta T_e$에서 $q'' \propto C_{sf}^{-1/r}$이고 $r=0.33$이라 $q'' \propto C_{sf}^{-3}$이다. 매끈 표면($C_{sf}=0.013$)에서 $q''=0.5\,\text{MW/m}^2$이라면, 증강 표면($C_{sf}=0.0065$, 즉 절반)에서 같은 $\Delta T_e$일 때 <strong>$q''$</strong>은 몇 $\text{MW/m}^2$인가?</p>
+      <div class="given"><span class="chip">$q''_1=0.5\ \text{MW/m}^2$</span><span class="chip">$C_{sf,1}=0.013$</span><span class="chip">$C_{sf,2}=0.0065$</span><span class="chip">$q''\propto C_{sf}^{-3}$</span></div>
+      <div class="find"><b>구할 것:</b> $q''_2\ [\text{MW/m}^2]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="내 답" data-answer="4.0" data-tol="0.03"/><span class="ans-unit">$\text{MW/m}^2$</span><button class="btn pr-check">확인</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>풀이 보기</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · 비례식</div>$$ \frac{q''_2}{q''_1}=\left(\frac{C_{sf,2}}{C_{sf,1}}\right)^{-3}=\left(\frac{0.0065}{0.013}\right)^{-3}=\left(\tfrac12\right)^{-3}=8 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · 대입</div>$$ q''_2 = 8\times 0.5 = 4.0\ \text{MW/m}^2 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ q''_2 = 4.0\ \text{MW/m}^2 $$</div><b>정답:</b> $C_{sf}$를 절반으로 낮추면 같은 과열도에서 열유속이 <strong>약 8배</strong> — 이는 이상적 상한이며 실제로는 CHF·구조 안정성에 제약(주의).</div>
+      </div>
+    </div>
+    <div class="prob lang-en">
+      <div class="prob-num">Practice 2 · Applied · cubic $C_{sf}$ flux gain</div>
+      <p class="prob-statement">At fixed $\Delta T_e$, $q'' \propto C_{sf}^{-1/r}$ with $r=0.33$, so $q'' \propto C_{sf}^{-3}$. If a smooth surface ($C_{sf}=0.013$) gives $q''=0.5\,\text{MW/m}^2$, what is <strong>$q''$</strong> (in $\text{MW/m}^2$) on an enhanced surface ($C_{sf}=0.0065$, i.e. half) at the same $\Delta T_e$?</p>
+      <div class="given"><span class="chip">$q''_1=0.5\ \text{MW/m}^2$</span><span class="chip">$C_{sf,1}=0.013$</span><span class="chip">$C_{sf,2}=0.0065$</span><span class="chip">$q''\propto C_{sf}^{-3}$</span></div>
+      <div class="find"><b>Find:</b> $q''_2\ [\text{MW/m}^2]$</div>
+      <div class="ans-row"><input class="ans-input" type="text" inputmode="decimal" placeholder="your answer" data-answer="4.0" data-tol="0.03"/><span class="ans-unit">$\text{MW/m}^2$</span><button class="btn pr-check">Check</button><span class="check-fb pr-fb"></span></div>
+      <button class="reveal-btn"><span>Show solution</span><span class="caret">▾</span></button>
+      <div class="revealable solution">
+        <div class="dstep2"><div class="step-label">Step 1 · ratio</div>$$ \frac{q''_2}{q''_1}=\left(\frac{C_{sf,2}}{C_{sf,1}}\right)^{-3}=\left(\frac{0.0065}{0.013}\right)^{-3}=\left(\tfrac12\right)^{-3}=8 $$</div>
+        <div class="dstep2"><div class="step-label">Step 2 · substitute</div>$$ q''_2 = 8\times 0.5 = 4.0\ \text{MW/m}^2 $$</div>
+        <div class="ans-final"><div class="ans-eq">$$ q''_2 = 4.0\ \text{MW/m}^2 $$</div><b>Answer:</b> halving $C_{sf}$ raises flux by about <strong>8×</strong> at the same superheat — an idealized upper bound; in practice CHF and structural stability limit this (caution).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 1-6 / 정리 ══════════ -->
+  <section class="screen" data-ch="1-6" data-chtitle="표면 거칠기·젖음 조절과 핵비등 증강" data-stage="정리">
+    <div class="eyebrow lang-ko">1-6 · 정리 · Summary</div>
+    <div class="eyebrow lang-en">1-6 · Summary</div>
+    <h1 class="stage-h lang-ko">핵심 정리 · 자주 하는 실수 · 시험 포인트</h1>
+    <h1 class="stage-h lang-en">Key Points · Common Mistakes · Exam Focus</h1>
+    <div class="sumgrid lang-ko">
+      <div class="sumcard key"><h4>핵심 정리</h4><ul>
+        <li>표면 거칠기·구조·젖음 → <strong>사이트밀도 $N/A$와 $C_{sf}$</strong>를 함께 바꿔 핵비등 $h$ 결정.</li>
+        <li>Rohsenow: $\Delta T_e \propto C_{sf}\,q''^{\,r}$, $r\approx0.33$ → $q''\propto C_{sf}^{-3}$ (<strong>세제곱 민감</strong>).</li>
+        <li>재진입 공동 = <strong>증기 씨앗 유지</strong>; 완전젖음 유체는 매끈 공동을 <strong>flooding</strong>시켜 구조 표면 필수.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ 자주 하는 실수</h4><ul>
+        <li>$C_{sf}$ 큰 값이 좋다고 오해 → <strong>작을수록 우수</strong>.</li>
+        <li>거친 표면이 항상 나쁘다고 오해 → 거칠수록 <strong>site 증가, $C_{sf}$ 감소</strong>.</li>
+        <li>구조 표면이 표면적으로만 작동한다고 오해 → 본질은 <strong>증기 포집</strong>.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>시험 포인트</h4><ul>
+        <li>$C_{sf}$ 변화 → $\Delta T_e$(선형) 또는 $q''$($C_{sf}^{-3}$) 계산.</li>
+        <li>재진입 공동이 안정적 site인 이유(젖음선 pinning).</li>
+        <li>완전젖음 비극성 유체에서 구조 표면 필요성(flooding 방지, Kandlikar).</li>
+      </ul></div>
+    </div>
+    <div class="sumgrid lang-en">
+      <div class="sumcard key"><h4>Key points</h4><ul>
+        <li>Surface roughness/structure/wettability jointly change <strong>site density $N/A$ and $C_{sf}$</strong>, setting nucleate $h$.</li>
+        <li>Rohsenow: $\Delta T_e \propto C_{sf}\,q''^{\,r}$, $r\approx0.33$ → $q''\propto C_{sf}^{-3}$ (<strong>cubic sensitivity</strong>).</li>
+        <li>Re-entrant cavities <strong>retain the vapor seed</strong>; fully wetting fluids <strong>flood</strong> smooth cavities, so structured surfaces are essential.</li>
+      </ul></div>
+      <div class="sumcard"><h4>⚠ Common mistakes</h4><ul>
+        <li>Thinking a large $C_{sf}$ is good → <strong>smaller is better</strong>.</li>
+        <li>Assuming rough surfaces are always bad → rougher means <strong>more sites, lower $C_{sf}$</strong>.</li>
+        <li>Reading structured surfaces as area-only → the essence is <strong>vapor entrapment</strong>.</li>
+      </ul></div>
+      <div class="sumcard exam full"><h4>Exam focus</h4><ul>
+        <li>Given a $C_{sf}$ change → compute $\Delta T_e$ (linear) or $q''$ ($C_{sf}^{-3}$).</li>
+        <li>Why a re-entrant cavity is a stable site (wetting-line pinning).</li>
+        <li>Need for structured surfaces with fully wetting non-polar fluids (anti-flooding, Kandlikar).</li>
       </ul></div>
     </div>
   </section>

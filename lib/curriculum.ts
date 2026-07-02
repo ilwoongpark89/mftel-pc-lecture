@@ -4,10 +4,10 @@ export const STAGES = ["개념", "유도", "읽을거리", "그림·표", "실�
 export type WeekDef = { week: number; title: string; chapters: string[] };
 
 export const CURRICULUM: WeekDef[] = [
-  { week: 1, title: "비등 열역학·핵생성", chapters: ["1-1", "1-2", "1-3", "1-4"] },
-  { week: 2, title: "핵비등 메커니즘·상관식", chapters: ["2-1", "2-2", "2-3", "2-4"] },
-  { week: 3, title: "비등 위기: CHF·막비등", chapters: ["3-1", "3-2", "3-3", "3-4"] },
-  { week: 4, title: "유동비등·과냉비등", chapters: ["4-1", "4-2", "4-3", "4-4"] },
+  { week: 1, title: "비등 열역학·핵생성", chapters: ["1-1", "1-2", "1-3", "1-4", "1-5", "1-6"] },
+  { week: 2, title: "핵비등 메커니즘·상관식", chapters: ["2-1", "2-2", "2-3", "2-4", "2-5", "2-6"] },
+  { week: 3, title: "비등 위기: CHF·막비등", chapters: ["3-1", "3-2", "3-3", "3-4", "3-5", "3-6"] },
+  { week: 4, title: "유동비등·과냉비등·응축", chapters: ["4-1", "4-2", "4-3", "4-4", "4-5", "4-6"] },
 ];
 
 // 체류시간 임계 (열람 판정 = 시간 기반, 화살표 연타 ≠ 학습).
